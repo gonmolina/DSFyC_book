@@ -11,8 +11,12 @@ jobs:
   deploy-book:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-
+    - name: Checkout 
+      uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.MY_REPO_PAT }}
+        submodules: recursive
+    
     # Install dependencies
     - name: Set up Python 3.8
       uses: actions/setup-python@v1
@@ -22,14 +26,6 @@ jobs:
     - name: Install dependencies
       run: |
         pip install --upgrade  -r requirements.txt
-    
-    - name: Checkout submodule
-      uses: actions/checkout@v2.0.0
-      with:
-        token: '${{ secrets.GITHUB_PAT }}'
-        repository: gonmolina/control-book-sources
-        path: sources
-        ref: 'master'
         
     # Build the book
     - name: Build the book
