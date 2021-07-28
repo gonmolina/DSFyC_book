@@ -3,7 +3,7 @@
 
 title: Diseño y Ajuste de Sistemas de Control
 author: Somebody
-logo: sources/notebooks_sources/sala_de_control.png
+logo: dsfc_sources/sala_de_control.png
 
 # Define the name of the latex output file for PDF builds
 latex:
