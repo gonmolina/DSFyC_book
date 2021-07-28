@@ -1,0 +1,67 @@
+# Book settings
+# Learn more at https://jupyterbook.org/customize/config.html
+
+title: Diseño y Ajuste de Sistemas de Control
+author: Somebody
+logo: sources/notebooks_sources/sala_de_control.png
+
+# Define the name of the latex output file for PDF builds
+latex:
+  latex_documents:
+    targetname: book.tex
+
+# Add a bibtex file so that we can create citations
+bibtex_bibfiles:
+  - references.bib
+
+launch_buttons:
+  notebook_interface        : classic  # The interface interactive links will activate ["classic", "jupyterlab"
+  colab_url                 : "https://colab.research.google.com"
+
+# Information about where the book exists on the web
+repository:
+  url: https://github.com/gonmolina/DSFyC  # Online location of your book
+  # path_to_book: book  # Optional path to your book, relative to the repository root
+  branch: master  # Which branch of the repository should be used when creating links (optional)
+
+# Add GitHub buttons to your book
+# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
+html:
+  navbar_number_sections    : True  # Add a number to each section in your left navbar
+  use_edit_page_button      : True   # Whether to add an "edit this page" button to pages. If `true`, repository information in repository: must be filled in
+  use_repository_button     : True  # Whether to add a link to your repository button
+  use_issues_button         : True  # Whether to add an "open an issue" button
+  google_analytics_id       : ""  # A GA id that can be used to track book views.
+  home_page_in_navbar       : true  # Whether to include your home page in the left Navigation Bar
+
+  baseurl: "https://gonmolina.github.io/DSFyC_book"
+
+  comments:
+    utterances:
+      repo: "gonmolina/DSFyC_book"
+
+execute:
+  execute_notebooks: cache
+
+
+parse:
+  myst_enable_extensions:  # default extensions to enable in the myst parser. See https://myst-parser.readthedocs.io/en/latest/using/syntax-optional.html
+    # - amsmath
+    - colon_fence
+    # - deflist
+    - dollarmath
+    # - html_admonition
+    - html_image
+    - linkify
+    # - replacements
+    # - smartquotes
+    - substitution
+
+#
+sphinx:
+  config:
+    language: es
+    nb_custom_formats:
+        .py:
+            - jupytext.reads
+            - fmt: py

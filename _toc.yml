@@ -1,0 +1,61 @@
+format: jb-book
+root: dsfc_sources/intro
+parts:
+- caption: "Introducción a Python"
+  chapters:
+  - file: sources/notebooks_sources/guia_de_instalacion
+  - file: "sources/notebooks_sources/intro_python/Introducci\xF3n a los notebooks de Jupyter"
+  - file: sources/notebooks_sources/intro_python/Extra_Python
+  - file: sources/notebooks_sources/intro_python/Intro-Matplotlib
+  - file: sources/notebooks_sources/intro_python/intro_sympy
+- caption: "Se\xF1ales, sistemas y modelos"
+  chapters:
+  - file: sources/notebooks_sources/modulo1/intro_sys_sen/intro_sis_y_sen
+  - file: sources/notebooks_sources/modulo1/laplace/transformada_laplace_python_opcional
+  - file: sources/notebooks_sources/modulo1/laplace/funcion_transferencia
+  - file: sources/notebooks_sources/modulo1/diagrama_bloques/diagrama_de_bloques
+  - file: sources/notebooks_sources/modulo1/espacio_estado/espacio_de_estados
+    sections:
+    - file: sources/notebooks_sources/modulo1/espacio_estado/modelado_ss
+  - file: sources/notebooks_sources/modulo1/linealizacion/linealizacion
+  - file: sources/notebooks_sources/modulo1/ejemplos_sistemas/ejemplos_sistemas
+    sections:
+    - file: sources/notebooks_sources/modulo1/ejemplos_sistemas/resorte_no_lineal
+    - file: sources/notebooks_sources/modulo1/ejemplos_sistemas/CineticaPuntual
+    - file: sources/notebooks_sources/modulo1/ejemplos_sistemas/Nonlinear CSTR
+    - file: sources/notebooks_sources/modulo1/ejemplos_sistemas/Ejemplo_Presa_Depredador
+- caption: "An\xE1lisis de la respuesta temporal"
+  chapters:
+  - file: sources/notebooks_sources/modulo2/estabilidad/estabilidad
+  - file: sources/notebooks_sources/modulo2/respuesta temporal/Respuesta Temporal
+  - file: sources/notebooks_sources/modulo2/polos y ceros adicionales/Efecto Polos y Ceros Adicionales
+- caption: "An\xE1lisis de estado estacionario"
+  chapters:
+  - file: sources/notebooks_sources/modulo3/realimentacion/carateristicas de la realimentacion
+  - file: sources/notebooks_sources/modulo3/sensibilidad/Sensibilidad
+  - file: sources/notebooks_sources/modulo3/errores/Errores
+- caption: "Lugar de las ra\xEDces"
+  chapters:
+  - file: sources/notebooks_sources/modulo4/lugar de las raices
+  - file: sources/notebooks_sources/modulo4/Pasos para el trazado
+  - file: sources/notebooks_sources/modulo4/Lugar de la raices con Python
+- caption: Respuesta en frecuencia
+  chapters:
+  - file: sources/notebooks_sources/modulo_frec/respuesta_frecuencial
+  - file: sources/notebooks_sources/modulo_frec/estabilidad_nyquist/estabilidad_en_frecuencia
+- caption: "Dise\xF1o de compensadores"
+  chapters:
+  - file: sources/notebooks_sources/modulo5/compensadores
+  - file: sources/notebooks_sources/modulo5/problema_levitador
+  - file: sources/notebooks_sources/modulo5/tipo1_lead
+  - file: sources/notebooks_sources/modulo5/lead_lag_design
+- caption: Control Moderno
+  chapters:
+  - file: sources/notebooks_sources/modulo_ve/formas_canonicas
+  - file: sources/notebooks_sources/modulo_ve/transformacion_formas_canonicas
+  - file: sources/notebooks_sources/modulo_ve/ctrb_obsv
+  - file: sources/notebooks_sources/modulo_ve/referencia
+  - file: sources/notebooks_sources/modulo_ve/estimadores
+  - file: sources/notebooks_sources/modulo_ve/ejemplo_A_ve_motor_cc
+  - file: sources/notebooks_sources/modulo_ve/ejemplo_B_ve_atitud_satelite
+  - file: sources/notebooks_sources/modulo_ve/ejemplo_C_ve_pendulo_invertido
