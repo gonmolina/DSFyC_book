@@ -32,7 +32,7 @@ ctrl.canonical_form(sys, 'modal')
 During handling of the above exception, another exception occurred:
 
 [0;31mControlSlycot[0m                             Traceback (most recent call last)
-[0;32m/tmp/ipykernel_2268/2951802654.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/tmp/ipykernel_2826/2951802654.py[0m in [0;36m<module>[0;34m[0m
 [0;32m----> 1[0;31m [0mctrl[0m[0;34m.[0m[0mcanonical_form[0m[0;34m([0m[0msys[0m[0;34m,[0m [0;34m'modal'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m
 [0;32m/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/control/canonical.py[0m in [0;36mcanonical_form[0;34m(xsys, form)[0m
