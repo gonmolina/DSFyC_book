@@ -1,0 +1,982 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema masa resorte amortiguador &#8212; Diseño y Ajuste de Sistemas de Control</title>
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "gonmolina/DSFyC_book");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 comment");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
+    <script src="../../../../_static/translations.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="canonical" href="https://gonmolina.github.io/DSFyC_book/sources/notebooks_sources/modulo1/ejemplos_sistemas/resorte_no_lineal.html" />
+    <link rel="index" title="Índice" href="../../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../../search.html" />
+    <link rel="next" title="Ecuaciones de Cinética Puntual" href="CineticaPuntual.html" />
+    <link rel="prev" title="Ejemplos de modelos de sistemas" href="ejemplos_sistemas.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../../index.html">
+      
+      <img src="../../../../_static/sala_de_control.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Diseño y Ajuste de Sistemas de Control</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Buscar este libro ..." aria-label="Buscar este libro ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../dsfc_sources/intro.html">
+   Material de la materia Dinámica de los Sistemas Físicos y Control
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introducción a Python
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro_python/Introducci%C3%B3n%20a%20los%20notebooks%20de%20Jupyter.html">
+   Introducción a los cuadernos de Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro_python/Extra_Python.html">
+   Introducción a Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro_python/Intro-Matplotlib.html">
+   Figuras en Python - MATPLOTLIB
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro_python/intro_sympy.html">
+   Introducción a SymPy
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Señales, sistemas y modelos
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro_sys_sen/intro_sis_y_sen.html">
+   Definiciones de Sistemas y Señales
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../laplace/transformada_laplace_python_opcional.html">
+   Transformada de Laplace
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../laplace/funcion_transferencia.html">
+   Función transferencia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../diagrama_bloques/diagrama_de_bloques.html">
+   Diagramas de bloques
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../espacio_estado/espacio_de_estados.html">
+   Representación de sistemas dinámicos en espacio de estados
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../espacio_estado/modelado_ss.html">
+     Modelado en espacio de estados
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../linealizacion/linealizacion.html">
+   Linealización de sistemas no-lineales
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="ejemplos_sistemas.html">
+   Ejemplos de modelos de sistemas
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Sistema masa resorte amortiguador
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="CineticaPuntual.html">
+     Ecuaciones de Cinética Puntual
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Nonlinear%20CSTR.html">
+     Sistema CSTR
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Ejemplo_Presa_Depredador.html">
+     Sistema presa depredador (Lotka-Volterra)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Análisis de la respuesta temporal
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo2/estabilidad/estabilidad.html">
+   Estabilidad
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo2/respuesta%20temporal/Respuesta%20Temporal.html">
+   Respuesta temporal de sistemas dinámicos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo2/polos%20y%20ceros%20adicionales/Efecto%20Polos%20y%20Ceros%20Adicionales.html">
+   Efecto de los polos adicionales y de los ceros
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Análisis de estado estacionario
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo3/realimentacion/carateristicas%20de%20la%20realimentacion.html">
+   Características de la realimentación
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo3/sensibilidad/Sensibilidad.html">
+   Sensibilidad
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo3/errores/Errores.html">
+   Errores
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Lugar de las raíces
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo4/lugar%20de%20las%20raices.html">
+   Lugar de las raíces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo4/Pasos%20para%20el%20trazado.html">
+   Pasos para trazar el lugar geométrico de las raíces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo4/Lugar%20de%20la%20raices%20con%20Python.html">
+   Lugar de las raíces usando Python
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Respuesta en frecuencia
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_frec/respuesta_frecuencial.html">
+   Respuesta Frecuencial de Sistemas lineales y SISO
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_frec/estabilidad_nyquist/estabilidad_en_frecuencia.html">
+   Estabilidad en Frecuencia
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Diseño de compensadores
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo5/compensadores.html">
+   Compensadores de adelanto y de retraso de fase
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo5/problema_levitador.html">
+   Problema de levitador magnético
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo5/tipo1_lead.html">
+   Problema con sistema de tipo 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo5/lead_lag_design.html">
+   Ecuaciones útiles para el diseño del Lead por análisis en frecuencia
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Control Moderno
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/formas_canonicas.html">
+   Formas canónicas de un espacio de estados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/transformacion_formas_canonicas.html">
+   Transformación lineal del espacio de estado
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/ctrb_obsv.html">
+   Análisis de los sistemas en su forma de espacio de estados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/referencia.html">
+   Inserción de referencias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/estimadores.html">
+   Diseño de estimadores
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/ejemplo_A_ve_motor_cc.html">
+   Diseño para un motor de continua
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/ejemplo_B_ve_atitud_satelite.html">
+   Diseño del sistema de control del atitud de un satélite
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/ejemplo_C_ve_pendulo_invertido.html">
+   Diseño del sistema de control del pédulo invertido
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Navegación de palanca" aria-controls="site-navigation"
+                title="Navegación de palanca" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Descarga esta pagina"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../../../_sources/sources/notebooks_sources/modulo1/ejemplos_sistemas/resorte_no_lineal.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Descargar archivo de cuaderno" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../../_sources/sources/notebooks_sources/modulo1/ejemplos_sistemas/resorte_no_lineal.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Descargar archivo fuente" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimir en PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/gonmolina/DSFyC"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Repositorio de origen"><i
+                    class="fab fa-github"></i>repositorio</button></a>
+        <a class="issues-button"
+            href="https://github.com/gonmolina/DSFyC/issues/new?title=Issue%20on%20page%20%2Fsources/notebooks_sources/modulo1/ejemplos_sistemas/resorte_no_lineal.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Abrir un problema"><i class="fas fa-lightbulb"></i>Tema abierto</button></a>
+        <a class="edit-button" href="https://github.com/gonmolina/DSFyC/edit/master/sources/notebooks_sources/modulo1/ejemplos_sistemas/resorte_no_lineal.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edita esta página"><i class="fas fa-pencil-alt"></i>sugerir editar</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Modo de pantalla completa"
+        title="Modo de pantalla completa"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/gonmolina/DSFyC/master?urlpath=tree/sources/notebooks_sources/modulo1/ejemplos_sistemas/resorte_no_lineal.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Lanzamiento Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contenido
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ecuaciones-de-movimiento">
+   Ecuaciones de movimiento
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sympy-para-la-linealizacion">
+   SymPy para la linealización
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#utilizacion-numerica-de-los-resultados-simbolicos">
+   Utilización numérica de los resultados simbólicos
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simulacion-no-lineal">
+   Simulación No-Lineal
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="sistema-masa-resorte-amortiguador">
+<h1>Sistema masa resorte amortiguador<a class="headerlink" href="#sistema-masa-resorte-amortiguador" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="ecuaciones-de-movimiento">
+<h2>Ecuaciones de movimiento<a class="headerlink" href="#ecuaciones-de-movimiento" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Supongamos que el resorte no cumple la ley de Hook, sino que produce una fuerza que es:</p>
+<div class="math notranslate nohighlight">
+\[f_k = Kx^3\]</div>
+<p>Entonces las ecuaciones de movimiento son</p>
+<div class="math notranslate nohighlight">
+\[ ma(t) = F+mg - f_b - f_k \implies m \ddot x(t) = F + mg - b \dot x(t) - K x^3(t)\]</div>
+<p>Podemos escribir las ecuaciones de estado, suponiendo los estados son <span class="math notranslate nohighlight">\(\dot x = x_1\)</span> y <span class="math notranslate nohighlight">\(x = x_2\)</span>. Entonces resultan:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \left\{
+    \begin{array}{ll}
+      \dot x_1(t) =  &amp; -\dfrac{b}{m} x_1(t) - \dfrac{K} {m} x_2^3(t) +\dfrac{F(t)}{m} + g\\
+      \dot x_2(t) =  &amp; x_1(t)
+    \end{array}
+  \right.
+\end{split}\]</div>
+<p>El objetivo es linealizar el sistema en torno al punto de operación. Vamos a obtener el punto de operación para <span class="math notranslate nohighlight">\(F=0\)</span>.</p>
+<p>Usaremos para este trabajo <code class="docutils literal notranslate"><span class="pre">SymPy</span></code> para que nos ayude con la matemática simbólica.</p>
+</div>
+<div class="section" id="sympy-para-la-linealizacion">
+<h2>SymPy para la linealización<a class="headerlink" href="#sympy-para-la-linealizacion" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Primero importamos el paquete de cálculo simbólico e inicializamos la forma en que este paquete mostrará las formulas en pantalla.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">init_printing</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora definimos los símbolos que estará presentes en las ecuaciones y luego las ecuaciones usando estos símbolos</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">F</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span>  <span class="n">g</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;F, m,  g, K, b, x1, x2&#39;</span><span class="p">)</span>
+<span class="n">dx1</span> <span class="o">=</span> <span class="o">-</span><span class="n">b</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">x1</span><span class="o">-</span><span class="n">K</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">x2</span><span class="o">**</span><span class="mi">3</span><span class="o">+</span><span class="n">F</span><span class="o">/</span><span class="n">m</span><span class="o">+</span><span class="n">g</span>
+<span class="n">dx2</span> <span class="o">=</span> <span class="n">x1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora vemos como muestra <code class="docutils literal notranslate"><span class="pre">SymPy</span></code> las ecuaciones</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dx1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/IPython/lib/latextools.py:126: MatplotlibDeprecationWarning: 
+The to_png function was deprecated in Matplotlib 3.4 and will be removed two minor releases later. Use mathtext.math_to_image instead.
+  mt.to_png(f, s, fontsize=12, dpi=dpi, color=color)
+/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/IPython/lib/latextools.py:126: MatplotlibDeprecationWarning: 
+The to_rgba function was deprecated in Matplotlib 3.4 and will be removed two minor releases later. Use mathtext.math_to_image instead.
+  mt.to_png(f, s, fontsize=12, dpi=dpi, color=color)
+/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/IPython/lib/latextools.py:126: MatplotlibDeprecationWarning: 
+The to_mask function was deprecated in Matplotlib 3.4 and will be removed two minor releases later. Use mathtext.math_to_image instead.
+  mt.to_png(f, s, fontsize=12, dpi=dpi, color=color)
+/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/IPython/lib/latextools.py:126: MatplotlibDeprecationWarning: 
+The MathtextBackendBitmap class was deprecated in Matplotlib 3.4 and will be removed two minor releases later. Use mathtext.math_to_image instead.
+  mt.to_png(f, s, fontsize=12, dpi=dpi, color=color)
+</pre></div>
+</div>
+<img alt="../../../../_images/resorte_no_lineal_12_1.png" src="../../../../_images/resorte_no_lineal_12_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ec_est</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="n">dx1</span><span class="p">,</span><span class="n">dx2</span><span class="p">])</span>
+<span class="n">x</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">])</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="n">F</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Recordando un poco lo visto en teoría, podemos resolver la linealización rápidamente obteniendo el Jacobiano de las ecuaciones de estado.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">ec_est</span><span class="o">.</span><span class="n">jacobian</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">ec_est</span><span class="o">.</span><span class="n">jacobian</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Veamos el resultado:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}- \frac{b}{m} &amp; - \frac{3 K x_{2}^{2}}{m}\\1 &amp; 0\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}\frac{1}{m}\\0\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<p>El punto de equilibrio de un sistema es donde el sistema está quieto o permanece si variar nada. Para obtener el punto de equilibrio, por lo tanto tenemos que hacer que las variables de estados <span class="math notranslate nohighlight">\(x_1\)</span> y<span class="math notranslate nohighlight">\( x_2\)</span> permanezcan constantes. Esto ocurre cuando todas las derivadas <span class="math notranslate nohighlight">\(\dot x_1\)</span> y <span class="math notranslate nohighlight">\(\dot x_2\)</span> son igual a 0 (el sistema esta quieto). Vamos a considerar en un primer momento <span class="math notranslate nohighlight">\(F=0\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ec_est_f0</span> <span class="o">=</span> <span class="n">ec_est</span><span class="o">.</span><span class="n">subs</span><span class="p">([(</span><span class="n">F</span><span class="p">,</span><span class="mi">0</span><span class="p">)])</span> <span class="c1"># substituímos F con 0</span>
+<span class="n">sol0</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">ec_est_f0</span><span class="p">,(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">),</span> <span class="nb">dict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># resolvemos X1, y x2</span>
+<span class="n">sol0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../../_images/resorte_no_lineal_20_0.png" src="../../../../_images/resorte_no_lineal_20_0.png" />
+</div>
+</div>
+<p>Me quedo solo con la solución real, por ser la única con sentido físico</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sol0</span> <span class="o">=</span> <span class="n">sol0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">sol0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../../_images/resorte_no_lineal_22_0.png" src="../../../../_images/resorte_no_lineal_22_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">sol0</span><span class="p">)</span>
+<span class="n">B</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">sol0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}\frac{1}{m}\\0\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<p>Podemos resolver también ahora si ponemos una <span class="math notranslate nohighlight">\(F=1\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ec_est_f1</span> <span class="o">=</span> <span class="n">ec_est</span><span class="o">.</span><span class="n">subs</span><span class="p">([(</span><span class="n">F</span><span class="p">,</span><span class="mi">1</span><span class="p">)])</span> 
+<span class="n">sol1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">ec_est_f1</span><span class="p">,(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">),</span><span class="nb">dict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">sol1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../../_images/resorte_no_lineal_25_0.png" src="../../../../_images/resorte_no_lineal_25_0.png" />
+</div>
+</div>
+<p>Me quedo con la única solución real posible que es la primera (recodar que python indexa de 0).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sol1</span> <span class="o">=</span> <span class="n">sol1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">A</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">sol1</span><span class="p">),</span> <span class="n">B</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">sol1</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left( \left[\begin{matrix}- \frac{b}{m} &amp; - \frac{3 K \left(\frac{g m}{K} + \frac{1}{K}\right)^{\frac{2}{3}}}{m}\\1 &amp; 0\end{matrix}\right], \  \left[\begin{matrix}\frac{1}{m}\\0\end{matrix}\right]\right)\end{split}\]</div>
+</div>
+</div>
+<p>Vemos que esta es una matriz que posee símbolos. Para poder usarla con el paquete de control, debemos pasarla a una matriz puramente numérica. esto lo haremos substituyendo los símbolos por valores</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">An</span><span class="o">=</span><span class="n">A</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">sol1</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">([(</span><span class="n">b</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="n">K</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="n">m</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="n">g</span><span class="p">,</span><span class="mf">9.8</span><span class="p">)])</span>
+<span class="n">Bn</span><span class="o">=</span><span class="n">B</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">sol1</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">([(</span><span class="n">b</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="n">K</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="n">m</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="n">g</span><span class="p">,</span><span class="mf">9.8</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora veamos los resultados</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">An</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}- \frac{1}{3} &amp; -12.2722931550313\\1 &amp; 0\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Bn</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}\frac{1}{3}\\0\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<p>Analicemos un poco que son Bn y An</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">An</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sympy.matrices.dense.MutableDenseMatrix
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esto nos dice que es un objeto de tipo simbólico. Para poder usarlo aún debemos pasarlo a un tipo numérico.</p>
+</div>
+<div class="section" id="utilizacion-numerica-de-los-resultados-simbolicos">
+<h2>Utilización numérica de los resultados simbólicos<a class="headerlink" href="#utilizacion-numerica-de-los-resultados-simbolicos" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">control</span> <span class="k">as</span> <span class="nn">ctrl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># descomentar la siguiente linea para ver la imagen e una ventana emergente</span>
+<span class="c1"># %matplotlib qt5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="n">An</span><span class="p">)</span>
+<span class="n">B1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="n">Bn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Chequeemos ahora el tipo de datos de la matriz A1:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">A1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>numpy.ndarray
+</pre></div>
+</div>
+</div>
+</div>
+<p>Vemos que ahora es de tipo <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> de numpy, que es software de algebra numérico  (no simbólico). Este tipo de datos es aceptado por el paquete de control, por lo que podemos usar las matrices A1 y B1 para definir nuestro sistema en espacio de estados.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">A1</span><span class="p">,</span><span class="n">B1</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Con este modelo podemos fácilmente simular la respuesta al escalón</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">step_response</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">1000</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora utilizaremos lo visto en el cuaderno de figuras</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Respuesta al escalón&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo [s]&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Posición $x$&#39;</span><span class="p">);</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../../_images/resorte_no_lineal_46_0.png" src="../../../../_images/resorte_no_lineal_46_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="simulacion-no-lineal">
+<h2>Simulación No-Lineal<a class="headerlink" href="#simulacion-no-lineal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Primero debemos definir el sistema no lineal en una función para que después podamos integrarlo con los métodos de integración del paquete scipy (otro paquete más de Python).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">resorte_no_lineal</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">9.8</span><span class="p">,</span> <span class="n">step_amp</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">F</span><span class="o">=</span><span class="mi">1</span><span class="o">+</span><span class="n">step_amp</span> <span class="c1"># Hacemos la entrada igual a 2 ya que al sistema lineal le aplicamos </span>
+                 <span class="c1"># un escalón unitario sobre el punto de trabajo que era F=1</span>
+    <span class="n">x1</span><span class="p">,</span><span class="n">x2</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="n">dx1</span> <span class="o">=</span> <span class="o">-</span><span class="n">b</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">x1</span><span class="o">-</span><span class="n">K</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">x2</span><span class="o">**</span><span class="mi">3</span><span class="o">+</span><span class="n">F</span><span class="o">/</span><span class="n">m</span><span class="o">+</span><span class="n">g</span>
+    <span class="n">dx2</span> <span class="o">=</span> <span class="n">x1</span>
+    <span class="k">return</span> <span class="n">dx1</span><span class="p">,</span> <span class="n">dx2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para comenzar necesitamos también los valores numéricos de las condiciones iniciales</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="n">sol1</span><span class="p">[</span><span class="n">x1</span><span class="p">]</span><span class="o">.</span><span class="n">subs</span><span class="p">([(</span><span class="n">b</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="n">K</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="n">m</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="n">g</span><span class="p">,</span><span class="mf">9.8</span><span class="p">)])),</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="n">sol1</span><span class="p">[</span><span class="n">x2</span><span class="p">]</span><span class="o">.</span><span class="n">subs</span><span class="p">([(</span><span class="n">b</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="n">K</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="n">m</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="n">g</span><span class="p">,</span><span class="mf">9.8</span><span class="p">)]))</span>
+<span class="n">x0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/IPython/lib/latextools.py:126: MatplotlibDeprecationWarning: 
+The to_png function was deprecated in Matplotlib 3.4 and will be removed two minor releases later. Use mathtext.math_to_image instead.
+  mt.to_png(f, s, fontsize=12, dpi=dpi, color=color)
+/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/IPython/lib/latextools.py:126: MatplotlibDeprecationWarning: 
+The to_rgba function was deprecated in Matplotlib 3.4 and will be removed two minor releases later. Use mathtext.math_to_image instead.
+  mt.to_png(f, s, fontsize=12, dpi=dpi, color=color)
+/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/IPython/lib/latextools.py:126: MatplotlibDeprecationWarning: 
+The to_mask function was deprecated in Matplotlib 3.4 and will be removed two minor releases later. Use mathtext.math_to_image instead.
+  mt.to_png(f, s, fontsize=12, dpi=dpi, color=color)
+/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/IPython/lib/latextools.py:126: MatplotlibDeprecationWarning: 
+The MathtextBackendBitmap class was deprecated in Matplotlib 3.4 and will be removed two minor releases later. Use mathtext.math_to_image instead.
+  mt.to_png(f, s, fontsize=12, dpi=dpi, color=color)
+</pre></div>
+</div>
+<img alt="../../../../_images/resorte_no_lineal_51_1.png" src="../../../../_images/resorte_no_lineal_51_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.integrate</span> <span class="k">as</span> <span class="nn">integ</span>
+<span class="n">tspan</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+<span class="n">t1</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">tspan</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">simulate</span><span class="p">():</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">integ</span><span class="o">.</span><span class="n">solve_ivp</span><span class="p">(</span><span class="n">resorte_no_lineal</span><span class="p">,</span> <span class="n">tspan</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="n">y</span>
+
+<span class="n">x1</span><span class="p">,</span><span class="n">x2</span> <span class="o">=</span> <span class="n">simulate</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora veamos los resultados de la simulación del sistema no lineal</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Respuesta al escalón&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo [s]&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Posición $x$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../../_images/resorte_no_lineal_54_0.png" src="../../../../_images/resorte_no_lineal_54_0.png" />
+</div>
+</div>
+<p>Para poder evaluar las diferencias me falta agregarle a la salida del sistema lineal el valor de equilibrio.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yc</span> <span class="o">=</span> <span class="n">y</span><span class="o">+</span><span class="n">x0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">yc</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$x$ del sistema linealizado&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$x$ del sistema no lienal&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Respuesta al escalón&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo [s]&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Posición $x$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../../_images/resorte_no_lineal_57_0.png" src="../../../../_images/resorte_no_lineal_57_0.png" />
+</div>
+</div>
+<p>Podemos ver que la respuesta al escalón del sistema lineal y del sistema no lineal dan bastante parecidos.</p>
+<p>Dejamos como ejercicio al lector evaluar que sucede si el escalón es más grande (5 o 10 veces más grande).</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./sources/notebooks_sources/modulo1/ejemplos_sistemas"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="ejemplos_sistemas.html" title="previous page">Ejemplos de modelos de sistemas</a>
+    <a class='right-next' id="next-link" href="CineticaPuntual.html" title="next page">Ecuaciones de Cinética Puntual</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          Por Somebody<br/>
+        
+            &copy; Derechos de autor 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

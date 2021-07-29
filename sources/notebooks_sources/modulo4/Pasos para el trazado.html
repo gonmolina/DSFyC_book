@@ -1,0 +1,755 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pasos para trazar el lugar geométrico de las raíces &#8212; Diseño y Ajuste de Sistemas de Control</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "gonmolina/DSFyC_book");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 comment");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
+    <script src="../../../_static/translations.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="canonical" href="https://gonmolina.github.io/DSFyC_book/sources/notebooks_sources/modulo4/Pasos para el trazado.html" />
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Lugar de las raíces usando Python" href="Lugar%20de%20la%20raices%20con%20Python.html" />
+    <link rel="prev" title="Lugar de las raíces" href="lugar%20de%20las%20raices.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+      <img src="../../../_static/sala_de_control.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Diseño y Ajuste de Sistemas de Control</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Buscar este libro ..." aria-label="Buscar este libro ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../dsfc_sources/intro.html">
+   Material de la materia Dinámica de los Sistemas Físicos y Control
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introducción a Python
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro_python/Introducci%C3%B3n%20a%20los%20notebooks%20de%20Jupyter.html">
+   Introducción a los cuadernos de Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro_python/Extra_Python.html">
+   Introducción a Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro_python/Intro-Matplotlib.html">
+   Figuras en Python - MATPLOTLIB
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro_python/intro_sympy.html">
+   Introducción a SymPy
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Señales, sistemas y modelos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo1/intro_sys_sen/intro_sis_y_sen.html">
+   Definiciones de Sistemas y Señales
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo1/laplace/transformada_laplace_python_opcional.html">
+   Transformada de Laplace
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo1/laplace/funcion_transferencia.html">
+   Función transferencia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo1/diagrama_bloques/diagrama_de_bloques.html">
+   Diagramas de bloques
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../modulo1/espacio_estado/espacio_de_estados.html">
+   Representación de sistemas dinámicos en espacio de estados
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modulo1/espacio_estado/modelado_ss.html">
+     Modelado en espacio de estados
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo1/linealizacion/linealizacion.html">
+   Linealización de sistemas no-lineales
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../modulo1/ejemplos_sistemas/ejemplos_sistemas.html">
+   Ejemplos de modelos de sistemas
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modulo1/ejemplos_sistemas/resorte_no_lineal.html">
+     Sistema masa resorte amortiguador
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modulo1/ejemplos_sistemas/CineticaPuntual.html">
+     Ecuaciones de Cinética Puntual
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modulo1/ejemplos_sistemas/Nonlinear%20CSTR.html">
+     Sistema CSTR
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modulo1/ejemplos_sistemas/Ejemplo_Presa_Depredador.html">
+     Sistema presa depredador (Lotka-Volterra)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Análisis de la respuesta temporal
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo2/estabilidad/estabilidad.html">
+   Estabilidad
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo2/respuesta%20temporal/Respuesta%20Temporal.html">
+   Respuesta temporal de sistemas dinámicos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo2/polos%20y%20ceros%20adicionales/Efecto%20Polos%20y%20Ceros%20Adicionales.html">
+   Efecto de los polos adicionales y de los ceros
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Análisis de estado estacionario
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo3/realimentacion/carateristicas%20de%20la%20realimentacion.html">
+   Características de la realimentación
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo3/sensibilidad/Sensibilidad.html">
+   Sensibilidad
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo3/errores/Errores.html">
+   Errores
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Lugar de las raíces
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lugar%20de%20las%20raices.html">
+   Lugar de las raíces
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Pasos para trazar el lugar geométrico de las raíces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lugar%20de%20la%20raices%20con%20Python.html">
+   Lugar de las raíces usando Python
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Respuesta en frecuencia
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_frec/respuesta_frecuencial.html">
+   Respuesta Frecuencial de Sistemas lineales y SISO
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_frec/estabilidad_nyquist/estabilidad_en_frecuencia.html">
+   Estabilidad en Frecuencia
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Diseño de compensadores
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo5/compensadores.html">
+   Compensadores de adelanto y de retraso de fase
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo5/problema_levitador.html">
+   Problema de levitador magnético
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo5/tipo1_lead.html">
+   Problema con sistema de tipo 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo5/lead_lag_design.html">
+   Ecuaciones útiles para el diseño del Lead por análisis en frecuencia
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Control Moderno
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_ve/formas_canonicas.html">
+   Formas canónicas de un espacio de estados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_ve/transformacion_formas_canonicas.html">
+   Transformación lineal del espacio de estado
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_ve/ctrb_obsv.html">
+   Análisis de los sistemas en su forma de espacio de estados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_ve/referencia.html">
+   Inserción de referencias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_ve/estimadores.html">
+   Diseño de estimadores
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_ve/ejemplo_A_ve_motor_cc.html">
+   Diseño para un motor de continua
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_ve/ejemplo_B_ve_atitud_satelite.html">
+   Diseño del sistema de control del atitud de un satélite
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_ve/ejemplo_C_ve_pendulo_invertido.html">
+   Diseño del sistema de control del pédulo invertido
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Navegación de palanca" aria-controls="site-navigation"
+                title="Navegación de palanca" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Descarga esta pagina"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../../_sources/sources/notebooks_sources/modulo4/Pasos para el trazado.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Descargar archivo de cuaderno" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/sources/notebooks_sources/modulo4/Pasos para el trazado.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Descargar archivo fuente" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimir en PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/gonmolina/DSFyC"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Repositorio de origen"><i
+                    class="fab fa-github"></i>repositorio</button></a>
+        <a class="issues-button"
+            href="https://github.com/gonmolina/DSFyC/issues/new?title=Issue%20on%20page%20%2Fsources/notebooks_sources/modulo4/Pasos para el trazado.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Abrir un problema"><i class="fas fa-lightbulb"></i>Tema abierto</button></a>
+        <a class="edit-button" href="https://github.com/gonmolina/DSFyC/edit/master/sources/notebooks_sources/modulo4/Pasos para el trazado.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edita esta página"><i class="fas fa-pencil-alt"></i>sugerir editar</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Modo de pantalla completa"
+        title="Modo de pantalla completa"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/gonmolina/DSFyC/master?urlpath=tree/sources/notebooks_sources/modulo4/Pasos para el trazado.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Lanzamiento Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contenido
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#paso-1-dibujamos-los-polos-y-ceros-de-la-funcion-de-transferencia-a-lazo-abierto-con-x-y-o-respectivamente">
+   PASO 1. Dibujamos los polos y ceros de la función de transferencia a lazo abierto (con x y o) respectivamente
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#paso-2-encontramos-la-parte-del-eje-real-de-los-lugares-geometricos-de-las-raices">
+   PASO 2. Encontramos la parte del eje real de los lugares geométricos de las raíces
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#paso-3-dibujamos-las-asintotas-para-valores-grandes-de-k">
+   PASO 3. Dibujamos las asíntotas para valores grandes de K
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#paso-4-solo-para-mejor-resultado-en-esos-puntos-calculamos-los-angulos-de-salida-y-de-llegada-de-polos-y-ceros">
+   PASO 4 (solo para mejor resultado en esos puntos). Calculamos los ángulos de salida y de llegada de polos y ceros
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#paso-5-es-importante-este-valor-calculamos-los-puntos-donde-los-lugares-geometrico-de-las-raices-cruzan-el-eje-imaginario">
+   PASO 5 (es importante este valor). Calculamos los puntos donde los lugares geométrico de las raíces cruzan el eje imaginario
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#paso-6-estimamos-la-localizacion-de-las-raices-multiples-especialmente-en-el-eje-real-y-determinamos-los-angulos-de-llegada-y-salida-de-estos-lugares">
+   PASO 6. Estimamos la localización de las raíces múltiples, especialmente en el eje real, y determinamos los ángulos de llegada y salida de estos lugares
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#paso-7-completamos-el-dibujo-combinando-los-resultados-anteriores">
+   PASO 7. Completamos el dibujo, combinando los resultados anteriores
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#trazado-del-lugar-geometrico-de-las-raices-para-ganancias-negativas">
+   Trazado del lugar geométrico de las raíces para ganancias negativas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ejemplo-de-trazado-de-lugar-de-las-raices">
+   Ejemplo de trazado de lugar de las raíces
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="pasos-para-trazar-el-lugar-geometrico-de-las-raices">
+<h1>Pasos para trazar el lugar geométrico de las raíces<a class="headerlink" href="#pasos-para-trazar-el-lugar-geometrico-de-las-raices" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="paso-1-dibujamos-los-polos-y-ceros-de-la-funcion-de-transferencia-a-lazo-abierto-con-x-y-o-respectivamente">
+<h2>PASO 1. Dibujamos los polos y ceros de la función de transferencia a lazo abierto (con x y o) respectivamente<a class="headerlink" href="#paso-1-dibujamos-los-polos-y-ceros-de-la-funcion-de-transferencia-a-lazo-abierto-con-x-y-o-respectivamente" title="Enlazar permanentemente con este título">¶</a></h2>
+</div>
+<div class="section" id="paso-2-encontramos-la-parte-del-eje-real-de-los-lugares-geometricos-de-las-raices">
+<h2>PASO 2. Encontramos la parte del eje real de los lugares geométricos de las raíces<a class="headerlink" href="#paso-2-encontramos-la-parte-del-eje-real-de-los-lugares-geometricos-de-las-raices" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Si tomamos un punto de prueba sobre el eje real, la contribución en ángulo de los ceros o polos complejos conjugados se anularán, puesto que uno de los ángulos se cancela con el de su conjugado.</p>
+<p>Entonces debemos considerar solo los polos y ceros que se encuentran sobre el eje real. Los mismos aportarán 0° si el punto de prueba está a la derecha del polo o cero, y aportará con -180° o +180° si el punto de prueba está a la izquierda del polo o cero, respectivamente.</p>
+<p>Conclusión: Es lugar geométrico de las raíces, aquel lugar del eje real que está a la izquierda de un número impar de polos y ceros.</p>
+</div>
+<div class="section" id="paso-3-dibujamos-las-asintotas-para-valores-grandes-de-k">
+<h2>PASO 3. Dibujamos las asíntotas para valores grandes de K<a class="headerlink" href="#paso-3-dibujamos-las-asintotas-para-valores-grandes-de-k" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Cuando <span class="math notranslate nohighlight">\(K\)</span> tiende a infinito, la ecuación <span class="math notranslate nohighlight">\(1 + KG(s) = 0\)</span> se satisface solamente si  <span class="math notranslate nohighlight">\(G(s) = 0\)</span>.
+Esto puede ocurrir de dos maneras:</p>
+<ol class="simple">
+<li><p>En los ceros de <span class="math notranslate nohighlight">\(G(s)\)</span>, o sea las raíces del polinomio <span class="math notranslate nohighlight">\(b(s)\)</span>.</p></li>
+<li><p>Escribamos la ecuación característica de la siguiente manera:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+1+K\frac{b(s)}{a(s)} &amp; = &amp; 0\\
+1+K\frac{s^m+b_1 s^{m-1}+\ldots+b_m}{s^n+a_1 s^{n-1}+\ldots+a_n} &amp; = &amp; 0\\
+\end{align*}
+\end{split}\]</div>
+<p>Si <span class="math notranslate nohighlight">\(n &gt; m\)</span>, <span class="math notranslate nohighlight">\(G(s)\)</span> tiende a cero cuando <span class="math notranslate nohighlight">\(s\)</span> tiende a infinito.</p>
+<p>Para <span class="math notranslate nohighlight">\(K\)</span> grandes, <span class="math notranslate nohighlight">\(m\)</span> ceros se cancelarían con <span class="math notranslate nohighlight">\(m\)</span> polos, y los <span class="math notranslate nohighlight">\((n-m)\)</span> polos restantes se verían agrupados como en un solo polo múltiple en <span class="math notranslate nohighlight">\(\alpha\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[1+K\frac{1}{(s-\alpha)^{n-m}}=0,\qquad s\rightarrow\infty,K\rightarrow\infty\]</div>
+<p>Tomemos un punto de prueba <span class="math notranslate nohighlight">\(s_o=re^{j\phi}\)</span>, para un valor grande y fijo de <span class="math notranslate nohighlight">\(r\)</span>, y <span class="math notranslate nohighlight">\(\phi\)</span> variable. Aplicando el criterio de la fase, tenemos:</p>
+<div class="math notranslate nohighlight">
+\[(n-m)\phi_i=180^o+l360^o\]</div>
+<p>El ángulo <span class="math notranslate nohighlight">\(\phi_l\)</span> nos dará el ángulo que forman la asíntotas, que serán de:</p>
+<div class="math notranslate nohighlight">
+\[\phi_l=\frac{180^o+l360^o}{n-m}, \qquad l=0,1,2,\ldots,n-m-1\]</div>
+<p>El lugar de origen de las asíntotas está en <span class="math notranslate nohighlight">\(s_o=\alpha\)</span>. Averigüemos cuánto vale <span class="math notranslate nohighlight">\(\alpha\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[s^n+a_1 s^{n-1}+\ldots+a_n=(s-p_1)(s-p_2)\ldots(s-p_n)\]</div>
+<p>Es fácil de deducir que <span class="math notranslate nohighlight">\(a_1=-\sum_{i=1}^np_i\)</span>, el opuesto de la sumatoria de los polos a lazo abierto.</p>
+<p>Por otro lado, la ecuación característica la podemos escribir de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[s^n+a_1 s^{n-1}+\ldots+a_n+K(s^m+b_1 s^{m-1}+\ldots+b_m)=0\]</div>
+<p>Si <span class="math notranslate nohighlight">\(m &lt; (n-1)\)</span>, tenemos que <span class="math notranslate nohighlight">\(K\)</span> no afectará el coeficiente de <span class="math notranslate nohighlight">\(s^{n-1}\)</span>, que será <span class="math notranslate nohighlight">\(a_1\)</span>; y por lo tanto, si llamamos <span class="math notranslate nohighlight">\(ri\)</span> las raíces de esta ecuación, tenemos que:</p>
+<div class="math notranslate nohighlight">
+\[-a_1=\sum_{i=1}^n r_i = \sum_{i=1}^np_i\]</div>
+<p>Ahora, para <span class="math notranslate nohighlight">\(K\)</span> grandes, m de las raíces coinciden con los ceros <span class="math notranslate nohighlight">\(zi\)</span>, y <span class="math notranslate nohighlight">\((n-m)\)</span> son del sistema asintótico <span class="math notranslate nohighlight">\(\dfrac{1}{(s-\alpha)^{n-m}}\)</span>, cuyos polos sumarán <span class="math notranslate nohighlight">\((n-m)\alpha\)</span>. Por lo tanto:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i=1}^n r_i=+(n-m)\alpha+\sum_{i=1}^m z_i= \sum_{i=1}^n p_i\]</div>
+<p>Entonces, el centro de las asíntotas estará dado por:</p>
+<div class="math notranslate nohighlight">
+\[\alpha = \dfrac{\sum_{i=1}^n p_i -\sum_{i=1}^m z_i}{n-m}\]</div>
+</div>
+<div class="section" id="paso-4-solo-para-mejor-resultado-en-esos-puntos-calculamos-los-angulos-de-salida-y-de-llegada-de-polos-y-ceros">
+<h2>PASO 4 (solo para mejor resultado en esos puntos). Calculamos los ángulos de salida y de llegada de polos y ceros<a class="headerlink" href="#paso-4-solo-para-mejor-resultado-en-esos-puntos-calculamos-los-angulos-de-salida-y-de-llegada-de-polos-y-ceros" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Esto lo analizamos considerando un punto de prueba muy cercano al polo o al cero, y aplicando el criterio de fase.</p>
+</div>
+<div class="section" id="paso-5-es-importante-este-valor-calculamos-los-puntos-donde-los-lugares-geometrico-de-las-raices-cruzan-el-eje-imaginario">
+<h2>PASO 5 (es importante este valor). Calculamos los puntos donde los lugares geométrico de las raíces cruzan el eje imaginario<a class="headerlink" href="#paso-5-es-importante-este-valor-calculamos-los-puntos-donde-los-lugares-geometrico-de-las-raices-cruzan-el-eje-imaginario" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Esto podemos obtener determinando el <span class="math notranslate nohighlight">\(K\)</span>, para el cual el sistema se torna inestable (con el criterio de Routh), y luego determinando las raíces de la ecuación característica para ese <span class="math notranslate nohighlight">\(K\)</span>.</p>
+<p>Otra manera de determinarlo es reemplazar en la ecuación característica <span class="math notranslate nohighlight">\(s\)</span> por <span class="math notranslate nohighlight">\(j\omega\)</span>, de esta manera tenemos dos ecuaciones (una para la parte real de la ecuación y otra para la imaginaria), con dos incógnitas: <span class="math notranslate nohighlight">\(K\)</span> y <span class="math notranslate nohighlight">\(\omega\)</span>.</p>
+</div>
+<div class="section" id="paso-6-estimamos-la-localizacion-de-las-raices-multiples-especialmente-en-el-eje-real-y-determinamos-los-angulos-de-llegada-y-salida-de-estos-lugares">
+<h2>PASO 6. Estimamos la localización de las raíces múltiples, especialmente en el eje real, y determinamos los ángulos de llegada y salida de estos lugares<a class="headerlink" href="#paso-6-estimamos-la-localizacion-de-las-raices-multiples-especialmente-en-el-eje-real-y-determinamos-los-angulos-de-llegada-y-salida-de-estos-lugares" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Supongamos que para un determinado <span class="math notranslate nohighlight">\(K\)</span>, existen raíces múltiples. Llamemos en ese caso <span class="math notranslate nohighlight">\(r_i\)</span>, a las raíces de la ecuación característica para ese <span class="math notranslate nohighlight">\(K\)</span>, o sea:</p>
+<div class="math notranslate nohighlight">
+\[1+KG(s)=0=(s-r_1)(s-r_2)\ldots (s-r_n)=F(s)\]</div>
+<p>Llamemos <span class="math notranslate nohighlight">\(r_{\alpha}\)</span> a la raíz múltiple, entonces habrá un término de la productoria que será: <span class="math notranslate nohighlight">\((s- r_{\alpha})^a\)</span>, con <span class="math notranslate nohighlight">\(a \ge 2\)</span>. O sea:</p>
+<div class="math notranslate nohighlight">
+\[F(s) = (s-r_{\alpha})^a \prod^{n-1}_{i=1}(s-r_i)\]</div>
+<p>Derivemos esta productoria, y evaluémos a la misma en <span class="math notranslate nohighlight">\(s = r_\alpha\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\left.\frac{dF(s)}{ds}\right|_{s=r_\alpha}  = &amp;\alpha(s-r_\alpha)^{\alpha-1}\prod_{i=1}^{n-a}(s-r_i)^a + (s-r_\alpha)^a \prod_{i=2}^{n-a}(s-r_i)+\cdots+(s-r_\alpha)^a\prod_{i=1}^{n-a-1}(s-r_i)\\
+\left.\frac{dF(s)}{ds}\right|_{s=r_\alpha}   = &amp; 0 + 0 +\cdots+0
+\end{align*}
+\end{split}\]</div>
+<p>Aplicando este resultado a la ecuación característica, y sabiendo que se debe cumplir en <span class="math notranslate nohighlight">\(s = r_\alpha\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[a(s)+Kb(s)=0\]</div>
+<p>y</p>
+<div class="math notranslate nohighlight">
+\[\left.\frac{da(s)}{ds}\right|_{s=r_\alpha}+K\left.\frac{db(s)}{ds}\right|_{s=r_\alpha}=0\]</div>
+<p>Que es equivalente a</p>
+<div class="math notranslate nohighlight">
+\[\left.\frac{da(s)}{ds}\right|_{s=r_\alpha}-\frac{a(s)}{b(s)}\left.\frac{db(s)}{ds}\right|_{s=r_\alpha}=0\]</div>
+<p>Si dividimos esta ecuación por <span class="math notranslate nohighlight">\(-b(s)\)</span>, obtendremos que:</p>
+<div class="math notranslate nohighlight">
+\[\frac{d}{ds}\left(\left.-\frac{a(s)}{b(s)}\right)\right|_{s=r_\alpha}=0\]</div>
+<p>Entonces tenemos que la condición de raíces múltiples es la siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\frac{d}{ds}\left(\left.\frac{-1}{G(s)}\right)\right|_{s=r_\alpha}=0\]</div>
+</div>
+<div class="section" id="paso-7-completamos-el-dibujo-combinando-los-resultados-anteriores">
+<h2>PASO 7. Completamos el dibujo, combinando los resultados anteriores<a class="headerlink" href="#paso-7-completamos-el-dibujo-combinando-los-resultados-anteriores" title="Enlazar permanentemente con este título">¶</a></h2>
+</div>
+<div class="section" id="trazado-del-lugar-geometrico-de-las-raices-para-ganancias-negativas">
+<h2>Trazado del lugar geométrico de las raíces para ganancias negativas<a class="headerlink" href="#trazado-del-lugar-geometrico-de-las-raices-para-ganancias-negativas" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para ganancias negativas, <span class="math notranslate nohighlight">\(K &lt; 0\)</span>, el criterio de la fase (o del ángulo) cambia por:</p>
+<div class="math notranslate nohighlight">
+\[\angle G(s) = l360^o, \qquad \text{con}\quad l=0,1,2,\ldots\]</div>
+<p>puesto que la ecuación característica es <span class="math notranslate nohighlight">\(1-(-K)G(s)=0\)</span>.</p>
+<p>Dejamos como ejercicio al lector analizar como afecta este cambio a los siete pasos descriptos anteriormente para el tazado geométrico de las raíces.</p>
+</div>
+<div class="section" id="ejemplo-de-trazado-de-lugar-de-las-raices">
+<h2>Ejemplo de trazado de lugar de las raíces<a class="headerlink" href="#ejemplo-de-trazado-de-lugar-de-las-raices" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Tenemos la siguiente función de transferencia a lazo abierto:</p>
+<div class="math notranslate nohighlight">
+\[ G(s) = \frac{s+1}{s^2(s+9)}\]</div>
+<p>En la figura que sigue mostramos los resultados de los sucesivos pasos seguidos para el trazado del lugar geométrico de las raíces para esta función de transferencia.</p>
+<p>Para el paso 3, el cálculo del centro y ángulo de las asíntotas son:</p>
+<div class="math notranslate nohighlight">
+\[\phi_l=\frac{180^o+l360^o}{3-1}=90^o,270^o\]</div>
+<div class="math notranslate nohighlight">
+\[\sigma_a=\frac{-9-0-0+1}{3-1}=-4\]</div>
+<p>Para el paso 4, el cálculo de los ángulos <span class="math notranslate nohighlight">\(\alpha\)</span> de salida de los polos en el origen (suponiendo un apartamiento pequeño de los mismos), aplicando el criterio del ángulo:</p>
+<div class="math notranslate nohighlight">
+\[2\alpha+0^o-0^o=180^0+n360^o \Rightarrow \alpha=-90^o, 90^o\]</div>
+<p>De la misma manera podemos determinar el ángulo de salida del otro polo, y el de llegada al cero.</p>
+<p>Para el paso 6, determinamos la raíz múltiple realizando la derivada, la cual vale <span class="math notranslate nohighlight">\(-\sigma_m=-3\)</span>. Podemos comprobar que la multiplicidad de esta raíz es 3, ya que la derivada segunda de <span class="math notranslate nohighlight">\(\frac{-1}{G(s)}\)</span> con respecto a <span class="math notranslate nohighlight">\(s\)</span> evaluada en ese punto también es cero. Por lo tanto los ángulos <span class="math notranslate nohighlight">\(\beta\)</span> de entrada a ese polo múltiple es:</p>
+<div class="math notranslate nohighlight">
+\[2+\alpha+0^o-0^o=180^o+n360^o \Rightarrow \alpha = -90^o,90^o\]</div>
+<p>De la misma manera podemos determinar el ángulo de salida del otro polo, y el de llegada al cero.</p>
+<p>Para el paso 6, determinamos la raíz múltiple realizando la derivada, la cual vale <span class="math notranslate nohighlight">\(\sigma_m=-3\)</span>. Podemos comprobar que la multiplicidad de esta raíz es 3, ya que la derivada segunda de <span class="math notranslate nohighlight">\(\frac{-1}{G(s)}\)</span> con respecto a <span class="math notranslate nohighlight">\(s\)</span> evaluada en ese punto también es cero. Por lo tanto los ángulos <span class="math notranslate nohighlight">\(\beta\)</span> de entrada a ese polo múltiple es:</p>
+<div class="math notranslate nohighlight">
+\[3\beta-180^o=n360^o \Rightarrow \beta=-60^o,60^o,180^o\]</div>
+<p>Y los ángulos <span class="math notranslate nohighlight">\(\gamma\)</span> de salida son:</p>
+<div class="math notranslate nohighlight">
+\[3\gamma-180^o=180^o+n360^o \Rightarrow \gamma=-120^o,0^o,120^o\]</div>
+<div class="figure align-default" id="pasos-lr">
+<a class="reference internal image-reference" href="../../../_images/pasos_trazado_fig1.png"><img alt="../../../_images/pasos_trazado_fig1.png" src="../../../_images/pasos_trazado_fig1.png" style="width: 800px;" /></a>
+<p class="caption"><span class="caption-number">Figura 51 </span><span class="caption-text">Pasos del lugar de las raíces</span><a class="headerlink" href="#pasos-lr" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+<div class="figure align-default" id="resultados-lr">
+<a class="reference internal image-reference" href="../../../_images/pasos_trazado_fig2.png"><img alt="../../../_images/pasos_trazado_fig2.png" src="../../../_images/pasos_trazado_fig2.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-number">Figura 52 </span><span class="caption-text">Resultado final</span><a class="headerlink" href="#resultados-lr" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+<p>En Python, lugar de las raíces se puede resolver fácilmente usando el módulo de control.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./sources/notebooks_sources/modulo4"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="lugar%20de%20las%20raices.html" title="previous page">Lugar de las raíces</a>
+    <a class='right-next' id="next-link" href="Lugar%20de%20la%20raices%20con%20Python.html" title="next page">Lugar de las raíces usando Python</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          Por Somebody<br/>
+        
+            &copy; Derechos de autor 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

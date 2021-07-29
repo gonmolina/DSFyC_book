@@ -1,0 +1,68 @@
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nbclient/client.py", line 1112, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nbclient/util.py", line 74, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nbclient/util.py", line 53, in just_run
+    return loop.run_until_complete(coro)
+  File "/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nbclient/client.py", line 553, in async_execute
+    await self.async_execute_cell(
+  File "/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nbclient/client.py", line 857, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/nbclient/client.py", line 760, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+ctrl.canonical_form(sys, 'modal')
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/control/canonical.py[0m in [0;36m_bdschur_condmax_search[0;34m(aschur, tschur, condmax)[0m
+[1;32m    276[0m     [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 277[0;31m         [0;32mfrom[0m [0mslycot[0m [0;32mimport[0m [0mmb03rd[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    278[0m     [0;32mexcept[0m [0mImportError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'slycot'
+
+During handling of the above exception, another exception occurred:
+
+[0;31mControlSlycot[0m                             Traceback (most recent call last)
+[0;32m/tmp/ipykernel_2056/2951802654.py[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mctrl[0m[0;34m.[0m[0mcanonical_form[0m[0;34m([0m[0msys[0m[0;34m,[0m [0;34m'modal'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/control/canonical.py[0m in [0;36mcanonical_form[0;34m(xsys, form)[0m
+[1;32m     45[0m         [0;32mreturn[0m [0mobservable_form[0m[0;34m([0m[0mxsys[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     46[0m     [0;32melif[0m [0mform[0m [0;34m==[0m [0;34m'modal'[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 47[0;31m         [0;32mreturn[0m [0mmodal_form[0m[0;34m([0m[0mxsys[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     48[0m     [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     49[0m         raise ControlNotImplemented(
+
+[0;32m/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/control/canonical.py[0m in [0;36mmodal_form[0;34m(xsys, condmax, sort)[0m
+[1;32m    446[0m [0;34m[0m[0m
+[1;32m    447[0m     [0mxsys[0m [0;34m=[0m [0m_convert_to_statespace[0m[0;34m([0m[0mxsys[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 448[0;31m     [0mamodal[0m[0;34m,[0m [0mtmodal[0m[0;34m,[0m [0m_[0m [0;34m=[0m [0mbdschur[0m[0;34m([0m[0mxsys[0m[0;34m.[0m[0mA[0m[0;34m,[0m [0mcondmax[0m[0;34m=[0m[0mcondmax[0m[0;34m,[0m [0msort[0m[0;34m=[0m[0mbd_sort[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    449[0m [0;34m[0m[0m
+[1;32m    450[0m     [0;32mreturn[0m [0msimilarity_transform[0m[0;34m([0m[0mxsys[0m[0;34m,[0m [0mtmodal[0m[0;34m,[0m [0minverse[0m[0;34m=[0m[0;32mTrue[0m[0;34m)[0m[0;34m,[0m [0mtmodal[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/control/canonical.py[0m in [0;36mbdschur[0;34m(a, condmax, sort)[0m
+[1;32m    383[0m [0;34m[0m[0m
+[1;32m    384[0m     [0maschur[0m[0;34m,[0m [0mtschur[0m [0;34m=[0m [0mschur[0m[0;34m([0m[0ma[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 385[0;31m     [0mamodal[0m[0;34m,[0m [0mtmodal[0m[0;34m,[0m [0mblksizes[0m[0;34m,[0m [0meigvals[0m [0;34m=[0m [0m_bdschur_condmax_search[0m[0;34m([0m[0maschur[0m[0;34m,[0m [0mtschur[0m[0;34m,[0m [0mcondmax[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    386[0m [0;34m[0m[0m
+[1;32m    387[0m     [0;32mif[0m [0msort[0m [0;32min[0m [0;34m([0m[0;34m'continuous'[0m[0;34m,[0m [0;34m'discrete'[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/hostedtoolcache/Python/3.8.11/x64/lib/python3.8/site-packages/control/canonical.py[0m in [0;36m_bdschur_condmax_search[0;34m(aschur, tschur, condmax)[0m
+[1;32m    277[0m         [0;32mfrom[0m [0mslycot[0m [0;32mimport[0m [0mmb03rd[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    278[0m     [0;32mexcept[0m [0mImportError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 279[0;31m         [0;32mraise[0m [0mControlSlycot[0m[0;34m([0m[0;34m"can't find slycot module 'mb03rd'"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    280[0m [0;34m[0m[0m
+[1;32m    281[0m     [0;31m# see notes on RuntimeError below[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mControlSlycot[0m: can't find slycot module 'mb03rd'
+ControlSlycot: can't find slycot module 'mb03rd'
+

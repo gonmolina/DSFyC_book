@@ -1,0 +1,1134 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Compensadores de adelanto y de retraso de fase &#8212; Diseño y Ajuste de Sistemas de Control</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "gonmolina/DSFyC_book");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 comment");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
+    <script src="../../../_static/translations.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="canonical" href="https://gonmolina.github.io/DSFyC_book/sources/notebooks_sources/modulo5/compensadores.html" />
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Problema de levitador magnético" href="problema_levitador.html" />
+    <link rel="prev" title="Estabilidad en Frecuencia" href="../modulo_frec/estabilidad_nyquist/estabilidad_en_frecuencia.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+      <img src="../../../_static/sala_de_control.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Diseño y Ajuste de Sistemas de Control</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Buscar este libro ..." aria-label="Buscar este libro ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../dsfc_sources/intro.html">
+   Material de la materia Dinámica de los Sistemas Físicos y Control
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introducción a Python
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro_python/Introducci%C3%B3n%20a%20los%20notebooks%20de%20Jupyter.html">
+   Introducción a los cuadernos de Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro_python/Extra_Python.html">
+   Introducción a Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro_python/Intro-Matplotlib.html">
+   Figuras en Python - MATPLOTLIB
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro_python/intro_sympy.html">
+   Introducción a SymPy
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Señales, sistemas y modelos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo1/intro_sys_sen/intro_sis_y_sen.html">
+   Definiciones de Sistemas y Señales
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo1/laplace/transformada_laplace_python_opcional.html">
+   Transformada de Laplace
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo1/laplace/funcion_transferencia.html">
+   Función transferencia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo1/diagrama_bloques/diagrama_de_bloques.html">
+   Diagramas de bloques
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../modulo1/espacio_estado/espacio_de_estados.html">
+   Representación de sistemas dinámicos en espacio de estados
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modulo1/espacio_estado/modelado_ss.html">
+     Modelado en espacio de estados
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo1/linealizacion/linealizacion.html">
+   Linealización de sistemas no-lineales
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../modulo1/ejemplos_sistemas/ejemplos_sistemas.html">
+   Ejemplos de modelos de sistemas
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modulo1/ejemplos_sistemas/resorte_no_lineal.html">
+     Sistema masa resorte amortiguador
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modulo1/ejemplos_sistemas/CineticaPuntual.html">
+     Ecuaciones de Cinética Puntual
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modulo1/ejemplos_sistemas/Nonlinear%20CSTR.html">
+     Sistema CSTR
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modulo1/ejemplos_sistemas/Ejemplo_Presa_Depredador.html">
+     Sistema presa depredador (Lotka-Volterra)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Análisis de la respuesta temporal
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo2/estabilidad/estabilidad.html">
+   Estabilidad
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo2/respuesta%20temporal/Respuesta%20Temporal.html">
+   Respuesta temporal de sistemas dinámicos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo2/polos%20y%20ceros%20adicionales/Efecto%20Polos%20y%20Ceros%20Adicionales.html">
+   Efecto de los polos adicionales y de los ceros
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Análisis de estado estacionario
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo3/realimentacion/carateristicas%20de%20la%20realimentacion.html">
+   Características de la realimentación
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo3/sensibilidad/Sensibilidad.html">
+   Sensibilidad
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo3/errores/Errores.html">
+   Errores
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Lugar de las raíces
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo4/lugar%20de%20las%20raices.html">
+   Lugar de las raíces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo4/Pasos%20para%20el%20trazado.html">
+   Pasos para trazar el lugar geométrico de las raíces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo4/Lugar%20de%20la%20raices%20con%20Python.html">
+   Lugar de las raíces usando Python
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Respuesta en frecuencia
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_frec/respuesta_frecuencial.html">
+   Respuesta Frecuencial de Sistemas lineales y SISO
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_frec/estabilidad_nyquist/estabilidad_en_frecuencia.html">
+   Estabilidad en Frecuencia
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Diseño de compensadores
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Compensadores de adelanto y de retraso de fase
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="problema_levitador.html">
+   Problema de levitador magnético
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tipo1_lead.html">
+   Problema con sistema de tipo 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lead_lag_design.html">
+   Ecuaciones útiles para el diseño del Lead por análisis en frecuencia
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Control Moderno
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_ve/formas_canonicas.html">
+   Formas canónicas de un espacio de estados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_ve/transformacion_formas_canonicas.html">
+   Transformación lineal del espacio de estado
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_ve/ctrb_obsv.html">
+   Análisis de los sistemas en su forma de espacio de estados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_ve/referencia.html">
+   Inserción de referencias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_ve/estimadores.html">
+   Diseño de estimadores
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_ve/ejemplo_A_ve_motor_cc.html">
+   Diseño para un motor de continua
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_ve/ejemplo_B_ve_atitud_satelite.html">
+   Diseño del sistema de control del atitud de un satélite
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_ve/ejemplo_C_ve_pendulo_invertido.html">
+   Diseño del sistema de control del pédulo invertido
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Navegación de palanca" aria-controls="site-navigation"
+                title="Navegación de palanca" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Descarga esta pagina"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../../_sources/sources/notebooks_sources/modulo5/compensadores.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Descargar archivo de cuaderno" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/sources/notebooks_sources/modulo5/compensadores.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Descargar archivo fuente" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimir en PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/gonmolina/DSFyC"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Repositorio de origen"><i
+                    class="fab fa-github"></i>repositorio</button></a>
+        <a class="issues-button"
+            href="https://github.com/gonmolina/DSFyC/issues/new?title=Issue%20on%20page%20%2Fsources/notebooks_sources/modulo5/compensadores.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Abrir un problema"><i class="fas fa-lightbulb"></i>Tema abierto</button></a>
+        <a class="edit-button" href="https://github.com/gonmolina/DSFyC/edit/master/sources/notebooks_sources/modulo5/compensadores.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edita esta página"><i class="fas fa-pencil-alt"></i>sugerir editar</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Modo de pantalla completa"
+        title="Modo de pantalla completa"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/gonmolina/DSFyC/master?urlpath=tree/sources/notebooks_sources/modulo5/compensadores.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Lanzamiento Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contenido
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generalidades">
+   Generalidades
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#especificaciones">
+     Especificaciones
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tipos-de-compensacion">
+     Tipos de compensación
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metodo-de-ajuste-por-lugar-de-las-raices">
+   Método de ajuste por lugar de las raíces
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compensador-de-adelanto-de-fase">
+     Compensador de adelanto de fase
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ajuste-por-lugar-de-las-raices">
+   Ajuste por lugar de las raíces
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#criterio-de-la-bisectriz-opcional">
+     Criterio de la bisectriz (opcional)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#criterio-de-anular-el-segundo-polo-dominante-muy-util-y-facil">
+     Criterio de anular el segundo polo dominante (muy útil y fácil)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#criterio-del-cero-bajo-el-polo-objetivo-sencillo">
+     Criterio del cero bajo el polo objetivo (sencillo)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#criterio-de-un-compensador-proporcional-derivativo-importante">
+     Criterio de un compensador proporcional-derivativo (IMPORTANTE)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comparacion-de-la-respuesta-temporal-de-los-distintos-criterios-importante">
+     Comparación de la respuesta temporal de los distintos criterios (IMPORTANTE)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compensador-por-retraso-de-fase">
+   Compensador por retraso de fase
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compensador-que-mejora-el-error">
+     Compensador que mejora el error
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compensador-de-retraso-que-anula-el-error-o-compensador-proporcional-integral">
+     Compensador de retraso que anula el error o compensador proporcional-integral
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ejemplo-de-diseno-usando-lugar-de-las-raices-muy-dificil">
+   Ejemplo de diseño usando lugar de las raíces (MUY DIFÍCIL)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solucion">
+     Solución
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="compensadores-de-adelanto-y-de-retraso-de-fase">
+<h1>Compensadores de adelanto y de retraso de fase<a class="headerlink" href="#compensadores-de-adelanto-y-de-retraso-de-fase" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Controlar un sistema dado es establecer en su funcionamiento de acuerdo con unos requisitos o especificaciones. En este capítulo se analizan los cambios que se pueden lograr en un dispositivo al añadir un nuevo polo y un nuevo cero al sistema, que se introduce en un lazo de control.</p>
+<p>Estos nuevos elementos no tienen por qué ser de las mismas características que la planta. Si la planta es un sistema mecánico, el  controlador puede estar constituido por nuevos elementos mecánicos o un dispositivo eléctrico. La implementación final del compensador no importa mientras su función de transferencia, la ecuación diferencial que gobierna su comportamiento, sea la misma.</p>
+<p>Se puede definir compensación como la modificación de la dinámica de un sistema para cumplir unas especificaciones determinadas.</p>
+<div class="section" id="generalidades">
+<h2>Generalidades<a class="headerlink" href="#generalidades" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>El compensador objeto de estudio en este capítulo actúa sobre la planta en función del error que existe entre la salida del sistema y la referencia que se desea seguir como se ve la figura siguiente, y posee una función de transferencia con una ganancia, un polo y un cero.</p>
+<div class="figure align-default" id="compensador1">
+<a class="reference internal image-reference" href="../../../_images/fig14.png"><img alt="Diagrama de bloques de sistema a lazo cerrado compensado" src="../../../_images/fig14.png" style="width: 350px;" /></a>
+<p class="caption"><span class="caption-number">Figura 80 </span><span class="caption-text">Compensador polo-cero</span><a class="headerlink" href="#compensador1" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+<p>Con estos presupuestos, se da por supuesto que el sistema se controla con un lazo de realimentación negativa unitaria. Sin embargo, en ocasiones pueden diseñarse compensadores que se coloquen en otras posiciones del lazo de control, resultando una realimentación negativa no unitaria. Este tipo de compensadores no se estudiarán en la presente asignatura.</p>
+<div class="section" id="especificaciones">
+<h3>Especificaciones<a class="headerlink" href="#especificaciones" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Las especificaciones exigibles a un sistema pueden ser de muy distinta índole.  Habitualmente se clasifican como restricciones del sistema en el dominio temporal:</p>
+<ul class="simple">
+<li><p><em>Régimen transitorio</em>: tiempo de establecimiento, tiempo de crecimiento, tiempo de pico, sobrevalor máximo, ancho de banda, etc.</p></li>
+<li><p><em>Régimen permanente</em>: error nulo o limitado ante un tipo determinado de entrada, rechazo a las perturbaciones, etc.</p></li>
+</ul>
+</div>
+<div class="section" id="tipos-de-compensacion">
+<h3>Tipos de compensación<a class="headerlink" href="#tipos-de-compensacion" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Es posible lograr que un sistema cumpla una serie de especificaciones con distintos compensadores. Una posible clasificación para los tipos de compensador puede ser:</p>
+<ul class="simple">
+<li><p><em>Compensador de adelanto de fase.</em> El cero produce un adelanto de fase a bajas frecuencias respecto el polo. El resultado final es que el compensador adelanta fase en un determinado rango de frecuencias.</p></li>
+<li><p><em>Compensador de retraso de fase.</em> En este caso el polo produce un retraso de fase a más bajas frecuencias respecto el cero. El resultado final es que el compensador retrasa fase en un determinado rango de frecuencias.</p></li>
+<li><p><em>Compensador de adelanto-retraso de fase.</em> el compensador consiste el producto de las funciones de transferencia de un compensador de adelanto de fase y uno de retraso. El compensador de retraso se coloca a menores frecuencias que el de adelanto.</p></li>
+</ul>
+<div class="figure align-default" id="compensador-adelanto-atraso">
+<a class="reference internal image-reference" href="../../../_images/fig22.png"><img alt="Compensación adelanto - Retraso" src="../../../_images/fig22.png" style="width: 450px;" /></a>
+<p class="caption"><span class="caption-number">Figura 81 </span><span class="caption-text">Compensador adelanto-atraso</span><a class="headerlink" href="#compensador-adelanto-atraso" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="metodo-de-ajuste-por-lugar-de-las-raices">
+<h2>Método de ajuste por lugar de las raíces<a class="headerlink" href="#metodo-de-ajuste-por-lugar-de-las-raices" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>En el plano <span class="math notranslate nohighlight">\(s\)</span> se añade el nuevo polo y cero del compensador. Se modifica el lugar de las raíces del sistema de forma que los polos dominantes de la planta en lazo cerrado queden ubicados donde se desee.</p>
+<div class="section" id="compensador-de-adelanto-de-fase">
+<h3>Compensador de adelanto de fase<a class="headerlink" href="#compensador-de-adelanto-de-fase" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Un compensador de adelanto de fase tiene la siguiente expresión:</p>
+<div class="math notranslate nohighlight">
+\[D(s)=K\frac{1+Ts}{1+\alpha T s}=\frac{K}{\alpha}\frac{s+\frac{1}{T}}{s+\frac{1}{\alpha T}}=K_c\frac{s+a}{s+b}\]</div>
+<p>con <span class="math notranslate nohighlight">\(0&lt;\alpha&lt;1\)</span> y <span class="math notranslate nohighlight">\(a&lt;b\)</span>.</p>
+<p>La primera expresión es más útil cuando se trabaja en el diagrama de Bode, mientras que la segunda
+es preferible cuando se trabaja en el lugar de las raíces.  En los siguientes apartados se explicarán los procedimientos de ajuste de los tres parámetros del compensador. Para todos los métodos se usará siempre el mismo ejemplo de la figura siguiente:</p>
+<div class="figure align-default" id="sistema-sin-compensar">
+<a class="reference internal image-reference" href="../../../_images/fig32.png"><img alt="Sistema que se desea compensar" src="../../../_images/fig32.png" style="width: 250px;" /></a>
+<p class="caption"><span class="caption-number">Figura 82 </span><span class="caption-text">Sistema a compensar</span><a class="headerlink" href="#sistema-sin-compensar" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+<p>Se trata de un sistema mecánico en el que un actuador mueve una compuerta de masa <span class="math notranslate nohighlight">\(m\)</span> dentro de un medio con viscosidad <span class="math notranslate nohighlight">\(c\)</span>. El actuador debe colocar la compuerta siguiendo la referencia de posición que se le comande de tal forma que el tiempo de establecimiento sea menor o igual que 2 segundos y que el sobrevalor máximo respecto la referencia sea del 20% o menor. La masa de la compuerta es de 0.25 kg y el coeficiente viscoso es 0.5 Ns/m.</p>
+<p>La función de transferencia que relaciona la fuerza <span class="math notranslate nohighlight">\(f\)</span> aplicada a la masa y su desplazamiento, sustituyendo también los valores numéricos se ve en la siguiente expresión:</p>
+<div class="math notranslate nohighlight">
+\[G(s)=\frac{1}{ms^2+cs}=\frac{4}{s(s+2)}\]</div>
+</div>
+</div>
+<div class="section" id="ajuste-por-lugar-de-las-raices">
+<h2>Ajuste por lugar de las raíces<a class="headerlink" href="#ajuste-por-lugar-de-las-raices" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>La introducción de un polo y un cero en el sistema puede beneficiar al régimen transitorio, es decir, puede hace el sistema más rápido si el nuevo cero está más cerca del origen que el nuevo polo. En ese caso, las ramas del lugar de las raíces se alejan del eje imaginario del plano <span class="math notranslate nohighlight">\(S\)</span>. Por tanto, se puede elegir una ganancia para el sistema que deje los polos dominantes del sistema con un tiempo de establecimiento menor.</p>
+<div class="figure align-default" id="efecto-polo">
+<a class="reference internal image-reference" href="../../../_images/fig43.png"><img alt="Efecto de la adición de un polo y un cero en el lugar de las raíces" src="../../../_images/fig43.png" style="width: 900px;" /></a>
+<p class="caption"><span class="caption-number">Figura 83 </span><span class="caption-text">Efecto de un polo en lugar de las raíces</span><a class="headerlink" href="#efecto-polo" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+<p>Este efecto se muestra cualitativamente en la figura anterior justifica la definición del compensador de adelanto de fase donde se decía <span class="math notranslate nohighlight">\(a &lt; b\)</span>.
+Evidentemente, la localización de polo y del cero del compensador dependerá de cuánto se quiera alejar las ramas del lugar de las raíces del eje imaginario. Son las especificaciones que se deseen conseguir las que van a marcar la separación relativa del nuevo polo y cero. Resulta casi inmediato, a partir de los requerimientos de tiempo de  establecimiento y sobrevalor calcular los polos dominantes objeto del diseño.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+M_p&lt;0.2 &amp; \implies \zeta \ge 0.45, &amp;\text{se elije }\zeta=0.5\\
+t_s&lt;2\text{seg} &amp; \implies \omega_n \ge 4\text{rad/s}, &amp;\text{se elije }\omega_n=4\text{rad/s}\\
+p_{\Delta}&amp;=-\zeta\omega_n\pm\omega_n\sqrt{1-\zeta^2}j&amp;=-2\pm 3.46j
+\end{eqnarray}
+\end{split}\]</div>
+<p>Con el valor de sobrevalor se elige un valor para el amortiguamiento de los polos objetivo, primer ecuación de las tres anteriores, y con éste y el tiempo de establecimiento se calcula la frecuencia natural.</p>
+<p>La posición final de los polos objetivo, depende de las elecciones que haya realizado el ingeniero. Es difícil que dos ingenieros obtengan exactamente la misma solución numérica para un mismo problema. Por tanto, las soluciones que se proponen en estos apuntes no son las únicas que se pueden dar correctamente para cada problema.</p>
+<p>Obtenida la localización de los polos objetivo, se aplica en ese punto la condición del ángulo. Esto se realiza precisamente porque se quiere garantizar que esos puntos pertenecen al nuevo lugar de las raíces del sistema.</p>
+<p>Evidentemente, la condición del ángulo se debe aplicar teniendo en cuenta el nuevo polo y cero que introduce el compensador, cuya posición todavía está por determinar, ver la figura siguiente:</p>
+<div class="figure align-default" id="and-y-dist">
+<a class="reference internal image-reference" href="../../../_images/fig53.png"><img alt="Ángulos y distancias vistas al polo objetivo" src="../../../_images/fig53.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-number">Figura 84 </span><span class="caption-text">Ángulos y distancias vistas al polo objetivo</span><a class="headerlink" href="#and-y-dist" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+<div class="math notranslate nohighlight">
+\[\sum_{i=1}^m \hat{z_ip_\Delta}-\hat{z_jp_\Delta}=\theta_z-\theta_p-\theta_1-\theta_2=\phi_c-\theta_1-\theta_2 = -180\]</div>
+<p>En la ecuación anterior los ángulos vistos desde los polos o ceros de la planta son conocidos. La única incógnita es la diferencia de ángulos del cero y polo del compensador. A esa diferencia se le llamará <span class="math notranslate nohighlight">\(\phi_c\)</span> y es el ángulo con que el polo objetivo “ve” al polo y cero del compensador. Cualquier pareja polo-cero que el polo objetivo vea con el mismo ángulo <span class="math notranslate nohighlight">\(\phi_c\)</span> es una posible solución al problema.</p>
+<div class="math notranslate nohighlight">
+\[\phi_c =-180^0+\theta_1+\theta_2= -180^0+120^0+90^0=30^0\]</div>
+<p>En el caso concreto del ejemplo <span class="math notranslate nohighlight">\(\phi_c\)</span> vale <span class="math notranslate nohighlight">\(30^0\)</span>. Siempre que se trate de un compensador de adelanto de fase este ángulo debe dar positivo, ya que el cero está más cercano al origen y verá al polo objetivo con mayor ángulo que el polo del compensador. Cualquier pareja polo-cero que sea vista por el polo objetivo con 30<span class="math notranslate nohighlight">\(^0\)</span> es una hipotética solución al problema.</p>
+<div class="figure align-default" id="id1">
+<a class="reference internal image-reference" href="../../../_images/fig63.png"><img alt="Posiciones del par polo-cero posibles del compensador" src="../../../_images/fig63.png" style="width: 800px;" /></a>
+<p class="caption"><span class="caption-number">Figura 85 </span><span class="caption-text">Posiciones del par polo-cero posibles del compensador</span><a class="headerlink" href="#id1" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+<p>Sin embargo, la elección de la posición del par polo-cero no es absolutamente arbitraria. Efectivamente se puede conseguir que el lugar de las raíces pase por el polo objetivo, pero puede ser que en la configuración final del sistema, el polo dominante sea otro. Esta posibilidad hay que evitarla. Si se busca que el régimen transitorio lo caracterice la posición de los polos objetivo, éstos deben quedar como dominantes del sistema.</p>
+<p>Incluso es posible colocar el par polo-cero en la zona del plano <span class="math notranslate nohighlight">\(S\)</span> de parte real positiva y cumplir el deseo de que el polo objetivo pertenezca al lugar de las raíces, pero dejar el tercer polo del sistema de forma que lo hace inestable.
+En conclusión, la posición del polo y del cero del compensador es libre mientras el polo objetivo los vea con el ángulo <span class="math notranslate nohighlight">\(\phi_c\)</span> adecuado y éstos queden como dominantes del sistema.</p>
+<p>Dejando claro que el ingeniero puede elegir la posición del polo y del cero del compensador, cumpliendo lo que se ha enunciado en el párrafo anterior, en los siguientes apartados se explican algunos criterios que se han propuesto para su colocación. Dependiendo de la planta es posible que alguno de los criterios sea inviable o no consiga que el polo objetivo quede dominante en el sistema compensado. Siempre habrá que comprobar este último extremo, aunque sea de forma cualitativa.</p>
+<p>En cuanto al cálculo de la ganancia del compensador, se debe aplicar la condición del módulo en el polo objetivo empleando lógicamente la posición del polo y el cero del compensador que se haya elegido.</p>
+<div class="math notranslate nohighlight">
+\[K_cK_{la}=\frac{\prod_{j=1}^n \overline{p_jp_\Delta}}{\prod_{i=1}^m\overline{z_ip_\Delta}}=\frac{d_1d_2d_p}{d_z}\]</div>
+<p>La única incógnita de la ecuación anterior es la ganancia <span class="math notranslate nohighlight">\(K_c\)</span> del compensador. En el ejemplo, la ganancia <span class="math notranslate nohighlight">\(K\)</span> la de la planta en lazo abierto expresando los polos y ceros en monomios es 4, la distancia <span class="math notranslate nohighlight">\(d_1\)</span> es 4, la distancia <span class="math notranslate nohighlight">\(d_2\)</span> es 3.46 y las distancias <span class="math notranslate nohighlight">\(d_z\)</span> y <span class="math notranslate nohighlight">\(d_p\)</span> se miden en el lugar de las raíces y dependen de la posición elegida para el polo y el cero del compensador.</p>
+<div class="section" id="criterio-de-la-bisectriz-opcional">
+<h3>Criterio de la bisectriz (opcional)<a class="headerlink" href="#criterio-de-la-bisectriz-opcional" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>La posición del polo y del cero del compensador se elige centrándolos sobre la bisectriz del arco que forma la recta que une el polo objetivo con el origen del plano <span class="math notranslate nohighlight">\(S\)</span>, y una recta horizontal que pasa por el polo objetivo, como se ve en la siguiente figura:</p>
+<div class="figure align-default" id="criterio-bisectriz">
+<a class="reference internal image-reference" href="../../../_images/fig73.png"><img alt="Criterio de la bisectriz" src="../../../_images/fig73.png" style="width: 350px;" /></a>
+<p class="caption"><span class="caption-number">Figura 86 </span><span class="caption-text">Criterio de la bisectriz</span><a class="headerlink" href="#criterio-bisectriz" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+<p>En el ejemplo propuesto, el polo del compensador queda aproximadamente en −5.4 y el cero en −2.9. Al aplicar la condición del módulo en el polo objetivo, la ganancia del compensador resulta ser aproximadamente 4.7, por tanto, el compensador tiene la siguiente expresión:</p>
+<div class="math notranslate nohighlight">
+\[D(s)=4.7\frac{s+2.9}{s+5.4}\]</div>
+<p>Se puede observar en la figura anterior que en el caso del ejemplo, este criterio no hubiera sido recomendable si el ángulo <span class="math notranslate nohighlight">\(\phi_c\)</span> hubiera sido mayor que 60<span class="math notranslate nohighlight">\(^0\)</span> . Si así fuera, el cero del compensador quedaría entre los dos polos de la planta y el lugar de las raíces tendría un tercer polo real en lazo cerrado más dominante que los polos objetivo.</p>
+</div>
+<div class="section" id="criterio-de-anular-el-segundo-polo-dominante-muy-util-y-facil">
+<h3>Criterio de anular el segundo polo dominante (muy útil y fácil)<a class="headerlink" href="#criterio-de-anular-el-segundo-polo-dominante-muy-util-y-facil" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>El cero del compensador se sitúa sobre el segundo polo dominante de la planta en lazo abierto y el polo donde quede, manteniendo el ángulo <span class="math notranslate nohighlight">\(\phi_c\)</span>. El resultado es un sistema compensado con igual número de polos que sin compensar: no aparece ningún polo nuevo.</p>
+<div class="figure align-default" id="segundo-polo">
+<a class="reference internal image-reference" href="../../../_images/fig83.png"><img alt="Criterio de anular le segundo polo dominante de la planta" src="../../../_images/fig83.png" style="width: 250px;" /></a>
+<p class="caption"><span class="caption-number">Figura 87 </span><span class="caption-text">Criterio segundo polo dominante</span><a class="headerlink" href="#segundo-polo" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+<p>En el ejemplo propuesto, el cero del compensador queda en −2 y el cero en −4. Al aplicar la condición del módulo en el polo objetivo, la ganancia del compensador resulta ser 4, por tanto, el compensador tiene la siguiente expresión:</p>
+<div class="math notranslate nohighlight">
+\[D(s)=\frac{s+2}{s+4}\]</div>
+<p>La limitación de uso de este criterio dependerá evidentemente de la posición del segundo polo dominante de la planta en lazo abierto. En el caso del ejemplo, este criterio no se puede emplear para un ángulo <span class="math notranslate nohighlight">\(\phi_c\)</span> mayor que 90<span class="math notranslate nohighlight">\(^0\)</span>.</p>
+</div>
+<div class="section" id="criterio-del-cero-bajo-el-polo-objetivo-sencillo">
+<h3>Criterio del cero bajo el polo objetivo (sencillo)<a class="headerlink" href="#criterio-del-cero-bajo-el-polo-objetivo-sencillo" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>El cero del compensador se sitúa justo debajo del polo objetivo y el polo donde quede, manteniendo el ángulo <span class="math notranslate nohighlight">\(\phi_c\)</span>. En este ejemplo, el resultado es el mismo que en el apartado anterior, porque ha coincidido que el segundo polo dominante de la planta en lazo abierto queda debajo del polo objetivo. Sin embargo, lo habitual es que den resultados distintos.</p>
+<p>Este método se puede emplear sólo en el caso de que queden a la derecha del cero del compensador al menos dos polos de la planta en lazo abierto. Se puede observar en la figura anterior que el ejemplo se encuentra en el caso límite de uso, ya que si el segundo polo de la planta hubiese estado más a la izquierda, el tercer polo en lazo cerrado del sistema quedaría más dominante que los polos objetivo.</p>
+<p>Si se cumple lo dicho en el párrafo anterior, para cualquier planta que se desee compensar, este criterio se puede emplear siempre que el ángulo <span class="math notranslate nohighlight">\(\phi_c\)</span> sea igual o menor que 90<span class="math notranslate nohighlight">\(^0\)</span>.</p>
+</div>
+<div class="section" id="criterio-de-un-compensador-proporcional-derivativo-importante">
+<h3>Criterio de un compensador proporcional-derivativo (IMPORTANTE)<a class="headerlink" href="#criterio-de-un-compensador-proporcional-derivativo-importante" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>El polo del compensador se sitúa en el <span class="math notranslate nohighlight">\(−\infty\)</span> del plano <span class="math notranslate nohighlight">\(S\)</span> y el cero del compensador donde quede, manteniendo el ángulo <span class="math notranslate nohighlight">\(\phi_c\)</span>. El compensador, por tanto, está compuesto por un único cero y ningún polo, (ver la figura siguiente).</p>
+<div class="figure align-default" id="criterio-pd">
+<a class="reference internal image-reference" href="../../../_images/fig93.png"><img alt="Criterio de un compensador proporcional-derivativo" src="../../../_images/fig93.png" style="width: 300px;" /></a>
+<p class="caption"><span class="caption-number">Figura 88 </span><span class="caption-text">Criterio de un compensador proporcional-derivativo</span><a class="headerlink" href="#criterio-pd" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+<p>El ángulo <span class="math notranslate nohighlight">\(\phi_c\)</span> coincide exactamente con el ángulo del que ve el cero al polo objetivo. En el ejemplo propuesto, el cero del compensador queda en −8 y la ganancia resulta ser 0.5, por tanto, el compensador tiene la siguiente expresión:</p>
+<div class="math notranslate nohighlight">
+\[D(s)=0.5(s+8)\]</div>
+<p>Este criterio, como la anulación de un polo de la planta en lazo abierto, no añade ningún polo nuevo en el sistema en lazo cerrado. El nombre de compensador proporcional-derivativo es coherente si se calcula en el dominio del tiempo cuál es la actuación sobre la planta <span class="math notranslate nohighlight">\(u(t)\)</span> en función del error <span class="math notranslate nohighlight">\(e(t)\)</span> de la ecuación siguiente donde se observa que hay una componente proporcional al error y otra proporcional a la derivada del error.</p>
+<div class="math notranslate nohighlight">
+\[U(s)=K_c(s+a)E(s)=K_cE(s)+aK_cE(s)\xrightarrow{\mathcal{L}^{-1}}u(t)=K_c\frac{de(t)}{dt}+aK_ce(t)\]</div>
+</div>
+<div class="section" id="comparacion-de-la-respuesta-temporal-de-los-distintos-criterios-importante">
+<h3>Comparación de la respuesta temporal de los distintos criterios (IMPORTANTE)<a class="headerlink" href="#comparacion-de-la-respuesta-temporal-de-los-distintos-criterios-importante" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Resulta interesante comparar la respuesta temporal que consiguen los distintos criterios que se han enunciado. En la figura siguiente se nuestra la respuesta ante una entrada escalón unidad del sistema en lazo cerrado con los distintos compensadores que se han ido calculando.</p>
+<p>Evidentemente, todos los compensadores consiguen cumplir las especificaciones de partida: tiempo de establecimiento menor que 2 segundos y sobrevalor del orden del 20 %. El compensador PD es fácilmente reconocible porque la pendiente inicial no es nula. El compensador del criterio de la bisectriz es un poco más rápido que el que anula el polo de la planta porque tiene la influencia del cero del compensador — también por eso tiene un poco más de sobrevalor.</p>
+<p>Antes de continuar, conviene señalar que el método del lugar de las raíces que se ha descrito no permite el cumplimiento de especificaciones de error en régimen permanente. Los parámetros <span class="math notranslate nohighlight">\(K_c\)</span> , <span class="math notranslate nohighlight">\(a\)</span> y <span class="math notranslate nohighlight">\(b\)</span> del compensador se emplean para localizar los polos del sistema en lazo cerrado. Por tanto sólo puede lograr especificaciones de régimen transitorio.</p>
+<p>Ha quedado patente en el ejemplo que se ha empleado que existe más de un compensador válido para unas especificaciones dadas. Sin embargo, a la hora de resolver un problema hay que decir explícitamente qué elecciones se están tomando en cada momento de forma justificada.</p>
+<p>Se puede diseñar el compensador sin llegar a dibujar exactamente el lugar de las raíces del sistema, compensado o no, porque todas las operaciones se hacen con la posición de los polos y ceros de la planta y compensador en lazo abierto. El único punto que se conoce de forma exacta del lugar de las raíces puede ser el polo objetivo. Sin embargo, es muy conveniente al menos imaginar cómo va a quedar el lugar de las raíces del sistema compensado, de forma cualitativa.</p>
+<p>Siempre que se pretendan mejorar el régimen transitorio, en el sentido de hacer el sistema más rápido de lo que de suyo es, el ángulo <span class="math notranslate nohighlight">\(\phi_c\)</span> va a dar positivo. Si da un ángulo pequeño, por ejemplo menos de 10<span class="math notranslate nohighlight">\(^0\)</span>, significa que el lugar de las raíces del sistema sin compensador pasa bastante cerca de los polos objetivo. En este caso, es suficiente con diseñar un compensador puramente proporcional que deje los polo en lazo cerrado lo más cerca posible de los polos objetivo.</p>
+<p>Si <span class="math notranslate nohighlight">\(\phi_c\)</span> da un ángulo muy grande, por ejemplo mayor que 70<span class="math notranslate nohighlight">\(^0\)</span>, significa que el polo objetivo queda muy lejos del lugar de las raíces del sistema sin compensador. Quizá se pueden modificar las elecciones realizadas para el cálculo de los polos objetivo para que de un ángulo algo menor. Si no es así, no es recomendable elegir el compensador de adelanto de fase para cumplir las especificaciones exigidas. Habría que ir a otro tipo de controlador o afirmar que no se pueden cumplir dichas especificaciones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">control</span> <span class="k">as</span> <span class="nn">ctrl</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">([</span><span class="mi">4</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">po</span><span class="o">=-</span><span class="mi">2</span><span class="o">+</span><span class="mf">3.46</span><span class="n">j</span>
+
+<span class="n">D1</span><span class="o">=</span><span class="mf">4.7</span><span class="o">*</span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mf">2.9</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mf">5.4</span><span class="p">])</span>
+<span class="n">D2</span><span class="o">=</span><span class="mi">4</span><span class="o">*</span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">D3</span><span class="o">=</span><span class="mf">0.5</span><span class="o">*</span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">8</span><span class="p">],[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">T1</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">feedback</span><span class="p">(</span><span class="n">G</span><span class="o">*</span><span class="n">D1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">T2</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">feedback</span><span class="p">(</span><span class="n">G</span><span class="o">*</span><span class="n">D2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">T3</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">feedback</span><span class="p">(</span><span class="n">G</span><span class="o">*</span><span class="n">D3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">t1</span><span class="p">,</span><span class="n">y1</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">step_response</span><span class="p">(</span><span class="n">T1</span><span class="p">)</span>
+<span class="n">t2</span><span class="p">,</span><span class="n">y2</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">step_response</span><span class="p">(</span><span class="n">T2</span><span class="p">)</span>
+<span class="n">t3</span><span class="p">,</span><span class="n">y3</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">step_response</span><span class="p">(</span><span class="n">T3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Comparación de los diferentes criterios&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;bisectriz&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t2</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Anular 2do&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t3</span><span class="p">,</span><span class="n">y3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;PD&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo [s]&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Salida [m]&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/compensadores_23_0.png" src="../../../_images/compensadores_23_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="compensador-por-retraso-de-fase">
+<h2>Compensador por retraso de fase<a class="headerlink" href="#compensador-por-retraso-de-fase" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Un compensador de retraso de fase tiene la siguiente forma:</p>
+<div class="math notranslate nohighlight">
+\[D(s)=K\frac{1+Ts}{1+\beta Ts}= \frac{K}{\beta}\frac{s+\frac{1}{T}}{s+\frac{1}{\beta T}}=K_c\frac{s+a}{s+b}\]</div>
+<p>con <span class="math notranslate nohighlight">\(\beta&gt;1\)</span>, y <span class="math notranslate nohighlight">\(a&gt;b\)</span></p>
+<p>La primera expresión es más útil cuando se trabaja en el diagrama de Bode, mientras que la última es preferible cuando se trabaja en el lugar de las raíces.</p>
+<div class="section" id="compensador-que-mejora-el-error">
+<h3>Compensador que mejora el error<a class="headerlink" href="#compensador-que-mejora-el-error" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Un compensador de retraso de fase puede utilizarse para disminuir el error en régimen permanente sin empeorar el régimen transitorio del sistema. Haciendo <span class="math notranslate nohighlight">\(K\)</span> igual a <span class="math notranslate nohighlight">\(\beta\)</span> la ganancia y fase del compensador valen ambos 0 para altas frecuencias y por tanto no se modifica notoriamente el lugar de las raíces de la planta. Sin embargo, a bajas frecuencias se produce un aumento de ganancia, por lo que aumenta el coeficiente de error del sistema y por tanto disminuye el error del mismo.</p>
+<div class="math notranslate nohighlight">
+\[D(s)=\beta\frac{1+Ts}{1+\beta Ts}= \frac{s+\frac{1}{T}}{s+\frac{1}{\beta T}}=\frac{s+a}{s+b}\]</div>
+<p>Si se emplea el compensador de retraso de fase exclusivamente para disminuir el error en régimen transitorio, lo único que hay que hacer es: calcular <span class="math notranslate nohighlight">\(\beta\)</span> con la expresión siguiente</p>
+<div class="math notranslate nohighlight">
+\[K_P=\lim_{s\rightarrow 0}\beta\frac{1+Ts}{1+\beta Ts}G(s)=\beta G(0)\]</div>
+<p>igualar la ganancia <span class="math notranslate nohighlight">\(K\)</span> a <span class="math notranslate nohighlight">\(\beta\)</span> para que el compensador no modifique el lugar de las raíces y elegir <span class="math notranslate nohighlight">\(T\)</span> de tal forma que el cero del compensador quede entre una década y una octava antes del <span class="math notranslate nohighlight">\(\omega_n\)</span> de los polos objetivos. Esto último se hace para asegurar precisamente que el compensador no modifica el lugar de las raíces en la zona del transitorio.</p>
+</div>
+<div class="section" id="compensador-de-retraso-que-anula-el-error-o-compensador-proporcional-integral">
+<h3>Compensador de retraso que anula el error o compensador proporcional-integral<a class="headerlink" href="#compensador-de-retraso-que-anula-el-error-o-compensador-proporcional-integral" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Se trata de la misma idea que en el apartado anterior, pero en lugar de disminuir el error del sistema, se anula. Para ello se incrementa el tipo del sistema en una unidad, haciendo que el polo del compensador se sitúe en el origen del plano <span class="math notranslate nohighlight">\(S\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[D(s)=\frac{1+Ts}{Ts}=\frac{s+\frac{1}{T}}{s}=\frac{s+a}{s}\]</div>
+<p>Este tipo de compensador se llama proporcional-integral porque en el dominio del tiempo la actuación en la planta es la suma de una parte proporcional al error y otra proporcional a la integral del error.</p>
+<div class="math notranslate nohighlight">
+\[U(s)=\frac{s+a}{s}E(s)=E(s)+a\frac{E(s)}{s}\xrightarrow{\mathcal{L}^{-1}}u(t)=e(t)+a\int_{0}^{t}e(\tau)d\tau\]</div>
+<p>El método de diseño es todavía más sencillo que el caso anterior porque sólo haya que elegir la constante de tiempo <span class="math notranslate nohighlight">\(T\)</span> del cero del compensador de forma que éste quede entre una década y una octava antes de la frecuencia de cruce de ganancias de la planta cuyo transitorio no se quiere modificar.</p>
+</div>
+</div>
+<div class="section" id="ejemplo-de-diseno-usando-lugar-de-las-raices-muy-dificil">
+<h2>Ejemplo de diseño usando lugar de las raíces (MUY DIFÍCIL)<a class="headerlink" href="#ejemplo-de-diseno-usando-lugar-de-las-raices-muy-dificil" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>El avión Piper Dakota tiene una función transferencia entre la entrada ángulo del elevador y el ángulo de ataque del avión (attitude pitch)</p>
+<div class="math notranslate nohighlight">
+\[ G(s) = \dfrac{\theta(s)}{\delta_e(s)} = \dfrac{160(s+2.5)(s+0.7)}{(s^2+5s+40)(s^2+0.03s+0.06)} \]</div>
+<ol class="simple">
+<li><p>Diseñar un piloto automático tal que la respuesta a una entrada de referencia en el ángulo de ataque tenga un tiempo de crecimiento (rise time) menor a 1 segundo y que su sobrevalor sea menor al 10%</p></li>
+<li><p>Cuando hay una perturbación constante sobre el avión  tal que el piloto automático tenga que suministrar una fuerza constante sobre los controles para un vuelo estacionario, se dice que el vuela está sin ajustar (out of trim). La función transferencia entre la perturbación y el ángulo de ataque es la misma que la de la anterior, es decir:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[G_d(s) = \dfrac{\theta(s)}{M_d(s)} = \dfrac{160(s+2.5)(s+0.7)}{(s^2+5s+40)(s^2+0.03s+0.06)}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(M_d\)</span> es la perturbación, que es el momento perturbativo actuante sobre el avión. Existe una superficie aerodinámica para ajustar esto, <span class="math notranslate nohighlight">\(\delta_t\)</span> que puede ser actuada y cambiará el momento actuante sobre el avión.</p>
+<p>La influencia de esta perturbación <span class="math notranslate nohighlight">\(M_d\)</span> y <span class="math notranslate nohighlight">\(\theta_t\)</span> se muestra en el diagrama de la izquierda.</p>
+<p>Para las formas de actuación manual y con piloto automático es deseable que haya un ajuste del trim para que no haya esfuerzo de control por el elevador (eso es, <span class="math notranslate nohighlight">\(\delta_e=0\)</span>). En vuelo manual, esto significa el que piloto no tiene que hacer fuerza sobre los mandos para mantener la altitud, mientas que para el control de piloto automático, se reduce la cantidad de potencia eléctrica requerida y el ahorro de mantenimiento y recambio de los servomotores y actuadores del elevador. Diseñar un piloto automático que comande el ajuste de trim con el uso de <span class="math notranslate nohighlight">\(\delta_t\)</span> tal que lleve a <span class="math notranslate nohighlight">\(\delta_e=0\)</span> para una perturbación constante <span class="math notranslate nohighlight">\(M_d\)</span> y que además cumpla con las especificaciones del punto anterior.</p>
+<div class="section" id="solucion">
+<h3>Solución<a class="headerlink" href="#solucion" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Para satisfacer el requerimiento de  que el tiempo de crecimiento <span class="math notranslate nohighlight">\(t_r &lt;1\)</span>seg indica que para un sistema de segundo orden ideal, <span class="math notranslate nohighlight">\(\omega_n\)</span> debe ser más grande que 1.8 rad/seg. Y para lograr un sobrevalor menor al 10% se debe tener un coeficiente de amortiguamiento <span class="math notranslate nohighlight">\(\zeta &gt;0.6\)</span>. En el proceso de diseño, podemos examinar el lugar de raíces para buscar un candidato compensar mediante realimentación y luego observar la respuesta de tiempo resultante cuando las raíces parecen satisfacer las pautas de diseño.</p>
+<p>Sin embargo, dado que este es un sistema de cuarto orden, las pautas de diseño pueden no ser suficientes o pueden ser demasiado restrictivas.</p>
+<p>Para iniciar el proceso de diseño, a menudo es útil observar las características del sistema con realimentación proporcional, es decir, el compensador <span class="math notranslate nohighlight">\(D(s) = 1\)</span>. Los comandos para crear el lugar de raíces con respecto a <span class="math notranslate nohighlight">\(K\)</span> y una respuesta de tiempo para el caso de realimentación proporcional con <span class="math notranslate nohighlight">\(K = 0.3\)</span> son las siguientes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="n">sysG</span> <span class="o">=</span> <span class="p">(</span><span class="mi">160</span><span class="o">*</span> <span class="p">(</span><span class="n">s</span><span class="o">+</span><span class="mf">2.5</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">s</span><span class="o">+</span><span class="mf">0.7</span><span class="p">))</span><span class="o">/</span><span class="p">((</span><span class="n">s</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">5</span><span class="o">*</span><span class="n">s</span><span class="o">+</span><span class="mi">40</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">s</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mf">0.03</span><span class="o">*</span><span class="n">s</span><span class="o">+</span><span class="mf">0.06</span><span class="p">))</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">rlocus</span><span class="p">(</span><span class="n">sysG</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># el guión bajo es para no tener las puntos de las raíces y las ganancias como salidas por pantalla</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/compensadores_30_0.png" src="../../../_images/compensadores_30_0.png" />
+</div>
+</div>
+<p>Podemos ver que para lograr el tiempo de respuesta con las dos raíces rápidas deseadas como mínimo tenemos que darle una ganancia de 0.3. Sin embargo para esta ganancia el sobrevalor va a dar más grande ya que que coeficiente de amortiguamiento es de 0.19 que es menor 0.6 requerido.</p>
+<p>Estos polos lentos tendrán algún efecto en las respuesta y causarán un establecimiento más largo. Sin embargo, la característica dominante de la respuesta que determina si la compensación cumple o no con las especificaciones es el comportamiento en los primeros segundos, dictado por las raíces rápidas. El bajo amortiguamiento debido a las raíces rápidas hace que la respuesta temporal sea oscilatoria, lo que conduce a un sobrevalor excesivo y a un tiempo de asentamiento más prolongado de lo deseado. Esto lo podemos ver en la siguiente simulación:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K</span><span class="o">=</span><span class="mf">0.3</span>
+<span class="n">sysT</span><span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">feedback</span><span class="p">(</span><span class="n">sysG</span><span class="o">*</span><span class="n">K</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Defino una función en python para no tener que andar escribiendo siempre lo mismo o evitar el peligroso «copiar/pegar»</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">graficar_respuesta_escalon</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Respuesta al escalón&#39;</span><span class="p">):</span> 
+    <span class="n">t</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">step_response</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Tiempo&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora si puedo utilizar la función creada recientemente</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graficar_respuesta_escalon</span><span class="p">(</span><span class="n">sysT</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">500</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/compensadores_37_0.png" src="../../../_images/compensadores_37_0.png" />
+</div>
+</div>
+<p>Vimos anteriormente que la compensación de lead hace que el lugar se desplace hacia la izquierda. Aquí es necesario un compensador de este para aumentar el amortiguamiento y para el <span class="math notranslate nohighlight">\(\omega_n\)</span> requerido. Se requerirá alguna prueba y error para llegar a la ubicación de un polo y cero adecuado. Valores de <span class="math notranslate nohighlight">\(z = 3\)</span> y <span class="math notranslate nohighlight">\(p = 20\)</span> en la ecuación tienen un efecto sustancial al mover las ramas rápidas del lugar hacia la izquierda; así resultaría:
+$<span class="math notranslate nohighlight">\(D(s) = \frac{s+3}{s+20}\)</span>$</p>
+<p>También se requiere alguna iteración mediante prueba y error para llegar a un valor de <span class="math notranslate nohighlight">\(K\)</span> que cumpla con las especificaciones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sysD</span> <span class="o">=</span> <span class="p">(</span><span class="n">s</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">s</span><span class="o">+</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">sysDG</span><span class="o">=</span><span class="n">sysG</span><span class="o">*</span><span class="n">sysD</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">rlocus</span><span class="p">(</span><span class="n">sysDG</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/compensadores_39_0.png" src="../../../_images/compensadores_39_0.png" />
+</div>
+</div>
+<p>Entonces probamos con esta ganancia de <span class="math notranslate nohighlight">\(K=1.5\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K</span><span class="o">=</span><span class="mf">1.5</span>
+<span class="n">sysKDG</span><span class="o">=</span><span class="n">sysDG</span><span class="o">*</span><span class="n">K</span>
+<span class="n">sysT</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">feedback</span><span class="p">(</span><span class="n">sysKDG</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">graficar_respuesta_escalon</span><span class="p">(</span><span class="n">sysT</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span> <span class="mi">600</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/compensadores_41_0.png" src="../../../_images/compensadores_41_0.png" />
+</div>
+</div>
+<p>Hay que tener en cuenta que el amortiguamiento debido a las raíces rápidas que corresponde a <span class="math notranslate nohighlight">\(K = 1.5\)</span> es <span class="math notranslate nohighlight">\(\zeta = 0.52\)</span>, que es ligeramente menor de lo que nos gustaría; Además, la frecuencia natural es <span class="math notranslate nohighlight">\(\omega_n= 15\)</span> rad/seg, mucho más rápido de lo que necesitamos. Sin embargo, estos valores son lo suficientemente cercanos como para cumplir con las pautas para sugerir un vistazo a la respuesta temporal. De hecho, la respuesta temporal que <span class="math notranslate nohighlight">\(t_r \approx 1.1\)</span> seg y <span class="math notranslate nohighlight">\(M_p \approx 8\%\)</span>, que están muy cerca de cumplir especificaciones.</p>
+<p>En resumen, la forma de diseño consistió en ajustar la compensación para influir en las raíces rápidas, examinar su efecto en la respuesta temporal y continuar la iteración de diseño hasta que se cumplieran las especificaciones.</p>
+<p>Para estar seguro de que se cumplen las especificaciones debemos hacer:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">step_info</span><span class="p">(</span><span class="n">sysT</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1000</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;RiseTime&#39;: 0.12012012012012012,
+ &#39;SettlingTime&#39;: 5.205205205205205,
+ &#39;SettlingMin&#39;: 0.7521738729990624,
+ &#39;SettlingMax&#39;: 1.0465819498526368,
+ &#39;Overshoot&#39;: 8.64517384184515,
+ &#39;Undershoot&#39;: 0,
+ &#39;Peak&#39;: 1.0465819498526368,
+ &#39;PeakTime&#39;: 2.4324324324324325,
+ &#39;SteadyStateValue&#39;: 0.963302752293578}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Que vemos que en realidad da un poco afuera de especificaciones el tiempo de respuesta.. pero lo dejaremos así. Quizás aumentando <span class="math notranslate nohighlight">\(K\)</span> podamos mejorar un poco, siempre cuidando de no quedar afuera con el sobrevalor.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K</span><span class="o">=</span><span class="mf">1.9</span>
+<span class="n">sysKDG</span><span class="o">=</span><span class="n">sysDG</span><span class="o">*</span><span class="n">K</span>
+<span class="n">sysT</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">feedback</span><span class="p">(</span><span class="n">sysKDG</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ctrl</span><span class="o">.</span><span class="n">step_info</span><span class="p">(</span><span class="n">sysT</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;RiseTime&#39;: 0.10277692351445958,
+ &#39;SettlingTime&#39;: 4.815832987534678,
+ &#39;SettlingMin&#39;: 0.776729850431055,
+ &#39;SettlingMax&#39;: 1.0395168591973922,
+ &#39;Overshoot&#39;: 7.078052413565962,
+ &#39;Undershoot&#39;: 0,
+ &#39;Peak&#39;: 1.0395168591973922,
+ &#39;PeakTime&#39;: 2.3051395702528796,
+ &#39;SteadyStateValue&#39;: 0.9708029197080292}
+</pre></div>
+</div>
+</div>
+</div>
+<p>El propósito del ajuste es proporcionar un momento que elimine el valor distinto de cero en estado estacionario (después que pse mucho tiempo) del elevador <span class="math notranslate nohighlight">\(\delta_e\)</span>. Por lo tanto, si integramos el comando del elevador <span class="math notranslate nohighlight">\(\delta_e\)</span> y alimentamos esta integral al dispositivo de compensación, la compensación eventualmente debería proporcionar el momento requerido para mantener una altitud arbitraria, eliminando así la necesidad de un estado estacionario <span class="math notranslate nohighlight">\(\delta_e\)</span>.</p>
+<p>Si la ganancia en el término integral <span class="math notranslate nohighlight">\(K_i\)</span> es lo suficientemente pequeña, el efecto desestabilizador de agregar la integral debería ser pequeño y el sistema debería comportarse aproximadamente como antes, ya que ese lazo de realimentación se ha dejado intacto. El diagrama de bloques se puede reducir a lo que se ve en la parte de la derecha de la figura anterior. Sin embargo, es importante tener en cuenta que, físicamente, habrá dos salidas de la compensación:<span class="math notranslate nohighlight">\(\delta_e\)</span> (utilizada por el servomotor del ascensor) y <span class="math notranslate nohighlight">\(\delta_t\)</span> (utilizado por el servomotor de compensación de trim).</p>
+<p>Así podemos definir un nuevo controlador <span class="math notranslate nohighlight">\(D_I\)</span> que representará todo lo azul de la figura anterior.</p>
+<div class="math notranslate nohighlight">
+\[D_I(s) = KD(s)\left(1+\frac{K_i}{s}\right)\]</div>
+<p>La ecuación característica del sistema con el término integral será:</p>
+<div class="math notranslate nohighlight">
+\[1+KDG+\dfrac{K_I}{s}KDG=0\]</div>
+<p>Para ayudar en el proceso de diseño, es deseable encontrar el lugar geométrico de las raíces cuando se varía  <span class="math notranslate nohighlight">\(K_I\)</span>, pero la ecuación característica no se encuentra
+en las formas en que el lugar geométrico se pueda graficar. Por lo tanto, podemos dividir por <span class="math notranslate nohighlight">\(1 + KDG\)</span> y obtenemos:</p>
+<div class="math notranslate nohighlight">
+\[ 1 + \dfrac{(K_I/s)KDG}{1+KDG} = 0 \]</div>
+<p>Entonces para hacer el lugar de las raíces cuando se varía <span class="math notranslate nohighlight">\(K_I\)</span> debemos introducir en Python:</p>
+<div class="math notranslate nohighlight">
+\[L(s) = \frac{1}{s}\frac{KDG}{1+KDG}\]</div>
+<p>Notar que la expresión anterior es la que habíamos definido anteriormente con el nombre <code class="docutils literal notranslate"><span class="pre">sysT</span></code>. Haría falta multiplicarla por un integrador:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sysL</span><span class="o">=</span><span class="n">sysT</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="n">s</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">rlocus</span><span class="p">(</span><span class="n">sysL</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/compensadores_48_0.png" src="../../../_images/compensadores_48_0.png" />
+</div>
+</div>
+<p>La segunda figura es la ampliación de lo que está sucediendo con los polos lentos. Podemos ver que están todos muy cerca de ceros por lo que la influencia neta que tendrán en la respuesta será muy pequeña.</p>
+<p>Implementamos un escalón entonces para la perturbación y vemos como se comporta el lazo cerrado.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ki</span><span class="o">=</span><span class="mf">0.1</span>
+<span class="n">Di</span><span class="o">=</span><span class="n">K</span><span class="o">*</span><span class="n">sysD</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">Ki</span><span class="o">/</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para probar tenemos que generar el sistema realimentado. Notar que para la perturbación la función de lazo quedaría:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Td</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">feedback</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="n">Di</span><span class="p">)</span> <span class="c1">#Ki=0.19</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graficar_respuesta_escalon</span><span class="p">(</span><span class="n">Td</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/compensadores_54_0.png" src="../../../_images/compensadores_54_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">feedback</span><span class="p">(</span><span class="n">G</span><span class="o">*</span><span class="n">Di</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">graficar_respuesta_escalon</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/compensadores_55_0.png" src="../../../_images/compensadores_55_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">step_info</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;RiseTime&#39;: 2.5957216515744497,
+ &#39;SettlingTime&#39;: 23.118145959334942,
+ &#39;SettlingMin&#39;: 0.9106676824506756,
+ &#39;SettlingMax&#39;: 1.1159845187563178,
+ &#39;Overshoot&#39;: 11.598451875631778,
+ &#39;Undershoot&#39;: 0,
+ &#39;Peak&#39;: 1.1159845187563178,
+ &#39;PeakTime&#39;: 7.138234541829736,
+ &#39;SteadyStateValue&#39;: 1.0}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si quisiésemos graficar como se comporta el ángulo <span class="math notranslate nohighlight">\(\delta_e\)</span> frente a un cambio en la referencia deberíamos pensar que esta es la salida (hacer diagrama de bloques), es decir:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T_re</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">feedback</span><span class="p">(</span><span class="n">Di</span><span class="p">,</span><span class="n">G</span><span class="p">)</span>
+<span class="n">graficar_respuesta_escalon</span><span class="p">(</span><span class="n">T_re</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">1000</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/compensadores_58_0.png" src="../../../_images/compensadores_58_0.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./sources/notebooks_sources/modulo5"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../modulo_frec/estabilidad_nyquist/estabilidad_en_frecuencia.html" title="previous page">Estabilidad en Frecuencia</a>
+    <a class='right-next' id="next-link" href="problema_levitador.html" title="next page">Problema de levitador magnético</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          Por Somebody<br/>
+        
+            &copy; Derechos de autor 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

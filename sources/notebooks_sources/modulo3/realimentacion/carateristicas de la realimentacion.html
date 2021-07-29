@@ -1,0 +1,744 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Características de la realimentación &#8212; Diseño y Ajuste de Sistemas de Control</title>
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "gonmolina/DSFyC_book");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 comment");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
+    <script src="../../../../_static/translations.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="canonical" href="https://gonmolina.github.io/DSFyC_book/sources/notebooks_sources/modulo3/realimentacion/carateristicas de la realimentacion.html" />
+    <link rel="index" title="Índice" href="../../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../../search.html" />
+    <link rel="next" title="Sensibilidad" href="../sensibilidad/Sensibilidad.html" />
+    <link rel="prev" title="Efecto de los polos adicionales y de los ceros" href="../../modulo2/polos%20y%20ceros%20adicionales/Efecto%20Polos%20y%20Ceros%20Adicionales.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../../index.html">
+      
+      <img src="../../../../_static/sala_de_control.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Diseño y Ajuste de Sistemas de Control</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Buscar este libro ..." aria-label="Buscar este libro ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../dsfc_sources/intro.html">
+   Material de la materia Dinámica de los Sistemas Físicos y Control
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introducción a Python
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro_python/Introducci%C3%B3n%20a%20los%20notebooks%20de%20Jupyter.html">
+   Introducción a los cuadernos de Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro_python/Extra_Python.html">
+   Introducción a Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro_python/Intro-Matplotlib.html">
+   Figuras en Python - MATPLOTLIB
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro_python/intro_sympy.html">
+   Introducción a SymPy
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Señales, sistemas y modelos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo1/intro_sys_sen/intro_sis_y_sen.html">
+   Definiciones de Sistemas y Señales
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo1/laplace/transformada_laplace_python_opcional.html">
+   Transformada de Laplace
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo1/laplace/funcion_transferencia.html">
+   Función transferencia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo1/diagrama_bloques/diagrama_de_bloques.html">
+   Diagramas de bloques
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../modulo1/espacio_estado/espacio_de_estados.html">
+   Representación de sistemas dinámicos en espacio de estados
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../modulo1/espacio_estado/modelado_ss.html">
+     Modelado en espacio de estados
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo1/linealizacion/linealizacion.html">
+   Linealización de sistemas no-lineales
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../modulo1/ejemplos_sistemas/ejemplos_sistemas.html">
+   Ejemplos de modelos de sistemas
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../modulo1/ejemplos_sistemas/resorte_no_lineal.html">
+     Sistema masa resorte amortiguador
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../modulo1/ejemplos_sistemas/CineticaPuntual.html">
+     Ecuaciones de Cinética Puntual
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../modulo1/ejemplos_sistemas/Nonlinear%20CSTR.html">
+     Sistema CSTR
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../modulo1/ejemplos_sistemas/Ejemplo_Presa_Depredador.html">
+     Sistema presa depredador (Lotka-Volterra)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Análisis de la respuesta temporal
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo2/estabilidad/estabilidad.html">
+   Estabilidad
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo2/respuesta%20temporal/Respuesta%20Temporal.html">
+   Respuesta temporal de sistemas dinámicos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo2/polos%20y%20ceros%20adicionales/Efecto%20Polos%20y%20Ceros%20Adicionales.html">
+   Efecto de los polos adicionales y de los ceros
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Análisis de estado estacionario
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Características de la realimentación
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../sensibilidad/Sensibilidad.html">
+   Sensibilidad
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../errores/Errores.html">
+   Errores
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Lugar de las raíces
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo4/lugar%20de%20las%20raices.html">
+   Lugar de las raíces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo4/Pasos%20para%20el%20trazado.html">
+   Pasos para trazar el lugar geométrico de las raíces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo4/Lugar%20de%20la%20raices%20con%20Python.html">
+   Lugar de las raíces usando Python
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Respuesta en frecuencia
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_frec/respuesta_frecuencial.html">
+   Respuesta Frecuencial de Sistemas lineales y SISO
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_frec/estabilidad_nyquist/estabilidad_en_frecuencia.html">
+   Estabilidad en Frecuencia
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Diseño de compensadores
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo5/compensadores.html">
+   Compensadores de adelanto y de retraso de fase
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo5/problema_levitador.html">
+   Problema de levitador magnético
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo5/tipo1_lead.html">
+   Problema con sistema de tipo 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo5/lead_lag_design.html">
+   Ecuaciones útiles para el diseño del Lead por análisis en frecuencia
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Control Moderno
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/formas_canonicas.html">
+   Formas canónicas de un espacio de estados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/transformacion_formas_canonicas.html">
+   Transformación lineal del espacio de estado
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/ctrb_obsv.html">
+   Análisis de los sistemas en su forma de espacio de estados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/referencia.html">
+   Inserción de referencias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/estimadores.html">
+   Diseño de estimadores
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/ejemplo_A_ve_motor_cc.html">
+   Diseño para un motor de continua
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/ejemplo_B_ve_atitud_satelite.html">
+   Diseño del sistema de control del atitud de un satélite
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../modulo_ve/ejemplo_C_ve_pendulo_invertido.html">
+   Diseño del sistema de control del pédulo invertido
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Navegación de palanca" aria-controls="site-navigation"
+                title="Navegación de palanca" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Descarga esta pagina"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../../../_sources/sources/notebooks_sources/modulo3/realimentacion/carateristicas de la realimentacion.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Descargar archivo de cuaderno" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../../_sources/sources/notebooks_sources/modulo3/realimentacion/carateristicas de la realimentacion.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Descargar archivo fuente" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimir en PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/gonmolina/DSFyC"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Repositorio de origen"><i
+                    class="fab fa-github"></i>repositorio</button></a>
+        <a class="issues-button"
+            href="https://github.com/gonmolina/DSFyC/issues/new?title=Issue%20on%20page%20%2Fsources/notebooks_sources/modulo3/realimentacion/carateristicas de la realimentacion.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Abrir un problema"><i class="fas fa-lightbulb"></i>Tema abierto</button></a>
+        <a class="edit-button" href="https://github.com/gonmolina/DSFyC/edit/master/sources/notebooks_sources/modulo3/realimentacion/carateristicas de la realimentacion.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edita esta página"><i class="fas fa-pencil-alt"></i>sugerir editar</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Modo de pantalla completa"
+        title="Modo de pantalla completa"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/gonmolina/DSFyC/master?urlpath=tree/sources/notebooks_sources/modulo3/realimentacion/carateristicas de la realimentacion.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Lanzamiento Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contenido
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#concepto">
+   Concepto
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ejemplo">
+   Ejemplo
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#seguimiento-de-referencia">
+     Seguimiento de referencia
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#analisis-del-lazo-abierto-para-seguimiento-a-referencias">
+       Análisis del lazo abierto para seguimiento a referencias
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#analisis-del-lazo-cerrado-para-seguimiento-a-referencias">
+       Análisis del lazo cerrado para seguimiento a referencias
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#perturbaciones">
+     Perturbaciones
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#analisis-del-lazo-abierto-frente-a-perturbaciones">
+       Análisis del lazo abierto frente a perturbaciones
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#analisis-del-lazo-cerrado-frente-a-perturbaciones">
+       Análisis del lazo cerrado frente a perturbaciones
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analisis-frente-al-ruido">
+     Análisis frente al ruido
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#perturbacion-t-l">
+     Perturbación
+     <span class="math notranslate nohighlight">
+      \(T_l\)
+     </span>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ejemplo-analisis-de-perturbacion-a-lazo-abierto">
+       Ejemplo: Análisis de perturbación a lazo abierto
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ejemplo-analisis-de-la-perturbacion-a-lazo-cerrado">
+       Ejemplo: Análisis de la perturbación a lazo cerrado
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="caracteristicas-de-la-realimentacion">
+<h1>Características de la realimentación<a class="headerlink" href="#caracteristicas-de-la-realimentacion" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="concepto">
+<h2>Concepto<a class="headerlink" href="#concepto" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>El control <strong>realimentado</strong> o a <strong>lazo cerrado</strong> tiene la característica de que medimos la salida y luego la comparamos con un valor deseado. El error resultante lo utilizamos para corregir la salida del sistema.</p>
+<div class="figure align-default" id="id1">
+<a class="reference internal image-reference" href="../../../../_images/fig12.png"><img alt="../../../../_images/fig12.png" src="../../../../_images/fig12.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-number">Figura 34 </span><span class="caption-text">Lazo cerrado versus lazo abierto</span><a class="headerlink" href="#id1" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+<p>En la figura anterior mostramos los diagramas de bloques genéricos de los sistemas de control a lazo cerrado (con realimentación) y a lazo abierto (sin realimentación).</p>
+</div>
+<div class="section" id="ejemplo">
+<h2>Ejemplo<a class="headerlink" href="#ejemplo" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="seguimiento-de-referencia">
+<h3>Seguimiento de referencia<a class="headerlink" href="#seguimiento-de-referencia" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Las ecuaciones que gobiernan el motor de corriente continua las podemos escribir en forma simplificada de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[\tau \dot\omega+\omega = K_0(V_a+K_lT_l)\]</div>
+<p>donde:</p>
+<p><span class="math notranslate nohighlight">\(\omega\)</span>: es la velocidad del rotor (salida del sistema).</p>
+<p><span class="math notranslate nohighlight">\(V_a\)</span>: es la tensión aplicada al motor (entrada a la planta).</p>
+<p><span class="math notranslate nohighlight">\(T_l\)</span>: es la carga sobre el motor.</p>
+<p><span class="math notranslate nohighlight">\(\tau\)</span>: es la constante de tiempo.</p>
+<p><span class="math notranslate nohighlight">\(K_0\)</span> y <span class="math notranslate nohighlight">\(K_l\)</span>: constantes.</p>
+<p>Realicemos una comparación de colocar un controlador a lazo abierto y otro a lazo cerrado (con realimentación unitaria).</p>
+<div class="section" id="analisis-del-lazo-abierto-para-seguimiento-a-referencias">
+<h4>Análisis del lazo abierto para seguimiento a referencias<a class="headerlink" href="#analisis-del-lazo-abierto-para-seguimiento-a-referencias" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>La ganancia de nuestro controlador (<span class="math notranslate nohighlight">\(K_{co}\)</span>), será tal que <span class="math notranslate nohighlight">\(V_a = K_{co}\omega_d\)</span>. Realizando pruebas, podemos determinar que <span class="math notranslate nohighlight">\(K_{co}\)</span> es <span class="math notranslate nohighlight">\(1/K_0\)</span>; de este modo, para el estado estacionario sin carga (<span class="math notranslate nohighlight">\(T_l = 0\)</span>), la salida será:</p>
+<div class="math notranslate nohighlight">
+\[\omega = K_0 V_a = \frac{K_{co} \omega_d}{ K_0} = \omega_d\]</div>
+</div>
+<div class="section" id="analisis-del-lazo-cerrado-para-seguimiento-a-referencias">
+<h4>Análisis del lazo cerrado para seguimiento a referencias<a class="headerlink" href="#analisis-del-lazo-cerrado-para-seguimiento-a-referencias" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Para lazo cerrado tenemos que <span class="math notranslate nohighlight">\(V_a = K_{cc}(\omega_d - \omega)\)</span>, donde <span class="math notranslate nohighlight">\(K_{cc}\)</span> es la ganancia del nuevo controlador a lazo cerrado. Utilizando la primera ecuación, obtenemos:</p>
+<div class="math notranslate nohighlight">
+\[\tau\dot\omega+(1+K_{cc}K_0)\omega_d=K_0(K_{cc}\omega_d+k_lT_l)\]</div>
+<p>y en el estado estacionario:</p>
+<div class="math notranslate nohighlight">
+\[\omega=\frac{K_0K_{cc}}{1+K_0K_c{c}}\omega_d\]</div>
+<div class="important admonition">
+<p class="admonition-title">Conclusión</p>
+<p>Entonces, si se selecciona <span class="math notranslate nohighlight">\(K_{cc}\)</span> de manera que <span class="math notranslate nohighlight">\(K_0K_{cc} &gt;&gt; 1\)</span>, tenemos que <span class="math notranslate nohighlight">\(\omega \approx \omega_d\)</span>.</p>
+<p>Como vemos del ejemplo en lazo abierto la salida es exactamente la referencia deseada <span class="math notranslate nohighlight">\((\omega = \omega_d)\)</span> y en lazo cerrado es aproximado <span class="math notranslate nohighlight">\((\omega \approx \omega_d)\)</span>, pero debemos tener en cuenta que para el caso del sistema a lazo abierto necesitamos conocer exactamente el valor de <span class="math notranslate nohighlight">\(K_0\)</span> para determinar la ganancia del controlador <span class="math notranslate nohighlight">\(K_{co}\)</span>, cosa que no es necesaria para el caso del sistema a lazo cerrado.</p>
+</div>
+</div>
+</div>
+<div class="section" id="perturbaciones">
+<h3>Perturbaciones<a class="headerlink" href="#perturbaciones" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Una perturbación es una entrada adicional a nuestra planta, que afecta a la salida de nuestra planta.</p>
+<p>En debajo mostramos los diagramas de bloques de sistemas a lazo abierto y cerrado, con perturbaciones w. Analicemos como afectan a la salida dichas perturbaciones.</p>
+<div class="section" id="analisis-del-lazo-abierto-frente-a-perturbaciones">
+<h4>Análisis del lazo abierto frente a perturbaciones<a class="headerlink" href="#analisis-del-lazo-abierto-frente-a-perturbaciones" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>La salida y1 debido a una perturbación w, será:</p>
+<div class="math notranslate nohighlight">
+\[Y_1 = G\Omega(s)\]</div>
+<p>De la misma podemos deducir que el diseñador no puede influir con su compensador para reducir los efectos de las perturbaciones.</p>
+</div>
+<div class="section" id="analisis-del-lazo-cerrado-frente-a-perturbaciones">
+<h4>Análisis del lazo cerrado frente a perturbaciones<a class="headerlink" href="#analisis-del-lazo-cerrado-frente-a-perturbaciones" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>La salida <span class="math notranslate nohighlight">\(y_2\)</span> debido a una perturbación <span class="math notranslate nohighlight">\(\Omega\)</span>, será:</p>
+<div class="math notranslate nohighlight">
+\[Y_2 = \dfrac{G}{1+DG}\Omega(s)\]</div>
+<p>Por lo tanto, aquí el diseñador puede elegir un compensador <span class="math notranslate nohighlight">\(D\)</span>, de módulo grande, de manera de reducir el efecto de la perturbación sobre la salida.</p>
+<p>Cabe observar aquí que para los sistemas realimentados debemos escoger un muy buen sensor.</p>
+</div>
+</div>
+<div class="section" id="analisis-frente-al-ruido">
+<h3>Análisis frente al ruido<a class="headerlink" href="#analisis-frente-al-ruido" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Analicemos como influye en la salida <span class="math notranslate nohighlight">\(y_2\)</span> un ruido <span class="math notranslate nohighlight">\(v\)</span> en el sensor. La salida será:</p>
+<div class="math notranslate nohighlight">
+\[Y_2=\dfrac{DG}{1+DG}\left(R(s)-V(s)\right)\]</div>
+<p>Por lo tanto el diseñador no tiene forma de reducir el efecto del ruido sin afectar directamente la función de transferencia desde la referencia de entrada a la salida.</p>
+</div>
+<div class="section" id="perturbacion-t-l">
+<h3>Perturbación <span class="math notranslate nohighlight">\(T_l\)</span><a class="headerlink" href="#perturbacion-t-l" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Observemos ahora cómo influye una carga perturbadora <span class="math notranslate nohighlight">\(T_l\)</span> sobre la velocidad en el sistema de nuestro ejemplo.</p>
+<div class="section" id="ejemplo-analisis-de-perturbacion-a-lazo-abierto">
+<h4>Ejemplo: Análisis de perturbación a lazo abierto<a class="headerlink" href="#ejemplo-analisis-de-perturbacion-a-lazo-abierto" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>En estado estacionario tenemos:</p>
+<div class="math notranslate nohighlight">
+\[\Omega = K_0(K_{c0}\Omega_d+K_lT_l)\]</div>
+<p>Utilizando <span class="math notranslate nohighlight">\(K_{co} = \frac{1}/{K_0}\)</span></p>
+<div class="math notranslate nohighlight">
+\[\Omega = \Omega_d + K_0K_lT_l\]</div>
+<p>Entonces la variación de velocidad debida a la carga es:</p>
+<div class="math notranslate nohighlight">
+\[\delta \Omega =  K_0K_lT_l\]</div>
+<p>Por lo tanto, el error de velocidad es proporcional a la carga perturbadora (y el diseñador no puede influir en los parámetros <span class="math notranslate nohighlight">\(K_l\)</span> y <span class="math notranslate nohighlight">\(K_0\)</span>).</p>
+</div>
+<div class="section" id="ejemplo-analisis-de-la-perturbacion-a-lazo-cerrado">
+<h4>Ejemplo: Análisis de la perturbación a lazo cerrado<a class="headerlink" href="#ejemplo-analisis-de-la-perturbacion-a-lazo-cerrado" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>La velocidad en estado estacionario, para lazo cerrado, es:</p>
+<div class="math notranslate nohighlight">
+\[\Omega = \dfrac{K_0K_{cc}}{1+K_0K_{cc}}\Omega_d+\dfrac{K_0K_{l}}{1+K_0K_{cc}}T_l\]</div>
+<p>El diseñador puede tomar un <span class="math notranslate nohighlight">\(K_{cc}\)</span> de modo que <span class="math notranslate nohighlight">\(K_0K_{cc} &gt;&gt; 1\)</span> y <span class="math notranslate nohighlight">\(K_0 K_{cc} &gt;&gt; K_0 K_l\)</span>, no resultará en un error significativo con o sin torsión de carga perturbadora.</p>
+<div class="important admonition">
+<p class="admonition-title">Conclusión</p>
+<p>Los errores del sistema son menos sensibles a las perturbaciones en los sistemas de lazo cerrado que en los sistemas a lazo abierto.</p>
+<p>Otra característica de los sistemas realimentados es que la velocidad de respuesta se puede mejorar con respecto a su sistema a lazo abierto (cuidado: sistemas con más polos afecta la estabilidad del sistema; menos amortiguados y hasta inestables).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./sources/notebooks_sources/modulo3/realimentacion"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../../modulo2/polos%20y%20ceros%20adicionales/Efecto%20Polos%20y%20Ceros%20Adicionales.html" title="previous page">Efecto de los polos adicionales y de los ceros</a>
+    <a class='right-next' id="next-link" href="../sensibilidad/Sensibilidad.html" title="next page">Sensibilidad</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          Por Somebody<br/>
+        
+            &copy; Derechos de autor 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

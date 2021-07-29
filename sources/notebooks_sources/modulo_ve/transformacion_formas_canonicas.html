@@ -1,0 +1,1281 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transformación lineal del espacio de estado &#8212; Diseño y Ajuste de Sistemas de Control</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "gonmolina/DSFyC_book");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 comment");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
+    <script src="../../../_static/translations.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="canonical" href="https://gonmolina.github.io/DSFyC_book/sources/notebooks_sources/modulo_ve/transformacion_formas_canonicas.html" />
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Análisis de los sistemas en su forma de espacio de estados" href="ctrb_obsv.html" />
+    <link rel="prev" title="Formas canónicas de un espacio de estados" href="formas_canonicas.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+      <img src="../../../_static/sala_de_control.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Diseño y Ajuste de Sistemas de Control</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Buscar este libro ..." aria-label="Buscar este libro ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../dsfc_sources/intro.html">
+   Material de la materia Dinámica de los Sistemas Físicos y Control
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introducción a Python
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro_python/Introducci%C3%B3n%20a%20los%20notebooks%20de%20Jupyter.html">
+   Introducción a los cuadernos de Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro_python/Extra_Python.html">
+   Introducción a Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro_python/Intro-Matplotlib.html">
+   Figuras en Python - MATPLOTLIB
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro_python/intro_sympy.html">
+   Introducción a SymPy
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Señales, sistemas y modelos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo1/intro_sys_sen/intro_sis_y_sen.html">
+   Definiciones de Sistemas y Señales
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo1/laplace/transformada_laplace_python_opcional.html">
+   Transformada de Laplace
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo1/laplace/funcion_transferencia.html">
+   Función transferencia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo1/diagrama_bloques/diagrama_de_bloques.html">
+   Diagramas de bloques
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../modulo1/espacio_estado/espacio_de_estados.html">
+   Representación de sistemas dinámicos en espacio de estados
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modulo1/espacio_estado/modelado_ss.html">
+     Modelado en espacio de estados
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo1/linealizacion/linealizacion.html">
+   Linealización de sistemas no-lineales
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../modulo1/ejemplos_sistemas/ejemplos_sistemas.html">
+   Ejemplos de modelos de sistemas
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modulo1/ejemplos_sistemas/resorte_no_lineal.html">
+     Sistema masa resorte amortiguador
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modulo1/ejemplos_sistemas/CineticaPuntual.html">
+     Ecuaciones de Cinética Puntual
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modulo1/ejemplos_sistemas/Nonlinear%20CSTR.html">
+     Sistema CSTR
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modulo1/ejemplos_sistemas/Ejemplo_Presa_Depredador.html">
+     Sistema presa depredador (Lotka-Volterra)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Análisis de la respuesta temporal
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo2/estabilidad/estabilidad.html">
+   Estabilidad
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo2/respuesta%20temporal/Respuesta%20Temporal.html">
+   Respuesta temporal de sistemas dinámicos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo2/polos%20y%20ceros%20adicionales/Efecto%20Polos%20y%20Ceros%20Adicionales.html">
+   Efecto de los polos adicionales y de los ceros
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Análisis de estado estacionario
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo3/realimentacion/carateristicas%20de%20la%20realimentacion.html">
+   Características de la realimentación
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo3/sensibilidad/Sensibilidad.html">
+   Sensibilidad
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo3/errores/Errores.html">
+   Errores
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Lugar de las raíces
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo4/lugar%20de%20las%20raices.html">
+   Lugar de las raíces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo4/Pasos%20para%20el%20trazado.html">
+   Pasos para trazar el lugar geométrico de las raíces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo4/Lugar%20de%20la%20raices%20con%20Python.html">
+   Lugar de las raíces usando Python
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Respuesta en frecuencia
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_frec/respuesta_frecuencial.html">
+   Respuesta Frecuencial de Sistemas lineales y SISO
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_frec/estabilidad_nyquist/estabilidad_en_frecuencia.html">
+   Estabilidad en Frecuencia
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Diseño de compensadores
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo5/compensadores.html">
+   Compensadores de adelanto y de retraso de fase
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo5/problema_levitador.html">
+   Problema de levitador magnético
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo5/tipo1_lead.html">
+   Problema con sistema de tipo 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo5/lead_lag_design.html">
+   Ecuaciones útiles para el diseño del Lead por análisis en frecuencia
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Control Moderno
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="formas_canonicas.html">
+   Formas canónicas de un espacio de estados
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Transformación lineal del espacio de estado
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ctrb_obsv.html">
+   Análisis de los sistemas en su forma de espacio de estados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="referencia.html">
+   Inserción de referencias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="estimadores.html">
+   Diseño de estimadores
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ejemplo_A_ve_motor_cc.html">
+   Diseño para un motor de continua
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ejemplo_B_ve_atitud_satelite.html">
+   Diseño del sistema de control del atitud de un satélite
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ejemplo_C_ve_pendulo_invertido.html">
+   Diseño del sistema de control del pédulo invertido
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Navegación de palanca" aria-controls="site-navigation"
+                title="Navegación de palanca" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Descarga esta pagina"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../../_sources/sources/notebooks_sources/modulo_ve/transformacion_formas_canonicas.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Descargar archivo de cuaderno" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/sources/notebooks_sources/modulo_ve/transformacion_formas_canonicas.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Descargar archivo fuente" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimir en PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/gonmolina/DSFyC"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Repositorio de origen"><i
+                    class="fab fa-github"></i>repositorio</button></a>
+        <a class="issues-button"
+            href="https://github.com/gonmolina/DSFyC/issues/new?title=Issue%20on%20page%20%2Fsources/notebooks_sources/modulo_ve/transformacion_formas_canonicas.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Abrir un problema"><i class="fas fa-lightbulb"></i>Tema abierto</button></a>
+        <a class="edit-button" href="https://github.com/gonmolina/DSFyC/edit/master/sources/notebooks_sources/modulo_ve/transformacion_formas_canonicas.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edita esta página"><i class="fas fa-pencil-alt"></i>sugerir editar</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Modo de pantalla completa"
+        title="Modo de pantalla completa"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/gonmolina/DSFyC/master?urlpath=tree/sources/notebooks_sources/modulo_ve/transformacion_formas_canonicas.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Lanzamiento Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contenido
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Transformación lineal del espacio de estado
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transformacion-a-la-forma-canonica-de-controlabilidad">
+   Transformación a la forma canónica de controlabilidad
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#definicion">
+     Definición:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transformacion-a-la-forma-canonica-de-observabilidad">
+   Transformación a la forma canónica de observabilidad
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo-masa-resorte-obtener-la-forma-canonica-de-observabilidad-y-con-matriz-de-transformacion-t">
+     Ejemplo masa resorte: obtener la forma canónica de observabilidad y con matriz de transformación T
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#obtencion-de-la-forma-canonica-de-controlabilidad">
+     Obtención de la forma canónica de controlabilidad
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transformacion-a-la-forma-canonica-modal">
+     Transformación a la forma canónica modal:
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Definición.
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo-de-transformacion-a-la-forma-canonica-modal">
+     Ejemplo de transformación a la forma canónica modal
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="transformacion-lineal-del-espacio-de-estado">
+<h1>Transformación lineal del espacio de estado<a class="headerlink" href="#transformacion-lineal-del-espacio-de-estado" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Consideremos un sistema descripto por las ecuaciones de estado</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rcl}
+\dot{\mathbf {x}} &amp;=&amp;  \mathbf A \mathbf x + \mathbf B \mathbf u\\
+ y &amp;=&amp; \mathbf C \mathbf x + Du
+ \end{array}
+\end{split}\]</div>
+<p>Una transformación lineal mediante la matriz <span class="math notranslate nohighlight">\(\mathbf T\)</span>, que hace:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf x= \mathbf T \mathbf z\]</div>
+<p>Sustituyendo la ecuación de la transformación en la de la ecuación de estados</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rl}
+\dot{\mathbf {x}} = \mathbf {T\dot z} &amp;= \mathbf {AT} \mathbf z + \mathbf B \mathbf u\\
+\dot{\mathbf {z}} &amp; = \mathbf {T}^{-1}\mathbf{AT} \mathbf z + \mathbf {T}^{-1}\mathbf B \mathbf u
+ \end{array}
+\end{split}\]</div>
+<p>Sustituyendo el la ecuación de salida se tiene:</p>
+<div class="math notranslate nohighlight">
+\[y = \mathbf C \mathbf{Tz} + Du\]</div>
+<p>Comparando las ecuaciones del sistema transformado, podemos ver que la matriz <span class="math notranslate nohighlight">\(\mathbf T\)</span> transforma al sistema en:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{lll}
+\mathbf{\bar A} &amp; = &amp; \mathbf {T^{-1}} \mathbf A \mathbf T\\
+\mathbf{\bar B} &amp; = &amp; \mathbf{T^{-1} B}\\
+\mathbf{\bar C} &amp; = &amp; \mathbf{CT}\\
+\bar D &amp;=&amp; D
+\end{array}
+\end{split}\]</div>
+</div>
+<div class="section" id="transformacion-a-la-forma-canonica-de-controlabilidad">
+<h1>Transformación a la forma canónica de controlabilidad<a class="headerlink" href="#transformacion-a-la-forma-canonica-de-controlabilidad" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>La matrices de un sistema de orden 3 lineal e invariante en el tiempo representado mediante su forma canónica de controlabilidad tiene la forma:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A_c = \begin{bmatrix}
+-a_1&amp;-a_2&amp;-a_3\\
+1&amp;0&amp;0\\
+0&amp;1&amp;0\\
+\end{bmatrix},  \qquad B_c=\begin{bmatrix}
+1\\
+0\\
+0\\
+\end{bmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[
+C_c=\begin{bmatrix}
+c_1&amp;c_2&amp;c_3
+\end{bmatrix}, \qquad D_c=\begin{bmatrix}0\end{bmatrix}\]</div>
+<p>Como vimos anteriormente, una transformación lineal mediante la matriz <span class="math notranslate nohighlight">\(\mathbf T\)</span>, que hace:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf x=\mathbf{Tz}\]</div>
+<p>Por lo tanto podemos, llamando <span class="math notranslate nohighlight">\(\mathbf{\bar A} = \mathbf A_c\)</span>, tenemos que:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{A_c} \mathbf {T^{-1}}=\mathbf{T^{-1}} \mathbf {A}\]</div>
+<p>Escribimos <span class="math notranslate nohighlight">\(\mathbf {T^{-1}}\)</span> como vectores fila, es decir:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{T^{-1}} = \begin{bmatrix}
+\mathbf{t_1}\\
+\mathbf{t_2}\\
+\mathbf{t_3}\\
+\end{bmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+-a_1&amp;-a_2&amp;-a_3\\
+1&amp;0&amp;0\\
+0&amp;1&amp;0\\
+\end{bmatrix} 
+\begin{bmatrix}
+\mathbf{t_1}\\
+\mathbf{t_2}\\
+\mathbf{t_3}\\
+\end{bmatrix} = \begin{bmatrix}
+\mathbf{t_1}\mathbf A\\
+ \mathbf{t_2}\mathbf A\\
+ \mathbf{t_3}\mathbf A\\
+\end{bmatrix}
+\end{split}\]</div>
+<p>Trabajando con las columnas 2 y 3 se tiene que:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left.\begin{array}{lll}
+\mathbf{t_1} &amp;=&amp;\mathbf{t_2 A}\\
+\mathbf{t_2} &amp;=&amp; \mathbf{t_3 A}\end{array}\right\}\implies \mathbf{t_1} =\mathbf{t_3A}^2
+\end{split}\]</div>
+<p>Por otro lado, asumiendo que <span class="math notranslate nohighlight">\(\mathbf B_c\)</span> está en la forma canónica de control, tenemos la relación</p>
+<div class="math notranslate nohighlight">
+\[ \mathbf{T^{-1}}\mathbf B=\mathbf{B_c}\]</div>
+<p>o:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}  \begin{bmatrix}
+\mathbf{t_1}\mathbf B\\
+\mathbf{t_2}\mathbf B\\
+\mathbf{t_3}\mathbf B\\
+\end{bmatrix} = \begin{bmatrix}
+1\\
+0\\
+0\\
+\end{bmatrix}\end{split}\]</div>
+<p>Combinando las ecuaciones anteriores se tiene que:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{lcccl}
+\mathbf{t_3}\mathbf B &amp;=&amp; 0\\
+\mathbf{t_2}\mathbf B &amp;=&amp; \mathbf{t_3}\mathbf {AB} &amp;=&amp; 0\\
+\mathbf{t_1}\mathbf B &amp;=&amp; \mathbf{t_3}\mathbf {A^2B} &amp;=&amp; 1\\
+\end{array}\end{split}\]</div>
+<p>Estas ecuaciones pueden ser escritas de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{t_3}\left[\mathbf B\quad \mathbf{AB}\quad \mathbf{A^2B}\right] = \left[0\quad 0 \quad 1 \right]\]</div>
+<div class="math notranslate nohighlight">
+\[\mathbf{t_3}=[0\quad 0 \quad 1]\mathcal{C}^{-1}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\mathcal C\)</span> es la matriz de controlabilidad, con <span class="math notranslate nohighlight">\(\mathcal C = \left[\mathbf B\quad \mathbf{AB}\quad 
+\mathbf{A^2B}\right]\)</span>.</p>
+<p>Obteniendo <span class="math notranslate nohighlight">\(\mathbf{t_3}\)</span> podemos obtener el resto de las filas de <span class="math notranslate nohighlight">\(\mathbf{T^{-1}}\)</span>.</p>
+<p>Por lo tanto, en general para un sistema de orden <span class="math notranslate nohighlight">\(n\)</span>, la matriz de controlabilidad es:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal C =\left[ \mathbf{B}\quad\mathbf{AB}\quad\mathbf{A^2B}\quad\dots\quad\mathbf{A^{n-1}B}\right]\]</div>
+<p>Por lo tanto, la última columna de la matriz <span class="math notranslate nohighlight">\(\mathbf{T^{-1}}\)</span> resulta:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{t_n}=\left[0\quad 0\quad\dots\quad 1\right]\mathcal C^{-1}\]</div>
+<p>La matriz <span class="math notranslate nohighlight">\(T^{-1}\)</span>  se construye como:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{T^{-1}}=\begin{bmatrix}
+\mathbf{t_n}\mathbf{A^{n-1}}\\
+\mathbf{t_n}\mathbf{A^{n-2}}\\
+\vdots\\
+\mathbf{t_n}\\
+\end{bmatrix}
+\end{split}\]</div>
+<div class="section" id="definicion">
+<h2>Definición:<a class="headerlink" href="#definicion" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><strong>Un sistema es controlable si existe su forma canónica de controlabilidad.</strong></p>
+<p>Podemos ver de las ecuaciones anteriores que solamente podremos obtener <span class="math notranslate nohighlight">\(\mathbf{T^{-1}}\)</span> y por ende <span class="math notranslate nohighlight">\(\mathbf{T}\)</span>, si existe <span class="math notranslate nohighlight">\(\mathcal{C}^{-1}\)</span>. Para esto tenemos que asegurar que el rango de <span class="math notranslate nohighlight">\(\mathcal C\)</span> sea igual al orden del sistema <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>Es importante notar que al definir la controlabilidad no depende de la matriz <span class="math notranslate nohighlight">\(\mathbf{C}\)</span>, sino que depende solo de la matriz <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> y <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>.</p>
+<p>La matriz <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> es la relacionada con las entradas del sistema. Nada tiene que ver con las salidas. En caso del que el sistema no sea controlable será necesario rediseñar la forma en que actuamos sobre del sistema. Nada resolveremos respecto a la controlabilidad cambiando, mejorando o agregando mediciones.</p>
+</div>
+</div>
+<div class="section" id="transformacion-a-la-forma-canonica-de-observabilidad">
+<h1>Transformación a la forma canónica de observabilidad<a class="headerlink" href="#transformacion-a-la-forma-canonica-de-observabilidad" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>La matrices de un sistema de orden 3 lineal e invariante en el tiempo representado mediante su forma canónica de observabilidad tiene la forma:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{A_o} = \begin{bmatrix}
+-a_1&amp;1&amp;0\\
+-a_2&amp;0&amp;1\\
+-a_3&amp;0&amp;0\\
+\end{bmatrix},  \qquad \mathbf{B_o}=\begin{bmatrix}
+b_1\\
+b_2\\
+b_3\\
+\end{bmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{C_o}=\begin{bmatrix}
+1&amp;0&amp;0
+\end{bmatrix}, \qquad D_o=\begin{bmatrix}0\end{bmatrix}\]</div>
+<p>Como vimos anteriormente, una transformación lineal mediante la matriz <span class="math notranslate nohighlight">\(\mathbf{T}\)</span>, que hace:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{x}=\mathbf{Tz}\]</div>
+<p>Esto transforma a mi sistema en:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{rcl}
+\bar{\mathbf{A}} &amp;=&amp; \mathbf{T^{-1} A T}\\
+\bar{\mathbf{B}} &amp;=&amp; \mathbf{T^{-1} B}\\
+\bar{\mathbf{C}} &amp;=&amp;\mathbf{CT}\\
+\bar D &amp;=&amp; D
+\end{array}
+\end{split}\]</div>
+<p>Como queremos obtener el forma canónica de observabilidad llamamos <span class="math notranslate nohighlight">\(\mathbf{\bar A} = \mathbf{A_o}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{\bar B} =  \mathbf{B_o}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{\bar C} = \mathbf{C_o}\)</span> y a <span class="math notranslate nohighlight">\(\bar D = D_o\)</span>.</p>
+<p>De las ecuaciones de la transformación tenemos:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{TA_o}=\mathbf{AT}\]</div>
+<p>Escribiendo <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> como:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{T}=\begin{bmatrix}
+\mathbf{t_1}&amp;\mathbf{t_2}&amp;\mathbf{t_3}
+\end{bmatrix}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\mathbf{t_1}, \mathbf{t_2}, \mathbf{t_3}\)</span> son vectores columnas que se corresponden con las columnas de <span class="math notranslate nohighlight">\(\mathbf{T}\)</span>.</p>
+<p>De esta manera tenemos que:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+\mathbf{t_1}&amp;\mathbf{t_2}&amp;\mathbf{t_3}
+\end{bmatrix}\begin{bmatrix}
+-a_1&amp;1&amp;0\\
+-a_2&amp;0&amp;1\\
+-a_3&amp;0&amp;0\\
+\end{bmatrix}=\begin{bmatrix}
+\mathbf{At_1}&amp;\mathbf{At_2}&amp;\mathbf{At_3}
+\end{bmatrix}\end{split}\]</div>
+<p>De esta manera podemos obtener las siguientes igualdades:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left.\begin{array}{lll}
+\mathbf{t_1} &amp;=&amp; \mathbf{At_2}\\
+\mathbf{t_2} &amp;=&amp; \mathbf{At_3}\end{array}\right\}\implies \mathbf{t_1} =\mathbf{A^2t_3}\end{split}\]</div>
+<p>Usando la ecuación de la transformación de la matriz <span class="math notranslate nohighlight">\(\mathbf{C_o=CT}\)</span>, se tiene que:</p>
+<div class="math notranslate nohighlight">
+\[\begin{bmatrix}
+1&amp;0&amp;0
+\end{bmatrix}=\begin{bmatrix}
+\mathbf{Ct_1}&amp;\mathbf{Ct_2}&amp;\mathbf{Ct_3}
+\end{bmatrix}=\begin{bmatrix}
+\mathbf{CA}^2\mathbf{t_3}&amp;\mathbf{CAt_3}&amp;\mathbf{Ct_3}
+\end{bmatrix}\]</div>
+<p>Esto lo podemos reordenar como un sistema de ecuaciones en forma matricial de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+\mathbf{C}\\
+\mathbf{CA}\\
+\mathbf{CA}^2
+\end{bmatrix}\mathbf{t_3} = \begin{bmatrix}
+0\\
+0\\
+1
+\end{bmatrix}\end{split}\]</div>
+<p>Llamando a la matriz de observabilidad</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathcal{O}=\begin{bmatrix}
+\mathbf{C}\\
+\mathbf{CA}\\
+\mathbf{CA}^2
+\end{bmatrix}\end{split}\]</div>
+<p>podemos obtener <span class="math notranslate nohighlight">\(\mathbf{t_3}\)</span> que es la última columna de la matriz de transformación <span class="math notranslate nohighlight">\(\mathbf{T}\)</span>, y con esta la otras columnas de la matriz de transformación.</p>
+<p>En general para un sistema de orden <span class="math notranslate nohighlight">\(n\)</span>, la matriz <span class="math notranslate nohighlight">\(\mathcal{O}\)</span> resulta</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathcal{O}=\begin{bmatrix}
+\mathbf{C}\\
+\mathbf{CA}\\
+\vdots\\
+\mathbf{CA}^{n-1}
+\end{bmatrix}\end{split}\]</div>
+<p>y la última columna de la matriz de transformación resulta:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{t_n} = \mathcal{O}^{-1}\begin{bmatrix}
+0\\
+0\\
+\vdots\\
+1
+\end{bmatrix}
+\end{split}\]</div>
+<div class="admonition-definicion admonition">
+<p class="admonition-title">Definición</p>
+<p>Un sistema es observable si existe su forma canónica de observabilidad.</p>
+</div>
+<p>Podemos ver de las ecuaciones anteriores que solamente podremos obtener <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> si existe <span class="math notranslate nohighlight">\(\mathcal{O}^{-1}\)</span>. Para esto tenemos que asegurar que el rango de <span class="math notranslate nohighlight">\(\mathcal O\)</span> sea igual al orden del sistema <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>Es importante notar que definir la observabilidad no depende de la matriz <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>, sino que depende solo de la matriz <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> y <span class="math notranslate nohighlight">\(\mathbf{C}\)</span>.</p>
+<p>La matriz <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> es la relacionada con las salidas del sistema. Nada tiene que ver con las entradas. En caso del que el sistema no sea observable será necesario rediseñar la forma en que tomamos las mediciones del sistema. Nada resolveremos respecto a la observabilidad modificando los actuadores.</p>
+<div class="section" id="ejemplo-masa-resorte-obtener-la-forma-canonica-de-observabilidad-y-con-matriz-de-transformacion-t">
+<h2>Ejemplo masa resorte: obtener la forma canónica de observabilidad y con matriz de transformación T<a class="headerlink" href="#ejemplo-masa-resorte-obtener-la-forma-canonica-de-observabilidad-y-con-matriz-de-transformacion-t" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Definimos los parámetros del sistema</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="o">=</span><span class="mi">20</span>
+<span class="n">k</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">m</span><span class="o">=</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Definimos las matrices del sistema a partir de las ecuaciones diferenciales:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+   <span class="p">[</span><span class="o">-</span><span class="n">k</span><span class="o">/</span><span class="n">m</span><span class="p">,</span> <span class="o">-</span><span class="n">b</span><span class="o">/</span><span class="n">m</span><span class="p">]])</span>
+
+<span class="n">B</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="n">m</span> <span class="p">]])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">C</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+<span class="n">D</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">sys</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">D</span><span class="p">)</span>
+<span class="n">sys</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\left(
+\begin{array}{rllrll|rll}
+0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+-10\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-20\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\hline
+1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\end{array}\right)
+\end{split}\]</div>
+</div>
+</div>
+<p>Para obtener la forma canónica de observabilidad debemos obtener la matriz <span class="math notranslate nohighlight">\(\mathcal{O}\)</span>. Como el sistema es de orden 2 es:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathcal{O}=\begin{bmatrix}
+\mathbf C\\
+\mathbf{CA}
+\end{bmatrix}\end{split}\]</div>
+<p>Apilamos verticalmente <span class="math notranslate nohighlight">\(\mathbf C\)</span> y <span class="math notranslate nohighlight">\(\mathbf{CA}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">O</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">sys</span><span class="o">.</span><span class="n">C</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">C</span><span class="nd">@sys</span><span class="o">.</span><span class="n">A</span><span class="p">))</span>
+<span class="n">O</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1., 0.],
+       [0., 1.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora calculamos la última columna de <span class="math notranslate nohighlight">\(\mathbf T\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">O</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="s2">&quot;0;1&quot;</span><span class="p">)</span>
+<span class="n">t2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[0.],
+        [1.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calculamos la columna <span class="math notranslate nohighlight">\(\mathbf {t_1}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t1</span><span class="o">=</span><span class="n">A</span><span class="nd">@t2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[  1.],
+        [-20.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Apilamos horizontalmente <span class="math notranslate nohighlight">\(\mathbf{t_1}\)</span> y <span class="math notranslate nohighlight">\(\mathbf{t_2}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">t1</span><span class="p">,</span><span class="n">t2</span><span class="p">))</span>
+<span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[  1.,   0.],
+        [-20.,   1.]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">invT</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+<span class="n">invT</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[ 1., -0.],
+        [20.,  1.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finalmente calculamos las matrices del sistema transformado:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ao</span><span class="o">=</span><span class="n">invT</span><span class="nd">@sys</span><span class="o">.</span><span class="n">A</span><span class="nd">@T</span>
+<span class="n">Bo</span><span class="o">=</span><span class="n">invT</span><span class="nd">@B</span>
+<span class="n">Co</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">C</span><span class="nd">@T</span>
+<span class="n">Do</span><span class="o">=</span><span class="n">D</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Podemos verificar que las funciones transferencias del sistema antes de transformar y después de transformarlo son las mismas:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_o</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">Ao</span><span class="p">,</span><span class="n">Bo</span><span class="p">,</span><span class="n">Co</span><span class="p">,</span><span class="n">Do</span><span class="p">)</span>
+<span class="n">sys_o</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\left(
+\begin{array}{rllrll|rll}
+-20\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+-10\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\hline
+1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\end{array}\right)
+\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;sistema sin transformar:&quot;</span><span class="p">,</span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="n">sys</span><span class="p">),</span><span class="s2">&quot;sistema en su forma canónica de observabilidad:&quot;</span><span class="p">,</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="n">sys_o</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sistema sin transformar: 
+3.553e-15 s + 1
+---------------
+s^2 + 20 s + 10
+ sistema en su forma canónica de observabilidad: 
+-3.553e-15 s + 1
+----------------
+s^2 + 20 s + 10
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="obtencion-de-la-forma-canonica-de-controlabilidad">
+<h2>Obtención de la forma canónica de controlabilidad<a class="headerlink" href="#obtencion-de-la-forma-canonica-de-controlabilidad" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para obtener la forma canónica de controlabilidad debemos obtener la matriz <span class="math notranslate nohighlight">\(\mathcal{C}\)</span>. Como el sistema es de orden 2 es:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{C}=\begin{bmatrix}
+\mathbf B &amp; \mathbf{AB}
+\end{bmatrix}\]</div>
+<p>Apilamos horizontalmente <span class="math notranslate nohighlight">\(\mathbf B\)</span> y <span class="math notranslate nohighlight">\(\mathbf{AB}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Con</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">sys</span><span class="o">.</span><span class="n">B</span><span class="p">,</span><span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="nd">@sys</span><span class="o">.</span><span class="n">B</span><span class="p">))</span>
+<span class="n">Con</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[  0.,   1.],
+       [  1., -20.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora calculamos la última fila de <span class="math notranslate nohighlight">\(\mathbf{T}^{-1}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{t2}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Con</span><span class="p">)</span>
+<span class="n">t2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[1., 0.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calculamos la fila <span class="math notranslate nohighlight">\(\mathbf {t_1}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t1</span><span class="o">=</span><span class="n">t2</span><span class="nd">@A</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[0., 1.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Apilamos verticalmente <span class="math notranslate nohighlight">\(\mathbf{t_1}\)</span> y <span class="math notranslate nohighlight">\(\mathbf{t_2}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">invT</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">t1</span><span class="p">,</span><span class="n">t2</span><span class="p">))</span>
+<span class="n">T</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">invT</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finalmente calculamos las matrices del sistema transformado:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ac</span><span class="o">=</span><span class="n">invT</span><span class="o">*</span><span class="n">sys</span><span class="o">.</span><span class="n">A</span><span class="o">*</span><span class="n">T</span>
+<span class="n">Bc</span><span class="o">=</span><span class="n">invT</span><span class="nd">@B</span>
+<span class="n">Cc</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">C</span><span class="nd">@T</span>
+<span class="n">Dc</span><span class="o">=</span><span class="n">D</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Podemos verificar que las funciones transferencias del sistema antes de transformar y después de transformarlo son las mismas:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_c</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">Ac</span><span class="p">,</span><span class="n">Bc</span><span class="p">,</span><span class="n">Cc</span><span class="p">,</span><span class="n">Dc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;sistema sin transformar:&quot;</span><span class="p">,</span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="n">sys</span><span class="p">),</span><span class="s2">&quot;sistema en su forma canónica de controlabilidad:&quot;</span><span class="p">,</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="n">sys_c</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sistema sin transformar: 
+3.553e-15 s + 1
+---------------
+s^2 + 20 s + 10
+ sistema en su forma canónica de controlabilidad: 
+-3.553e-15 s + 1
+----------------
+s^2 + 20 s + 10
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="transformacion-a-la-forma-canonica-modal">
+<h2>Transformación a la forma canónica modal:<a class="headerlink" href="#transformacion-a-la-forma-canonica-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Veremos solo el caso de autovalores reales simples.</p>
+<div class="section" id="id1">
+<h3>Definición.<a class="headerlink" href="#id1" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Sea la matriz <span class="math notranslate nohighlight">\(\mathbf{A} \in \Bbb R^{n\times n}\)</span>. Diremos que  <span class="math notranslate nohighlight">\(\lambda \in \Bbb K (= \Bbb R\text{ o } \Bbb C)\)</span> es un autovalor de <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> si existe un vector <span class="math notranslate nohighlight">\(\mathbf{v} \in \Bbb K^n\)</span>, con <span class="math notranslate nohighlight">\(\mathbf v \neq 0\)</span> tal que:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{Av}=\lambda \mathbf{v}\]</div>
+<p>en cuyo caso se dice que <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> es un autovector asociado al autovalor <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
+<p>Suponiendo que <span class="math notranslate nohighlight">\(\mathbf A\)</span> tienen <span class="math notranslate nohighlight">\(n\)</span> autovalores diferentes, entonces podemos escribir en forma matricial <span class="math notranslate nohighlight">\(n\)</span> ecuaciones para los <span class="math notranslate nohighlight">\(n\)</span> pares autovalores-autovector</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+\mathbf{v_1}&amp;\mathbf{v_2}&amp;\mathbf{v_3}
+\end{bmatrix}\begin{bmatrix}
+\lambda_1&amp;0&amp;0\\
+0&amp;\lambda_2&amp;0\\
+0&amp;0&amp;\lambda_3\\
+\end{bmatrix}=\mathbf A\begin{bmatrix}
+\mathbf{v_1}&amp;\mathbf{v_2}&amp;\mathbf{v_3}
+\end{bmatrix}\end{split}\]</div>
+<p>Si hacemos que:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{T}=\begin{bmatrix}
+\mathbf{v_1}&amp;\mathbf{v_2}&amp;\mathbf{v_3}
+\end{bmatrix}\]</div>
+<p>tenemos que:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+\lambda_1&amp;0&amp;0\\
+0&amp;\lambda_2&amp;0\\
+0&amp;0&amp;\lambda_3\\
+\end{bmatrix}=\mathbf{T}^{-1}\mathbf{A T}\end{split}\]</div>
+<p>donde:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{A_m}=\begin{bmatrix}
+\lambda_1&amp;0&amp;0\\
+0&amp;\lambda_2&amp;0\\
+0&amp;0&amp;\lambda_3\\
+\end{bmatrix}\end{split}\]</div>
+<p>Nuevamente <span class="math notranslate nohighlight">\(\mathbf{B_m}\)</span> se obtiene como <span class="math notranslate nohighlight">\(\mathbf{B_m}=\mathbf{T}^{-1}\mathbf{B}\)</span> y <span class="math notranslate nohighlight">\(\mathbf{C_m}=\mathbf{CT}\)</span></p>
+<p>La forma canónica modal tiene la particularidad de independizar los estados unos de otros. Es decir, cada estado se conecta solo con la entrada y con la salida y no se conectan entre si (cada estado no depende de otro estado).</p>
+<p>Esta forma canónica nos da la posibilidad de estudiar controlabilidad y observabilidad sin pasar por las matrices <span class="math notranslate nohighlight">\(\mathcal C\)</span> y <span class="math notranslate nohighlight">\(\mathcal O\)</span>.</p>
+<p>Si todos los estados están conectados con la entrada entonces el sistema es controlable. Para que se de esto, la matriz <span class="math notranslate nohighlight">\(\mathbf{B_m}\)</span>  tiene que tener todas sus componentes distintas de 0.</p>
+<p>Si todos los estados están conectados con la salida entonces el sistema es observable. Para que se de esto, la matriz <span class="math notranslate nohighlight">\(\mathbf{C_m}\)</span> tiene que tener todas sus componentes distintas de 0.</p>
+</div>
+</div>
+<div class="section" id="ejemplo-de-transformacion-a-la-forma-canonica-modal">
+<h2>Ejemplo de transformación a la forma canónica modal<a class="headerlink" href="#ejemplo-de-transformacion-a-la-forma-canonica-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>La matriz de transformación son los autovectores.</p>
+<p>El módulo linalg de numpy tiene una función que se llama eig, que los devuelve los autovectores y autovalores. Los autovalores lo devuelve en forma de ndarray y luego devuelvo los autovalores como un array. Vamos a utilizar esta función para calcular la matriz de transformación <span class="math notranslate nohighlight">\(T\)</span>. Los autovalores los vamos a usar para verificar que luego de aplicar la transformación la matriz <span class="math notranslate nohighlight">\(A_m\)</span> resulte ser diagonal con los autovalores en la diagonal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lamb</span><span class="p">,</span><span class="n">v</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;autovectores:</span><span class="se">\n</span><span class="s2"> &quot;</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;autovalores:</span><span class="se">\n</span><span class="s2"> &quot;</span><span class="p">,</span> <span class="n">lamb</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>autovectores:
+  [[ 0.88969225 -0.05124927]
+ [-0.45656072  0.99868589]]
+autovalores:
+  [ -0.51316702 -19.48683298]
+</pre></div>
+</div>
+</div>
+</div>
+<p>La matriz de transformación T es la de los autovectores. Entonces:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span><span class="o">=</span><span class="n">v</span>
+<span class="n">invT</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calculamos la transformación:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Am</span><span class="o">=</span><span class="n">invT</span><span class="nd">@A@T</span>
+<span class="n">Bm</span><span class="o">=</span><span class="n">invT</span><span class="nd">@B</span>
+<span class="n">Cm</span><span class="o">=</span><span class="n">C</span><span class="nd">@T</span>
+<span class="n">Dm</span><span class="o">=</span><span class="n">D</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_m</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">Am</span><span class="p">,</span><span class="n">Bm</span><span class="p">,</span><span class="n">Cm</span><span class="p">,</span><span class="n">Dm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_m</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\left(
+\begin{array}{rllrll|rll}
+-0.&amp;\hspace{-1em}513&amp;\hspace{-1em}\phantom{\cdot}&amp;9.&amp;\hspace{-1em}71&amp;\hspace{-1em}\cdot10^{-17}&amp;0.&amp;\hspace{-1em}0592&amp;\hspace{-1em}\phantom{\cdot}\\
+-1.&amp;\hspace{-1em}78&amp;\hspace{-1em}\cdot10^{-15}&amp;-19.&amp;\hspace{-1em}5&amp;\hspace{-1em}\phantom{\cdot}&amp;1.&amp;\hspace{-1em}03&amp;\hspace{-1em}\phantom{\cdot}\\
+\hline
+0.&amp;\hspace{-1em}89&amp;\hspace{-1em}\phantom{\cdot}&amp;-0.&amp;\hspace{-1em}0512&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\end{array}\right)
+\end{split}\]</div>
+</div>
+</div>
+<p>Observando la matriz <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> del sistema en su forma canónica modal tiene en su diagonal lo autovalores, y fuera de esto valores igual a 0 o muy cercanos a ceros. Las diferencias con ceros son error numéricos y podemos considerar que la transformación resultó correcta.</p>
+<p>Por otro lado podemos ver que todos las componentes de B en esta forma canónica son distintos de 0, por lo que el sistema es controlable.</p>
+<p>Finalmente, para el sistema en la forma canónica modal, todas las componentes de C son distintas de 0,por lo que el sistema es observable.</p>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>Respecto al uso de numpy. La multiplicación de matrices usando el * la entiende como elemento a elemento si el tipo de datos es un ndarray o un array. Si usamos ese tipo de datos, entonces para que numpy entienda multiplicación de matrices se debe usar el símbolo &#64;. Si el tipo de datos que se está operando es una matriz de <code class="docutils literal notranslate"><span class="pre">numpy</span></code> entonces la multiplicación de matrices se puede hacer con *.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./sources/notebooks_sources/modulo_ve"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="formas_canonicas.html" title="previous page">Formas canónicas de un espacio de estados</a>
+    <a class='right-next' id="next-link" href="ctrb_obsv.html" title="next page">Análisis de los sistemas en su forma de espacio de estados</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          Por Somebody<br/>
+        
+            &copy; Derechos de autor 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

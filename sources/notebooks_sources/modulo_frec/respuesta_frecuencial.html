@@ -1,0 +1,1350 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Respuesta Frecuencial de Sistemas lineales y SISO &#8212; Diseño y Ajuste de Sistemas de Control</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "gonmolina/DSFyC_book");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 comment");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
+    <script src="../../../_static/translations.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="canonical" href="https://gonmolina.github.io/DSFyC_book/sources/notebooks_sources/modulo_frec/respuesta_frecuencial.html" />
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Estabilidad en Frecuencia" href="estabilidad_nyquist/estabilidad_en_frecuencia.html" />
+    <link rel="prev" title="Lugar de las raíces usando Python" href="../modulo4/Lugar%20de%20la%20raices%20con%20Python.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+      <img src="../../../_static/sala_de_control.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Diseño y Ajuste de Sistemas de Control</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Buscar este libro ..." aria-label="Buscar este libro ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../dsfc_sources/intro.html">
+   Material de la materia Dinámica de los Sistemas Físicos y Control
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introducción a Python
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro_python/Introducci%C3%B3n%20a%20los%20notebooks%20de%20Jupyter.html">
+   Introducción a los cuadernos de Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro_python/Extra_Python.html">
+   Introducción a Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro_python/Intro-Matplotlib.html">
+   Figuras en Python - MATPLOTLIB
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro_python/intro_sympy.html">
+   Introducción a SymPy
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Señales, sistemas y modelos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo1/intro_sys_sen/intro_sis_y_sen.html">
+   Definiciones de Sistemas y Señales
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo1/laplace/transformada_laplace_python_opcional.html">
+   Transformada de Laplace
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo1/laplace/funcion_transferencia.html">
+   Función transferencia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo1/diagrama_bloques/diagrama_de_bloques.html">
+   Diagramas de bloques
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../modulo1/espacio_estado/espacio_de_estados.html">
+   Representación de sistemas dinámicos en espacio de estados
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modulo1/espacio_estado/modelado_ss.html">
+     Modelado en espacio de estados
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo1/linealizacion/linealizacion.html">
+   Linealización de sistemas no-lineales
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../modulo1/ejemplos_sistemas/ejemplos_sistemas.html">
+   Ejemplos de modelos de sistemas
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modulo1/ejemplos_sistemas/resorte_no_lineal.html">
+     Sistema masa resorte amortiguador
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modulo1/ejemplos_sistemas/CineticaPuntual.html">
+     Ecuaciones de Cinética Puntual
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modulo1/ejemplos_sistemas/Nonlinear%20CSTR.html">
+     Sistema CSTR
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modulo1/ejemplos_sistemas/Ejemplo_Presa_Depredador.html">
+     Sistema presa depredador (Lotka-Volterra)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Análisis de la respuesta temporal
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo2/estabilidad/estabilidad.html">
+   Estabilidad
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo2/respuesta%20temporal/Respuesta%20Temporal.html">
+   Respuesta temporal de sistemas dinámicos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo2/polos%20y%20ceros%20adicionales/Efecto%20Polos%20y%20Ceros%20Adicionales.html">
+   Efecto de los polos adicionales y de los ceros
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Análisis de estado estacionario
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo3/realimentacion/carateristicas%20de%20la%20realimentacion.html">
+   Características de la realimentación
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo3/sensibilidad/Sensibilidad.html">
+   Sensibilidad
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo3/errores/Errores.html">
+   Errores
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Lugar de las raíces
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo4/lugar%20de%20las%20raices.html">
+   Lugar de las raíces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo4/Pasos%20para%20el%20trazado.html">
+   Pasos para trazar el lugar geométrico de las raíces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo4/Lugar%20de%20la%20raices%20con%20Python.html">
+   Lugar de las raíces usando Python
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Respuesta en frecuencia
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Respuesta Frecuencial de Sistemas lineales y SISO
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="estabilidad_nyquist/estabilidad_en_frecuencia.html">
+   Estabilidad en Frecuencia
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Diseño de compensadores
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo5/compensadores.html">
+   Compensadores de adelanto y de retraso de fase
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo5/problema_levitador.html">
+   Problema de levitador magnético
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo5/tipo1_lead.html">
+   Problema con sistema de tipo 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo5/lead_lag_design.html">
+   Ecuaciones útiles para el diseño del Lead por análisis en frecuencia
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Control Moderno
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_ve/formas_canonicas.html">
+   Formas canónicas de un espacio de estados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_ve/transformacion_formas_canonicas.html">
+   Transformación lineal del espacio de estado
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_ve/ctrb_obsv.html">
+   Análisis de los sistemas en su forma de espacio de estados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_ve/referencia.html">
+   Inserción de referencias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_ve/estimadores.html">
+   Diseño de estimadores
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_ve/ejemplo_A_ve_motor_cc.html">
+   Diseño para un motor de continua
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_ve/ejemplo_B_ve_atitud_satelite.html">
+   Diseño del sistema de control del atitud de un satélite
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_ve/ejemplo_C_ve_pendulo_invertido.html">
+   Diseño del sistema de control del pédulo invertido
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Navegación de palanca" aria-controls="site-navigation"
+                title="Navegación de palanca" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Descarga esta pagina"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../../_sources/sources/notebooks_sources/modulo_frec/respuesta_frecuencial.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Descargar archivo de cuaderno" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/sources/notebooks_sources/modulo_frec/respuesta_frecuencial.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Descargar archivo fuente" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimir en PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/gonmolina/DSFyC"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Repositorio de origen"><i
+                    class="fab fa-github"></i>repositorio</button></a>
+        <a class="issues-button"
+            href="https://github.com/gonmolina/DSFyC/issues/new?title=Issue%20on%20page%20%2Fsources/notebooks_sources/modulo_frec/respuesta_frecuencial.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Abrir un problema"><i class="fas fa-lightbulb"></i>Tema abierto</button></a>
+        <a class="edit-button" href="https://github.com/gonmolina/DSFyC/edit/master/sources/notebooks_sources/modulo_frec/respuesta_frecuencial.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edita esta página"><i class="fas fa-pencil-alt"></i>sugerir editar</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Modo de pantalla completa"
+        title="Modo de pantalla completa"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/gonmolina/DSFyC/master?urlpath=tree/sources/notebooks_sources/modulo_frec/respuesta_frecuencial.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Lanzamiento Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contenido
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#formalismos-matematicos">
+   Formalismos matemáticos
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#teorema">
+     Teorema
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#proposicion">
+     Proposición
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#demo">
+     Demo
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Proposición
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analisis-del-paso-de-s-rightarrow-omega">
+   Análisis del paso de
+   <span class="math notranslate nohighlight">
+    \(s\rightarrow \omega\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#diagrama-de-bode">
+   Diagrama de Bode
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metodo-practico-para-graficar-diagramas-de-bode">
+   Método práctico para graficar diagramas de Bode
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#polo-simple-en-el-origen">
+     1) Polo simple en el origen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#polo-multiple-en-el-origen">
+     2) Polo múltiple en el origen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#polo-real-simple">
+     3) Polo real simple
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#par-de-polos-complejo-conjugado">
+     4) Par de polos complejo conjugado
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cero-simple-en-el-origen">
+     5) Cero simple en el origen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ceros-multiples-en-el-origen">
+     6) Ceros múltiples en el origen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cero-real-simple">
+     7) Cero real simple
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cero-complejo-conjugado">
+     8) Cero complejo conjugado
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cero-simple-de-no-minima-fase">
+     9) Cero simple de
+     <strong>
+      no mínima fase
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pasos-para-dibujar-un-diagrama-de-bode">
+     Pasos para dibujar un diagrama de Bode
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo-primer-bode-asintotico">
+     Ejemplo: Primer Bode asintótico
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ejemplo">
+       Ejemplo:
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="respuesta-frecuencial-de-sistemas-lineales-y-siso">
+<h1>Respuesta Frecuencial de Sistemas lineales y SISO<a class="headerlink" href="#respuesta-frecuencial-de-sistemas-lineales-y-siso" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="formalismos-matematicos">
+<h2>Formalismos matemáticos<a class="headerlink" href="#formalismos-matematicos" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="teorema">
+<h3>Teorema<a class="headerlink" href="#teorema" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Dado <span class="math notranslate nohighlight">\(\Sigma = (N,D)\)</span> un sistema SISO y con <span class="math notranslate nohighlight">\(\omega&gt;0\)</span>. Si <span class="math notranslate nohighlight">\(T_{N,D}\)</span> no tiene polos en el eje imaginario, entonces dado <span class="math notranslate nohighlight">\(u(t)=u_0 \sin(\omega t)\)</span>. hay un única salida periódica <span class="math notranslate nohighlight">\(y_p(t)\)</span> con periodo <span class="math notranslate nohighlight">\(T=\dfrac{2\pi}{\omega}\)</span> que es solución del sistema tal que:</p>
+<div class="math notranslate nohighlight">
+\[
+y(t) = u_0 Re(H_\Sigma) \sin(\omega t) + u_0 Im(H_\Sigma) \cos(\omega t)
+\]</div>
+<p>como entrada una sinusoide <span class="math notranslate nohighlight">\(\Longrightarrow\)</span> salida senoide desfasado <span class="math notranslate nohighlight">\(\therefore\)</span> si <span class="math notranslate nohighlight">\((N,D)\)</span>  es un sistema SISO y lineal de la forma input/output (Esto significa que no importan los estados, solo se busca una <span class="math notranslate nohighlight">\(u(t)\)</span> que haga satisfacer el <span class="math notranslate nohighlight">\(y(t)\)</span>) se define la respuesta frecuencial por <span class="math notranslate nohighlight">\(H_{N,D}(\omega)= T_{N,D}(i\omega)\)</span> es decir haciendo <span class="math notranslate nohighlight">\(s=i\omega\)</span>.</p>
+<p>También existe una correspondencia entre la respuesta frecuencial y la respuesta impulsiva.</p>
+</div>
+<div class="section" id="proposicion">
+<h3>Proposición<a class="headerlink" href="#proposicion" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Sea <span class="math notranslate nohighlight">\((N,D)\)</span> sea un sistema estrictamente propio, SISO y lineal, de la forma input/output y supongamos que los polos de <span class="math notranslate nohighlight">\(T_{N,D}\)</span> están en el semiplano negativo. Entonces <span class="math notranslate nohighlight">\(H_{N,D}(\omega) = \check{h}_{N,D}(\omega)\)</span> la transformada de Fourier.</p>
+</div>
+<div class="section" id="demo">
+<h3>Demo<a class="headerlink" href="#demo" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>tenemos que <span class="math notranslate nohighlight">\(H_{N,D}(\omega)= T_{N,D}(i\omega)\)</span> y entonces:</p>
+<div class="math notranslate nohighlight">
+\[
+H_{N,D}(\omega)=\displaystyle\int_{+0}^{\infty} h_{N,D}(t)e^{i\omega t}\, dt
+\]</div>
+<p>esto es la transformada de Laplace en <span class="math notranslate nohighlight">\(s=i\omega\)</span></p>
+<p>asumiendo todos los polos en el semiplano izquierdo <span class="math notranslate nohighlight">\(\mathbb{C}^-\)</span> tenemos que la integral existe, si ademas, consideramos <span class="math notranslate nohighlight">\(\underbrace{h_{N,D}(t)=0\text{ para }t&lt;0}_{causal}\)</span> tenemos que:</p>
+<div class="math notranslate nohighlight">
+\[
+H_{N,D}(\omega)=\displaystyle\int_{-\infty}^{\infty} h_{N,D}(t)e^{i\omega t}\, dt = \check{h}_{N,D}(\omega)
+\]</div>
+</div>
+<div class="section" id="id1">
+<h3>Proposición<a class="headerlink" href="#id1" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Dado <span class="math notranslate nohighlight">\((N,D)\)</span> un sistema estrictamente propio, SISO y lineal, de la forma input/output y suponiendo que los polos de <span class="math notranslate nohighlight">\(T_{N,D}\)</span> están en el semiplano izquierdo, tenemos que:</p>
+<div class="math notranslate nohighlight">
+\[
+T_{N,D}(s)=\dfrac{1}{2\pi}\displaystyle\int_{-\infty}^{\infty} \dfrac{H_{N,D}(\omega)}{s-i\omega}\, d\omega
+\]</div>
+<p>esta es la forma de ir al dominio de Laplace desde el dominio frecuencial, es posible demostrar la preposición anterior aplicando la transformada de Fourier inversa.</p>
+<p><strong>Resultado importante</strong> es la correspondencia entre los tres dominios, con esto se establece una relación entre el dominio temporal, el plano-s o de Laplace y el dominio frecuencial, como se muestra en la figura siguiente:</p>
+<div class="figure align-default" id="relaciones">
+<a class="bg-primary mb-1 reference internal image-reference" href="../../../_images/Figure_0.png"><img alt="relaciones-dominios" class="bg-primary mb-1" src="../../../_images/Figure_0.png" style="width: 700px;" /></a>
+<p class="caption"><span class="caption-number">Figura 53 </span><span class="caption-text">Relaciones entre dominios temporal, Laplace y frecuencial</span><a class="headerlink" href="#relaciones" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="analisis-del-paso-de-s-rightarrow-omega">
+<h2>Análisis del paso de <span class="math notranslate nohighlight">\(s\rightarrow \omega\)</span><a class="headerlink" href="#analisis-del-paso-de-s-rightarrow-omega" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Seguimos analizando del paso de del dominio de Laplace al frecuencial, para esto consideraremos el sistema lineal e invariante en el tiempo descripto por la función de transferencia:</p>
+<div class="math notranslate nohighlight">
+\[
+H(s)= k \dfrac{\prod_{j=1}^{m}(s-z_j)}{\prod_{i=1}^{n}(s-p_i)}
+\]</div>
+<p>que por simplicidad consideraremos que <span class="math notranslate nohighlight">\(p_i\)</span> y <span class="math notranslate nohighlight">\(z_j\)</span> son reales simples.</p>
+<p>Nos interesa determinar la respuesta del sistema a una entrada de la forma (sinusoidal)</p>
+<div class="math notranslate nohighlight">
+\[
+u(t)= U_0 \sin(\omega t) \Longrightarrow U(s)=\dfrac{U_0\omega}{s^2+\omega^2}
+\]</div>
+<div class="figure align-default" id="io">
+<a class="reference internal image-reference" href="../../../_images/Figure_0_1.png"><img alt="Figure_0_1.png" src="../../../_images/Figure_0_1.png" style="width: 300px;" /></a>
+<p class="caption"><span class="caption-number">Figura 54 </span><span class="caption-text">Sistema <span class="math notranslate nohighlight">\(H(s)\)</span></span><a class="headerlink" href="#io" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+<p>asumiendo condiciones iniciales nulas</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{matrix}
+Y(s) &amp; = &amp; H(s)U(s)\\
+&amp; = &amp; k \dfrac{\prod_{j=1}^{m}(s-z_j)}{\prod_{i=1}^{n}(s-p_i)}\dfrac{U_0\omega}{s^2+\omega^2}
+\end{matrix}
+\end{split}\]</div>
+<p>expandiendo en fracciones parciales, se tiene</p>
+<div class="math notranslate nohighlight">
+\[
+Y(s)=\sum_{i=1}^n \dfrac{\alpha_i}{s-p_i}+\underbrace{\dfrac{\alpha_o}{s+j\omega}+\dfrac{\alpha_o^*}{s-j\omega}}_{(1)}
+\]</div>
+<p>donde el calculo de los residuos da:</p>
+<div class="math notranslate nohighlight">
+\[
+\alpha_i= \displaystyle\lim_{s \to{p_i}}{(s-p_i)H(s)\dfrac{U_0\omega}{s^2+\omega^2}}
+\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{matrix}
+\alpha_o &amp; = &amp; \displaystyle\lim_{s \to{+j\omega}}{(s-j\omega)H(s)\dfrac{U_0\omega}{(s+j\omega)(s-j\omega)}}\\
+&amp;=&amp;\dfrac{U_0\omega H(-j\omega)}{-j2\omega}=j\dfrac{U_0}{2}H(-j\omega)
+\end{matrix}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{matrix}
+\alpha_o^* &amp;=&amp; \displaystyle\lim_{s \to{j\omega}}{(s-j\omega)H(s)\dfrac{U_0\omega}{(s+j\omega)(s-j\omega)}}\\
+&amp;=&amp;\dfrac{U_0\omega H(j\omega)}{j2\omega}=-j\dfrac{U_0}{2}H(j\omega)
+\end{matrix}
+\end{split}\]</div>
+<p>de <span class="math notranslate nohighlight">\((1)\)</span> tenemos que:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{matrix}
+(1)&amp;=&amp; \dfrac{\alpha_o(s-j\omega)+\alpha_o^*(s+j\omega)}{s^2+\omega^2}=\dfrac{s(\alpha_o+\alpha_o^*)+j\omega(\alpha_o+\alpha_o^*)}{s^2+\omega^2}\\
+&amp;=&amp;\dfrac{-j\dfrac{U_0}{2}[H(j\omega)-H(-j\omega)]s+\dfrac{U_0}{2}\omega[H(j\omega)+H(-j\omega)]}{s^2+\omega^2}
+\end{matrix}
+\end{split}\]</div>
+<p>escribiendo</p>
+<div class="math notranslate nohighlight">
+\[
+H(j\omega) =  |H(j\omega)| e^{j \phi(\omega)}
+\]</div>
+<p>con <span class="math notranslate nohighlight">\(\phi (\omega)=\angle{H(j\omega)}\)</span></p>
+<p>por lo que:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{matrix}
+(1)&amp;=&amp; \dfrac{-jU_0 |H(j\omega)| s\dfrac{\big(e^{j \phi(\omega)}-e^{-j \phi(\omega)}\big)}{2} +U_0\omega|H(j\omega)|\dfrac{\big(e^{j \phi(\omega)}+e^{-j \phi(\omega)}\big)}{2}  }{s^2+\omega^2}\\
+&amp;=&amp; U_0 |H(j\omega)| \left[\dfrac{s}{s^2+\omega^2} \sin(\phi(\omega))+\dfrac{\omega}{s^2+\omega^2}\cos(\phi(\omega))\right]
+\end{matrix}
+\end{split}\]</div>
+<p>tomando la transformada inversa de <span class="math notranslate nohighlight">\(Y(s)\)</span> se obtiene</p>
+<div class="math notranslate nohighlight">
+\[
+y(t)= \sum_{i=1}^n{\alpha_i e^{p_i t}} +U_0 |H(j\omega)| \left[\cos(\omega t) \sin(\phi(\omega))+\sin(\omega t)\cos(\phi(\omega))\right]
+\]</div>
+<p>Lo anterior se puede escribir como:</p>
+<div class="math notranslate nohighlight">
+\[
+y(t)= \sum_{i=1}^n{\alpha_i e^{p_i t}} +\underbrace{U_0 |H(j\omega)| \sin(\omega t+\phi(\omega))}_{\text{Forzada}}
+\]</div>
+<p>asumiendo que el sistema es BIBO estable, entonces</p>
+<div class="math notranslate nohighlight">
+\[
+p_1,p_2,\cdots, p_n &lt; 0
+\]</div>
+<p>y el término de la respuesta transitoria</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^n{\alpha_i e^{p_i t}} \longrightarrow 0 \text{ con } t\longrightarrow \infty
+\]</div>
+<p>Es decir, cuando <span class="math notranslate nohighlight">\(t\longrightarrow \infty\)</span> el sistema alcanza un régimen permanente senoidal (RPS) de la forma</p>
+<div class="math notranslate nohighlight">
+\[
+y_{RPS}(t)=\underbrace{U_0 |H(j\omega)| \sin(\omega t+\phi(\omega))}_{\text{Forzada}}
+\]</div>
+<p>Notar que:</p>
+<ul class="simple">
+<li><p>La salida es una senoide de la misma frecuencia que la senoide de la entrada, amplificada o atenuada por <span class="math notranslate nohighlight">\(|H(j\omega)|\)</span> y desfasada por el ángulo <span class="math notranslate nohighlight">\(\angle{H(j\omega)}\)</span></p></li>
+<li><p>al término</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+H(j\omega) \equiv \left.H(s)\right|_{s=j\omega}
+\]</div>
+<p>se lo llama <code class="docutils literal notranslate"><span class="pre">Transferencia</span> <span class="pre">Armónica</span></code> o respuesta en Frecuencia del sistema. Su conocimiento para todo <span class="math notranslate nohighlight">\(\omega\)</span> permite determinar la respuesta en régimen permanente a entradas sinusoidales</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{matrix}
+|H(j\omega)| \longrightarrow \text{ Amplitud}\\
+\angle{H(j\omega)} \longrightarrow \text{ Fase}
+\end{matrix}
+\end{split}\]</div>
+<p>Los resultados se pueden extender al caso de tener polos complejos conjugados y con multiplicidad. Siempre con la condición que sean estables, es decir <span class="math notranslate nohighlight">\(\mathbb{Re}(p_i)&lt;0\)</span></p>
+</div>
+<div class="section" id="diagrama-de-bode">
+<h2>Diagrama de Bode<a class="headerlink" href="#diagrama-de-bode" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Lo que se hace normalmente es graficar la respuesta frecuencial del sistema. Para esto se usa que:</p>
+<div class="math notranslate nohighlight">
+\[
+H(\omega) =  \underbrace{|H(\omega)|}_{\text{módulo}} e^{j\angle{H(\omega)}}
+\]</div>
+<p><span class="math notranslate nohighlight">\(|H(\omega)|\)</span> es el módulo de <span class="math notranslate nohighlight">\(H(\omega)\)</span> y <span class="math notranslate nohighlight">\(\angle{H(\omega)}\)</span> es el argumento.</p>
+<p>Se suele graficar la respuesta de <span class="math notranslate nohighlight">\(H(\omega)\)</span> en diagramas logarítmicos de amplitud y fase.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{matrix}
+|H(j\omega)|_{dB} = 20 \log{|H(j\omega)|} &amp; \text{vs}&amp;\log{w}\\
+\angle{H(j\omega)} &amp;\text{vs}&amp;\log{w}
+\end{matrix}
+\end{split}\]</div>
+<p>Sin perder generalidad podremos considerar que <span class="math notranslate nohighlight">\(p_i\)</span> y <span class="math notranslate nohighlight">\(z_j\)</span> son reales por lo que:</p>
+<div class="math notranslate nohighlight">
+\[
+G(s)= k \dfrac{\prod_{j=1}^{m}(\tau_{z_j}s+1)}{\prod_{i=1}^{n}(\tau_{p_i}s+1)}
+\]</div>
+<p>expresado como la función transferencia armónica:</p>
+<div class="math notranslate nohighlight">
+\[
+H(\omega)= k \dfrac{\prod_{j=1}^{m}(j\tau_{z_j}\omega+1)}{\prod_{i=1}^{n}(j\tau_{p_i}\omega+1)}= k \dfrac{\prod_{j=1}^{m}r_{z_j}e^{j\theta_{z_j}}}{\prod_{i=1}^{n}r_{p_i}e^{j\theta_{p_i}}}
+\]</div>
+<p>con lo que:</p>
+<div class="math notranslate nohighlight">
+\[
+|G(j\omega)| = \dfrac{k\prod_{j=1}^{m}r_{z_j}(\omega)}{\prod_{i=1}^{n}r_{p_i}(\omega)}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\angle{G(j\omega)} = e^{j\big(\sum_{j}^{m}\theta_{z_j}(\omega)-\sum_{i}^{n}\theta_{p_i}(\omega)\big)} 
+\]</div>
+<p>Finalmente, por propiedades de los logaritmos, el módulo en dB se determina sumando los módulos individuales de los polos y ceros para cada frecuencia.</p>
+<div class="math notranslate nohighlight">
+\[
+|G(j\omega)| = \underbrace{|k|_{dB}}_{20\log{(k)}} + \underbrace{\sum_{1}^{m} r_{z_j}(\omega)}_{20\log{\big(r_{z_j}(\omega)\big)}} + 
+\underbrace{\sum_{1}^{n} \dfrac{1}{r_{p_i}(\omega)}}_{20\log{\big(\dfrac{1}{r_{p_i}(\omega)}}\big)}
+\]</div>
+<p>y la fase se obtiene sumando las fases de los polos y ceros en forma individual para cada frecuencia w.</p>
+<div class="math notranslate nohighlight">
+\[
+\angle{G(j\omega)} = \angle{k} +\sum{\theta_{z_j}(\omega)}- \sum{\theta_{p_i}(\omega)} 
+\]</div>
+<p>El resultado anterior nos permite graficar un diagrama de Bode a partir de diagramas de Bode de sistemas mas simples. Analizaremos cada una de estas opciones tanto para polos como para ceros.</p>
+</div>
+<div class="section" id="metodo-practico-para-graficar-diagramas-de-bode">
+<h2>Método práctico para graficar diagramas de Bode<a class="headerlink" href="#metodo-practico-para-graficar-diagramas-de-bode" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="polo-simple-en-el-origen">
+<h3>1) Polo simple en el origen<a class="headerlink" href="#polo-simple-en-el-origen" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[
+\begin{matrix}
+G(s)=\dfrac{1}{s} &amp; H(\omega)= \dfrac{1}{j\omega} &amp; \text{polo en} &amp; s=0
+\end{matrix}
+\]</div>
+<div class="figure align-default" id="pzmap-polo-en-cero">
+<a class="reference internal image-reference" href="../../../_images/Figure_1.png"><img alt="Figure_1.png" src="../../../_images/Figure_1.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">Figura 55 </span><span class="caption-text">Polo en 0</span><a class="headerlink" href="#pzmap-polo-en-cero" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+<p>el módulo resulta</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+|G(j\omega)| = \dfrac{1}{\omega} \Longrightarrow \underbrace{|G(j\omega)|_{dB} = - 20 \log{\omega}}_{\substack{\text{Ecuación de una recta}\\ \text{con pendiente de -20dB/dec}\\ \text{(con } \omega \text{ en forma logarítmico)}}}
+\end{split}\]</div>
+<p>para frecuencia <span class="math notranslate nohighlight">\(\omega = 1 \dfrac{rad}{seg}\)</span> tenemos que el módulo es:</p>
+<div class="math notranslate nohighlight">
+\[
+|G(j\omega)|_{\omega = 1 \dfrac{rad}{seg}} = 0 dB
+\]</div>
+<p>y la fase resulta</p>
+<div class="math notranslate nohighlight">
+\[
+\angle{G(j\omega)} = -\dfrac{\pi}{2} ~\forall~ \omega
+\]</div>
+<div class="figure align-default" id="bode-polo-en-cero">
+<a class="reference internal image-reference" href="../../../_images/Figure_2.png"><img alt="Figure_2.png" src="../../../_images/Figure_2.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">Figura 56 </span><span class="caption-text">Bode de <span class="math notranslate nohighlight">\(G(s)=\dfrac{1}{s}\)</span></span><a class="headerlink" href="#bode-polo-en-cero" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+</div>
+<div class="section" id="polo-multiple-en-el-origen">
+<h3>2) Polo múltiple en el origen<a class="headerlink" href="#polo-multiple-en-el-origen" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[
+\begin{matrix}
+G(s)=\dfrac{1}{s^n} &amp; G(j\omega)= \dfrac{1}{j^n\omega^n} &amp; \text{n polos en} &amp; s=0
+\end{matrix}
+\]</div>
+<div class="figure align-default" id="pzmap-polo-multiple-en-cero">
+<a class="reference internal image-reference" href="../../../_images/Figure_3.png"><img alt="Figure_3.png" src="../../../_images/Figure_3.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">Figura 57 </span><span class="caption-text">Polos de <span class="math notranslate nohighlight">\(G(s)\)</span> en <span class="math notranslate nohighlight">\(s=0\)</span> de multiplicidad <span class="math notranslate nohighlight">\(n\)</span></span><a class="headerlink" href="#pzmap-polo-multiple-en-cero" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+<p>el módulo resulta</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+|G(j\omega)| = \dfrac{1}{\omega^n} \Longrightarrow |G(j\omega)|_{dB} = \underbrace{-20~n}_{
+\substack
+{\text{Solo cambia la pendiente en función}\\
+\text{de la multiplicidad &quot;n&quot;}}
+}\log{\omega}
+\end{split}\]</div>
+<p>para frecuencia <span class="math notranslate nohighlight">\(\omega = 1 \dfrac{rad}{seg}\)</span> tenemos que el módulo es:</p>
+<div class="math notranslate nohighlight">
+\[
+|G(j\omega)|_{\omega = 1 \dfrac{rad}{seg}} = 0 dB
+\]</div>
+<p>y la fase resulta</p>
+<div class="math notranslate nohighlight">
+\[
+\angle{G(j\omega)} = -n \dfrac{\pi}{2} ~\forall~ \omega
+\]</div>
+<div class="figure align-default" id="bode-polo-multiple-0">
+<a class="reference internal image-reference" href="../../../_images/Figure_4.png"><img alt="Figure_4.png" src="../../../_images/Figure_4.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">Figura 58 </span><span class="caption-text">Bode cuando n=2, es decir <span class="math notranslate nohighlight">\(G(s)=\dfrac{1}{s^2}\)</span></span><a class="headerlink" href="#bode-polo-multiple-0" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+</div>
+<div class="section" id="polo-real-simple">
+<h3>3) Polo real simple<a class="headerlink" href="#polo-real-simple" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[
+\begin{matrix}
+G(s)=\dfrac{1}{\tau s+1} &amp; H(\omega)= G(j\omega)= \dfrac{1}{j\omega\tau+1} &amp; \text{polo en} &amp; s=-\dfrac{1}{\tau}
+\end{matrix}
+\]</div>
+<div class="figure align-default" id="polo-real-negativo">
+<a class="reference internal image-reference" href="../../../_images/Figure_5.png"><img alt="Figure_5.png" src="../../../_images/Figure_5.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">Figura 59 </span><span class="caption-text">Polo de <span class="math notranslate nohighlight">\(G(s)\)</span> en <span class="math notranslate nohighlight">\(s=-1/\tau\)</span></span><a class="headerlink" href="#polo-real-negativo" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+<p>el módulo resulta</p>
+<div class="math notranslate nohighlight">
+\[
+|G(j\omega)| = \dfrac{1}{\sqrt{1+\omega^2\tau^2}} \Longrightarrow |G(j\omega)|_{dB} = - 10 \log{(1+\omega^2\tau^2)}
+\]</div>
+<p>cuando <span class="math notranslate nohighlight">\(\omega \longrightarrow 0\)</span> el módulo se puede aproximar a la asíntota:</p>
+<div class="math notranslate nohighlight">
+\[
+|G(j\omega)|_{dB} \approx 0 dB
+\]</div>
+<p>para  <span class="math notranslate nohighlight">\(\omega \longrightarrow \infty\)</span> el módulo puede aproximarse a la asíntota:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+|G(j\omega)|_{dB} \approx -10 \log(\omega^2\tau^2) = \underbrace{-20\log(\omega)-20\log(\tau)}_{\substack
+{\text{Ecuación de una recta}\\
+\text{con pendiente -20dB/dec}\\
+\text{que corta el eje}\\
+\text{en 0 dB para } \omega=\dfrac{1}{\tau}
+}}
+\end{split}\]</div>
+<p>Notar que para <span class="math notranslate nohighlight">\(\omega=\dfrac{1}{\tau}\)</span> el módulo es:</p>
+<div class="math notranslate nohighlight">
+\[
+{|G(j\omega)|_{dB}}_{\omega=\dfrac{1}{\tau}} = -10 \log(1+1) = -3dB 
+\]</div>
+<p>la fase resulta ser:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\angle{G(j\omega)} = \arctan(-\omega\tau)= \left\{ 
+\begin{array}{l} 
+\angle{G(j\omega)} \rightarrow 0 \text{ cuando } \omega\rightarrow 0 \\
+\angle{G(j\omega)} \rightarrow -\dfrac{\pi}{2} \text{ cuando }\omega\rightarrow\infty \\
+\left.\angle{G(j\omega)}\right|_{\omega=\dfrac{1}{\tau}} = -\dfrac{\pi}{4}
+\end{array}\right.
+\end{split}\]</div>
+<div class="figure align-default" id="bode-polo-real-simple">
+<a class="reference internal image-reference" href="../../../_images/Figure_6.png"><img alt="Figure_6.png" src="../../../_images/Figure_6.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">Figura 60 </span><span class="caption-text">Bode de <span class="math notranslate nohighlight">\(G(s)=\dfrac{1}{\tau s+1}\)</span> con <span class="math notranslate nohighlight">\(\tau=1\)</span></span><a class="headerlink" href="#bode-polo-real-simple" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+</div>
+<div class="section" id="par-de-polos-complejo-conjugado">
+<h3>4) Par de polos complejo conjugado<a class="headerlink" href="#par-de-polos-complejo-conjugado" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[
+G(s)=\dfrac{\omega_n^2}{s^2+2\xi\omega_ns+\omega_n^2}
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\xi\)</span> es el coeficiente de amortiguamiento, <span class="math notranslate nohighlight">\(\omega_n\)</span> es la frecuencia natural y los polos se ubican en <span class="math notranslate nohighlight">\(\underbrace{p_{1,2}=-\xi\omega_n\pm \omega_n\sqrt{\xi^2-1}}_{\text{complejos conjugados}}\)</span> para <span class="math notranslate nohighlight">\(0&lt;\xi&lt;1\)</span> y <span class="math notranslate nohighlight">\(|p_{1,2}|=\omega_n\)</span></p>
+<div class="figure align-default" id="polos-complejos-map">
+<a class="reference internal image-reference" href="../../../_images/Figure_7.png"><img alt="Figure_7.png" src="../../../_images/Figure_7.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-number">Figura 61 </span><span class="caption-text">Polo complejos conjugados de <span class="math notranslate nohighlight">\(G(s)\)</span> con <span class="math notranslate nohighlight">\(\omega_n=1\)</span> y <span class="math notranslate nohighlight">\(\xi=0.5\)</span></span><a class="headerlink" href="#polos-complejos-map" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+<div class="math notranslate nohighlight">
+\[
+H(\omega)= G(j\omega)= \dfrac{\omega_n^2}{-\omega_n^2+j2\xi\omega_n\omega+\omega_n^2} =\dfrac{1}{\big(1-\dfrac{\omega^2}{\omega_n^2}\big)+j2\xi\dfrac{\omega}{\omega_n}} 
+\]</div>
+<p>el módulo es</p>
+<div class="math notranslate nohighlight">
+\[
+|G(j\omega)| = \dfrac{1}{\sqrt{\big(1-\dfrac{\omega^2}{\omega_n^2}\big)^2+4\xi^2\dfrac{\omega^2}{\omega_n^2}}} 
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\left.|G(j\omega)|\right|_{dB} = -10\log\left(\left(1-\dfrac{\omega^2}{\omega_n^2}\right)^2+4\xi^2\dfrac{\omega^2}{\omega_n^2}\right) 
+\]</div>
+<p>cuando <span class="math notranslate nohighlight">\(\omega \longrightarrow 0\)</span> el módulo se puede aproximar a la asíntota:</p>
+<div class="math notranslate nohighlight">
+\[
+|G(j\omega)|_{dB} \approx 0 dB
+\]</div>
+<p>y para  <span class="math notranslate nohighlight">\(\omega \longrightarrow \infty\)</span> el módulo puede aproximarse a la asíntota:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+|G(j\omega)|_{dB} \approx -10 \log\big(\dfrac{\omega^4}{\omega_n^4}\big) = \underbrace{-40\log(\omega)+40\log(\omega_n)}_{\substack
+{\text{Ecuación de una recta}\\
+\text{con pendiente -40dB/dec}\\
+\text{que corta el eje}\\
+\text{en 0 dB para } \omega=\omega_n
+}}
+\end{split}\]</div>
+<p>El módulo para <span class="math notranslate nohighlight">\(\omega=\omega_n\)</span> es:</p>
+<div class="math notranslate nohighlight">
+\[
+{|G(j\omega)|_{dB}}_{\omega=\omega_n} = -10 \log(4\xi^2) = -6dB -20\log(\xi)
+\]</div>
+<p>la fase es:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\angle{G(j\omega)} = \arctan\bigg(-\dfrac{2\xi\dfrac{\omega}{\omega_n}}{(1-\dfrac{\omega^2}{\omega_n^2})}\bigg)= \left\{ 
+\begin{array}{l}
+\rightarrow 0 \text{ cuando } \omega\rightarrow0\\
+\rightarrow -\pi \text{ cuando } \omega\rightarrow\infty\\
+= -\dfrac{\pi}{2} \text{ para } \omega=\omega_n
+\end{array}\right.
+\end{split}\]</div>
+<div class="figure align-default" id="polos-complejos-bode">
+<a class="reference internal image-reference" href="../../../_images/Figure_8.png"><img alt="Figure_8.png" src="../../../_images/Figure_8.png" style="width: 700px;" /></a>
+<p class="caption"><span class="caption-number">Figura 62 </span><span class="caption-text">Bode de <span class="math notranslate nohighlight">\(G(s)\)</span> con <span class="math notranslate nohighlight">\(\omega_n=1\)</span> y <span class="math notranslate nohighlight">\(\xi= 0.9,0.7,0.5,0.3,0.1,0.01\)</span></span><a class="headerlink" href="#polos-complejos-bode" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+</div>
+<div class="section" id="cero-simple-en-el-origen">
+<h3>5) Cero simple en el origen<a class="headerlink" href="#cero-simple-en-el-origen" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[
+\begin{matrix}
+G(s)=s &amp; H(\omega)= {j\omega} &amp; \text{un cero en} &amp; s=0
+\end{matrix}
+\]</div>
+<div class="figure align-default" id="cero-en-cero-map">
+<a class="reference internal image-reference" href="../../../_images/Figure_9.png"><img alt="Figure_9.png" src="../../../_images/Figure_9.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-number">Figura 63 </span><span class="caption-text">Cero de <span class="math notranslate nohighlight">\(G(s)\)</span> en <span class="math notranslate nohighlight">\(s=0\)</span></span><a class="headerlink" href="#cero-en-cero-map" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+<p>el módulo resulta</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+|G(j\omega)| = {\omega} \Longrightarrow \underbrace{|G(j\omega)|_{dB} = 20\log{\omega}}_{\substack{\text{recta con}\\ \text{pendiente de 20dB/dec}}}
+\end{split}\]</div>
+<p>para</p>
+<div class="math notranslate nohighlight">
+\[
+|G(j\omega)|_{\omega = 1 \dfrac{rad}{seg}} = 0 dB
+\]</div>
+<p>la fase <span class="math notranslate nohighlight">\(\angle{G(j\omega)} = \dfrac{\pi}{2} ~\forall~ \omega\)</span></p>
+<div class="figure align-default" id="cero-en-cero-bode">
+<a class="reference internal image-reference" href="../../../_images/Figure_10.png"><img alt="Figure_10.png" src="../../../_images/Figure_10.png" style="width: 700px;" /></a>
+<p class="caption"><span class="caption-number">Figura 64 </span><span class="caption-text">Bode de <span class="math notranslate nohighlight">\(G(s)={s}\)</span></span><a class="headerlink" href="#cero-en-cero-bode" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+</div>
+<div class="section" id="ceros-multiples-en-el-origen">
+<h3>6) Ceros múltiples en el origen<a class="headerlink" href="#ceros-multiples-en-el-origen" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[
+\begin{matrix}
+G(s)={s^n} &amp; G(j\omega)= {j^n\omega^n} &amp; \text{n ceros en} &amp; s=0
+\end{matrix}
+\]</div>
+<div class="figure align-default" id="ceros-en-ceros-map">
+<a class="reference internal image-reference" href="../../../_images/Figure_11.png"><img alt="Figure_11.png" src="../../../_images/Figure_11.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-number">Figura 65 </span><span class="caption-text">Ceros de <span class="math notranslate nohighlight">\(G(s)\)</span> en <span class="math notranslate nohighlight">\(s=0\)</span> de multiplicidad n</span><a class="headerlink" href="#ceros-en-ceros-map" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+<p>el módulo resulta</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+|G(j\omega)| = {\omega^n} \Longrightarrow \underbrace{|G(j\omega)|_{dB} = 20~n\log{\omega}}_{
+\substack
+{\text{Solo cambia la pendiente en función}\\
+\text{de la multiplicidad &quot;n&quot;}}
+}
+\end{split}\]</div>
+<p>sigue valiendo <span class="math notranslate nohighlight">\(|G(j\omega)|_{\omega = 1 \dfrac{rad}{seg}} = 0 dB\)</span></p>
+<p>y la fase resulta</p>
+<div class="math notranslate nohighlight">
+\[
+\angle{G(j\omega)} = n \dfrac{\pi}{2} ~\forall~ \omega
+\]</div>
+<div class="figure align-default" id="ceros-en-cero-bode">
+<a class="reference internal image-reference" href="../../../_images/Figure_12.png"><img alt="Figure_12.png" src="../../../_images/Figure_12.png" style="width: 700px;" /></a>
+<p class="caption"><span class="caption-number">Figura 66 </span><span class="caption-text">Bode cuando n=2, es decir <span class="math notranslate nohighlight">\(G(s)={s^2}\)</span></span><a class="headerlink" href="#ceros-en-cero-bode" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+</div>
+<div class="section" id="cero-real-simple">
+<h3>7) Cero real simple<a class="headerlink" href="#cero-real-simple" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[
+\begin{matrix}
+G(s)={\tau s+1} &amp; H(\omega)= G(j\omega)= {j\omega\tau+1} &amp; \text{un cero en} &amp; s=-\dfrac{1}{\tau}
+\end{matrix}
+\]</div>
+<div class="figure align-default" id="cero-real-simple-map">
+<a class="reference internal image-reference" href="../../../_images/Figure_13.png"><img alt="Figure_13.png" src="../../../_images/Figure_13.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-number">Figura 67 </span><span class="caption-text">Cero de <span class="math notranslate nohighlight">\(G(s)\)</span> en <span class="math notranslate nohighlight">\(s=-1/\tau\)</span></span><a class="headerlink" href="#cero-real-simple-map" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+<p>el módulo resulta</p>
+<div class="math notranslate nohighlight">
+\[
+|G(j\omega)| = {\sqrt{1+\omega^2\tau^2}} \Longrightarrow |G(j\omega)|_{dB} = 10\log{(1+\omega^2\tau^2)}
+\]</div>
+<p>cuando <span class="math notranslate nohighlight">\(\omega \longrightarrow 0\)</span> el módulo se puede aproximar a la asíntota:</p>
+<div class="math notranslate nohighlight">
+\[
+|G(j\omega)|_{dB} \approx 0 dB
+\]</div>
+<p>para  <span class="math notranslate nohighlight">\(\omega \longrightarrow \infty\)</span> el módulo puede aproximarse a la asíntota:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+|G(j\omega)|_{dB} \approx 10\log(\omega^2\tau^2) = \underbrace{20\log(\omega)+20\log(\tau)}_{\substack
+{\text{Ecuación de una recta}\\
+\text{con pendiente 20dB/dec}\\
+\text{que corta el eje}\\
+\text{en 0 dB para } \omega=\dfrac{1}{\tau}
+}}
+\end{split}\]</div>
+<p>para <span class="math notranslate nohighlight">\(\omega=\dfrac{1}{\tau}\)</span> el módulo es:</p>
+<div class="math notranslate nohighlight">
+\[
+{|G(j\omega)|_{dB}}_{\omega=\dfrac{1}{\tau}} = 10\log(2) = 3dB 
+\]</div>
+<p>la fase resulta ser:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\angle{G(j\omega)} = \arctan(\omega\tau)= \left\{ 
+\begin{array}{l} 
+\rightarrow 0 \text{ cuando } \omega\rightarrow0\\
+\rightarrow \dfrac{\pi}{2} \text{ cuando } \omega\rightarrow\infty\\
+=\dfrac{\pi}{4}\text{ con }\omega=\dfrac{1}{\tau}
+\end{array}\right.
+\end{split}\]</div>
+<div class="figure align-default" id="cero-real-simple-bode">
+<a class="reference internal image-reference" href="../../../_images/Figure_14.png"><img alt="Figure_14.png" src="../../../_images/Figure_14.png" style="width: 700px;" /></a>
+<p class="caption"><span class="caption-number">Figura 68 </span><span class="caption-text">Bode de <span class="math notranslate nohighlight">\(G(s)={\tau s+1}\)</span> con <span class="math notranslate nohighlight">\(\tau=1\)</span></span><a class="headerlink" href="#cero-real-simple-bode" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+</div>
+<div class="section" id="cero-complejo-conjugado">
+<h3>8) Cero complejo conjugado<a class="headerlink" href="#cero-complejo-conjugado" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>De forma similar a lo resuelto para los polos complejos conjugados, se puede llegar a que la respuesta en frecuencia de la siguiente función de transferencia con un para de ceros complejos conjugados normalizada en ganancia, es:</p>
+<div class="math notranslate nohighlight">
+\[
+G(s)=\dfrac{s^2+2\xi\omega_ns+\omega_n^2}{\omega_n^2}
+\]</div>
+<div class="figure align-default" id="cero-complejo-conjugado-bode">
+<a class="reference internal image-reference" href="../../../_images/Figure_15.png"><img alt="Figure_15.png" src="../../../_images/Figure_15.png" style="width: 700px;" /></a>
+<p class="caption"><span class="caption-number">Figura 69 </span><span class="caption-text">Bode de <span class="math notranslate nohighlight">\(G(s)\)</span> con <span class="math notranslate nohighlight">\(\omega_n=1\)</span> y <span class="math notranslate nohighlight">\(\xi= 0.9,0.7,0.5,0.3,0.1,0.01\)</span></span><a class="headerlink" href="#cero-complejo-conjugado-bode" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+</div>
+<div class="section" id="cero-simple-de-no-minima-fase">
+<h3>9) Cero simple de <strong>no mínima fase</strong><a class="headerlink" href="#cero-simple-de-no-minima-fase" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[
+\begin{matrix}
+G(s)={1-\tau s} &amp; H(\omega)= G(j\omega)= {1-j\omega\tau} &amp; \text{un cero en } &amp; s=\dfrac{1}{\tau}
+\end{matrix}
+\]</div>
+<div class="figure align-default" id="cero-simple-positivo">
+<a class="reference internal image-reference" href="../../../_images/Figure_16.png"><img alt="Figure_16.png" src="../../../_images/Figure_16.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-number">Figura 70 </span><span class="caption-text">Cero de <span class="math notranslate nohighlight">\(G(s)\)</span> en <span class="math notranslate nohighlight">\(s=1/\tau\)</span>, en <span class="math notranslate nohighlight">\(\mathbb{C}^+\)</span></span><a class="headerlink" href="#cero-simple-positivo" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+<p>el módulo resulta</p>
+<div class="math notranslate nohighlight">
+\[
+|G(j\omega)| = {\sqrt{1+\omega^2\tau^2}} \Longrightarrow |G(j\omega)|_{dB} = 10\log{(1+\omega^2\tau^2)}
+\]</div>
+<p>cuando <span class="math notranslate nohighlight">\(\omega \longrightarrow 0\)</span> el módulo se puede aproximar a la asíntota:</p>
+<div class="math notranslate nohighlight">
+\[
+|G(j\omega)|_{dB} \approx 0 dB
+\]</div>
+<p>para  <span class="math notranslate nohighlight">\(\omega \longrightarrow \infty\)</span> el módulo puede aproximarse a la asíntota:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+|G(j\omega)|_{dB} \approx 10\log(\omega^2\tau^2) = \underbrace{20\log(\omega)+20\log(\tau)}_{\substack
+{\text{Una recta con}\\
+\text{pendiente 20dB/dec}\\
+\text{al igual que para}\\
+\text{el cero en } \mathbb{C}^-
+}}
+\end{split}\]</div>
+<p>para <span class="math notranslate nohighlight">\(\omega=\dfrac{1}{\tau}\)</span> el módulo es:</p>
+<div class="math notranslate nohighlight">
+\[
+{|G(j\omega)|_{dB}}_{\omega=\dfrac{1}{\tau}} = 10\log(2) = 3dB 
+\]</div>
+<p>la fase resulta ser:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\angle{G(j\omega)} = \arctan(-\omega\tau)= \left\{ 
+\begin{array}{l} 
+\rightarrow 0 \text{ cuando } \omega\rightarrow0\\
+\rightarrow -\dfrac{\pi}{2} \text{ cuando } \omega\rightarrow\infty\\
+=-\dfrac{\pi}{4}\text{ con }\omega=\dfrac{1}{\tau}
+\end{array}\right.
+\end{split}\]</div>
+<div class="figure align-default" id="cero-real-positivo-bode">
+<a class="reference internal image-reference" href="../../../_images/Figure_17.png"><img alt="Figure_17.png" src="../../../_images/Figure_17.png" style="width: 700px;" /></a>
+<p class="caption"><span class="caption-number">Figura 71 </span><span class="caption-text">Bode de <span class="math notranslate nohighlight">\(G(s)={1-\tau s}\)</span> con <span class="math notranslate nohighlight">\(\tau=1\)</span></span><a class="headerlink" href="#cero-real-positivo-bode" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+</div>
+<div class="section" id="pasos-para-dibujar-un-diagrama-de-bode">
+<h3>Pasos para dibujar un diagrama de Bode<a class="headerlink" href="#pasos-para-dibujar-un-diagrama-de-bode" title="Enlazar permanentemente con este título">¶</a></h3>
+<ol class="simple">
+<li><p>Manipular la función de transferencia <span class="math notranslate nohighlight">\(G(s)\)</span> para que quede de la forma:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+G(s)= k_0 \dfrac{\prod_{j=1}^{m}(\tau_{j}s+1)}{\prod_{i=1}^{n}(\tau_{i}s+1)}
+\]</div>
+<ol class="simple">
+<li><p>Magnitud: Determinar las singularidades en el origen <span class="math notranslate nohighlight">\(\Longrightarrow k_0(j\omega)^n\)</span> (resultado de los polos y/o ceros de multiplicidad n) Graficar la asintota en baja frecuencia (<span class="math notranslate nohighlight">\(n~x~20dB/dec\)</span>) y calcular la magnitud de <span class="math notranslate nohighlight">\(k_0\)</span> a <span class="math notranslate nohighlight">\(\omega = 1\)</span></p></li>
+<li><p>Completar la magnitud extender las asintotas para bajas frecuencias hasta el primer punto de quiebre <span class="math notranslate nohighlight">\(\Longrightarrow\)</span> cambiar la pendiente en función del orden del o los polos y/o ceros de primer orden o segundo orden.</p></li>
+<li><p>Dibujar el módulo aproximado sabiendo que los polos/ceros en el punto de quiebre, modifican en -3dB/3dB respectivamente y para los polos/ceros de segundo orden <span class="math notranslate nohighlight">\(\Longrightarrow |G(j\omega)|_{dB} \approx \dfrac{1}{2}\xi\)</span></p></li>
+<li><p>Graficar asintotas en baja frecuencia como <span class="math notranslate nohighlight">\(\phi = n~90º\)</span></p></li>
+<li><p>Aproximar como guía con saltos de <span class="math notranslate nohighlight">\(\pm 90º\)</span> para primer orden y <span class="math notranslate nohighlight">\(\pm 180º\)</span> para segundo orden en los puntos de quiebre de magnitud</p></li>
+<li><p>Aproximar con una asintota el salto según corresponda</p></li>
+<li><p>Se puede aproximar por una curva suave en forma aproximada.</p></li>
+</ol>
+</div>
+<div class="section" id="ejemplo-primer-bode-asintotico">
+<h3>Ejemplo: Primer Bode asintótico<a class="headerlink" href="#ejemplo-primer-bode-asintotico" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Seguimos los pasos anteriores para dibujar un Bode asintótico</p>
+<div class="math notranslate nohighlight">
+\[
+G(s) = \dfrac{200(s+0.5)}{s(s+10)(s+50)}
+\]</div>
+<ol class="simple">
+<li><p>step) reescribir la FT de la forma:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+H(\omega)=G(j\omega) = \dfrac{0.2(\dfrac{j\omega}{0.5}+1)}{j\omega~\big(0.1j\omega+1\big)\big(\dfrac{j\omega}{50}+1\big)}
+\]</div>
+<ol class="simple">
+<li><p>step) para bajas frecuencias tenemos que:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+\begin{matrix}
+G(j\omega) \simeq \dfrac{0.2}{j\omega} &amp; -20dB/dec &amp; \text{ para } &amp;  \omega \longrightarrow 0
+\end{matrix}
+\]</div>
+<p>para <span class="math notranslate nohighlight">\(\omega = 1 \Longrightarrow k_0=0.2 \Longrightarrow \approx -14dB\)</span></p>
+<a class="reference internal image-reference" href="../../../_images/Figure_18.png"><img alt="Figure_18.png" src="../../../_images/Figure_18.png" style="width: 700px;" /></a>
+<ol class="simple">
+<li><p>step) Dibujar las asíntotas</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\text{puntos de quiebres } \omega = \left\{ 
+\begin{array}{l} 
+ 0.5 \text{ (un cero) la pendiente pasa a  } 0dB/dec \simeq -8dB\\
+ 10 \text{ (un polo) la pendiente pasa a } -20dB/dec \\
+ 50 \text{ (un polo) la pendiente pasa a  } -40dB/dec \\
+\end{array}\right.
+\end{split}\]</div>
+<a class="reference internal image-reference" href="../../../_images/Figure_19.png"><img alt="Figure_19.png" src="../../../_images/Figure_19.png" style="width: 700px;" /></a>
+<ol class="simple">
+<li><p>step) corrección del módulo en los puntos de quiebre</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\text{puntos de quiebres } ||_{dB} = \left\{ 
+\begin{array}{l} 
+ +3dB \text{ para } \omega = 0.5\\
+ -3dB \text{ para } \omega = 10\\
+ -3dB \text{ para } \omega = 50\\
+ \end{array}\right.
+\end{split}\]</div>
+<a class="reference internal image-reference" href="../../../_images/Figure_20.png"><img alt="Figure_20.png" src="../../../_images/Figure_20.png" style="width: 700px;" /></a>
+<ol class="simple">
+<li><p>step) Fase a baja frecuencia el <span class="math notranslate nohighlight">\(-90º\)</span></p></li>
+<li><p>step) Graficar escalones en puntos de equilibrio</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/Figure_21.png"><img alt="Figure_21.png" src="../../../_images/Figure_21.png" style="width: 700px;" /></a>
+<ol class="simple">
+<li><p>step) dibujar asíntotas, en verde la asintotas con una recta en +/- media decada.</p></li>
+</ol>
+<div class="figure align-default" id="id2">
+<a class="reference internal image-reference" href="../../../_images/Figure_22.png"><img alt="Figure_22.png" src="../../../_images/Figure_22.png" style="width: 700px;" /></a>
+<p class="caption"><span class="caption-number">Figura 72 </span><span class="caption-text">Bode asintótico</span><a class="headerlink" href="#id2" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+<div class="section" id="ejemplo">
+<h4>Ejemplo:<a class="headerlink" href="#ejemplo" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Graficaremos el Bode asintótico de la siguiente función de transferencia</p>
+<div class="math notranslate nohighlight">
+\[
+G(s)=5\dfrac{\dfrac{1}{2}s+1}{(s+1)(10s+1)}
+\]</div>
+<p>La frecuencia de corte por 0dB se calcula</p>
+<div class="math notranslate nohighlight">
+\[
+\underbrace{|G(j\omega)|_{\omega=\omega_c}=5\dfrac{|\dfrac{1}{2}j\omega+1|}{|j\omega+1||10j\omega+1|}=1}_{\omega_c = 0.456 rad/s}
+\]</div>
+<div class="figure align-default" id="id3">
+<a class="reference internal image-reference" href="../../../_images/Figure_23.png"><img alt="Figure_23.png" src="../../../_images/Figure_23.png" style="width: 700px;" /></a>
+<p class="caption"><span class="caption-number">Figura 73 </span><span class="caption-text">Bode asintótico de <span class="math notranslate nohighlight">\(G(s)\)</span></span><a class="headerlink" href="#id3" title="Enlace permanente a esta imagen">¶</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./sources/notebooks_sources/modulo_frec"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../modulo4/Lugar%20de%20la%20raices%20con%20Python.html" title="previous page">Lugar de las raíces usando Python</a>
+    <a class='right-next' id="next-link" href="estabilidad_nyquist/estabilidad_en_frecuencia.html" title="next page">Estabilidad en Frecuencia</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          Por Somebody<br/>
+        
+            &copy; Derechos de autor 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
