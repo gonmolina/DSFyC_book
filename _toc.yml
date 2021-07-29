@@ -3,7 +3,7 @@ root: dsfc_sources/intro
 parts:
 - caption: "Introducción a Python"
   chapters:
-  - file: sources/notebooks_sources/guia_de_instalacion
+  - file: sources/notebooks_sources/guía_instalación/guia_de_instalacion
   - file: "sources/notebooks_sources/intro_python/Introducci\xF3n a los notebooks de Jupyter"
   - file: sources/notebooks_sources/intro_python/Extra_Python
   - file: sources/notebooks_sources/intro_python/Intro-Matplotlib
