@@ -51,6 +51,7 @@ parts:
   - file: sources/notebooks_sources/modulo5/lead_lag_design
 - caption: Control Moderno
   chapters:
+  - file: sources/notebooks_sources/modulo_ve/polos_ceros_EE
   - file: sources/notebooks_sources/modulo_ve/formas_canonicas
   - file: sources/notebooks_sources/modulo_ve/transformacion_formas_canonicas
   - file: sources/notebooks_sources/modulo_ve/ctrb_obsv
