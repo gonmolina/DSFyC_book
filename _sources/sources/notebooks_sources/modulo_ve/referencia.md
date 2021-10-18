@@ -140,6 +140,7 @@ $$ u =-\mathbf{Kx}$$
 +++ 
 
 Se puede demostrar que la ubicación de los polos a lazo cerrado que minimizan el funcional de costo anterior, son los polos estables del lugar simétrico de las raíces dado por la ecuación:
+
 $$1+\rho G_0(-s)G_0(s)=0$$
  
 donde $G_0(s)$ es:

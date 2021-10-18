@@ -5,9 +5,9 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.2
+    jupytext_version: 1.10.3
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -52,7 +52,6 @@ Para obtener la forma **canónica controlable** debemos escribir las matrices de
 
 +++
 
-
 $$
 \begin{bmatrix} \dot{x_1}\\\dot{x_2} \\ \vdots \\ \dot{x_{n-1}}\\ \dot{x_n} \end{bmatrix} 
 = \underbrace{\begin{bmatrix}
@@ -96,7 +95,7 @@ $$
 = 
 ~
 \underbrace{\begin{bmatrix}
--2 & -3\\
+-3 & -2\\
 1 & 0
 \end{bmatrix}}_{=~A_c}
 ~ 
@@ -135,8 +134,8 @@ $$
 = 
 ~
 \underbrace{\begin{bmatrix}
--2 & 1\\
--3 & 0
+-3 & 1\\
+-2 & 0
 \end{bmatrix}}_{=~A}
 ~ 
 \begin{bmatrix} {x_1}\\{x_2} \end{bmatrix} 

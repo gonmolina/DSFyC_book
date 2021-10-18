@@ -5,9 +5,9 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.11.0
+    jupytext_version: 1.10.3
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -138,7 +138,8 @@ Además Python puede transformar un sistema en espacio de estados a alguna de la
 Por ejemplo para escribir $sys$ (que está ahora en espacio de estados) en su forma canónica de controlabilidad podemos hacer
 
 ```{code-cell} ipython3
-ctrl.canonical_form(sys, 'reachable') # controlable
+sys_c, Tc=ctrl.canonical_form(sys, 'reachable') # controlable
+sys_c, Tc
 ```
 
 Notar que esta función necesita como primer argumento un sistema de espacios de estados.
@@ -146,13 +147,15 @@ Notar que esta función necesita como primer argumento un sistema de espacios de
 Si queremos la forma canónica de observabilidad podemos hacer:
 
 ```{code-cell} ipython3
-ctrl.canonical_form(sys, 'observable')
+sys_o,To = ctrl.canonical_form(sys, 'observable')
+sys_o, To
 ```
 
 Existe otra forma canónica de representación en espacio de estados que se la conoce como forma canónica modal. Esta la podemos obtener haciendo:
 
 ```{code-cell} ipython3
-ctrl.canonical_form(sys, 'modal')
+sys_m, Tm = ctrl.canonical_form(sys, 'modal')
+sys_m, Tm
 ```
 
 Esta forma canónica lo que hace es aislar los modos unos de otros. Es decir cada variables de estado aparece en la diagonal. Sin embargo, como vemos en este caso, no tenemos una forma diagonal de la matriz $\mathbf A$. Esto sucede por que hay casos que no se puede o no se desea aislarlos:
@@ -229,6 +232,11 @@ En esta forma canónica, la matriz $B$ como la conexión de la entrada con el mo
 ```{code-cell} ipython3
 G1=ctrl.tf(1,[1,1])
 G2=ctrl.tf([1,1],[1,2])
+G1
+```
+
+```{code-cell} ipython3
+G2
 ```
 
 Podemos ver que G1 tiene un polo en -1 y G2 tiene un polo en -2 y un cero en -1.
@@ -273,7 +281,8 @@ Vemos que el sistema conserva los mismos polos y los mismos ceros que el origina
 Obtengamos la forma canónica de controlabilidad del sistema
 
 ```{code-cell} ipython3
-ctrl.canonical_form(sys_c, 'reachable')
+sys_c, Tc=ctrl.canonical_form(sys_c, 'reachable')
+sys_c
 ```
 
 Podemos ver que las matrices $ \mathbf A$, $\mathbf B$, $\mathbf C$ y $\mathbf D$ coinciden con lo visto en teoría.
@@ -295,7 +304,6 @@ Un sistema observable necesita tener evidencia de lo que sucede con cada modo en
 
 ```
 
-
 +++
 
 Ahora hagamos la conexión al revés (primero $G1$ y luego $G2$):
@@ -308,7 +316,8 @@ sys_o
 Obtengamos la forma canónica observable:
 
 ```{code-cell} ipython3
-ctrl.canonical_form(sys_o, 'observable')
+sys_o, To=ctrl.canonical_form(sys_o, 'observable')
+sys_o
 ```
 
 Y ahora la forma canónica controlable:
@@ -338,7 +347,8 @@ La **controlabilidad** y la **observabilidad**  no pueden ser decididas a partir
 Estas dos mismas propiedades pueden ser analizadas con la forma modal. Tomemos el sistema $sys_C$ donde la entrada esta conectada a $G1$ y la salida a $G2$:
 
 ```{code-cell} ipython3
-ctrl.canonical_form(sys_c, 'modal')
+sys_mc, Tmc = ctrl.canonical_form(sys_c, 'modal')
+sys_mc
 ```
 
 Podemos ver que la matriz $\mathbf B$ tiene todos los valores distintos de 0. Esto significa que todos los modos están conectados a la entrada, por lo que deducimos que el sistema es controlable.
@@ -350,7 +360,8 @@ Pero podemos ver que $\mathbf C$ tiene un 0 en el primer elemento. Y que en la d
 Probemos ahora con la segunda conexión:
 
 ```{code-cell} ipython3
-ctrl.canonical_form(sys_o, 'modal')
+sys_mo, Tmo = ctrl.canonical_form(sys_o, 'modal')
+sys_mo
 ```
 
 Podemos ver ahora que la matriz $\mathbf C$ no tiene ningún valor igual a 0, por lo que ahora el sistema sería observable (todos los modos están presentes de alguna manera en la salida). Pero tenemos un 0 en la primer fila de $\mathbf B$, que se corresponde con el modo en -1. Esto quiere decir que no podemos excitar este modo. Por lo tanto no es controlable.
@@ -358,4 +369,3 @@ Podemos ver ahora que la matriz $\mathbf C$ no tiene ningún valor igual a 0, po
 ```{important}
 La controlabilidad y la observabilidad pueden ser evaluadas con el sistema en su forma **canónica modal** analizando las relaciones  de la matrices $\mathbf{B}$ y $\mathbf{C}$ con la matriz $\mathbf{A}$.
 ```
-

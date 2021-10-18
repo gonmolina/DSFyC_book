@@ -216,6 +216,7 @@ Segundo paso de simplificación
 Finalmente, en la siguiente figura obtenemos la función de transferencia $G(s) = \dfrac{Y(s)}{R(s)}$:
 
 $$ G(s) = \dfrac{Y(s)}{R(s)}=\dfrac{\dfrac{G_1.G_2}{1-G_1.G_3}}{1+\dfrac{G_1G_2G_4}{1-G_1G_3}}\left(G_5+\frac{G_6}{G_2}\right)$$
+
 $$ G(s)=\dfrac{G_1G_2G_5+G_1G_6}{1-G_1G_3+G_1G_2G_4} $$
 
 +++

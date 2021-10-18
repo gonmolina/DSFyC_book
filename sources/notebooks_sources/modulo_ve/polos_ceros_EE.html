@@ -1,0 +1,1003 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Polos y Ceros en los modelos de espacio de estados &#8212; Diseño y Ajuste de Sistemas de Control</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "gonmolina/DSFyC_book");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 comment");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
+    <script src="../../../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://gonmolina.github.io/DSFyC_book/sources/notebooks_sources/modulo_ve/polos_ceros_EE.html" />
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Formas canónicas de un espacio de estados" href="formas_canonicas.html" />
+    <link rel="prev" title="Ecuaciones útiles para el diseño del Lead por análisis en frecuencia" href="../modulo5/lead_lag_design.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/sala_de_control.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Diseño y Ajuste de Sistemas de Control</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Buscar este libro ..." aria-label="Buscar este libro ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../dsfc_sources/intro.html">
+   Material de la materia Dinámica de los Sistemas Físicos y Control
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Introducción a Python
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../gu%C3%ADa_instalaci%C3%B3n/guia_de_instalacion.html">
+   Guía de instalación de las herramientas computacionales
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro_python/Introducci%C3%B3n%20a%20los%20notebooks%20de%20Jupyter.html">
+   Introducción a los cuadernos de Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro_python/Extra_Python.html">
+   Introducción a Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro_python/Intro-Matplotlib.html">
+   Figuras en Python - MATPLOTLIB
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro_python/intro_sympy.html">
+   Introducción a SymPy
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Señales, sistemas y modelos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo1/intro_sys_sen/intro_sis_y_sen.html">
+   Definiciones de Sistemas y Señales
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo1/laplace/transformada_laplace_python_opcional.html">
+   Transformada de Laplace
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo1/laplace/funcion_transferencia.html">
+   Función transferencia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo1/diagrama_bloques/diagrama_de_bloques.html">
+   Diagramas de bloques
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../modulo1/espacio_estado/espacio_de_estados.html">
+   Representación de sistemas dinámicos en espacio de estados
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modulo1/espacio_estado/modelado_ss.html">
+     Modelado en espacio de estados
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo1/linealizacion/linealizacion.html">
+   Linealización de sistemas no-lineales
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../modulo1/ejemplos_sistemas/ejemplos_sistemas.html">
+   Ejemplos de modelos de sistemas
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modulo1/ejemplos_sistemas/resorte_no_lineal.html">
+     Sistema masa resorte amortiguador
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modulo1/ejemplos_sistemas/CineticaPuntual.html">
+     Ecuaciones de Cinética Puntual
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modulo1/ejemplos_sistemas/Nonlinear%20CSTR.html">
+     Sistema CSTR
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../modulo1/ejemplos_sistemas/Ejemplo_Presa_Depredador.html">
+     Sistema presa depredador (Lotka-Volterra)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Análisis de la respuesta temporal
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo2/estabilidad/estabilidad.html">
+   Estabilidad
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo2/respuesta%20temporal/Respuesta%20Temporal.html">
+   Respuesta temporal de sistemas dinámicos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo2/polos%20y%20ceros%20adicionales/Efecto%20Polos%20y%20Ceros%20Adicionales.html">
+   Efecto de los polos adicionales y de los ceros
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Análisis de estado estacionario
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo3/realimentacion/carateristicas%20de%20la%20realimentacion.html">
+   Características de la realimentación
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo3/sensibilidad/Sensibilidad.html">
+   Sensibilidad
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo3/errores/Errores.html">
+   Errores
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Lugar de las raíces
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo4/lugar%20de%20las%20raices.html">
+   Lugar de las raíces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo4/Pasos%20para%20el%20trazado.html">
+   Pasos para trazar el lugar geométrico de las raíces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo4/Lugar%20de%20la%20raices%20con%20Python.html">
+   Lugar de las raíces usando Python
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Respuesta en frecuencia
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_frec/respuesta_frecuencial.html">
+   Respuesta Frecuencial de Sistemas lineales y SISO
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo_frec/estabilidad_nyquist/estabilidad_en_frecuencia.html">
+   Estabilidad en Frecuencia
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Diseño de compensadores
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo5/compensadores.html">
+   Compensadores de adelanto y de retraso de fase
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo5/problema_levitador.html">
+   Problema de levitador magnético
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo5/tipo1_lead.html">
+   Problema con sistema de tipo 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulo5/lead_lag_design.html">
+   Ecuaciones útiles para el diseño del Lead por análisis en frecuencia
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Control Moderno
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Polos y Ceros en los modelos de espacio de estados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="formas_canonicas.html">
+   Formas canónicas de un espacio de estados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformacion_formas_canonicas.html">
+   Transformación lineal del espacio de estado
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ctrb_obsv.html">
+   Análisis de los sistemas en su forma de espacio de estados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="referencia.html">
+   Inserción de referencias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="estimadores.html">
+   Diseño de estimadores
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ejemplo_A_ve_motor_cc.html">
+   Diseño para un motor de continua
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ejemplo_B_ve_atitud_satelite.html">
+   Diseño del sistema de control del atitud de un satélite
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ejemplo_C_ve_pendulo_invertido.html">
+   Diseño del sistema de control del pédulo invertido
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Navegación de palanca" aria-controls="site-navigation"
+                title="Navegación de palanca" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Descarga esta pagina"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../../_sources/sources/notebooks_sources/modulo_ve/polos_ceros_EE.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Descargar archivo de cuaderno" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/sources/notebooks_sources/modulo_ve/polos_ceros_EE.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Descargar archivo fuente" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimir en PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/gonmolina/DSFyC_book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Repositorio de origen"><i
+                    class="fab fa-github"></i>repositorio</button></a>
+        <a class="issues-button"
+            href="https://github.com/gonmolina/DSFyC_book/issues/new?title=Issue%20on%20page%20%2Fsources/notebooks_sources/modulo_ve/polos_ceros_EE.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Abrir un problema"><i class="fas fa-lightbulb"></i>Tema abierto</button></a>
+        <a class="edit-button" href="https://github.com/gonmolina/DSFyC_book/edit/master/sources/notebooks_sources/modulo_ve/polos_ceros_EE.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edita esta página"><i class="fas fa-pencil-alt"></i>sugerir editar</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Modo de pantalla completa"
+        title="Modo de pantalla completa"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/gonmolina/DSFyC_book/master?urlpath=tree/sources/notebooks_sources/modulo_ve/polos_ceros_EE.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Lanzamiento Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contenido
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#polos-de-un-sistema">
+   Polos de un sistema
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ejercicio-1">
+   Ejercicio 1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solucion">
+   Solución
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cero-del-sistema">
+   Cero del sistema
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ejercicio-2">
+   Ejercicio 2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Solución
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">control</span> <span class="k">as</span> <span class="nn">ctrl</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="polos-y-ceros-en-los-modelos-de-espacio-de-estados">
+<h1>Polos y Ceros en los modelos de espacio de estados<a class="headerlink" href="#polos-y-ceros-en-los-modelos-de-espacio-de-estados" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="polos-de-un-sistema">
+<h2>Polos de un sistema<a class="headerlink" href="#polos-de-un-sistema" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Comenzaremos nuestro análisis tratando de respondernos ¿que es un polo en una función transferencia?¿Cómo identificamos un polo en el dominio temporal?</p>
+<p>Del control clásico podemos recordar que un <strong>polo</strong> es un valor de frecuencia generalizada <span class="math notranslate nohighlight">\(s\)</span> tal que si <span class="math notranslate nohighlight">\(s=p_i\)</span> el sistema puede responder a ciertas condiciones iniciales <span class="math notranslate nohighlight">\(\mathbf{x_0}\)</span> como <span class="math notranslate nohighlight">\(Ke^{p_it}\)</span> si no se está excitando al sistema con ninguna <span class="math notranslate nohighlight">\(u(t)\)</span>. En este contexto a <span class="math notranslate nohighlight">\(p_i\)</span> se le llama <strong>frecuencia natural</strong> o <strong>modo natural</strong> del sistema.</p>
+<p>Para obtener los polos de un sistema en espacio de estados, vamos a escribir en forma de ecuaciones de estado lo que describí en el parrafo anterior. Esto sería:</p>
+<div class="math notranslate nohighlight">
+\[u(t)=0,\qquad \mathbf{x}(t)=\mathbf{x}_0e^{p_it},\qquad y(t)=K_ye^{p_it},\]</div>
+<p>entonces se tiene que:</p>
+<div class="math notranslate nohighlight">
+\[\dot{\mathbf{x}}(t) = \mathbf{A}\mathbf{x}(t)+\mathbf{B}u(t) = \mathbf{A}e^{p_it}\mathbf{x}_0\]</div>
+<p>o escrito de otra forma:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{Ax}_0 = p_i\mathbf{x}_0.\]</div>
+<p>Donde sabemos que este es el problema de autovalores y autovectores de una matriz. Entonces aquí nuevamente vemos que los autovalores de la matriz <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> son los polos del sistema. Además, podemos ver que las condiciones iniciales correspondientes para que el sistema evolucione con todos sus estados unicamente con el modo natura <span class="math notranslate nohighlight">\(p_i\)</span> son las que se encuentran en la dirección del autovector correspondiente a ese autovalor <span class="math notranslate nohighlight">\(p_i\)</span>,</p>
+</div>
+<div class="section" id="ejercicio-1">
+<h2>Ejercicio 1<a class="headerlink" href="#ejercicio-1" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Dado un sistema descripto por las siguienter matrices del espacio de estados:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{A}=
+  \begin{bmatrix}
+    -3 &amp; 2\\
+    -1 &amp; 0
+  \end{bmatrix},\qquad
+\mathbf{B}=
+  \begin{bmatrix}
+    1\\
+    0
+  \end{bmatrix},\qquad
+\mathbf{C}=
+  \begin{bmatrix}
+    -3 &amp; 2
+  \end{bmatrix},\qquad
+D = 0
+\end{split}\]</div>
+<p>Usando la teoría obtener los polos del sistema y condiciones iniciales a partir de las cuales todos los estados del sistema evolucionen solo con el mismo modo natural. Obtener una condición inicial para cada modo y verificar superponiendo graficas.</p>
+</div>
+<div class="section" id="solucion">
+<h2>Solución<a class="headerlink" href="#solucion" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para resolver esto vamos a usar <code class="docutils literal notranslate"><span class="pre">sympy</span></code>, aunque facilmente se hubiera podido usar <code class="docutils literal notranslate"><span class="pre">numpy</span></code> ya que el problema de autovalores en general no dificultoso de resolver computacionalmente. Sin embargo, primero vamos a implementar el sistema usando el paquete de control de Python.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">=</span><span class="p">[[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]]</span>
+<span class="n">B</span><span class="o">=</span><span class="p">[[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">]]</span>
+<span class="n">C</span><span class="o">=</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">]]</span>
+<span class="n">D</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">sys</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">D</span><span class="p">)</span>
+<span class="n">sys</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\left(
+\begin{array}{rllrll|rll}
+-3\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;2\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+-1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\hline
+1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-3\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\end{array}\right)
+\end{split}\]</div>
+</div>
+</div>
+<p>Vamos a escribir en <code class="docutils literal notranslate"><span class="pre">sympy</span></code> el problema a resolver. Para eso primero defino los simbolos a utilizar:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pi</span><span class="p">,</span> <span class="n">x01</span><span class="p">,</span> <span class="n">x02</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;pi, x01, x02&#39;</span><span class="p">)</span>
+<span class="n">x0</span><span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="n">x01</span><span class="p">,</span> <span class="n">x02</span><span class="p">])</span>
+<span class="n">Asp</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">polos</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">det</span><span class="p">((</span><span class="n">pi</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">Asp</span><span class="p">)),</span> <span class="n">pi</span><span class="p">)</span> <span class="c1"># resuelvp det(piI-A)=0 variando pi</span>
+<span class="n">polos</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-2, -1]
+</pre></div>
+</div>
+</div>
+</div>
+<p>De esta manera tenemos los autovalores. Para obtener un autovector para el polo en -2, podemos hacer:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span><span class="o">.</span><span class="n">solve</span><span class="p">((</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">Asp</span><span class="p">)</span><span class="o">*</span><span class="n">x0</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{x01: 2*x02}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esto quiere decir que <code class="docutils literal notranslate"><span class="pre">x01</span></code> tiene que ser 2 veces <code class="docutils literal notranslate"><span class="pre">x02</span></code>. Bien! tenemos el conjunto completo de autectores para ese autovalor en forma simbólica.</p>
+<p>Haciendo lo mismo para el polo en -1:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span><span class="o">.</span><span class="n">solve</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">Asp</span><span class="p">)</span><span class="o">*</span><span class="n">x0</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{x01: x02}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esto se traduce como que el conjunto de autovectores válidos para ese autovalor es <code class="docutils literal notranslate"><span class="pre">x01</span></code>=<code class="docutils literal notranslate"><span class="pre">x02</span></code>. Con los autovalores y autovectores tenemos entonces el problema podemos corroborar lo dicho en teoría haciendo una simulación del sistema frente a las condiciones iniciales dadas por un autovalor y verificar que responde según la dinámica del modo del autovalor asociado.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pi</span><span class="o">=-</span><span class="mi">2</span>
+<span class="n">x02</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">x01</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">x02</span>
+<span class="n">tp1</span><span class="p">,</span><span class="n">yp1</span><span class="p">,</span><span class="n">xp1</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">initial_response</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="n">X0</span><span class="o">=</span><span class="p">[</span><span class="n">x01</span><span class="p">,</span> <span class="n">x02</span><span class="p">],</span> <span class="n">return_x</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tp1</span><span class="p">,</span> <span class="n">xp1</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;estado 1&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tp1</span><span class="p">,</span> <span class="n">x01</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">pi</span><span class="o">*</span><span class="n">tp1</span><span class="p">),</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;verificación estado 1&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tp1</span><span class="p">,</span> <span class="n">xp1</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;estado 2&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tp1</span><span class="p">,</span> <span class="n">x02</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">pi</span><span class="o">*</span><span class="n">tp1</span><span class="p">),</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;verificación estado 2&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Verificación del polo en -2&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/polos_ceros_EE_16_0.png" src="../../../_images/polos_ceros_EE_16_0.png" />
+</div>
+</div>
+<p>Podemos ver que la respuesta de los estados (y por ende la salida) se corrsponden con una dinámica en el modo -2.</p>
+<p>Repetimos el procedimiento para el otro polo:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pi</span><span class="o">=-</span><span class="mi">1</span>
+<span class="n">x02</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">x01</span><span class="o">=</span><span class="n">x02</span>
+<span class="n">tp1</span><span class="p">,</span><span class="n">yp1</span><span class="p">,</span><span class="n">xp1</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">initial_response</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="n">X0</span><span class="o">=</span><span class="p">[</span><span class="n">x01</span><span class="p">,</span> <span class="n">x02</span><span class="p">],</span> <span class="n">return_x</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tp1</span><span class="p">,</span> <span class="n">xp1</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;estado 1&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tp1</span><span class="p">,</span> <span class="n">x01</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">pi</span><span class="o">*</span><span class="n">tp1</span><span class="p">),</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;verificación estado 1&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tp1</span><span class="p">,</span> <span class="n">xp1</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;estado 2&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tp1</span><span class="p">,</span> <span class="n">x02</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">pi</span><span class="o">*</span><span class="n">tp1</span><span class="p">),</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;verificación estado 2&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Verificación del polo en -1&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/polos_ceros_EE_18_0.png" src="../../../_images/polos_ceros_EE_18_0.png" />
+</div>
+</div>
+<p>Notar que el problema de autovalores y autovectores lo hemos resuleto usando <code class="docutils literal notranslate"><span class="pre">sympy</span></code>. Sin embargo, en la práctica es más sencillo resolver este problema numericamente usando <code class="docutils literal notranslate"><span class="pre">numpy</span></code>. Es decir:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aval</span><span class="p">,</span> <span class="n">avec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">aval</span><span class="p">,</span> <span class="n">avec</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([-2., -1.]),
+ array([[-0.89442719, -0.70710678],
+        [-0.4472136 , -0.70710678]]))
+</pre></div>
+</div>
+</div>
+</div>
+<p>La solución numérica del autovalor dada por <code class="docutils literal notranslate"><span class="pre">numpy</span></code> es la que se corresponde con módulo 1. Es decir me devuelve un autovector de módulo 1 por cada autovalor.</p>
+</div>
+<div class="section" id="cero-del-sistema">
+<h2>Cero del sistema<a class="headerlink" href="#cero-del-sistema" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>De control clásico sabemos que un <strong>cero</strong> <span class="math notranslate nohighlight">\(z_i\)</span> es un punto de frecuencia generalizada <span class="math notranslate nohighlight">\(s\)</span> tal que el sistema puede ser excitado en esa frecuencia (<span class="math notranslate nohighlight">\(u(t) = u_0e^{z_it}\)</span>), tener estados no nulos (<span class="math notranslate nohighlight">\(\mathbf{x}_0\neq \mathbf{0}\)</span>) y aún así su salida es nula (<span class="math notranslate nohighlight">\(y(t)\equiv 0\)</span>).</p>
+<p>Si escribimos en forma de espacio de estados lo que acabamos de decir del cero, tenemos entonces que:</p>
+<div class="math notranslate nohighlight">
+\[u=u_0e^{z_it},\qquad \mathbf{x}(t)=\mathbf{x}_0e^{z_it},\qquad y(t)\equiv 0\]</div>
+<p>Por lo tanto:</p>
+<div class="math notranslate nohighlight">
+\[\dot {\mathbf{x}} =z_ie^{z_it}\mathbf{x}_0=\mathbf{A}e^{z_it}\mathbf{x}_0+\mathbf{B}u_0e^{z_it}\]</div>
+<p>o lo que es lo mismo:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+z_i\mathbf{I}-\mathbf{A}&amp;-\mathbf{B}\end{bmatrix}\begin{bmatrix}\mathbf{x}_0\\u_0\end{bmatrix}=\mathbf{0}.
+\end{split}\]</div>
+<p>Para la salida tenemos:</p>
+<div class="math notranslate nohighlight">
+\[y(t) = \mathbf{C}\mathbf{x}(t) + Du(t) = \mathbf{C}e^{z_it}\mathbf{x}_0+Du_0e^{z_it}\equiv 0 \]</div>
+<p>o lo que es lo mismo:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}\mathbf{C}&amp;D\end{bmatrix}\begin{bmatrix}\mathbf{x}_0\\u_0\end{bmatrix}=0.
+\end{split}\]</div>
+<p>Combinando las dos anteriores:
+$<span class="math notranslate nohighlight">\(
+\begin{bmatrix}
+  z_i\mathbf{I}-\mathbf{A}&amp;-\mathbf{B}\\
+  \mathbf{C}&amp;D
+\end{bmatrix}
+\begin{bmatrix}
+  \mathbf{x}_0\\
+  u_0
+  \end{bmatrix} = 
+\begin{bmatrix}
+  \mathbf{0}\\
+  0
+\end{bmatrix}
+\)</span>$</p>
+<p>Vemos que este sistema tiene solución más allá de la trivial, unicamente si el determinante de la matriz de la izquierda anterior es 0. Es decir:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\det{\begin{bmatrix}
+  z_i\mathbf{I}-\mathbf{A}&amp;-\mathbf{B}\\
+  \mathbf{C}&amp;D
+\end{bmatrix}} = 0\end{split}\]</div>
+<p>Los valores de <span class="math notranslate nohighlight">\(z_i\)</span> que cumplan con la ecuación anterior son los ceros de transferencia del sistema.</p>
+</div>
+<div class="section" id="ejercicio-2">
+<h2>Ejercicio 2<a class="headerlink" href="#ejercicio-2" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Obtener los ceros de transferencia para el sistema del ejercicio anterior mediante la formula recien obtenida.</p>
+</div>
+<div class="section" id="id1">
+<h2>Solución<a class="headerlink" href="#id1" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para resolver este problema de forma simbólica utilizaré <code class="docutils literal notranslate"><span class="pre">sympy</span></code>. Por lo tanto lo primer que haré será escribir todas las matrices en en modulo de <code class="docutils literal notranslate"><span class="pre">sympy</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zi</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;zi&#39;</span><span class="p">)</span>
+<span class="n">Asp</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">Bsp</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="n">Csp</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+<span class="n">Dsp</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="n">D</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Vamos a escribir la matriz para la cual tenemos que resolver el determinante:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">abcd</span> <span class="o">=</span> <span class="p">(</span><span class="n">zi</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">Asp</span><span class="p">)</span><span class="o">.</span><span class="n">col_insert</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="n">Bsp</span><span class="p">)</span><span class="o">.</span><span class="n">row_insert</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">Csp</span><span class="o">.</span><span class="n">col_insert</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">Dsp</span><span class="p">))</span>
+<span class="n">abcd</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}zi + 3 &amp; -2 &amp; -1\\1 &amp; zi &amp; 0\\1 &amp; -3 &amp; 0\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zi</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">abcd</span><span class="p">),</span><span class="n">zi</span><span class="p">)</span>
+<span class="n">zi</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-3]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Vemos que entonces el determinante de la matriz armada tiene un solo cero en <span class="math notranslate nohighlight">\(z_i=-3\)</span>. Por lo que el sistema tiene un solo cero en -3.</p>
+<p>Vamos a obtener ahora las condiciones iniciales <span class="math notranslate nohighlight">\(\mathbf{x_0}\)</span> y <span class="math notranslate nohighlight">\(u_0\)</span> para las cuales el sistema tiene salida nula por más que se lo excite con una señal <span class="math notranslate nohighlight">\(u(t)\)</span> tal que <span class="math notranslate nohighlight">\(u(t)=u_0e^{-3t}\)</span>.</p>
+<p>Sabemos que la matriz <code class="docutils literal notranslate"><span class="pre">abcd</span></code> anterior es de determinante 0, <span class="math notranslate nohighlight">\(z_i=-3\)</span>. Por lo que existen inifinitas soluciones para <span class="math notranslate nohighlight">\(\mathbf x_0, u_0\)</span> que cumplen con:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+z_i\mathbf{I}-\mathbf{A}&amp;-\mathbf{B}\end{bmatrix}\begin{bmatrix}\mathbf{x}_0\\u_0\end{bmatrix}=\mathbf{0}.
+\end{split}\]</div>
+<p>Asumimos <span class="math notranslate nohighlight">\(u_0=1\)</span> y resolvemos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x10</span><span class="p">,</span> <span class="n">x20</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x10, x20&#39;</span><span class="p">)</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="n">x10</span><span class="p">,</span> <span class="n">x20</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">solve</span><span class="p">((</span><span class="n">abcd</span><span class="o">*</span><span class="n">x0</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s1">&#39;zi&#39;</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">},</span> <span class="n">x0</span><span class="p">))</span>
+<span class="n">sol</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{x10: -3/2, x20: -1/2, zi: -3}]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Vamos a poner las condiciones iniciales en formato numérico, ya que por más que tenga un valor, siguen siendo datos del tipo de <code class="docutils literal notranslate"><span class="pre">sympy</span></code> es decir, simbólicos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x0</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">x10</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">x20</span><span class="p">])]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Y ahora simulamos el sistema con la respuesta forzada <span class="math notranslate nohighlight">\(u(t)=e^{-3t}\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">20001</span><span class="p">)</span>
+<span class="n">tz</span><span class="p">,</span><span class="n">yz</span><span class="p">,</span><span class="n">xz</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">forced_response</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="n">X0</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">x10</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">x20</span><span class="p">])],</span> <span class="n">return_x</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Voy a graficar la salida en dos escalas:</p>
+<ul class="simple">
+<li><p>en la primera la que por default muestra la librería <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></p></li>
+<li><p>la segunda una escala más normal para los valroes que estamos manejando en el sistema.</p></li>
+</ul>
+<p>Podemos ver que la salida se mantiene muy cercana a cero. El alejamiento de cero se debe a errores numéricos presentes sobre todo en la aproximación de la entrada (para el módulo de control cuando la simula la entrada será escalonada).</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tz</span><span class="p">,</span><span class="n">yz</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tz</span><span class="p">,</span><span class="n">yz</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">.01</span><span class="p">,</span><span class="mf">0.01</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo[s]&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/polos_ceros_EE_36_0.png" src="../../../_images/polos_ceros_EE_36_0.png" />
+</div>
+</div>
+<p>Finalmente, para verificar que todos los cáculos realizados son correctos podemos obtener la función transferencia del sistema en espacio de estados.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="n">sys</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{s + 3}{s^2 + 3 s + 2}\]</div>
+</div>
+</div>
+<p>O directamente pedirle al módulo de control que nos devuelva los polos y los ceros:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">pole</span><span class="p">(),</span> <span class="n">sys</span><span class="o">.</span><span class="n">zero</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([-2., -1.]), array([-3.+0.j]))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Que vemos son los mismos que obtuvimos a partir de las definiciones teóricas de lo que significa un polo y un cero en el dominio temporal.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./sources/notebooks_sources/modulo_ve"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../modulo5/lead_lag_design.html" title="anterior página">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">anterior</p>
+                <p class="prevnext-title">Ecuaciones útiles para el diseño del Lead por análisis en frecuencia</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="formas_canonicas.html" title="siguiente página">
+            <div class="prevnext-info">
+                <p class="prevnext-label">siguiente</p>
+                <p class="prevnext-title">Formas canónicas de un espacio de estados</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          Por Somebody<br/>
+        
+            &copy; Derechos de autor 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

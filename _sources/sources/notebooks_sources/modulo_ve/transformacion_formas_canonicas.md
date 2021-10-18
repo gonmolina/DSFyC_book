@@ -5,9 +5,9 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.2
+    jupytext_version: 1.10.3
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -53,8 +53,7 @@ $$
 \end{array}
 $$
 
-
-+++ 
++++
 
 # Transformación a la forma canónica de controlabilidad
 
@@ -76,7 +75,7 @@ C_c=\begin{bmatrix}
 c_1&c_2&c_3
 \end{bmatrix}, \qquad D_c=\begin{bmatrix}0\end{bmatrix}$$
 
-+++ 
++++
 
 Como vimos anteriormente, una transformación lineal mediante la matriz $\mathbf T$, que hace:
 
@@ -111,7 +110,7 @@ $$
 \end{bmatrix}
 $$
 
-+++ 
++++
 
 Trabajando con las columnas 2 y 3 se tiene que:
 
@@ -120,7 +119,7 @@ $$\left.\begin{array}{lll}
 \mathbf{t_2} &=& \mathbf{t_3 A}\end{array}\right\}\implies \mathbf{t_1} =\mathbf{t_3A}^2
 $$
 
-+++ 
++++
 
 Por otro lado, asumiendo que $\mathbf B_c$ está en la forma canónica de control, tenemos la relación
 
@@ -176,7 +175,7 @@ $$
 \end{bmatrix}
 $$
 
-+++ 
++++
 
 ## Definición:
 **Un sistema es controlable si existe su forma canónica de controlabilidad.**
@@ -210,7 +209,7 @@ $$
 1&0&0
 \end{bmatrix}, \qquad D_o=\begin{bmatrix}0\end{bmatrix}$$
 
-+++ 
++++
 
 Como vimos anteriormente, una transformación lineal mediante la matriz $\mathbf{T}$, que hace:
 
@@ -229,7 +228,7 @@ $$
 \end{array}
 $$
 
-+++ 
++++
 
 Como queremos obtener el forma canónica de observabilidad llamamos $\mathbf{\bar A} = \mathbf{A_o}$, $\mathbf{\bar B} =  \mathbf{B_o}$, $\mathbf{\bar C} = \mathbf{C_o}$ y a $\bar D = D_o$. 
 
@@ -246,7 +245,7 @@ $$
 
 donde $\mathbf{t_1}, \mathbf{t_2}, \mathbf{t_3}$ son vectores columnas que se corresponden con las columnas de $\mathbf{T}$.
 
-+++ 
++++
 
 De esta manera tenemos que:
 
@@ -261,7 +260,7 @@ $$
 \mathbf{At_1}&\mathbf{At_2}&\mathbf{At_3}
 \end{bmatrix}$$
 
-+++ 
++++
 
 De esta manera podemos obtener las siguientes igualdades:
 
@@ -270,7 +269,7 @@ $$
 \mathbf{t_1} &=& \mathbf{At_2}\\
 \mathbf{t_2} &=& \mathbf{At_3}\end{array}\right\}\implies \mathbf{t_1} =\mathbf{A^2t_3}$$
 
-+++ 
++++
 
 Usando la ecuación de la transformación de la matriz $\mathbf{C_o=CT}$, se tiene que:
 
@@ -282,7 +281,7 @@ $$\begin{bmatrix}
 \mathbf{CA}^2\mathbf{t_3}&\mathbf{CAt_3}&\mathbf{Ct_3}
 \end{bmatrix}$$
 
-+++ 
++++
 
 Esto lo podemos reordenar como un sistema de ecuaciones en forma matricial de la siguiente manera:
 
@@ -296,7 +295,7 @@ $$\begin{bmatrix}
 1
 \end{bmatrix}$$
 
-+++ 
++++
 
 Llamando a la matriz de observabilidad 
 
@@ -308,7 +307,7 @@ $$\mathcal{O}=\begin{bmatrix}
 
 podemos obtener $\mathbf{t_3}$ que es la última columna de la matriz de transformación $\mathbf{T}$, y con esta la otras columnas de la matriz de transformación.
 
-+++ 
++++
 
 En general para un sistema de orden $n$, la matriz $\mathcal{O}$ resulta
 
@@ -351,23 +350,17 @@ import control as ctrl
 import numpy as np
 ```
 
-+++ 
-
 Definimos los parámetros del sistema
 
 ```{code-cell} ipython3
-
 b=20
 k=10
 m=1
 ```
 
-+++ 
-
 Definimos las matrices del sistema a partir de las ecuaciones diferenciales:
 
 ```{code-cell} ipython3
-
 A=np.array([[0,1],
    [-k/m, -b/m]])
 
@@ -377,8 +370,6 @@ D=np.array([0])
 sys = ctrl.ss(A,B,C,D)
 sys
 ```
-
-+++ 
 
 Para obtener la forma canónica de observabilidad debemos obtener la matriz $\mathcal{O}$. Como el sistema es de orden 2 es:
 
@@ -392,22 +383,16 @@ $$\mathcal{O}=\begin{bmatrix}
 Apilamos verticalmente $\mathbf C$ y $\mathbf{CA}$
 
 ```{code-cell} ipython3
-
 O=np.vstack((sys.C, sys.C@sys.A))
 O
 ```
 
-+++ 
-
 Ahora calculamos la última columna de $\mathbf T$.
 
 ```{code-cell} ipython3
-
 t2=np.linalg.inv(O)*np.matrix("0;1")
 t2
 ```
-
-+++ 
 
 Calculamos la columna $\mathbf {t_1}$
 
@@ -418,8 +403,6 @@ t1=A@t2
 ```{code-cell} ipython3
 t1
 ```
-
-+++ 
 
 Apilamos horizontalmente $\mathbf{t_1}$ y $\mathbf{t_2}$.
 
@@ -433,19 +416,14 @@ invT=np.linalg.inv(T)
 invT
 ```
 
-+++
-
 Finalmente calculamos las matrices del sistema transformado:
 
 ```{code-cell} ipython3
-
 Ao=invT@sys.A@T
 Bo=invT@B
 Co=sys.C@T
 Do=D
 ```
-
-+++ 
 
 Podemos verificar que las funciones transferencias del sistema antes de transformar y después de transformarlo son las mismas:
 
@@ -457,8 +435,6 @@ sys_o
 ```{code-cell} ipython3
 print("sistema sin transformar:",ctrl.tf(sys),"sistema en su forma canónica de observabilidad:", ctrl.tf(sys_o))
 ```
-
-+++
 
 ## Obtención de la forma canónica de controlabilidad
 
@@ -476,16 +452,12 @@ Con=np.hstack((sys.B,sys.A@sys.B))
 Con
 ```
 
-+++ 
-
 Ahora calculamos la última fila de $\mathbf{T}^{-1}$, $\mathbf{t2}$
 
 ```{code-cell} ipython3
 t2=np.matrix([[0,1]])*np.linalg.inv(Con)
 t2
 ```
-
-+++
 
 Calculamos la fila $\mathbf {t_1}$
 
@@ -497,15 +469,12 @@ t1=t2@A
 t1
 ```
 
-+++ 
 Apilamos verticalmente $\mathbf{t_1}$ y $\mathbf{t_2}$.
 
 ```{code-cell} ipython3
 invT=np.vstack((t1,t2))
 T=np.linalg.inv(invT)
 ```
-
-+++
 
 Finalmente calculamos las matrices del sistema transformado:
 
@@ -516,8 +485,6 @@ Cc=sys.C@T
 Dc=D
 ```
 
-+++
-
 Podemos verificar que las funciones transferencias del sistema antes de transformar y después de transformarlo son las mismas:
 
 ```{code-cell} ipython3
@@ -527,8 +494,6 @@ sys_c=ctrl.ss(Ac,Bc,Cc,Dc)
 ```{code-cell} ipython3
 print("sistema sin transformar:",ctrl.tf(sys),"sistema en su forma canónica de controlabilidad:", ctrl.tf(sys_c))
 ```
-
-+++
 
 ## Transformación a la forma canónica modal:
 
@@ -594,7 +559,7 @@ Si todos los estados están conectados con la entrada entonces el sistema es con
 
 Si todos los estados están conectados con la salida entonces el sistema es observable. Para que se de esto, la matriz $\mathbf{C_m}$ tiene que tener todas sus componentes distintas de 0.
 
-+++ 
++++
 
 ## Ejemplo de transformación a la forma canónica modal
 
@@ -608,16 +573,12 @@ print("autovectores:\n ", v)
 print("autovalores:\n ", lamb )
 ```
 
-+++
-
 La matriz de transformación T es la de los autovectores. Entonces:
 
 ```{code-cell} ipython3
 T=v
 invT=np.linalg.inv(T)
 ```
-
-+++
 
 Calculamos la transformación:
 
@@ -636,19 +597,17 @@ sys_m = ctrl.ss(Am,Bm,Cm,Dm)
 sys_m
 ```
 
-+++
-
 Observando la matriz $\mathbf{A}$ del sistema en su forma canónica modal tiene en su diagonal lo autovalores, y fuera de esto valores igual a 0 o muy cercanos a ceros. Las diferencias con ceros son error numéricos y podemos considerar que la transformación resultó correcta.
 
-+++ 
++++
 
 Por otro lado podemos ver que todos las componentes de B en esta forma canónica son distintos de 0, por lo que el sistema es controlable.
 
-+++ 
++++
 
 Finalmente, para el sistema en la forma canónica modal, todas las componentes de C son distintas de 0,por lo que el sistema es observable.
 
-+++ 
++++
 
 ```{warning}
 Respecto al uso de numpy. La multiplicación de matrices usando el * la entiende como elemento a elemento si el tipo de datos es un ndarray o un array. Si usamos ese tipo de datos, entonces para que numpy entienda multiplicación de matrices se debe usar el símbolo @. Si el tipo de datos que se está operando es una matriz de `numpy` entonces la multiplicación de matrices se puede hacer con *.
