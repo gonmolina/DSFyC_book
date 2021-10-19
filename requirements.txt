@@ -22,7 +22,9 @@ pandas
 pybtex
 pybtex-docutils
 pydata-sphinx-theme
+scikit-build
 scipy
+slycot
 smmap
 soupsieve
 sphinx-book-theme
