@@ -91,7 +91,7 @@ commentsRunWhenDOMLoaded(addUtterances);
     <link rel="canonical" href="https://gonmolina.github.io/DSFyC_book/sources/notebooks_sources/modulo_ve/ctrb_obsv.html" />
     <link rel="index" title="Índice" href="../../../genindex.html" />
     <link rel="search" title="Búsqueda" href="../../../search.html" />
-    <link rel="next" title="Inserción de referencias" href="referencia.html" />
+    <link rel="next" title="Elección de la ubicación de los polos a lazo cerrado" href="LSR.html" />
     <link rel="prev" title="Transformación lineal del espacio de estado" href="transformacion_formas_canonicas.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -383,6 +383,11 @@ commentsRunWhenDOMLoaded(addUtterances);
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="LSR.html">
+   Elección de la ubicación de los polos a lazo cerrado
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="referencia.html">
    Inserción de referencias
   </a>
@@ -517,6 +522,11 @@ commentsRunWhenDOMLoaded(addUtterances);
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ejercicio-analisis-de-controlabilidad-y-observabilidad">
+   Ejercicio análisis de Controlabilidad y Observabilidad
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ejemplo-de-conexion-de-sistemas">
    Ejemplo de conexión de sistemas
   </a>
@@ -565,24 +575,14 @@ commentsRunWhenDOMLoaded(addUtterances);
 <p>Antes de seguir, verificamos que los polos de <span class="math notranslate nohighlight">\(G\)</span> sean los autovalores de <span class="math notranslate nohighlight">\(\mathbf {Ac}\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">pole</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">pole</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">Ac</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.+1.41421356j, -1.-1.41421356j])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">Ac</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.+1.41421356j, -1.-1.41421356j])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-1.+1.41421356j -1.-1.41421356j]
+[-1.+1.41421356j -1.-1.41421356j]
 </pre></div>
 </div>
 </div>
@@ -631,6 +631,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <p>Si <span class="math notranslate nohighlight">\(sys\)</span> tiene los mismos polos, los mismos ceros y la misma ganancia en estado estacionario, entonces se comportará igual que <span class="math notranslate nohighlight">\(G\)</span>.</p>
+<p>Veamos los polos:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_c</span><span class="o">.</span><span class="n">pole</span><span class="p">()</span>
@@ -643,6 +644,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 </div>
+<p>Ahora los ceros:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_c</span><span class="o">.</span><span class="n">zero</span><span class="p">()</span>
@@ -655,6 +657,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 </div>
+<p>Y la ganancia en estado estacionario en particular (o en cualquier frecuencia en general):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_c</span><span class="o">.</span><span class="n">dcgain</span><span class="p">()</span>
@@ -928,14 +931,8 @@ commentsRunWhenDOMLoaded(addUtterances);
 <p>Finalmente obtengamos la forma canónica modal:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys2_m</span><span class="p">,</span> <span class="n">_</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys2</span><span class="p">,</span> <span class="s1">&#39;modal&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys2_m</span><span class="o">.</span><span class="n">A</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys2_m</span><span class="p">,</span> <span class="n">Tm</span> <span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys2</span><span class="p">,</span> <span class="s1">&#39;modal&#39;</span><span class="p">)</span>
+<span class="n">sys2_m</span><span class="o">.</span><span class="n">A</span>
 </pre></div>
 </div>
 </div>
@@ -951,8 +948,10 @@ commentsRunWhenDOMLoaded(addUtterances);
 <p class="admonition-title">Nota</p>
 <ul class="simple">
 <li><p>La función <code class="docutils literal notranslate"><span class="pre">canonical_form</span></code> devuelve un sistema en la forma canónica solicitada y la matriz de transformación necesaria para obtenerlo</p></li>
-<li><p>en la diagonal de <span class="math notranslate nohighlight">\(\mathbf A\)</span> tenemos los modos del sistema (polos de <span class="math notranslate nohighlight">\(G\)</span> o autovalores de <span class="math notranslate nohighlight">\(A\)</span>)</p></li>
-<li><p>fuera de la diagonal <span class="math notranslate nohighlight">\(\mathbf A\)</span> tenemos ceros o valores muy cercanos a ceros (debido a problemas numéricos en el cálculo)</p></li>
+<li><p>en la diagonal de la matriz  <span class="math notranslate nohighlight">\(\mathbf A\)</span> de la forma canónica modal tenemos los modos del sistema (polos de <span class="math notranslate nohighlight">\(G\)</span> o autovalores de <span class="math notranslate nohighlight">\(A\)</span>)</p></li>
+<li><p>fuera de la diagonal <span class="math notranslate nohighlight">\(\mathbf A\)</span> tenemos ceros o valores muy cercanos a ceros (debido a problemas numéricos en el cálculo).</p></li>
+<li><p>En caso de tener autovalores repetidos, tendremos una matriz <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> diagonal por bloques. Los valores fuera de la diagonal serán 1.</p></li>
+<li><p>En general, los autovalores complejos conjugados tampoco se ponen en la diagonal, para evitar tener tener matrices con valores complejos.</p></li>
 </ul>
 </div>
 <p>Verificamos el resto de las matrices:</p>
@@ -995,6 +994,10 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <p>En esta forma canónica, la matriz <span class="math notranslate nohighlight">\(B\)</span> como la conexión de la entrada con el modo del sistema . Y de forma análoga a la matriz <span class="math notranslate nohighlight">\(C\)</span> como la conexión del modo con la salida del sistema.</p>
+<div class="section" id="ejercicio-analisis-de-controlabilidad-y-observabilidad">
+<h2>Ejercicio análisis de Controlabilidad y Observabilidad<a class="headerlink" href="#ejercicio-analisis-de-controlabilidad-y-observabilidad" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Sunpongamos que se tienen las sieguentes funciones transferencias <span class="math notranslate nohighlight">\(G_1\)</span> y <span class="math notranslate nohighlight">\(G_2\)</span>:</p>
+</div>
 <div class="section" id="ejemplo-de-conexion-de-sistemas">
 <h2>Ejemplo de conexión de sistemas<a class="headerlink" href="#ejemplo-de-conexion-de-sistemas" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="cell docutils container">
@@ -1116,7 +1119,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_6415</span><span class="o">/</span><span class="mf">4150826842.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_6653</span><span class="o">/</span><span class="mf">4150826842.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys_c</span><span class="p">,</span> <span class="s1">&#39;observable&#39;</span><span class="p">)</span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/control/canonical.py</span> in <span class="ni">canonical_form</span><span class="nt">(xsys, form)</span>
@@ -1195,7 +1198,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_6415</span><span class="o">/</span><span class="mf">2099819848.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_6653</span><span class="o">/</span><span class="mf">2099819848.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys_o</span><span class="p">,</span> <span class="s1">&#39;reachable&#39;</span><span class="p">)</span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/control/canonical.py</span> in <span class="ni">canonical_form</span><span class="nt">(xsys, form)</span>
@@ -1318,10 +1321,10 @@ commentsRunWhenDOMLoaded(addUtterances);
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="referencia.html" title="siguiente página">
+        <a class="right-next" href="LSR.html" title="siguiente página">
             <div class="prevnext-info">
                 <p class="prevnext-label">siguiente</p>
-                <p class="prevnext-title">Inserción de referencias</p>
+                <p class="prevnext-title">Elección de la ubicación de los polos a lazo cerrado</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

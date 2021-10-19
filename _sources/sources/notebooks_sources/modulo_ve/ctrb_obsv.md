@@ -40,11 +40,8 @@ Ac
 Antes de seguir, verificamos que los polos de $G$ sean los autovalores de $\mathbf {Ac}$
 
 ```{code-cell} ipython3
-G.pole()
-```
-
-```{code-cell} ipython3
-np.linalg.eigvals(Ac)
+print(G.pole())
+print(np.linalg.eigvals(Ac))
 ```
 
 Ahora definimos el resto de las matrices
@@ -71,13 +68,21 @@ sys_c=ctrl.ss(Ac,Bc,Cc,Dc)
 
 Si $sys$ tiene los mismos polos, los mismos ceros y la misma ganancia en estado estacionario, entonces se comportará igual que $G$.
 
+Veamos los polos:
+
 ```{code-cell} ipython3
 sys_c.pole()
 ```
 
+Ahora los ceros:
+
 ```{code-cell} ipython3
 sys_c.zero()
 ```
+
++++ {"tags": []}
+
+Y la ganancia en estado estacionario en particular (o en cualquier frecuencia en general):
 
 ```{code-cell} ipython3
 sys_c.dcgain()
@@ -194,17 +199,17 @@ ctrl.canonical_form(sys2, 'observable')
 Finalmente obtengamos la forma canónica modal:
 
 ```{code-cell} ipython3
-sys2_m, _=ctrl.canonical_form(sys2, 'modal')
-```
-
-```{code-cell} ipython3
+sys2_m, Tm =ctrl.canonical_form(sys2, 'modal')
 sys2_m.A
+
 ```
 
 ```{note}
 - La función `canonical_form` devuelve un sistema en la forma canónica solicitada y la matriz de transformación necesaria para obtenerlo
-- en la diagonal de $\mathbf A$ tenemos los modos del sistema (polos de $G$ o autovalores de $A$)
-- fuera de la diagonal $\mathbf A$ tenemos ceros o valores muy cercanos a ceros (debido a problemas numéricos en el cálculo)
+- en la diagonal de la matriz  $\mathbf A$ de la forma canónica modal tenemos los modos del sistema (polos de $G$ o autovalores de $A$)
+- fuera de la diagonal $\mathbf A$ tenemos ceros o valores muy cercanos a ceros (debido a problemas numéricos en el cálculo).
+- En caso de tener autovalores repetidos, tendremos una matriz $\mathbf{A}$ diagonal por bloques. Los valores fuera de la diagonal serán 1.
+- En general, los autovalores complejos conjugados tampoco se ponen en la diagonal, para evitar tener tener matrices con valores complejos.
 ```
 
 +++
@@ -224,6 +229,12 @@ sys2_m.D
 ```
 
 En esta forma canónica, la matriz $B$ como la conexión de la entrada con el modo del sistema . Y de forma análoga a la matriz $C$ como la conexión del modo con la salida del sistema.
+
++++
+
+## Ejercicio análisis de Controlabilidad y Observabilidad
+
+Sunpongamos que se tienen las sieguentes funciones transferencias $G_1$ y $G_2$:
 
 +++
 
@@ -369,3 +380,4 @@ Podemos ver ahora que la matriz $\mathbf C$ no tiene ningún valor igual a 0, po
 ```{important}
 La controlabilidad y la observabilidad pueden ser evaluadas con el sistema en su forma **canónica modal** analizando las relaciones  de la matrices $\mathbf{B}$ y $\mathbf{C}$ con la matriz $\mathbf{A}$.
 ```
+

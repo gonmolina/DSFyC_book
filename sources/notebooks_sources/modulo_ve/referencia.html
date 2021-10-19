@@ -92,7 +92,7 @@ commentsRunWhenDOMLoaded(addUtterances);
     <link rel="index" title="Índice" href="../../../genindex.html" />
     <link rel="search" title="Búsqueda" href="../../../search.html" />
     <link rel="next" title="Diseño de estimadores" href="estimadores.html" />
-    <link rel="prev" title="Análisis de los sistemas en su forma de espacio de estados" href="ctrb_obsv.html" />
+    <link rel="prev" title="Elección de la ubicación de los polos a lazo cerrado" href="LSR.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -382,6 +382,11 @@ commentsRunWhenDOMLoaded(addUtterances);
    Análisis de los sistemas en su forma de espacio de estados
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="LSR.html">
+   Elección de la ubicación de los polos a lazo cerrado
+  </a>
+ </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Inserción de referencias
@@ -511,24 +516,6 @@ commentsRunWhenDOMLoaded(addUtterances);
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contenido
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#eleccion-de-la-ubicacion-de-los-polos-a-lazo-cerrado">
-   Elección de la ubicación de los polos a lazo cerrado
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lugar-simetrico-de-las-raices">
-   Lugar simétrico de las raíces
-  </a>
- </li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -605,34 +592,6 @@ N_u\\ \end{bmatrix} =
 </pre></div>
 </div>
 </div>
-<div class="section" id="eleccion-de-la-ubicacion-de-los-polos-a-lazo-cerrado">
-<h2>Elección de la ubicación de los polos a lazo cerrado<a class="headerlink" href="#eleccion-de-la-ubicacion-de-los-polos-a-lazo-cerrado" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>Una forma de seleccionar la ubicación de los polos es hacer lo mismo que se hacía en control clásico, es decir buscar que el sistema sea parecido a un segundo orden dominante.</p>
-<p>Esto es perfectamente factible en control moderno. Sin embargo, tiene la desventaja que no sabemos para nada que sucederá con el esfuerzo de control <span class="math notranslate nohighlight">\(u\)</span>. Ubicando los polos de esta manera podemos obtener esfuerzos de control imposibles de realizar por nuestros actuadores, o que lleven a consumos de energías demasiado altos para nuestro sistema.</p>
-<p>Por esto, lo más recomendable es usar técnicas de control óptimo para seleccionar los polos del sistema a lazo cerrado.</p>
-</div>
-<div class="section" id="lugar-simetrico-de-las-raices">
-<h2>Lugar simétrico de las raíces<a class="headerlink" href="#lugar-simetrico-de-las-raices" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>Una técnica de control óptimo ampliamente usado es el control <code class="docutils literal notranslate"><span class="pre">regulador</span> <span class="pre">cuadrático</span> <span class="pre">lineal</span> <span class="pre">(LQR)</span></code>. En este curso veremos una versión simplificada que se conoce como <strong>Lugar de las Raíces Simétrico</strong>. Esta versión simplificada consiste en resolver el problema de minimización del siguiente índice de costo:</p>
-<div class="math notranslate nohighlight">
-\[\mathcal J = \int_0^{\infty}\left[\rho z^2(t)+u^2(t)\right]dt\]</div>
-<p>donde:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{eqnarray}
-\mathbf{\dot x} = \mathbf{Ax}+\mathbf B u\\
-z =  \mathbf{C_1x}\\
-\end{eqnarray}\end{split}\]</div>
-<p>mediante la ley de control:</p>
-<div class="math notranslate nohighlight">
-\[ u =-\mathbf{Kx}\]</div>
-<p>Se puede demostrar que la ubicación de los polos a lazo cerrado que minimizan el funcional de costo anterior, son los polos estables del lugar simétrico de las raíces dado por la ecuación:</p>
-<div class="math notranslate nohighlight">
-\[1+\rho G_0(-s)G_0(s)=0\]</div>
-<p>donde <span class="math notranslate nohighlight">\(G_0(s)\)</span> es:</p>
-<div class="math notranslate nohighlight">
-\[G_0(s) = \frac{Z(s)}{U(s)}=\mathbf{C_1}(s\mathbf I -\mathbf A)^{-1}\mathbf B\]</div>
-<p>Por lo tanto el problema lo podemos resolver para todo <span class="math notranslate nohighlight">\(\rho\)</span> haciendo un lugar simétrico de las raíces de <span class="math notranslate nohighlight">\(G_0(-s)G_0(s)\)</span>. El lugar dará simétrico respecto del eje <span class="math notranslate nohighlight">\(j\omega\)</span> ya que los polos y ceros de <span class="math notranslate nohighlight">\(G_0(-s)G_0(s)\)</span> también estarán ubicados de forma simétrica.</p>
-</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -665,11 +624,11 @@ z =  \mathbf{C_1x}\\
 <div class='prev-next-bottom'>
     
     <div id="prev">
-        <a class="left-prev" href="ctrb_obsv.html" title="anterior página">
+        <a class="left-prev" href="LSR.html" title="anterior página">
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">anterior</p>
-                <p class="prevnext-title">Análisis de los sistemas en su forma de espacio de estados</p>
+                <p class="prevnext-title">Elección de la ubicación de los polos a lazo cerrado</p>
             </div>
         </a>
     </div>
