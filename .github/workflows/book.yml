@@ -25,6 +25,7 @@ jobs:
     
     - name: Install dependencies
       run: |
+        apt install -y build-essential gfortran liblapack-dev cmake
         pip install --upgrade  -r requirements.txt
         
     # Build the book
