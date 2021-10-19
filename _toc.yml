@@ -55,6 +55,7 @@ parts:
   - file: sources/notebooks_sources/modulo_ve/formas_canonicas
   - file: sources/notebooks_sources/modulo_ve/transformacion_formas_canonicas
   - file: sources/notebooks_sources/modulo_ve/ctrb_obsv
+  - file: sources/notebooks_sources/modulo_ve/LSR
   - file: sources/notebooks_sources/modulo_ve/referencia
   - file: sources/notebooks_sources/modulo_ve/estimadores
   - file: sources/notebooks_sources/modulo_ve/ejemplo_A_ve_motor_cc
