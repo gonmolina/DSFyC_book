@@ -537,17 +537,27 @@ commentsRunWhenDOMLoaded(addUtterances);
 <p>Supongamos que tenemos la siguiente función transferencia:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
 <span class="n">G</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{s + 1}{s^2 + 2 s + 3}\]</div>
 </div>
 </div>
 <p>De los apuntes de teoría podemos escribir una representación de espacios de estados en la forma canónica de controlabilidad que tendrá el mismo comportamiento externo de <span class="math notranslate nohighlight">\(G\)</span> de la siguiente manera :</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ac</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ac</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
 <span class="n">Ac</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[-2, -3],
+        [ 1,  0]])
 </pre></div>
 </div>
 </div>
@@ -555,14 +565,24 @@ commentsRunWhenDOMLoaded(addUtterances);
 <p>Antes de seguir, verificamos que los polos de <span class="math notranslate nohighlight">\(G\)</span> sean los autovalores de <span class="math notranslate nohighlight">\(\mathbf {Ac}\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">pole</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">pole</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.+1.41421356j, -1.-1.41421356j])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">Ac</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">Ac</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.+1.41421356j, -1.-1.41421356j])
 </pre></div>
 </div>
 </div>
@@ -570,23 +590,34 @@ commentsRunWhenDOMLoaded(addUtterances);
 <p>Ahora definimos el resto de las matrices</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Bc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="s2">&quot;1;0&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Bc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="s2">&quot;1;0&quot;</span><span class="p">)</span>
 <span class="n">Bc</span>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Cc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="s2">&quot;1 1&quot;</span><span class="p">)</span>
-<span class="n">Cc</span>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[1],
+        [0]])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Dc</span><span class="o">=</span><span class="mi">0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Cc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="s2">&quot;1 1&quot;</span><span class="p">)</span>
+<span class="n">Cc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[1, 1]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Dc</span><span class="o">=</span><span class="mi">0</span>
 </pre></div>
 </div>
 </div>
@@ -594,7 +625,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 <p>Vamos ahora a definir un sistema <span class="math notranslate nohighlight">\(sys\)</span> que se comporte igual que <span class="math notranslate nohighlight">\(G\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys_c</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">Ac</span><span class="p">,</span><span class="n">Bc</span><span class="p">,</span><span class="n">Cc</span><span class="p">,</span><span class="n">Dc</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_c</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">Ac</span><span class="p">,</span><span class="n">Bc</span><span class="p">,</span><span class="n">Cc</span><span class="p">,</span><span class="n">Dc</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -602,28 +633,48 @@ commentsRunWhenDOMLoaded(addUtterances);
 <p>Si <span class="math notranslate nohighlight">\(sys\)</span> tiene los mismos polos, los mismos ceros y la misma ganancia en estado estacionario, entonces se comportará igual que <span class="math notranslate nohighlight">\(G\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys_c</span><span class="o">.</span><span class="n">pole</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_c</span><span class="o">.</span><span class="n">pole</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.+1.41421356j, -1.-1.41421356j])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys_c</span><span class="o">.</span><span class="n">zero</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_c</span><span class="o">.</span><span class="n">zero</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.+0.j])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys_c</span><span class="o">.</span><span class="n">dcgain</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_c</span><span class="o">.</span><span class="n">dcgain</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3333333333333333
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">dcgain</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">dcgain</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3333333333333333
 </pre></div>
 </div>
 </div>
@@ -631,15 +682,19 @@ commentsRunWhenDOMLoaded(addUtterances);
 <p>Por lo tanto podemos ver que la función transferencia de <span class="math notranslate nohighlight">\(sys\)</span> será la misma que la de <span class="math notranslate nohighlight">\(G\)</span>. Es decir, <span class="math notranslate nohighlight">\(sys\)</span> se comporta <strong>externamente</strong> igual que <span class="math notranslate nohighlight">\(G\)</span>. Verificamos</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="n">sys_c</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="n">sys_c</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{s + 1}{s^2 + 2 s + 3}\]</div>
 </div>
 </div>
 <p>Vamos ahora a definir el sistema en espacio de estados, que se comporte como <span class="math notranslate nohighlight">\(G\)</span> en la forma canónica de observabilidad. De la teoría sabemos que:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ao</span><span class="o">=</span><span class="n">Ac</span><span class="o">.</span><span class="n">T</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ao</span><span class="o">=</span><span class="n">Ac</span><span class="o">.</span><span class="n">T</span>
 <span class="n">Bo</span><span class="o">=</span><span class="n">Cc</span><span class="o">.</span><span class="n">T</span>
 <span class="n">Co</span><span class="o">=</span><span class="n">Bc</span><span class="o">.</span><span class="n">T</span>
 <span class="n">Do</span><span class="o">=</span><span class="n">Dc</span>
@@ -649,61 +704,105 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys_o</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">Ao</span><span class="p">,</span><span class="n">Bo</span><span class="p">,</span><span class="n">Co</span><span class="p">,</span><span class="n">Do</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_o</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">Ao</span><span class="p">,</span><span class="n">Bo</span><span class="p">,</span><span class="n">Co</span><span class="p">,</span><span class="n">Do</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys_o</span><span class="o">.</span><span class="n">pole</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_o</span><span class="o">.</span><span class="n">pole</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.+1.41421356j, -1.-1.41421356j])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys_o</span><span class="o">.</span><span class="n">zero</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_o</span><span class="o">.</span><span class="n">zero</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.+0.j])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys_o</span><span class="o">.</span><span class="n">dcgain</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_o</span><span class="o">.</span><span class="n">dcgain</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3333333333333333
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="n">sys_o</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="n">sys_o</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{s + 1}{s^2 + 2 s + 3}\]</div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="n">sys_o</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="n">sys_o</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{s + 1}{s^2 + 2 s + 3}\]</div>
 </div>
 </div>
 <p>El módulo de control de Python puede transformar una función transferencia a una forma de estados (no necesariamente en alguna forma canónica). Esto se hace:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
 <span class="n">sys</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\left(
+\begin{array}{rllrll|rll}
+-2\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;3\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+-1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;3.&amp;\hspace{-1em}33&amp;\hspace{-1em}\cdot10^{-16}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\hline
+1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\end{array}\right)
+\end{split}\]</div>
 </div>
 </div>
 <p>Además Python puede transformar un sistema en espacio de estados a alguna de las formas canónicas.</p>
 <p>Por ejemplo para escribir <span class="math notranslate nohighlight">\(sys\)</span> (que está ahora en espacio de estados) en su forma canónica de controlabilidad podemos hacer</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys_c</span><span class="p">,</span> <span class="n">Tc</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="s1">&#39;reachable&#39;</span><span class="p">)</span> <span class="c1"># controlable</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_c</span><span class="p">,</span> <span class="n">Tc</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="s1">&#39;reachable&#39;</span><span class="p">)</span> <span class="c1"># controlable</span>
 <span class="n">sys_c</span><span class="p">,</span> <span class="n">Tc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(StateSpace(array([[-2., -3.],
+        [ 1.,  0.]]), array([[1.],
+        [0.]]), array([[1., 1.]]), array([[0.]])),
+ array([[ 1.00000000e+00, -2.22044605e-16],
+        [-0.00000000e+00, -1.00000000e+00]]))
 </pre></div>
 </div>
 </div>
@@ -712,8 +811,17 @@ commentsRunWhenDOMLoaded(addUtterances);
 <p>Si queremos la forma canónica de observabilidad podemos hacer:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys_o</span><span class="p">,</span><span class="n">To</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="s1">&#39;observable&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_o</span><span class="p">,</span><span class="n">To</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="s1">&#39;observable&#39;</span><span class="p">)</span>
 <span class="n">sys_o</span><span class="p">,</span> <span class="n">To</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(StateSpace(array([[-2.,  1.],
+        [-3.,  0.]]), array([[1.],
+        [1.]]), array([[1., 0.]]), array([[0.]])),
+ array([[ 1., -1.],
+        [ 1.,  1.]]))
 </pre></div>
 </div>
 </div>
@@ -721,8 +829,17 @@ commentsRunWhenDOMLoaded(addUtterances);
 <p>Existe otra forma canónica de representación en espacio de estados que se la conoce como forma canónica modal. Esta la podemos obtener haciendo:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys_m</span><span class="p">,</span> <span class="n">Tm</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="s1">&#39;modal&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_m</span><span class="p">,</span> <span class="n">Tm</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="s1">&#39;modal&#39;</span><span class="p">)</span>
 <span class="n">sys_m</span><span class="p">,</span> <span class="n">Tm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(StateSpace(array([[-1.        ,  3.41421356],
+        [-0.58578644, -1.        ]]), array([[ 0.92387953],
+        [-0.38268343]]), array([[ 0.5411961 , -1.30656296]]), array([[0.]])),
+ array([[ 0.92387953, -0.38268343],
+        [ 0.38268343,  0.92387953]]))
 </pre></div>
 </div>
 </div>
@@ -735,26 +852,55 @@ commentsRunWhenDOMLoaded(addUtterances);
 <p>Vamos a ver otro ejemplo:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
 <span class="n">G2</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">((</span><span class="n">s</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">s</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">s</span><span class="o">+</span><span class="mi">3</span><span class="p">))</span>
 <span class="n">G2</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{1}{s^3 + 6 s^2 + 11 s + 6}\]</div>
+</div>
 </div>
 <p>Vemos que esta función transferencia tiene los polos en -1, -2 y -3. Transformemos a espacio de estados usando la función <code class="docutils literal notranslate"><span class="pre">ss</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys2</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">G2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys2</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">G2</span><span class="p">)</span>
 <span class="n">sys2</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\left(
+\begin{array}{rllrllrll|rll}
+-6\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1.&amp;\hspace{-1em}1&amp;\hspace{-1em}\phantom{\cdot}&amp;-0.&amp;\hspace{-1em}6&amp;\hspace{-1em}\phantom{\cdot}&amp;-1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+-10\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\hline
+0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-0.&amp;\hspace{-1em}1&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\end{array}\right)
+\end{split}\]</div>
 </div>
 </div>
 <p>Veamos al sistema en su forma canónica de controlabilidad.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys2</span><span class="p">,</span> <span class="s1">&#39;reachable&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys2</span><span class="p">,</span> <span class="s1">&#39;reachable&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(StateSpace(array([[ -6., -11.,  -6.],
+        [  1.,   0.,   0.],
+        [  0.,   1.,   0.]]), array([[1.],
+        [0.],
+        [0.]]), array([[1.06985128e-17, 6.30808537e-17, 1.00000000e+00]]), array([[0.]])),
+ array([[-1.00000000e+00,  2.57369883e-17,  4.88498131e-16],
+        [ 7.23865412e-17,  1.00000000e-01, -5.71764858e-17],
+        [ 1.06985128e-17, -6.30808537e-18, -1.00000000e-01]]))
 </pre></div>
 </div>
 </div>
@@ -762,7 +908,19 @@ commentsRunWhenDOMLoaded(addUtterances);
 <p>Ahora lo podemos ver en la forma canónica de observabilidad</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys2</span><span class="p">,</span> <span class="s1">&#39;observable&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys2</span><span class="p">,</span> <span class="s1">&#39;observable&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(StateSpace(array([[ -6.,   1.,   0.],
+        [-11.,   0.,   1.],
+        [ -6.,   0.,   0.]]), array([[0.],
+        [0.],
+        [1.]]), array([[1., 0., 0.]]), array([[0.]])),
+ array([[ 0.00000000e+00, -6.21724894e-18, -1.00000000e-01],
+        [-0.00000000e+00,  1.00000000e-01, -6.00000000e-01],
+        [-1.00000000e+00,  6.00000000e-01, -1.10000000e+00]]))
 </pre></div>
 </div>
 </div>
@@ -770,14 +928,21 @@ commentsRunWhenDOMLoaded(addUtterances);
 <p>Finalmente obtengamos la forma canónica modal:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys2_m</span><span class="p">,</span> <span class="n">_</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys2</span><span class="p">,</span> <span class="s1">&#39;modal&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys2_m</span><span class="p">,</span> <span class="n">_</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys2</span><span class="p">,</span> <span class="s1">&#39;modal&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys2_m</span><span class="o">.</span><span class="n">A</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys2_m</span><span class="o">.</span><span class="n">A</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-3.00000000e+00, -1.85149980e-14,  3.91285695e-15],
+       [ 3.44572809e-14, -2.00000000e+00, -1.04740522e-14],
+       [ 9.90337285e-15,  7.69364873e-15, -1.00000000e+00]])
 </pre></div>
 </div>
 </div>
@@ -793,21 +958,38 @@ commentsRunWhenDOMLoaded(addUtterances);
 <p>Verificamos el resto de las matrices:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys2_m</span><span class="o">.</span><span class="n">B</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys2_m</span><span class="o">.</span><span class="n">B</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 16.43928222],
+       [-22.71563338],
+       [ -7.08872344]])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys2_m</span><span class="o">.</span><span class="n">C</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys2_m</span><span class="o">.</span><span class="n">C</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.03041495,  0.04402255, -0.07053456]])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys2_m</span><span class="o">.</span><span class="n">D</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys2_m</span><span class="o">.</span><span class="n">D</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.]])
 </pre></div>
 </div>
 </div>
@@ -817,18 +999,26 @@ commentsRunWhenDOMLoaded(addUtterances);
 <h2>Ejemplo de conexión de sistemas<a class="headerlink" href="#ejemplo-de-conexion-de-sistemas" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G1</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="mi">1</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G1</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">(</span><span class="mi">1</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">G2</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">tf</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
 <span class="n">G1</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{1}{s + 1}\]</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">G2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G2</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{s + 1}{s + 2}\]</div>
 </div>
 </div>
 <p>Podemos ver que G1 tiene un polo en -1 y G2 tiene un polo en -2 y un cero en -1.</p>
@@ -841,7 +1031,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 <p>Para eso vamos a usar una función que se llama <code class="docutils literal notranslate"><span class="pre">connect</span></code>. Esta utiliza sistemas en espacio de estados, entonces hacemos:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys1</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">G1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys1</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">G1</span><span class="p">)</span>
 <span class="n">sys2</span><span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">G2</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -850,23 +1040,45 @@ commentsRunWhenDOMLoaded(addUtterances);
 <p>Y luego realizamos las conexiones:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys_c</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sys1</span><span class="p">,</span> <span class="n">sys2</span><span class="p">),[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]],[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_c</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sys1</span><span class="p">,</span> <span class="n">sys2</span><span class="p">),[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]],[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">])</span>
 <span class="n">sys_c</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\left(
+\begin{array}{rllrll|rll}
+-1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-2\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\hline
+1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\end{array}\right)
+\end{split}\]</div>
 </div>
 </div>
 <p>Analizamos  los polos y ceros del sistema ya interconectado</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys_c</span><span class="o">.</span><span class="n">pole</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_c</span><span class="o">.</span><span class="n">pole</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-2., -1.])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys_c</span><span class="o">.</span><span class="n">zero</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_c</span><span class="o">.</span><span class="n">zero</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.+0.j])
 </pre></div>
 </div>
 </div>
@@ -875,17 +1087,53 @@ commentsRunWhenDOMLoaded(addUtterances);
 <p>Obtengamos la forma canónica de controlabilidad del sistema</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys_c</span><span class="p">,</span> <span class="n">Tc</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys_c</span><span class="p">,</span> <span class="s1">&#39;reachable&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_c</span><span class="p">,</span> <span class="n">Tc</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys_c</span><span class="p">,</span> <span class="s1">&#39;reachable&#39;</span><span class="p">)</span>
 <span class="n">sys_c</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\left(
+\begin{array}{rllrll|rll}
+-3\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-2\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\hline
+1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\end{array}\right)
+\end{split}\]</div>
 </div>
 </div>
 <p>Podemos ver que las matrices <span class="math notranslate nohighlight">\( \mathbf A\)</span>, <span class="math notranslate nohighlight">\(\mathbf B\)</span>, <span class="math notranslate nohighlight">\(\mathbf C\)</span> y <span class="math notranslate nohighlight">\(\mathbf D\)</span> coinciden con lo visto en teoría.</p>
 <p>Ahora obtengamos la forma canónica de observabilidad:</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys_c</span><span class="p">,</span> <span class="s1">&#39;observable&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys_c</span><span class="p">,</span> <span class="s1">&#39;observable&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_6415</span><span class="o">/</span><span class="mf">4150826842.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys_c</span><span class="p">,</span> <span class="s1">&#39;observable&#39;</span><span class="p">)</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/control/canonical.py</span> in <span class="ni">canonical_form</span><span class="nt">(xsys, form)</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span>         <span class="k">return</span> <span class="n">reachable_form</span><span class="p">(</span><span class="n">xsys</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">44</span>     <span class="k">elif</span> <span class="n">form</span> <span class="o">==</span> <span class="s1">&#39;observable&#39;</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">45</span>         <span class="k">return</span> <span class="n">observable_form</span><span class="p">(</span><span class="n">xsys</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">46</span>     <span class="k">elif</span> <span class="n">form</span> <span class="o">==</span> <span class="s1">&#39;modal&#39;</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">47</span>         <span class="k">return</span> <span class="n">modal_form</span><span class="p">(</span><span class="n">xsys</span><span class="p">)</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/control/canonical.py</span> in <span class="ni">observable_form</span><span class="nt">(xsys)</span>
+<span class="g g-Whitespace">    </span><span class="mi">147</span> 
+<span class="g g-Whitespace">    </span><span class="mi">148</span>     <span class="k">if</span> <span class="n">matrix_rank</span><span class="p">(</span><span class="n">Tzx</span><span class="p">)</span> <span class="o">!=</span> <span class="n">xsys</span><span class="o">.</span><span class="n">nstates</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">149</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Transformation matrix singular to working precision.&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">150</span> 
+<span class="g g-Whitespace">    </span><span class="mi">151</span>     <span class="c1"># Finally, compute the output matrix</span>
+
+<span class="ne">ValueError</span>: Transformation matrix singular to working precision.
 </pre></div>
 </div>
 </div>
@@ -898,25 +1146,73 @@ commentsRunWhenDOMLoaded(addUtterances);
 <p>Ahora hagamos la conexión al revés (primero <span class="math notranslate nohighlight">\(G1\)</span> y luego <span class="math notranslate nohighlight">\(G2\)</span>):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys_o</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sys1</span><span class="p">,</span> <span class="n">sys2</span><span class="p">),[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]],[</span><span class="mi">2</span><span class="p">],[</span><span class="mi">1</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_o</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sys1</span><span class="p">,</span> <span class="n">sys2</span><span class="p">),[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]],[</span><span class="mi">2</span><span class="p">],[</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">sys_o</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\left(
+\begin{array}{rllrll|rll}
+-1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-2\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\hline
+1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\end{array}\right)
+\end{split}\]</div>
 </div>
 </div>
 <p>Obtengamos la forma canónica observable:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys_o</span><span class="p">,</span> <span class="n">To</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys_o</span><span class="p">,</span> <span class="s1">&#39;observable&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_o</span><span class="p">,</span> <span class="n">To</span><span class="o">=</span><span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys_o</span><span class="p">,</span> <span class="s1">&#39;observable&#39;</span><span class="p">)</span>
 <span class="n">sys_o</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\left(
+\begin{array}{rllrll|rll}
+-3\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+-2\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\hline
+1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\end{array}\right)
+\end{split}\]</div>
 </div>
 </div>
 <p>Y ahora la forma canónica controlable:</p>
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys_o</span><span class="p">,</span> <span class="s1">&#39;reachable&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys_o</span><span class="p">,</span> <span class="s1">&#39;reachable&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_6415</span><span class="o">/</span><span class="mf">2099819848.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys_o</span><span class="p">,</span> <span class="s1">&#39;reachable&#39;</span><span class="p">)</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/control/canonical.py</span> in <span class="ni">canonical_form</span><span class="nt">(xsys, form)</span>
+<span class="g g-Whitespace">     </span><span class="mi">41</span>     <span class="c1"># Call the appropriate tranformation function</span>
+<span class="g g-Whitespace">     </span><span class="mi">42</span>     <span class="k">if</span> <span class="n">form</span> <span class="o">==</span> <span class="s1">&#39;reachable&#39;</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">43</span>         <span class="k">return</span> <span class="n">reachable_form</span><span class="p">(</span><span class="n">xsys</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">44</span>     <span class="k">elif</span> <span class="n">form</span> <span class="o">==</span> <span class="s1">&#39;observable&#39;</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">45</span>         <span class="k">return</span> <span class="n">observable_form</span><span class="p">(</span><span class="n">xsys</span><span class="p">)</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/control/canonical.py</span> in <span class="ni">reachable_form</span><span class="nt">(xsys)</span>
+<span class="g g-Whitespace">     </span><span class="mi">90</span> 
+<span class="g g-Whitespace">     </span><span class="mi">91</span>     <span class="k">if</span> <span class="n">matrix_rank</span><span class="p">(</span><span class="n">Wrx</span><span class="p">)</span> <span class="o">!=</span> <span class="n">xsys</span><span class="o">.</span><span class="n">nstates</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">92</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;System not controllable to working precision.&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">93</span> 
+<span class="g g-Whitespace">     </span><span class="mi">94</span>     <span class="c1"># Transformation from one form to another</span>
+
+<span class="ne">ValueError</span>: System not controllable to working precision.
 </pre></div>
 </div>
 </div>
@@ -934,10 +1230,22 @@ commentsRunWhenDOMLoaded(addUtterances);
 <p>Estas dos mismas propiedades pueden ser analizadas con la forma modal. Tomemos el sistema <span class="math notranslate nohighlight">\(sys_C\)</span> donde la entrada esta conectada a <span class="math notranslate nohighlight">\(G1\)</span> y la salida a <span class="math notranslate nohighlight">\(G2\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys_mc</span><span class="p">,</span> <span class="n">Tmc</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys_c</span><span class="p">,</span> <span class="s1">&#39;modal&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_mc</span><span class="p">,</span> <span class="n">Tmc</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys_c</span><span class="p">,</span> <span class="s1">&#39;modal&#39;</span><span class="p">)</span>
 <span class="n">sys_mc</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\left(
+\begin{array}{rllrll|rll}
+-2\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-1.&amp;\hspace{-1em}79&amp;\hspace{-1em}\cdot10^{-16}&amp;-2.&amp;\hspace{-1em}24&amp;\hspace{-1em}\phantom{\cdot}\\
+4.&amp;\hspace{-1em}53&amp;\hspace{-1em}\cdot10^{-17}&amp;-1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-1.&amp;\hspace{-1em}41&amp;\hspace{-1em}\phantom{\cdot}\\
+\hline
+-0.&amp;\hspace{-1em}447&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\end{array}\right)
+\end{split}\]</div>
 </div>
 </div>
 <p>Podemos ver que la matriz <span class="math notranslate nohighlight">\(\mathbf B\)</span> tiene todos los valores distintos de 0. Esto significa que todos los modos están conectados a la entrada, por lo que deducimos que el sistema es controlable.</p>
@@ -945,10 +1253,22 @@ commentsRunWhenDOMLoaded(addUtterances);
 <p>Probemos ahora con la segunda conexión:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sys_mo</span><span class="p">,</span> <span class="n">Tmo</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys_o</span><span class="p">,</span> <span class="s1">&#39;modal&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_mo</span><span class="p">,</span> <span class="n">Tmo</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">canonical_form</span><span class="p">(</span><span class="n">sys_o</span><span class="p">,</span> <span class="s1">&#39;modal&#39;</span><span class="p">)</span>
 <span class="n">sys_mo</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\left(
+\begin{array}{rllrll|rll}
+-2\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;4.&amp;\hspace{-1em}36&amp;\hspace{-1em}\cdot10^{-17}&amp;-1.&amp;\hspace{-1em}41&amp;\hspace{-1em}\phantom{\cdot}\\
+-6.&amp;\hspace{-1em}33&amp;\hspace{-1em}\cdot10^{-17}&amp;-1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\hline
+-0.&amp;\hspace{-1em}707&amp;\hspace{-1em}\phantom{\cdot}&amp;-0.&amp;\hspace{-1em}447&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
+\end{array}\right)
+\end{split}\]</div>
 </div>
 </div>
 <p>Podemos ver ahora que la matriz <span class="math notranslate nohighlight">\(\mathbf C\)</span> no tiene ningún valor igual a 0, por lo que ahora el sistema sería observable (todos los modos están presentes de alguna manera en la salida). Pero tenemos un 0 en la primer fila de <span class="math notranslate nohighlight">\(\mathbf B\)</span>, que se corresponde con el modo en -1. Esto quiere decir que no podemos excitar este modo. Por lo tanto no es controlable.</p>
