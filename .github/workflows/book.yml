@@ -14,24 +14,22 @@ jobs:
     - name: Checkout 
       uses: actions/checkout@v2
       with:
-        token: ${{ secrets.MY_REPO_PAT }}
         submodules: recursive
     
     # Install dependencies
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v1
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v2
       with:
-        python-version: 3.8
+        python-version: 3.11
     
     - name: Install dependencies
       run: |
-        sudo apt install -y build-essential gfortran liblapack-dev cmake
-        pip install --upgrade  -r requirements.txt
+        $CONDA/bin/conda env update --file environment.yml --name base
         
     # Build the book
     - name: Build the book
       run: |
-        jupyter-book build .
+        $CONDA/bin/jupyter-book build .
     # Push the book's HTML to github-pages
     - name: GitHub Pages action
       uses: peaceiris/actions-gh-pages@v3.5.9
