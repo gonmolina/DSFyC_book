@@ -1,6 +1,6 @@
 # Material de la materia Dinámica de los Sistemas Físicos y Control
 
-En Página web encontraremos todo el material digital necesario para seguir el curso de Dinámica de los Sistemas Físicos y Control de Ingeniería Mecánica del Instituto Balseiro para la cursada 2021.
+En Página web encontraremos todo el material digital necesario para seguir el curso de Dinámica de Sistemas y Control de Ingeniería Mecánica del Instituto Balseiro para la cursada 2023.
 
 En este material se desarrollan tanto los temas teóricos como ejemplos prácticos de diseño de control. Para resolver los problemas de la práctica haremos uso de herramientas cálculo computacional, mediante el lenguaje de programación Python.
 
