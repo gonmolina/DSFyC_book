@@ -1,45 +1,59 @@
 
+
 <!DOCTYPE html>
 
-<html lang="es">
+
+<html lang="es" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Transformación lineal del espacio de estado &#8212; Diseño y Ajuste de Sistemas de Control</title>
-    
-  <link href="../../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../../../_static/js/index.1c5a1a01449ed65a7b51.js">
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
     <script kind="utterances">
 
     var commentsRunWhenDOMLoaded = cb => {
@@ -75,516 +89,480 @@ var addUtterances = () => {
 commentsRunWhenDOMLoaded(addUtterances);
 </script>
     <script src="../../../_static/translations.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sources/notebooks_sources/modulo_ve/transformacion_formas_canonicas';</script>
     <link rel="canonical" href="https://gonmolina.github.io/DSFyC_book/sources/notebooks_sources/modulo_ve/transformacion_formas_canonicas.html" />
     <link rel="index" title="Índice" href="../../../genindex.html" />
     <link rel="search" title="Búsqueda" href="../../../search.html" />
     <link rel="next" title="Análisis de los sistemas en su forma de espacio de estados" href="ctrb_obsv.html" />
     <link rel="prev" title="Formas canónicas de un espacio de estados" href="formas_canonicas.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../../index.html">
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../dsfc_sources/intro.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../../../_static/sala_de_control.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Diseño y Ajuste de Sistemas de Control</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Buscar este libro ..." aria-label="Buscar este libro ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../dsfc_sources/intro.html">
-   Material de la materia Dinámica de los Sistemas Físicos y Control
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Introducción a Python
- </span>
-</p>
+    
+    
+    <img src="../../../_static/sala_de_control.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../_static/sala_de_control.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../dsfc_sources/intro.html">
+                    Material de la materia Dinámica de los Sistemas Físicos y Control
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducción a Python</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../gu%C3%ADa_instalaci%C3%B3n/guia_de_instalacion.html">
-   Guía de instalación de las herramientas computacionales
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro_python/Introducci%C3%B3n%20a%20los%20notebooks%20de%20Jupyter.html">
-   Introducción a los cuadernos de Jupyter
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro_python/Extra_Python.html">
-   Introducción a Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro_python/Intro-Matplotlib.html">
-   Figuras en Python - MATPLOTLIB
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro_python/intro_sympy.html">
-   Introducción a SymPy
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../gu%C3%ADa_instalaci%C3%B3n/guia_de_instalacion.html">Guía de instalación de las herramientas computacionales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro_python/Introducci%C3%B3n%20a%20los%20notebooks%20de%20Jupyter.html">Introducción a los cuadernos de Jupyter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro_python/Extra_Python.html">Introducción a Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro_python/Intro-Matplotlib.html">Figuras en Python - MATPLOTLIB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro_python/intro_sympy.html">Introducción a SymPy</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Señales, sistemas y modelos
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Señales, sistemas y modelos</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo1/intro_sys_sen/intro_sis_y_sen.html">
-   Definiciones de Sistemas y Señales
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo1/laplace/transformada_laplace_python_opcional.html">
-   Transformada de Laplace
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo1/laplace/funcion_transferencia.html">
-   Función transferencia
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo1/diagrama_bloques/diagrama_de_bloques.html">
-   Diagramas de bloques
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../modulo1/espacio_estado/espacio_de_estados.html">
-   Representación de sistemas dinámicos en espacio de estados
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../modulo1/espacio_estado/modelado_ss.html">
-     Modelado en espacio de estados
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo1/linealizacion/linealizacion.html">
-   Linealización de sistemas no-lineales
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../modulo1/ejemplos_sistemas/ejemplos_sistemas.html">
-   Ejemplos de modelos de sistemas
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../modulo1/ejemplos_sistemas/resorte_no_lineal.html">
-     Sistema masa resorte amortiguador
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../modulo1/ejemplos_sistemas/CineticaPuntual.html">
-     Ecuaciones de Cinética Puntual
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../modulo1/ejemplos_sistemas/Nonlinear%20CSTR.html">
-     Sistema CSTR
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../modulo1/ejemplos_sistemas/Ejemplo_Presa_Depredador.html">
-     Sistema presa depredador (Lotka-Volterra)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo1/intro_sys_sen/intro_sis_y_sen.html">Definiciones de Sistemas y Señales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo1/laplace/transformada_laplace_python_opcional.html">Transformada de Laplace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo1/laplace/funcion_transferencia.html">Función transferencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo1/diagrama_bloques/diagrama_de_bloques.html">Diagramas de bloques</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../modulo1/espacio_estado/espacio_de_estados.html">Representación de sistemas dinámicos en espacio de estados</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modulo1/espacio_estado/modelado_ss.html">Modelado en espacio de estados</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Análisis de la respuesta temporal
- </span>
-</p>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo1/linealizacion/linealizacion.html">Linealización de sistemas no-lineales</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../modulo1/ejemplos_sistemas/ejemplos_sistemas.html">Ejemplos de modelos de sistemas</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modulo1/ejemplos_sistemas/resorte_no_lineal.html">Sistema masa resorte amortiguador</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modulo1/ejemplos_sistemas/CineticaPuntual.html">Ecuaciones de Cinética Puntual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modulo1/ejemplos_sistemas/Nonlinear%20CSTR.html">Sistema CSTR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modulo1/ejemplos_sistemas/Ejemplo_Presa_Depredador.html">Sistema presa depredador (Lotka-Volterra)</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Análisis de la respuesta temporal</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo2/estabilidad/estabilidad.html">
-   Estabilidad
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo2/respuesta%20temporal/Respuesta%20Temporal.html">
-   Respuesta temporal de sistemas dinámicos
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo2/polos%20y%20ceros%20adicionales/Efecto%20Polos%20y%20Ceros%20Adicionales.html">
-   Efecto de los polos adicionales y de los ceros
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo2/estabilidad/estabilidad.html">Estabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo2/respuesta%20temporal/Respuesta%20Temporal.html">Respuesta temporal de sistemas dinámicos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo2/polos%20y%20ceros%20adicionales/Efecto%20Polos%20y%20Ceros%20Adicionales.html">Efecto de los polos adicionales y de los ceros</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Análisis de estado estacionario
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Análisis de estado estacionario</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo3/realimentacion/carateristicas%20de%20la%20realimentacion.html">
-   Características de la realimentación
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo3/sensibilidad/Sensibilidad.html">
-   Sensibilidad
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo3/errores/Errores.html">
-   Errores
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo3/realimentacion/carateristicas%20de%20la%20realimentacion.html">Características de la realimentación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo3/sensibilidad/Sensibilidad.html">Sensibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo3/errores/Errores.html">Errores</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Lugar de las raíces
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lugar de las raíces</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo4/lugar%20de%20las%20raices.html">
-   Lugar de las raíces
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo4/Pasos%20para%20el%20trazado.html">
-   Pasos para trazar el lugar geométrico de las raíces
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo4/Lugar%20de%20la%20raices%20con%20Python.html">
-   Lugar de las raíces usando Python
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo4/lugar%20de%20las%20raices.html">Lugar de las raíces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo4/Pasos%20para%20el%20trazado.html">Pasos para trazar el lugar geométrico de las raíces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo4/Lugar%20de%20la%20raices%20con%20Python.html">Lugar de las raíces usando Python</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Respuesta en frecuencia
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Respuesta en frecuencia</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo_frec/respuesta_frecuencial.html">
-   Respuesta Frecuencial de Sistemas lineales y SISO
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo_frec/estabilidad_nyquist/estabilidad_en_frecuencia.html">
-   Estabilidad en Frecuencia
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_frec/respuesta_frecuencial.html">Respuesta Frecuencial de Sistemas lineales y SISO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_frec/estabilidad_nyquist/estabilidad_en_frecuencia.html">Estabilidad en Frecuencia</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Diseño de compensadores
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Diseño de compensadores</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo5/compensadores.html">
-   Compensadores de adelanto y de retraso de fase
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo5/problema_levitador.html">
-   Problema de levitador magnético
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo5/tipo1_lead.html">
-   Problema con sistema de tipo 1
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo5/lead_lag_design.html">
-   Ecuaciones útiles para el diseño del Lead por análisis en frecuencia
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo5/compensadores.html">Compensadores de adelanto y de retraso de fase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo5/problema_levitador.html">Problema de levitador magnético</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo5/tipo1_lead.html">Problema con sistema de tipo 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo5/lead_lag_design.html">Ecuaciones útiles para el diseño del Lead por análisis en frecuencia</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Control Moderno
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Control Moderno</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="polos_ceros_EE.html">
-   Polos y Ceros en los modelos de espacio de estados
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="formas_canonicas.html">
-   Formas canónicas de un espacio de estados
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Transformación lineal del espacio de estado
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ctrb_obsv.html">
-   Análisis de los sistemas en su forma de espacio de estados
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="LSR.html">
-   Elección de la ubicación de los polos a lazo cerrado
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="referencia.html">
-   Inserción de referencias
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="estimadores.html">
-   Diseño de estimadores
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ejemplo_A_ve_motor_cc.html">
-   Diseño para un motor de continua
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ejemplo_B_ve_atitud_satelite.html">
-   Diseño del sistema de control del atitud de un satélite
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ejemplo_C_ve_pendulo_invertido.html">
-   Diseño del sistema de control del pédulo invertido
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="polos_ceros_EE.html">Polos y Ceros en los modelos de espacio de estados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formas_canonicas.html">Formas canónicas de un espacio de estados</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Transformación lineal del espacio de estado</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="ctrb_obsv.html">Análisis de los sistemas en su forma de espacio de estados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LSR.html">Elección de la ubicación de los polos a lazo cerrado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencia.html">Inserción de referencias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="estimadores.html">Diseño de estimadores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ejemplo_A_ve_motor_cc.html">Diseño para un motor de continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ejemplo_B_ve_atitud_satelite.html">Diseño del sistema de control del atitud de un satélite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ejemplo_C_ve_pendulo_invertido.html">Diseño del sistema de control del pédulo invertido</a></li>
+
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Navegación de palanca" aria-controls="site-navigation"
-                title="Navegación de palanca" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Descarga esta pagina"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../../../_sources/sources/notebooks_sources/modulo_ve/transformacion_formas_canonicas.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Descargar archivo de cuaderno" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/sources/notebooks_sources/modulo_ve/transformacion_formas_canonicas.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Descargar archivo fuente" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimir en PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/gonmolina/DSFyC_book"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Repositorio de origen"><i
-                    class="fab fa-github"></i>repositorio</button></a>
-        <a class="issues-button"
-            href="https://github.com/gonmolina/DSFyC_book/issues/new?title=Issue%20on%20page%20%2Fsources/notebooks_sources/modulo_ve/transformacion_formas_canonicas.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Abrir un problema"><i class="fas fa-lightbulb"></i>Tema abierto</button></a>
-        <a class="edit-button" href="https://github.com/gonmolina/DSFyC_book/edit/master/sources/notebooks_sources/modulo_ve/transformacion_formas_canonicas.md"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edita esta página"><i class="fas fa-pencil-alt"></i>sugerir editar</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/gonmolina/DSFyC_book/blob/master/sources/notebooks_sources/modulo_ve/transformacion_formas_canonicas.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Modo de pantalla completa"
-        title="Modo de pantalla completa"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/gonmolina/DSFyC_book/master?urlpath=tree/sources/notebooks_sources/modulo_ve/transformacion_formas_canonicas.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Lanzamiento Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/gonmolina/DSFyC_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Repositorio de origen"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gonmolina/DSFyC_book/edit/master/sources/notebooks_sources/modulo_ve/transformacion_formas_canonicas.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gonmolina/DSFyC_book/issues/new?title=Issue%20on%20page%20%2Fsources/notebooks_sources/modulo_ve/transformacion_formas_canonicas.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Abrir un problema"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/sources/notebooks_sources/modulo_ve/transformacion_formas_canonicas.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Descargar archivo de cuaderno"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../../../_sources/sources/notebooks_sources/modulo_ve/transformacion_formas_canonicas.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
+  
 </div>
+</div>
+              
+              
 
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Transformación lineal del espacio de estado</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contenido
+            <div>
+                <h2> Contenido </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Transformación lineal del espacio de estado
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#transformacion-a-la-forma-canonica-de-controlabilidad">
-   Transformación a la forma canónica de controlabilidad
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#definicion">
-     Definición:
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#transformacion-a-la-forma-canonica-de-observabilidad">
-   Transformación a la forma canónica de observabilidad
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ejemplo-masa-resorte-obtener-la-forma-canonica-de-observabilidad-y-con-matriz-de-transformacion-t">
-     Ejemplo masa resorte: obtener la forma canónica de observabilidad y con matriz de transformación T
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#obtencion-de-la-forma-canonica-de-controlabilidad">
-     Obtención de la forma canónica de controlabilidad
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#transformacion-a-la-forma-canonica-modal">
-     Transformación a la forma canónica modal:
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id1">
-       Definición.
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ejemplo-de-transformacion-a-la-forma-canonica-modal">
-     Ejemplo de transformación a la forma canónica modal
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Transformación lineal del espacio de estado</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacion-a-la-forma-canonica-de-controlabilidad">Transformación a la forma canónica de controlabilidad</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion">Definición:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacion-a-la-forma-canonica-de-observabilidad">Transformación a la forma canónica de observabilidad</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-masa-resorte-obtener-la-forma-canonica-de-observabilidad-y-con-matriz-de-transformacion-t">Ejemplo masa resorte: obtener la forma canónica de observabilidad y con matriz de transformación T</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obtencion-de-la-forma-canonica-de-controlabilidad">Obtención de la forma canónica de controlabilidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacion-a-la-forma-canonica-modal">Transformación a la forma canónica modal:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Definición.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-transformacion-a-la-forma-canonica-modal">Ejemplo de transformación a la forma canónica modal</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="transformacion-lineal-del-espacio-de-estado">
-<h1>Transformación lineal del espacio de estado<a class="headerlink" href="#transformacion-lineal-del-espacio-de-estado" title="Enlazar permanentemente con este título">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="transformacion-lineal-del-espacio-de-estado">
+<h1>Transformación lineal del espacio de estado<a class="headerlink" href="#transformacion-lineal-del-espacio-de-estado" title="Permalink to this heading">#</a></h1>
 <p>Consideremos un sistema descripto por las ecuaciones de estado</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -617,9 +595,9 @@ commentsRunWhenDOMLoaded(addUtterances);
 \bar D &amp;=&amp; D
 \end{array}
 \end{split}\]</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="transformacion-a-la-forma-canonica-de-controlabilidad">
-<h1>Transformación a la forma canónica de controlabilidad<a class="headerlink" href="#transformacion-a-la-forma-canonica-de-controlabilidad" title="Enlazar permanentemente con este título">¶</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="transformacion-a-la-forma-canonica-de-controlabilidad">
+<h1>Transformación a la forma canónica de controlabilidad<a class="headerlink" href="#transformacion-a-la-forma-canonica-de-controlabilidad" title="Permalink to this heading">#</a></h1>
 <p>La matrices de un sistema de orden 3 lineal e invariante en el tiempo representado mediante su forma canónica de controlabilidad tiene la forma:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -718,16 +696,16 @@ c_1&amp;c_2&amp;c_3
 \mathbf{t_n}\\
 \end{bmatrix}
 \end{split}\]</div>
-<div class="section" id="definicion">
-<h2>Definición:<a class="headerlink" href="#definicion" title="Enlazar permanentemente con este título">¶</a></h2>
+<section id="definicion">
+<h2>Definición:<a class="headerlink" href="#definicion" title="Permalink to this heading">#</a></h2>
 <p><strong>Un sistema es controlable si existe su forma canónica de controlabilidad.</strong></p>
 <p>Podemos ver de las ecuaciones anteriores que solamente podremos obtener <span class="math notranslate nohighlight">\(\mathbf{T^{-1}}\)</span> y por ende <span class="math notranslate nohighlight">\(\mathbf{T}\)</span>, si existe <span class="math notranslate nohighlight">\(\mathcal{C}^{-1}\)</span>. Para esto tenemos que asegurar que el rango de <span class="math notranslate nohighlight">\(\mathcal C\)</span> sea igual al orden del sistema <span class="math notranslate nohighlight">\(n\)</span>.</p>
 <p>Es importante notar que al definir la controlabilidad no depende de la matriz <span class="math notranslate nohighlight">\(\mathbf{C}\)</span>, sino que depende solo de la matriz <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> y <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>.</p>
 <p>La matriz <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> es la relacionada con las entradas del sistema. Nada tiene que ver con las salidas. En caso del que el sistema no sea controlable será necesario rediseñar la forma en que actuamos sobre del sistema. Nada resolveremos respecto a la controlabilidad cambiando, mejorando o agregando mediciones.</p>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="transformacion-a-la-forma-canonica-de-observabilidad">
-<h1>Transformación a la forma canónica de observabilidad<a class="headerlink" href="#transformacion-a-la-forma-canonica-de-observabilidad" title="Enlazar permanentemente con este título">¶</a></h1>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="transformacion-a-la-forma-canonica-de-observabilidad">
+<h1>Transformación a la forma canónica de observabilidad<a class="headerlink" href="#transformacion-a-la-forma-canonica-de-observabilidad" title="Permalink to this heading">#</a></h1>
 <p>La matrices de un sistema de orden 3 lineal e invariante en el tiempo representado mediante su forma canónica de observabilidad tiene la forma:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -839,8 +817,8 @@ b_3\\
 <p>Podemos ver de las ecuaciones anteriores que solamente podremos obtener <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> si existe <span class="math notranslate nohighlight">\(\mathcal{O}^{-1}\)</span>. Para esto tenemos que asegurar que el rango de <span class="math notranslate nohighlight">\(\mathcal O\)</span> sea igual al orden del sistema <span class="math notranslate nohighlight">\(n\)</span>.</p>
 <p>Es importante notar que definir la observabilidad no depende de la matriz <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>, sino que depende solo de la matriz <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> y <span class="math notranslate nohighlight">\(\mathbf{C}\)</span>.</p>
 <p>La matriz <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> es la relacionada con las salidas del sistema. Nada tiene que ver con las entradas. En caso del que el sistema no sea observable será necesario rediseñar la forma en que tomamos las mediciones del sistema. Nada resolveremos respecto a la observabilidad modificando los actuadores.</p>
-<div class="section" id="ejemplo-masa-resorte-obtener-la-forma-canonica-de-observabilidad-y-con-matriz-de-transformacion-t">
-<h2>Ejemplo masa resorte: obtener la forma canónica de observabilidad y con matriz de transformación T<a class="headerlink" href="#ejemplo-masa-resorte-obtener-la-forma-canonica-de-observabilidad-y-con-matriz-de-transformacion-t" title="Enlazar permanentemente con este título">¶</a></h2>
+<section id="ejemplo-masa-resorte-obtener-la-forma-canonica-de-observabilidad-y-con-matriz-de-transformacion-t">
+<h2>Ejemplo masa resorte: obtener la forma canónica de observabilidad y con matriz de transformación T<a class="headerlink" href="#ejemplo-masa-resorte-obtener-la-forma-canonica-de-observabilidad-y-con-matriz-de-transformacion-t" title="Permalink to this heading">#</a></h2>
 <p>Definimos los parámetros del sistema</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -868,8 +846,7 @@ b_3\\
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
 \[\begin{split}
-\left(
-\begin{array}{rllrll|rll}
+\left(\begin{array}{rllrll|rll}
 0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
 -10\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;-20\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
 \hline
@@ -986,8 +963,7 @@ b_3\\
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
 \[\begin{split}
-\left(
-\begin{array}{rllrll|rll}
+\left(\begin{array}{rllrll|rll}
 -20\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
 -10\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;0\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}&amp;1\phantom{.}&amp;\hspace{-1em}&amp;\hspace{-1em}\phantom{\cdot}\\
 \hline
@@ -1015,9 +991,9 @@ s^2 + 20 s + 10
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="obtencion-de-la-forma-canonica-de-controlabilidad">
-<h2>Obtención de la forma canónica de controlabilidad<a class="headerlink" href="#obtencion-de-la-forma-canonica-de-controlabilidad" title="Enlazar permanentemente con este título">¶</a></h2>
+</section>
+<section id="obtencion-de-la-forma-canonica-de-controlabilidad">
+<h2>Obtención de la forma canónica de controlabilidad<a class="headerlink" href="#obtencion-de-la-forma-canonica-de-controlabilidad" title="Permalink to this heading">#</a></h2>
 <p>Para obtener la forma canónica de controlabilidad debemos obtener la matriz <span class="math notranslate nohighlight">\(\mathcal{C}\)</span>. Como el sistema es de orden 2 es:</p>
 <div class="math notranslate nohighlight">
 \[\mathcal{C}=\begin{bmatrix}
@@ -1119,12 +1095,12 @@ s^2 + 20 s + 10
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="transformacion-a-la-forma-canonica-modal">
-<h2>Transformación a la forma canónica modal:<a class="headerlink" href="#transformacion-a-la-forma-canonica-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+</section>
+<section id="transformacion-a-la-forma-canonica-modal">
+<h2>Transformación a la forma canónica modal:<a class="headerlink" href="#transformacion-a-la-forma-canonica-modal" title="Permalink to this heading">#</a></h2>
 <p>Veremos solo el caso de autovalores reales simples.</p>
-<div class="section" id="id1">
-<h3>Definición.<a class="headerlink" href="#id1" title="Enlazar permanentemente con este título">¶</a></h3>
+<section id="id1">
+<h3>Definición.<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>Sea la matriz <span class="math notranslate nohighlight">\(\mathbf{A} \in \Bbb R^{n\times n}\)</span>. Diremos que  <span class="math notranslate nohighlight">\(\lambda \in \Bbb K (= \Bbb R\text{ o } \Bbb C)\)</span> es un autovalor de <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> si existe un vector <span class="math notranslate nohighlight">\(\mathbf{v} \in \Bbb K^n\)</span>, con <span class="math notranslate nohighlight">\(\mathbf v \neq 0\)</span> tal que:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{Av}=\lambda \mathbf{v}\]</div>
@@ -1165,10 +1141,10 @@ s^2 + 20 s + 10
 <p>Esta forma canónica nos da la posibilidad de estudiar controlabilidad y observabilidad sin pasar por las matrices <span class="math notranslate nohighlight">\(\mathcal C\)</span> y <span class="math notranslate nohighlight">\(\mathcal O\)</span>.</p>
 <p>Si todos los estados están conectados con la entrada entonces el sistema es controlable. Para que se de esto, la matriz <span class="math notranslate nohighlight">\(\mathbf{B_m}\)</span>  tiene que tener todas sus componentes distintas de 0.</p>
 <p>Si todos los estados están conectados con la salida entonces el sistema es observable. Para que se de esto, la matriz <span class="math notranslate nohighlight">\(\mathbf{C_m}\)</span> tiene que tener todas sus componentes distintas de 0.</p>
-</div>
-</div>
-<div class="section" id="ejemplo-de-transformacion-a-la-forma-canonica-modal">
-<h2>Ejemplo de transformación a la forma canónica modal<a class="headerlink" href="#ejemplo-de-transformacion-a-la-forma-canonica-modal" title="Enlazar permanentemente con este título">¶</a></h2>
+</section>
+</section>
+<section id="ejemplo-de-transformacion-a-la-forma-canonica-modal">
+<h2>Ejemplo de transformación a la forma canónica modal<a class="headerlink" href="#ejemplo-de-transformacion-a-la-forma-canonica-modal" title="Permalink to this heading">#</a></h2>
 <p>La matriz de transformación son los autovectores.</p>
 <p>El módulo linalg de numpy tiene una función que se llama eig, que los devuelve los autovectores y autovalores. Los autovalores lo devuelve en forma de ndarray y luego devuelvo los autovalores como un array. Vamos a utilizar esta función para calcular la matriz de transformación <span class="math notranslate nohighlight">\(T\)</span>. Los autovalores los vamos a usar para verificar que luego de aplicar la transformación la matriz <span class="math notranslate nohighlight">\(A_m\)</span> resulte ser diagonal con los autovalores en la diagonal.</p>
 <div class="cell docutils container">
@@ -1225,8 +1201,7 @@ autovalores:
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
 \[\begin{split}
-\left(
-\begin{array}{rllrll|rll}
+\left(\begin{array}{rllrll|rll}
 -0.&amp;\hspace{-1em}513&amp;\hspace{-1em}\phantom{\cdot}&amp;9.&amp;\hspace{-1em}71&amp;\hspace{-1em}\cdot10^{-17}&amp;0.&amp;\hspace{-1em}0592&amp;\hspace{-1em}\phantom{\cdot}\\
 -1.&amp;\hspace{-1em}78&amp;\hspace{-1em}\cdot10^{-15}&amp;-19.&amp;\hspace{-1em}5&amp;\hspace{-1em}\phantom{\cdot}&amp;1.&amp;\hspace{-1em}03&amp;\hspace{-1em}\phantom{\cdot}\\
 \hline
@@ -1242,8 +1217,8 @@ autovalores:
 <p class="admonition-title">Advertencia</p>
 <p>Respecto al uso de numpy. La multiplicación de matrices usando el * la entiende como elemento a elemento si el tipo de datos es un ndarray o un array. Si usamos ese tipo de datos, entonces para que numpy entienda multiplicación de matrices se debe usar el símbolo &#64;. Si el tipo de datos que se está operando es una matriz de <code class="docutils literal notranslate"><span class="pre">numpy</span></code> entonces la multiplicación de matrices se puede hacer con *.</p>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1257,7 +1232,7 @@ autovalores:
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./sources/notebooks_sources/modulo_ve"
         },
         predefinedOutput: true
@@ -1265,56 +1240,116 @@ autovalores:
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="formas_canonicas.html" title="anterior página">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">anterior</p>
-                <p class="prevnext-title">Formas canónicas de un espacio de estados</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="ctrb_obsv.html" title="siguiente página">
-            <div class="prevnext-info">
-                <p class="prevnext-label">siguiente</p>
-                <p class="prevnext-title">Análisis de los sistemas en su forma de espacio de estados</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
-        
-        </div>
-    </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          Por Somebody<br/>
-        
-            &copy; Derechos de autor 2021.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="formas_canonicas.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Formas canónicas de un espacio de estados</p>
       </div>
-    </div>
-  
-  <script src="../../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+    </a>
+    <a class="right-next"
+       href="ctrb_obsv.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Análisis de los sistemas en su forma de espacio de estados</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Transformación lineal del espacio de estado</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacion-a-la-forma-canonica-de-controlabilidad">Transformación a la forma canónica de controlabilidad</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion">Definición:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacion-a-la-forma-canonica-de-observabilidad">Transformación a la forma canónica de observabilidad</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-masa-resorte-obtener-la-forma-canonica-de-observabilidad-y-con-matriz-de-transformacion-t">Ejemplo masa resorte: obtener la forma canónica de observabilidad y con matriz de transformación T</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obtencion-de-la-forma-canonica-de-controlabilidad">Obtención de la forma canónica de controlabilidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacion-a-la-forma-canonica-modal">Transformación a la forma canónica modal:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Definición.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-transformacion-a-la-forma-canonica-modal">Ejemplo de transformación a la forma canónica modal</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Somebody
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

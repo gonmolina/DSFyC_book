@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.10.2
+    jupytext_version: 1.13.0
 kernelspec:
   display_name: Python 3
   language: python
@@ -17,7 +17,6 @@ kernelspec:
 # Diseño de estimadores
 
 Hasta ahora aprendimos a obtener la ley de control suponiendo conocido el vector de estados. En general en control no se mido de forma completa todos lo estados del sistema. Por lo tanto será necesario construir un sistema que nos permita __estimar__ los estados de la planta que queremos controlar a partir de lsa variables que conocemos. En general las variables que conocemos son las _salidas_ (mediciones) y las _entradas_ que son las variables que no da nuestro controlador y que serán entradas de los actuadores de la planta.
-
 
 +++ {"id": "YSG8ObATiDMV"}
 
@@ -68,7 +67,6 @@ podemos ver ciertas similitudes o semejanzas.
 Por ejemplo, si transponemos la ecuación característica del observador resulta:
 
 $$\det\left[s\mathbf I -(\mathbf{A'-C'L'}\right)]=0$$
-
 
 +++ {"id": "ivR9oWmziDMe"}
 
@@ -136,13 +134,13 @@ La primer ecuación la podemos comparar con la ecuación de la dinámica del est
 
 Haciendo esto tenemos que:
 
-$$\begin{eqnarray}
-\mathbf{x} &\leftarrow&\mathbf x_b\\
-\mathbf{A} &\leftarrow&\mathbf A_{bb}\\
-\mathbf{B}u &\leftarrow&\mathbf A_{ba}y+\mathbf B_{b}u\\
-y &\leftarrow&\dot y - A_{aa}y-\mathbf B_{a}u\\
-\mathbf{C} &\leftarrow&\mathbf A_{ab}\\
-\end{eqnarray}$$
+$$\begin{align*}
+\mathbf{x} &\leftarrow \mathbf x_b\\
+\mathbf{A} &\leftarrow \mathbf A_{bb}\\
+\mathbf{B}u &\leftarrow \mathbf A_{ba}y+\mathbf B_{b}u\\
+y &\leftarrow \dot y - A_{aa}y-\mathbf B_{a}u\\
+\mathbf{C} &\leftarrow \mathbf A_{ab}\\
+\end{align*}$$
 
 +++ {"id": "noiHPiuOiDMl"}
 
@@ -188,7 +186,7 @@ $$\det\left[s\mathbf I -(\mathbf{A}_{bb}-\mathbf {LA}_{ab}\right)]=0$$
 
 El problema que tiene el estimador es que depende de la derivada de $y$: uno mide $y$ y a partir de esta variable resuelve $\dot y$, lo cual implica amplificar cualquier ruido presente en la medición:
 
-$$\mathbf {\dot {\hat x}}_b = (\mathbf {A}_{bb}-\mathbf L\mathbf A_{ab})\mathbf{\hat{x}}_b + (\mathbf{A}_{ba}-\mathbf L A_{aa})y + (\mathbf B_b- \mathbf L B_a) +\mathbf L \dot y $$
+$$\mathbf {\dot {\hat x}}_b = (\mathbf {A}_{bb}-\mathbf L\mathbf A_{ab})\mathbf{\hat{x}}_b + (\mathbf{A}_{ba}-\mathbf L A_{aa})y + (\mathbf B_b- \mathbf L B_a)u +\mathbf L \dot y $$
 
 Para poder obtener una ecuación del estimador sin la derivada de la medición, lo que se puede hacer es redefinir la variable de estado como:
 
@@ -197,7 +195,6 @@ $$\mathbf x_c \overset{\Delta}{=}\mathbf{\hat{x}_b}-\mathbf Ly$$
 Entonces la dinámica del este estimador resulta:
 
 $$\mathbf {\dot {\hat x}}_c = (\mathbf {A}_{bb}-\mathbf L\mathbf A_{ab})\mathbf{\hat{x}}_b + (\mathbf{A}_{ba}-\mathbf L A_{aa})y + (\mathbf B_b- \mathbf L B_a)u $$
-
 
 +++ {"id": "qCYQwLAZiDMn"}
 
@@ -267,4 +264,75 @@ Bb=sys.B[1:]
 
 Lred=(ctrl.acker(Abb.T, Aab.T, [-10*w0])).T # notar que se tata de ubicar un solo polo
 Lred
+```
+
+## Estimador completo y ley de control
+
+Para obtener un compensador similar a los que teníamos en control clásico, debemos de alguna forma unir el estimador y la ley de control en un solo sistema. Para este sistema compensador, la entrada será la salida de la planta $y(t)$ y la salida será la entrada de la planta $u(t)$. Por ahora consideremos que no tenemos la entrada referencia (o lo que es lo mismo que la referencia es nula).
+
+Recordemos la ecuación del estimador completo:
+
+$$\dot{ \hat{ \mathbf{x}}}(t)=\mathbf A\hat{\mathbf{x}}(t)+\mathbf B u(t)+\mathbf L(y(t)-\mathbf C \hat{\mathbf{x}}(t))$$
+
+y la ecuación de la ley de control es:
+
+$$u(t)=-\mathbf{Kx}(t).$$
+
+Reemplazando la ecuación de la ley de control en la del estimador:
+
+$$\dot{ \hat{ \mathbf{x}}}(t)=\mathbf A\hat{\mathbf{x}}(t)-\mathbf{BKx}(t)+\mathbf L(y(t)-\mathbf C \hat{\mathbf{x}}(t))$$
+
+Y reagrupando tenemos:
+
+$$\dot{ \hat{ \mathbf{x}}}(t)=(\mathbf A-\mathbf{BK-LC)\hat{x}}(t)+\mathbf L y(t)$$
+
+Entonces, tenemos que las ecuaciones de nuestro sistema "compensador" sería:
+
+$$\dot{ \hat{ \mathbf{x}}}(t)= \underbrace{(\mathbf A-\mathbf{BK-LC)}}_{\mathbf{A}_C} \hat{\mathbf x}(t)+\underbrace{\mathbf L }_{\mathbf B_C}y(t)$$
+
+$$u(t)=\underbrace{-\mathbf{K}}_{\mathbf C_C}\mathbf{x}(t) + \underbrace {\mathbf 0}_{\mathbf D} u(t)$$
+
+Estas ecuaciones describen a un sistema controlador donde se estiman los estados con un estimador de orden completo y los polos de la planta se deciden con la ley de control. Más adelante se mostrará como se agregan las referencias a este sistema.
+
++++
+
+## Estimador de orden reducido y ley de control
+
+Análogamente a lo hecho con el controlador de orden completo, tenmos que 
+
+$$\mathbf {\dot {x}}_c(t) = (\mathbf {A}_{bb}-\mathbf L\mathbf A_{ab})(\mathbf{x}_c(t)+\mathbf Ly(t)) + (\mathbf{A}_{ba}-\mathbf L A_{aa})y(t) + (\mathbf B_b- \mathbf L B_a)u(t).$$
+
+Podemos ahora dividir la $\mathbf K$ entre las partes que son mediciones y las que conocemos, entonces:
+
+$$ \mathbf K = [K_a \quad |\quad \mathbf K_b]$$
+
+La ecuación de salida la podemos del controlador la podemos escribir de la  siguiente manera entonces:
+
+$$u(t) = -K_a y(t) - \mathbf K _b \hat {\mathbf x}_B(t)= -K_a y(t) - \mathbf K _b \mathbf x_C(t) - \mathbf K _b \mathbf L y(t) =\underbrace{-\mathbf K _b}_{\mathbf C_r}\mathbf x_C(t) +\underbrace{(-K_a - \mathbf K _b \mathbf L)}_{\mathbf D_r} y(t)   $$
+
+Reemplanzando en la ecuación del estimador anterior y reagrupando tenemos que:
+
+$$\dot{\mathbf x}_C = \underbrace{((\mathbf {A}_{bb}-\mathbf L\mathbf A_{ab})-(\mathbf B_b- \mathbf L B_a)\mathbf K_B )}_{\mathbf A_r}\mathbf x_C +\underbrace{[ (\mathbf {A}_{bb}-\mathbf L\mathbf A_{ab})\mathbf L +  (\mathbf {A}_{ba}-\mathbf L\mathbf A_{aa}) - (\mathbf B_b- \mathbf L B_a) (K_a + \mathbf K _b \mathbf L) ]}_{\mathbf B_r} y(t)$$
+
++++
+
+Examinando las ecuaciones anteriores, podemos definir las ecuaciones que describen este compensador en espacio de estados como:
+
+$$ \mathbf A_r = (\mathbf {A}_{bb}-\mathbf L\mathbf A_{ab})-(\mathbf B_b- \mathbf L B_a)\mathbf K_B $$
+
+$$ \mathbf B_r = \mathbf {A}_r \mathbf L +\mathbf A_{ba}-\mathbf L \mathbf A_{aa} - (\mathbf B_b- \mathbf L B_a) K_a$$
+
+$$\mathbf C_r = -\mathbf K_b$$
+
+$$\mathbf D_r = -K_a -\mathbf K_b \mathbf L$$
+
+
+Por lo tanto las ecuaciones del sistema compensador son:
+
+$$ \dot{\mathbf x}_C = \mathbf A_r \mathbf x_C + \mathbf B_r y(t)$$
+
+$$u(t) = \mathbf C_r \mathbf x_C  + \mathbf D_r y(t)$$
+
+```{code-cell} ipython3
+
 ```

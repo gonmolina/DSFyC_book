@@ -1,0 +1,84 @@
+Traceback (most recent call last):
+  File "/usr/share/miniconda/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/usr/share/miniconda/lib/python3.11/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/share/miniconda/lib/python3.11/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/share/miniconda/lib/python3.11/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/share/miniconda/lib/python3.11/asyncio/base_events.py", line 653, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/usr/share/miniconda/lib/python3.11/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/usr/share/miniconda/lib/python3.11/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/usr/share/miniconda/lib/python3.11/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+#Orden 2 + Cero adicional
+from ipywidgets import interact
+import control as ctrl
+import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
+import numpy as np
+%matplotlib inline
+
+def draw_figure(poleG,zeroG,t,y,yord2):
+    
+    fig = plt.figure(figsize=(12,4))
+    gs = gridspec.GridSpec(1, 2, height_ratios=[1], width_ratios=[1,2])
+    
+    ax1 = fig.add_subplot(gs[0])
+    ax2 = fig.add_subplot(gs[1])
+
+    ax1.set_title("Polos y Ceros")
+    ax1.set_xlabel("Parte Real")
+    ax1.set_ylabel("Parte imaginaria")
+    ax1.spines['left'].set_color('none')
+    ax1.spines['right'].set_color('none')
+    ax1.spines['top'].set_color('none')
+    ax1.spines['bottom'].set_color('none')
+
+    ax2.set_title("Respuesta Temporal")
+    ax2.set_xlabel("Tiempo")
+    ax2.set_ylabel("Amplitud")
+    fig.tight_layout()
+    
+    ax1.scatter(np.real(zeroG), np.imag(zeroG), marker='o')
+    ax1.scatter(np.real(poleG), np.imag(poleG), marker='x')
+    ax2.plot(t,y)
+    ax2.plot(t,yord2,'--r')
+    ax2.grid()
+
+
+def update(alpha=1, wn=1, zeta=0.5,tmax=10):
+    G=ctrl.tf([1/wn/alpha/zeta,1],[1/wn**2,2*zeta/wn,1])
+    Gord2=ctrl.tf([1],[1/wn**2,2*zeta/wn,1])
+    alpha=0.001 if alpha==0 else alpha
+    t=np.linspace(0,tmax,501)
+    _,y=ctrl.step_response(G,T=t)
+    _,yord2=ctrl.step_response(Gord2,T=t)
+    polesG=G.pole()
+    zeroG=G.zero()
+    draw_figure(polesG,zeroG,t,y,yord2)
+    
+interact(update, alpha=(-20.01,50,0.1),wn=(0.01,10,0.1),zeta=(0.001,1.01,0.02),tmax=(1, 20));
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [0;32mIn[1], line 2[0m
+[1;32m      1[0m [38;5;66;03m#Orden 2 + Cero adicional[39;00m
+[0;32m----> 2[0m [38;5;28;01mfrom[39;00m [38;5;21;01mipywidgets[39;00m [38;5;28;01mimport[39;00m interact
+[1;32m      3[0m [38;5;28;01mimport[39;00m [38;5;21;01mcontrol[39;00m [38;5;28;01mas[39;00m [38;5;21;01mctrl[39;00m
+[1;32m      4[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
+
+[0;31mModuleNotFoundError[0m: No module named 'ipywidgets'
+ModuleNotFoundError: No module named 'ipywidgets'
+

@@ -1,45 +1,59 @@
 
+
 <!DOCTYPE html>
 
-<html lang="es">
+
+<html lang="es" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Lugar de las raíces &#8212; Diseño y Ajuste de Sistemas de Control</title>
-    
-  <link href="../../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../../../_static/js/index.1c5a1a01449ed65a7b51.js">
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
     <script kind="utterances">
 
     var commentsRunWhenDOMLoaded = cb => {
@@ -75,532 +89,487 @@ var addUtterances = () => {
 commentsRunWhenDOMLoaded(addUtterances);
 </script>
     <script src="../../../_static/translations.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sources/notebooks_sources/modulo4/lugar de las raices';</script>
     <link rel="canonical" href="https://gonmolina.github.io/DSFyC_book/sources/notebooks_sources/modulo4/lugar de las raices.html" />
     <link rel="index" title="Índice" href="../../../genindex.html" />
     <link rel="search" title="Búsqueda" href="../../../search.html" />
     <link rel="next" title="Pasos para trazar el lugar geométrico de las raíces" href="Pasos%20para%20el%20trazado.html" />
     <link rel="prev" title="Errores" href="../modulo3/errores/Errores.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../../index.html">
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../dsfc_sources/intro.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../../../_static/sala_de_control.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Diseño y Ajuste de Sistemas de Control</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Buscar este libro ..." aria-label="Buscar este libro ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../dsfc_sources/intro.html">
-   Material de la materia Dinámica de los Sistemas Físicos y Control
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Introducción a Python
- </span>
-</p>
+    
+    
+    <img src="../../../_static/sala_de_control.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../_static/sala_de_control.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../dsfc_sources/intro.html">
+                    Material de la materia Dinámica de los Sistemas Físicos y Control
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducción a Python</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../gu%C3%ADa_instalaci%C3%B3n/guia_de_instalacion.html">
-   Guía de instalación de las herramientas computacionales
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro_python/Introducci%C3%B3n%20a%20los%20notebooks%20de%20Jupyter.html">
-   Introducción a los cuadernos de Jupyter
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro_python/Extra_Python.html">
-   Introducción a Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro_python/Intro-Matplotlib.html">
-   Figuras en Python - MATPLOTLIB
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro_python/intro_sympy.html">
-   Introducción a SymPy
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../gu%C3%ADa_instalaci%C3%B3n/guia_de_instalacion.html">Guía de instalación de las herramientas computacionales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro_python/Introducci%C3%B3n%20a%20los%20notebooks%20de%20Jupyter.html">Introducción a los cuadernos de Jupyter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro_python/Extra_Python.html">Introducción a Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro_python/Intro-Matplotlib.html">Figuras en Python - MATPLOTLIB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro_python/intro_sympy.html">Introducción a SymPy</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Señales, sistemas y modelos
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Señales, sistemas y modelos</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo1/intro_sys_sen/intro_sis_y_sen.html">
-   Definiciones de Sistemas y Señales
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo1/laplace/transformada_laplace_python_opcional.html">
-   Transformada de Laplace
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo1/laplace/funcion_transferencia.html">
-   Función transferencia
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo1/diagrama_bloques/diagrama_de_bloques.html">
-   Diagramas de bloques
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../modulo1/espacio_estado/espacio_de_estados.html">
-   Representación de sistemas dinámicos en espacio de estados
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../modulo1/espacio_estado/modelado_ss.html">
-     Modelado en espacio de estados
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo1/linealizacion/linealizacion.html">
-   Linealización de sistemas no-lineales
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../modulo1/ejemplos_sistemas/ejemplos_sistemas.html">
-   Ejemplos de modelos de sistemas
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../modulo1/ejemplos_sistemas/resorte_no_lineal.html">
-     Sistema masa resorte amortiguador
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../modulo1/ejemplos_sistemas/CineticaPuntual.html">
-     Ecuaciones de Cinética Puntual
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../modulo1/ejemplos_sistemas/Nonlinear%20CSTR.html">
-     Sistema CSTR
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../modulo1/ejemplos_sistemas/Ejemplo_Presa_Depredador.html">
-     Sistema presa depredador (Lotka-Volterra)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo1/intro_sys_sen/intro_sis_y_sen.html">Definiciones de Sistemas y Señales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo1/laplace/transformada_laplace_python_opcional.html">Transformada de Laplace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo1/laplace/funcion_transferencia.html">Función transferencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo1/diagrama_bloques/diagrama_de_bloques.html">Diagramas de bloques</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../modulo1/espacio_estado/espacio_de_estados.html">Representación de sistemas dinámicos en espacio de estados</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modulo1/espacio_estado/modelado_ss.html">Modelado en espacio de estados</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Análisis de la respuesta temporal
- </span>
-</p>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo1/linealizacion/linealizacion.html">Linealización de sistemas no-lineales</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../modulo1/ejemplos_sistemas/ejemplos_sistemas.html">Ejemplos de modelos de sistemas</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modulo1/ejemplos_sistemas/resorte_no_lineal.html">Sistema masa resorte amortiguador</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modulo1/ejemplos_sistemas/CineticaPuntual.html">Ecuaciones de Cinética Puntual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modulo1/ejemplos_sistemas/Nonlinear%20CSTR.html">Sistema CSTR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modulo1/ejemplos_sistemas/Ejemplo_Presa_Depredador.html">Sistema presa depredador (Lotka-Volterra)</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Análisis de la respuesta temporal</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo2/estabilidad/estabilidad.html">
-   Estabilidad
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo2/respuesta%20temporal/Respuesta%20Temporal.html">
-   Respuesta temporal de sistemas dinámicos
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo2/polos%20y%20ceros%20adicionales/Efecto%20Polos%20y%20Ceros%20Adicionales.html">
-   Efecto de los polos adicionales y de los ceros
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo2/estabilidad/estabilidad.html">Estabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo2/respuesta%20temporal/Respuesta%20Temporal.html">Respuesta temporal de sistemas dinámicos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo2/polos%20y%20ceros%20adicionales/Efecto%20Polos%20y%20Ceros%20Adicionales.html">Efecto de los polos adicionales y de los ceros</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Análisis de estado estacionario
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Análisis de estado estacionario</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo3/realimentacion/carateristicas%20de%20la%20realimentacion.html">
-   Características de la realimentación
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo3/sensibilidad/Sensibilidad.html">
-   Sensibilidad
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo3/errores/Errores.html">
-   Errores
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo3/realimentacion/carateristicas%20de%20la%20realimentacion.html">Características de la realimentación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo3/sensibilidad/Sensibilidad.html">Sensibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo3/errores/Errores.html">Errores</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Lugar de las raíces
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lugar de las raíces</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Lugar de las raíces
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Pasos%20para%20el%20trazado.html">
-   Pasos para trazar el lugar geométrico de las raíces
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Lugar%20de%20la%20raices%20con%20Python.html">
-   Lugar de las raíces usando Python
-  </a>
- </li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lugar de las raíces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Pasos%20para%20el%20trazado.html">Pasos para trazar el lugar geométrico de las raíces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lugar%20de%20la%20raices%20con%20Python.html">Lugar de las raíces usando Python</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Respuesta en frecuencia
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Respuesta en frecuencia</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo_frec/respuesta_frecuencial.html">
-   Respuesta Frecuencial de Sistemas lineales y SISO
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo_frec/estabilidad_nyquist/estabilidad_en_frecuencia.html">
-   Estabilidad en Frecuencia
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_frec/respuesta_frecuencial.html">Respuesta Frecuencial de Sistemas lineales y SISO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_frec/estabilidad_nyquist/estabilidad_en_frecuencia.html">Estabilidad en Frecuencia</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Diseño de compensadores
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Diseño de compensadores</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo5/compensadores.html">
-   Compensadores de adelanto y de retraso de fase
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo5/problema_levitador.html">
-   Problema de levitador magnético
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo5/tipo1_lead.html">
-   Problema con sistema de tipo 1
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo5/lead_lag_design.html">
-   Ecuaciones útiles para el diseño del Lead por análisis en frecuencia
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo5/compensadores.html">Compensadores de adelanto y de retraso de fase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo5/problema_levitador.html">Problema de levitador magnético</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo5/tipo1_lead.html">Problema con sistema de tipo 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo5/lead_lag_design.html">Ecuaciones útiles para el diseño del Lead por análisis en frecuencia</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Control Moderno
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Control Moderno</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo_ve/polos_ceros_EE.html">
-   Polos y Ceros en los modelos de espacio de estados
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo_ve/formas_canonicas.html">
-   Formas canónicas de un espacio de estados
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo_ve/transformacion_formas_canonicas.html">
-   Transformación lineal del espacio de estado
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo_ve/ctrb_obsv.html">
-   Análisis de los sistemas en su forma de espacio de estados
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo_ve/LSR.html">
-   Elección de la ubicación de los polos a lazo cerrado
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo_ve/referencia.html">
-   Inserción de referencias
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo_ve/estimadores.html">
-   Diseño de estimadores
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo_ve/ejemplo_A_ve_motor_cc.html">
-   Diseño para un motor de continua
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo_ve/ejemplo_B_ve_atitud_satelite.html">
-   Diseño del sistema de control del atitud de un satélite
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo_ve/ejemplo_C_ve_pendulo_invertido.html">
-   Diseño del sistema de control del pédulo invertido
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_ve/polos_ceros_EE.html">Polos y Ceros en los modelos de espacio de estados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_ve/formas_canonicas.html">Formas canónicas de un espacio de estados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_ve/transformacion_formas_canonicas.html">Transformación lineal del espacio de estado</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../modulo_ve/ctrb_obsv.html">Análisis de los sistemas en su forma de espacio de estados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_ve/LSR.html">Elección de la ubicación de los polos a lazo cerrado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_ve/referencia.html">Inserción de referencias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_ve/estimadores.html">Diseño de estimadores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_ve/ejemplo_A_ve_motor_cc.html">Diseño para un motor de continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_ve/ejemplo_B_ve_atitud_satelite.html">Diseño del sistema de control del atitud de un satélite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_ve/ejemplo_C_ve_pendulo_invertido.html">Diseño del sistema de control del pédulo invertido</a></li>
+
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Navegación de palanca" aria-controls="site-navigation"
-                title="Navegación de palanca" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Descarga esta pagina"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../../../_sources/sources/notebooks_sources/modulo4/lugar de las raices.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Descargar archivo de cuaderno" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/sources/notebooks_sources/modulo4/lugar de las raices.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Descargar archivo fuente" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimir en PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/gonmolina/DSFyC_book"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Repositorio de origen"><i
-                    class="fab fa-github"></i>repositorio</button></a>
-        <a class="issues-button"
-            href="https://github.com/gonmolina/DSFyC_book/issues/new?title=Issue%20on%20page%20%2Fsources/notebooks_sources/modulo4/lugar de las raices.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Abrir un problema"><i class="fas fa-lightbulb"></i>Tema abierto</button></a>
-        <a class="edit-button" href="https://github.com/gonmolina/DSFyC_book/edit/master/sources/notebooks_sources/modulo4/lugar de las raices.md"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edita esta página"><i class="fas fa-pencil-alt"></i>sugerir editar</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
-</div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
+<div class="article-header-buttons">
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Modo de pantalla completa"
-        title="Modo de pantalla completa"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/gonmolina/DSFyC_book/master?urlpath=tree/sources/notebooks_sources/modulo4/lugar de las raices.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Lanzamiento Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
 
-        </div>
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contenido
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduccion">
-   Introducción
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ejemplo-de-lugar-de-las-raices">
-   Ejemplo de lugar de las raíces
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#repaso-de-espacio-vectorial-complejo-vector-complejo">
-   Repaso de espacio vectorial complejo: Vector complejo
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ejemplo-punto-de-prueba">
-   Ejemplo punto de prueba
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ejemplo-trazado-del-lugar-de-las-raices">
-   Ejemplo: Trazado del lugar de las raíces
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#propiedades-de-el-lugar-de-las-raices">
-   Propiedades de el Lugar de las Raíces
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#condicion-de-magnitud-o-de-modulo">
-     Condición de magnitud o de módulo
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#ejemplo-de-calculo-de-k-con-la-condicion-de-modulo">
-       Ejemplo de cálculo de k con la condición de módulo
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#ejemplo-calculo-de-fase-para-un-punto-especifico-del-plano-s-s-0">
-       <strong>
-        Ejemplo:
-       </strong>
-       cálculo de fase para un punto especifico del plano-s,
-       <span class="math notranslate nohighlight">
-        \(s_0\)
-       </span>
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#ejemplo-calculo-de-la-condicion-de-magnitud">
-       Ejemplo cálculo de la condición de magnitud
-      </a>
-     </li>
-    </ul>
-   </li>
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/gonmolina/DSFyC_book/blob/master/sources/notebooks_sources/modulo4/lugar de las raices.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
   </ul>
- </li>
-</ul>
+</div>
 
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/gonmolina/DSFyC_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Repositorio de origen"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gonmolina/DSFyC_book/edit/master/sources/notebooks_sources/modulo4/lugar de las raices.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gonmolina/DSFyC_book/issues/new?title=Issue%20on%20page%20%2Fsources/notebooks_sources/modulo4/lugar de las raices.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Abrir un problema"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/sources/notebooks_sources/modulo4/lugar de las raices.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Descargar archivo de cuaderno"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../../../_sources/sources/notebooks_sources/modulo4/lugar de las raices.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lugar de las raíces</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-lugar-de-las-raices">Ejemplo de lugar de las raíces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#repaso-de-espacio-vectorial-complejo-vector-complejo">Repaso de espacio vectorial complejo: Vector complejo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-punto-de-prueba">Ejemplo punto de prueba</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-trazado-del-lugar-de-las-raices">Ejemplo: Trazado del lugar de las raíces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades-de-el-lugar-de-las-raices">Propiedades de el Lugar de las Raíces</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#condicion-de-magnitud-o-de-modulo">Condición de magnitud o de módulo</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-calculo-de-k-con-la-condicion-de-modulo">Ejemplo de cálculo de k con la condición de módulo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-calculo-de-fase-para-un-punto-especifico-del-plano-s-s-0"><strong>Ejemplo:</strong> cálculo de fase para un punto especifico del plano-s, <span class="math notranslate nohighlight">\(s_0\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-calculo-de-la-condicion-de-magnitud">Ejemplo cálculo de la condición de magnitud</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="lugar-de-las-raices">
-<h1>Lugar de las raíces<a class="headerlink" href="#lugar-de-las-raices" title="Enlazar permanentemente con este título">¶</a></h1>
-<div class="section" id="introduccion">
-<h2>Introducción<a class="headerlink" href="#introduccion" title="Enlazar permanentemente con este título">¶</a></h2>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lugar-de-las-raices">
+<h1>Lugar de las raíces<a class="headerlink" href="#lugar-de-las-raices" title="Permalink to this heading">#</a></h1>
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h2>
 <p>Muchos problemas de control consisten en analizar la respuesta de un sistema cuando varía un parámetro <span class="math notranslate nohighlight">\(k\)</span> de la función de transferencia del sistema.</p>
-<div class="figure align-default" id="id1">
+<figure class="align-default" id="id1">
 <a class="reference internal image-reference" href="../../../_images/fig13.png"><img alt="fig1.png" src="../../../_images/fig13.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-number">Figura 40 </span><span class="caption-text">Diagrama en bloques de un sistema con un parámetro variable <span class="math notranslate nohighlight">\(k\)</span></span><a class="headerlink" href="#id1" title="Enlace permanente a esta imagen">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Figura 40 </span><span class="caption-text">Diagrama en bloques de un sistema con un parámetro variable <span class="math notranslate nohighlight">\(k\)</span></span><a class="headerlink" href="#id1" title="Enlace permanente a esta imagen">#</a></p>
+</figcaption>
+</figure>
 <p>Un ejemplo de esto son las funciones de transferencia siguientes, donde en un caso de <span class="math notranslate nohighlight">\(G_1(s)\)</span> el parámetro que varía es el parámetro <span class="math notranslate nohighlight">\(k\)</span> y en el caso de de <span class="math notranslate nohighlight">\(G_2(s)\)</span> el parámetro que varía es <span class="math notranslate nohighlight">\(b\)</span></p>
 <div class="math notranslate nohighlight">
 \[
@@ -608,23 +577,29 @@ commentsRunWhenDOMLoaded(addUtterances);
 G_1(s)= \frac{k(s+20)}{s^2+10s} &amp; G_2(s)=\frac{1}{2s^2+bs+3}
 \end{matrix}
 \]</div>
-<div class="figure align-default" id="id2">
+<figure class="align-default" id="id2">
 <a class="reference internal image-reference" href="../../../_images/fig21.png"><img alt="fig2.png" src="../../../_images/fig21.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">Figura 41 </span><span class="caption-text">Diagrama en bloques de los sistema <span class="math notranslate nohighlight">\(G_1(s)\)</span> y <span class="math notranslate nohighlight">\(G_2(s)\)</span></span><a class="headerlink" href="#id2" title="Enlace permanente a esta imagen">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Figura 41 </span><span class="caption-text">Diagrama en bloques de los sistema <span class="math notranslate nohighlight">\(G_1(s)\)</span> y <span class="math notranslate nohighlight">\(G_2(s)\)</span></span><a class="headerlink" href="#id2" title="Enlace permanente a esta imagen">#</a></p>
+</figcaption>
+</figure>
 <p>Una solución práctica a este problema es evaluar el parámetro variable para distintos valores fijos y de esa forma calcular la ubicación en el plano s, de los polos y ceros, para deducir la respuesta temporal del sistema.</p>
 <p>Y si lo anterior se pudiera hacer para todos los valores de <span class="math notranslate nohighlight">\(\ell \in \mathbb{R}\)</span>!. Bueno aquí, es donde entra Walter R. Evans y el «Método de Evans», que permite resolver en forma <strong>gráfica</strong> las funciones del tipo <span class="math notranslate nohighlight">\(1+\ell~F(s)=0\)</span> donde <span class="math notranslate nohighlight">\(F(s)\)</span> es una función de transferencia de la forma <span class="math notranslate nohighlight">\(F(s)= \frac{N(s)}{D(s)}\)</span> y <span class="math notranslate nohighlight">\(\ell \in \mathbb{R}\)</span>, notar que de lo anterior es posible expresar lo de la forma <span class="math notranslate nohighlight">\(D(s)+\ell~N(s)=0\)</span>. A estos gráficos o diagramas, en control, les llamamos Lugar de las raíces o en ingles Root Locus.</p>
 <p>Este resultado lo usaremos para responder básicamente dos preguntas: ¿Cómo puedo elegir el parámetro <span class="math notranslate nohighlight">\(\ell\)</span> para que la respuesta dinámica del sistema cumpla con los requerimientos de performance necesarios para el sistema a controlar? y ¿Qué efecto tiene sobre la dinámica de un sistema, la variación de un parámetro <span class="math notranslate nohighlight">\(\ell\)</span> de su función de transferencia?</p>
 <p>Para comenzaremos a responder estas preguntas, analizaremos el siguiente esquema «genérico» de control a lazo cerrado del sistema de la figura siguiente, donde <span class="math notranslate nohighlight">\(k D(s)\)</span> es el controlador del sistema con ganancia <span class="math notranslate nohighlight">\(k\)</span>, como parámetro variable, en principio comenzaremos con <span class="math notranslate nohighlight">\(k&gt;0\)</span>, pero si bien, en la mayoría de los problemas que veremos <span class="math notranslate nohighlight">\(k\)</span> es positivo,no hay restricciones con respecto a al valor de <span class="math notranslate nohighlight">\(k\)</span>.</p>
-<div class="figure align-default" id="id3">
+<figure class="align-default" id="id3">
 <a class="reference internal image-reference" href="../../../_images/fig31.png"><img alt="fig3.png" src="../../../_images/fig31.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Figura 42 </span><span class="caption-text">Sistema genérico a lazo cerrado</span><a class="headerlink" href="#id3" title="Enlace permanente a esta imagen">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Figura 42 </span><span class="caption-text">Sistema genérico a lazo cerrado</span><a class="headerlink" href="#id3" title="Enlace permanente a esta imagen">#</a></p>
+</figcaption>
+</figure>
 <p>El diagrama en bloques equivalente, se reduce a:</p>
-<div class="figure align-default" id="id4">
+<figure class="align-default" id="id4">
 <a class="reference internal image-reference" href="../../../_images/fig42.png"><img alt="fig4.png" src="../../../_images/fig42.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-number">Figura 43 </span><span class="caption-text">Diagrama equivalente del sistema a lazo cerrado</span><a class="headerlink" href="#id4" title="Enlace permanente a esta imagen">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Figura 43 </span><span class="caption-text">Diagrama equivalente del sistema a lazo cerrado</span><a class="headerlink" href="#id4" title="Enlace permanente a esta imagen">#</a></p>
+</figcaption>
+</figure>
 <p>La función de transferencia a lazo cerrado es:</p>
 <div class="math notranslate nohighlight">
 \[T(s)=\frac{Y(s)}{R(s)}=\frac{k D(s) G(s)}{1+k D(s) G(s)}\]</div>
@@ -649,9 +624,9 @@ G_1(s)= \frac{k(s+20)}{s^2+10s} &amp; G_2(s)=\frac{1}{2s^2+bs+3}
 \text{polos} \quad T(s) &amp;\Longrightarrow &amp; D_D(s) D_G(s)+k N_D(s) N_G(s)=0
 \end{matrix}
 \end{split}\]</div>
-</div>
-<div class="section" id="ejemplo-de-lugar-de-las-raices">
-<h2>Ejemplo de lugar de las raíces<a class="headerlink" href="#ejemplo-de-lugar-de-las-raices" title="Enlazar permanentemente con este título">¶</a></h2>
+</section>
+<section id="ejemplo-de-lugar-de-las-raices">
+<h2>Ejemplo de lugar de las raíces<a class="headerlink" href="#ejemplo-de-lugar-de-las-raices" title="Permalink to this heading">#</a></h2>
 <p>Consideremos <span class="math notranslate nohighlight">\(G(s)= \frac{1}{s+10}\)</span> y <span class="math notranslate nohighlight">\(D(s)= k \frac{(s+20)}{s}\)</span> donde <span class="math notranslate nohighlight">\(k\)</span> es el parámetro variable, para este problema nos interesa determinar los polos y ceros del sistema a lazo cerrado y compararlos con los de la funciones a lazo abierto, por lo que consideraremos que <span class="math notranslate nohighlight">\(k=2\)</span></p>
 <p><span class="math notranslate nohighlight">\(D(s)\)</span> tiene un polo y un cero en: <span class="math notranslate nohighlight">\(p_1=0\)</span> y <span class="math notranslate nohighlight">\(z_1=-20\)</span></p>
 <p><span class="math notranslate nohighlight">\(G(s)\)</span> tiene solo un polo en: <span class="math notranslate nohighlight">\(p_2=-10\)</span></p>
@@ -667,7 +642,7 @@ G_1(s)= \frac{k(s+20)}{s^2+10s} &amp; G_2(s)=\frac{1}{2s^2+bs+3}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-20.])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-20.+0.j])
 </pre></div>
 </div>
 </div>
@@ -687,24 +662,28 @@ G_1(s)= \frac{k(s+20)}{s^2+10s} &amp; G_2(s)=\frac{1}{2s^2+bs+3}
 </div>
 <p><span class="math notranslate nohighlight">\(T(s)\)</span> tiene un cero en: <span class="math notranslate nohighlight">\(z_1=-20\)</span></p>
 <p><span class="math notranslate nohighlight">\(T(s)\)</span> tiene un par de polos complejos conjugados en: <span class="math notranslate nohighlight">\(p_{1,2}=-6\pm 2j\)</span></p>
-</div>
-<div class="section" id="repaso-de-espacio-vectorial-complejo-vector-complejo">
-<h2>Repaso de espacio vectorial complejo: Vector complejo<a class="headerlink" href="#repaso-de-espacio-vectorial-complejo-vector-complejo" title="Enlazar permanentemente con este título">¶</a></h2>
+</section>
+<section id="repaso-de-espacio-vectorial-complejo-vector-complejo">
+<h2>Repaso de espacio vectorial complejo: Vector complejo<a class="headerlink" href="#repaso-de-espacio-vectorial-complejo-vector-complejo" title="Permalink to this heading">#</a></h2>
 <p>Veremos la representación vectorial de números complejos, para lo que partiremos de número complejo <span class="math notranslate nohighlight">\(\overrightarrow{s}= \sigma + j \omega\)</span>, cuya representación vectorial es la siguiente:</p>
-<div class="figure align-default" id="id5">
+<figure class="align-default" id="id5">
 <a class="reference internal image-reference" href="../../../_images/fig52.png"><img alt="fig5.png" src="../../../_images/fig52.png" style="width: 250px;" /></a>
-<p class="caption"><span class="caption-number">Figura 44 </span><span class="caption-text">Vector <span class="math notranslate nohighlight">\(\overrightarrow{s}= \sigma + j \omega\)</span></span><a class="headerlink" href="#id5" title="Enlace permanente a esta imagen">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Figura 44 </span><span class="caption-text">Vector <span class="math notranslate nohighlight">\(\overrightarrow{s}= \sigma + j \omega\)</span></span><a class="headerlink" href="#id5" title="Enlace permanente a esta imagen">#</a></p>
+</figcaption>
+</figure>
 <p>donde,</p>
 <div class="math notranslate nohighlight">
 \[|M|=\sqrt{\sigma^2+\omega^2}\]</div>
 <div class="math notranslate nohighlight">
 \[ \theta= \arctan{\frac{\omega}{\sigma} }\]</div>
 <p>ahora consideremos que tenemos el vector <span class="math notranslate nohighlight">\(\overrightarrow{v} = \overrightarrow{s} + a\)</span> con <span class="math notranslate nohighlight">\(a \in \mathbb{R}\)</span> y <span class="math notranslate nohighlight">\(\overrightarrow{s} = \sigma + j \omega \in \mathbb{C}\)</span>, la traslación de <span class="math notranslate nohighlight">\(\overrightarrow{s}\)</span>, cuya representación es:</p>
-<div class="figure align-default" id="id6">
+<figure class="align-default" id="id6">
 <a class="reference internal image-reference" href="../../../_images/fig62.png"><img alt="fig6.png" src="../../../_images/fig62.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figura 45 </span><span class="caption-text">Vector <span class="math notranslate nohighlight">\(\overrightarrow{v}\)</span></span><a class="headerlink" href="#id6" title="Enlace permanente a esta imagen">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Figura 45 </span><span class="caption-text">Vector <span class="math notranslate nohighlight">\(\overrightarrow{v}\)</span></span><a class="headerlink" href="#id6" title="Enlace permanente a esta imagen">#</a></p>
+</figcaption>
+</figure>
 <p>en general, podemos decir que si que si tenemos la función de transferencia <span class="math notranslate nohighlight">\(F(s)\)</span> donde <span class="math notranslate nohighlight">\(s\)</span> es la variable compleja y con polos y ceros, tal que:</p>
 <div class="math notranslate nohighlight">
 \[F(s) = \frac{\prod_{i=1}^{m}(s+z_i)}{\prod_{j=1}^{n}(s+p_j)}\]</div>
@@ -714,9 +693,9 @@ G_1(s)= \frac{k(s+20)}{s^2+10s} &amp; G_2(s)=\frac{1}{2s^2+bs+3}
 <p>y el argumento de <span class="math notranslate nohighlight">\(F(s)\)</span> será,</p>
 <div class="math notranslate nohighlight">
 \[ \angle{F(s)}= \sum{ang. ceros}-\sum{ang. polos}= \sum_{i=1}^{m}{\angle{(s+z_i)}}-\sum_{j=1}^{n}{\angle{(s+p_j)}}\]</div>
-</div>
-<div class="section" id="ejemplo-punto-de-prueba">
-<h2>Ejemplo punto de prueba<a class="headerlink" href="#ejemplo-punto-de-prueba" title="Enlazar permanentemente con este título">¶</a></h2>
+</section>
+<section id="ejemplo-punto-de-prueba">
+<h2>Ejemplo punto de prueba<a class="headerlink" href="#ejemplo-punto-de-prueba" title="Permalink to this heading">#</a></h2>
 <p>Supongamos un punto de prueba fijo en el plano-s <span class="math notranslate nohighlight">\(s_0=-1+j\)</span> y la función de transferencia,</p>
 <div class="math notranslate nohighlight">
 \[F(s)=\frac{1}{s(s+d)}\]</div>
@@ -727,18 +706,22 @@ G_1(s)= \frac{k(s+20)}{s^2+10s} &amp; G_2(s)=\frac{1}{2s^2+bs+3}
 \[\angle{F(s_0)}=\underbrace{0}_{\sum{\angle(s+z_i)}}-\underbrace{(45º+135º)}_{\sum{\angle{(s+p_j)}}}=-180º\]</div>
 <div class="math notranslate nohighlight">
 \[F(s_0)= \frac{1}{2} \angle{-180º}\]</div>
-<div class="figure align-default" id="id7">
+<figure class="align-default" id="id7">
 <a class="reference internal image-reference" href="../../../_images/fig72.png"><img alt="fig7.png" src="../../../_images/fig72.png" style="width: 250px;" /></a>
-<p class="caption"><span class="caption-number">Figura 46 </span><span class="caption-text">Módulo y argumento de <span class="math notranslate nohighlight">\(F(s_0)\)</span></span><a class="headerlink" href="#id7" title="Enlace permanente a esta imagen">¶</a></p>
-</div>
-</div>
-<div class="section" id="ejemplo-trazado-del-lugar-de-las-raices">
-<h2>Ejemplo: Trazado del lugar de las raíces<a class="headerlink" href="#ejemplo-trazado-del-lugar-de-las-raices" title="Enlazar permanentemente con este título">¶</a></h2>
+<figcaption>
+<p><span class="caption-number">Figura 46 </span><span class="caption-text">Módulo y argumento de <span class="math notranslate nohighlight">\(F(s_0)\)</span></span><a class="headerlink" href="#id7" title="Enlace permanente a esta imagen">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="ejemplo-trazado-del-lugar-de-las-raices">
+<h2>Ejemplo: Trazado del lugar de las raíces<a class="headerlink" href="#ejemplo-trazado-del-lugar-de-las-raices" title="Permalink to this heading">#</a></h2>
 <p>En el siguiente ejemplo mostraremos la ubicación de los polos de <span class="math notranslate nohighlight">\(G(s)\)</span> para distintos valores de la variable <span class="math notranslate nohighlight">\(k\)</span>, consideraremos <span class="math notranslate nohighlight">\(k&gt;0\)</span>, cuando se cierra el lazo con realimentación unitaria, como se muestra en la siguiente figura:</p>
-<div class="figure align-default" id="id8">
+<figure class="align-default" id="id8">
 <a class="reference internal image-reference" href="../../../_images/fig82.png"><img alt="fig8.png" src="../../../_images/fig82.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figura 47 </span><span class="caption-text"><span class="math notranslate nohighlight">\(G(s)\)</span> a lazo cerrado con un controlador proporcional <span class="math notranslate nohighlight">\(D(s)=k\)</span></span><a class="headerlink" href="#id8" title="Enlace permanente a esta imagen">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Figura 47 </span><span class="caption-text"><span class="math notranslate nohighlight">\(G(s)\)</span> a lazo cerrado con un controlador proporcional <span class="math notranslate nohighlight">\(D(s)=k\)</span></span><a class="headerlink" href="#id8" title="Enlace permanente a esta imagen">#</a></p>
+</figcaption>
+</figure>
 <p>entonces calculamos la función de transferencia a lazo cerrado <span class="math notranslate nohighlight">\(T(s)\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[T(s)=\frac{k}{s^2+10s+k}\]</div>
@@ -750,43 +733,45 @@ G_1(s)= \frac{k(s+20)}{s^2+10s} &amp; G_2(s)=\frac{1}{2s^2+bs+3}
 \end{matrix}
 \]</div>
 <p>para esto haremos una tabla y calcularemos las raíces de la ecuación característica para distintos valores de <span class="math notranslate nohighlight">\(k\)</span> de la forma <span class="math notranslate nohighlight">\(s_{1,2}=\frac{-b \pm \sqrt{b^2-4ac}}{2a}\)</span>:</p>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
-<tr class="row-odd"><th class="text-align:center head"><p>k</p></th>
-<th class="text-align:center head"><p>polo 1</p></th>
-<th class="text-align:center head"><p>polo 2</p></th>
+<tr class="row-odd"><th class="head text-center"><p>k</p></th>
+<th class="head text-center"><p>polo 1</p></th>
+<th class="head text-center"><p>polo 2</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(-10\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(-10\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(25\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(-5\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(-5\)</span></p></td>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(25\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(-5\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(-5\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(&gt;25\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(-5 + j x\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\( -5-jx\)</span></p></td>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(&gt;25\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(-5 + j x\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\( -5-jx\)</span></p></td>
 </tr>
 </tbody>
 </table>
-<div class="figure align-default" id="id9">
+<figure class="align-default" id="id9">
 <a class="reference internal image-reference" href="../../../_images/fig92.png"><img alt="fig9.png" src="../../../_images/fig92.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figura 48 </span><span class="caption-text">Lugar de las raíces de <span class="math notranslate nohighlight">\(G(s)\)</span></span><a class="headerlink" href="#id9" title="Enlace permanente a esta imagen">¶</a></p>
-</div>
-</div>
-<div class="section" id="propiedades-de-el-lugar-de-las-raices">
-<h2>Propiedades de el Lugar de las Raíces<a class="headerlink" href="#propiedades-de-el-lugar-de-las-raices" title="Enlazar permanentemente con este título">¶</a></h2>
+<figcaption>
+<p><span class="caption-number">Figura 48 </span><span class="caption-text">Lugar de las raíces de <span class="math notranslate nohighlight">\(G(s)\)</span></span><a class="headerlink" href="#id9" title="Enlace permanente a esta imagen">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="propiedades-de-el-lugar-de-las-raices">
+<h2>Propiedades de el Lugar de las Raíces<a class="headerlink" href="#propiedades-de-el-lugar-de-las-raices" title="Permalink to this heading">#</a></h2>
 <p>El lugar geométrico de las raíces, es el lugar geométrico de valores de <span class="math notranslate nohighlight">\(s\)</span> para el cual la ecuación característica <span class="math notranslate nohighlight">\(1 + kD(s)G(s) = 0\)</span>, ya que el parámetro <span class="math notranslate nohighlight">\(k \in \mathbb{R}\)</span> varía desde <span class="math notranslate nohighlight">\(0 \longrightarrow \infty\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[T(s)=\frac{k D(s) G(s)}{1+k D(s) G(s)}\]</div>
@@ -810,8 +795,8 @@ G_1(s)= \frac{k(s+20)}{s^2+10s} &amp; G_2(s)=\frac{1}{2s^2+bs+3}
 <div class="math notranslate nohighlight">
 \[\angle G(s) = 180^o+\ell.360^o,\quad \text{con } \ell \text{ entero.}\]</div>
 </div>
-<div class="section" id="condicion-de-magnitud-o-de-modulo">
-<h3>Condición de magnitud o de módulo<a class="headerlink" href="#condicion-de-magnitud-o-de-modulo" title="Enlazar permanentemente con este título">¶</a></h3>
+<section id="condicion-de-magnitud-o-de-modulo">
+<h3>Condición de magnitud o de módulo<a class="headerlink" href="#condicion-de-magnitud-o-de-modulo" title="Permalink to this heading">#</a></h3>
 <p>El criterio de magnitud es el siguiente que lo obtenemos aplicando el módulo a la ecuación <span class="math notranslate nohighlight">\(1+KG(s)=0\)</span>. Entonces resulta:</p>
 <div class="math notranslate nohighlight">
 \[\|D(s) G(s)\|=\frac{1}{|k|}\]</div>
@@ -819,23 +804,25 @@ G_1(s)= \frac{k(s+20)}{s^2+10s} &amp; G_2(s)=\frac{1}{2s^2+bs+3}
 <div class="math notranslate nohighlight">
 \[k=\frac{1}{\|D(s)\| \|G(s)\|}\]</div>
 <p>Este criterio nos permite determnar el <span class="math notranslate nohighlight">\(k\)</span>, una vez escogido una ubicación determinada del lugar geométrico de las raíces.</p>
-<div class="section" id="ejemplo-de-calculo-de-k-con-la-condicion-de-modulo">
-<h4>Ejemplo de cálculo de k con la condición de módulo<a class="headerlink" href="#ejemplo-de-calculo-de-k-con-la-condicion-de-modulo" title="Enlazar permanentemente con este título">¶</a></h4>
+<section id="ejemplo-de-calculo-de-k-con-la-condicion-de-modulo">
+<h4>Ejemplo de cálculo de k con la condición de módulo<a class="headerlink" href="#ejemplo-de-calculo-de-k-con-la-condicion-de-modulo" title="Permalink to this heading">#</a></h4>
 <p>si <span class="math notranslate nohighlight">\(p_1 = p_2 = -5\)</span> un punto del plano s que cumple con la condición de fase para la función de transferencia <span class="math notranslate nohighlight">\(G(s)=\frac{1}{s(s+10)}\)</span></p>
 <p>Calculamos el modulo <span class="math notranslate nohighlight">\(|G(p_1)|= \|\frac{1}{-5(-5+10)} \| =\frac{1}{25}\)</span> por lo que por la condición de módulo es:</p>
 <div class="math notranslate nohighlight">
 \[k=\frac{1}{|G(p_1)|}= 25\]</div>
 <p>Este valor es el que corresponde al ejemplo anterior (ver tabla de valores y raíces)</p>
-</div>
-<div class="section" id="ejemplo-calculo-de-fase-para-un-punto-especifico-del-plano-s-s-0">
-<h4><strong>Ejemplo:</strong> cálculo de fase para un punto especifico del plano-s, <span class="math notranslate nohighlight">\(s_0\)</span><a class="headerlink" href="#ejemplo-calculo-de-fase-para-un-punto-especifico-del-plano-s-s-0" title="Enlazar permanentemente con este título">¶</a></h4>
+</section>
+<section id="ejemplo-calculo-de-fase-para-un-punto-especifico-del-plano-s-s-0">
+<h4><strong>Ejemplo:</strong> cálculo de fase para un punto especifico del plano-s, <span class="math notranslate nohighlight">\(s_0\)</span><a class="headerlink" href="#ejemplo-calculo-de-fase-para-un-punto-especifico-del-plano-s-s-0" title="Permalink to this heading">#</a></h4>
 <p>Tenemos la siguiente función de transferencia G(s) a lazo abierto:</p>
 <div class="math notranslate nohighlight">
 \[G(s)=\frac{s+1}{s\left\{\left[\left(s+2\right)^2+4\right]\left(s+4\right)\right\}}\]</div>
-<div class="figure align-default" id="id10">
+<figure class="align-default" id="id10">
 <a class="reference internal image-reference" href="../../../_images/fig101.png"><img alt="fig10.png" src="../../../_images/fig101.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figura 49 </span><span class="caption-text"><span class="math notranslate nohighlight">\(G(s)\)</span> en un punto del plano-s genérico <span class="math notranslate nohighlight">\(s_0\)</span></span><a class="headerlink" href="#id10" title="Enlace permanente a esta imagen">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Figura 49 </span><span class="caption-text"><span class="math notranslate nohighlight">\(G(s)\)</span> en un punto del plano-s genérico <span class="math notranslate nohighlight">\(s_0\)</span></span><a class="headerlink" href="#id10" title="Enlace permanente a esta imagen">#</a></p>
+</figcaption>
+</figure>
 <p>En la figura anterior mostramos con cruces la ubicación de los polos de esta función de transferencia, y con círculos los ceros. Suponemos un punto de prueba ubicado en <span class="math notranslate nohighlight">\( s_o = -1 + 2j \)</span>, y realizamos la suma de las contribuciones de las fases para determinar si es o no punto del lugar de raíces:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -872,18 +859,20 @@ G_1(s)= \frac{k(s+20)}{s^2+10s} &amp; G_2(s)=\frac{1}{2s^2+bs+3}
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="ejemplo-calculo-de-la-condicion-de-magnitud">
-<h4>Ejemplo cálculo de la condición de magnitud<a class="headerlink" href="#ejemplo-calculo-de-la-condicion-de-magnitud" title="Enlazar permanentemente con este título">¶</a></h4>
+</section>
+<section id="ejemplo-calculo-de-la-condicion-de-magnitud">
+<h4>Ejemplo cálculo de la condición de magnitud<a class="headerlink" href="#ejemplo-calculo-de-la-condicion-de-magnitud" title="Permalink to this heading">#</a></h4>
 <p>Supongamos tener la transferencia siguiente:</p>
 <div class="math notranslate nohighlight">
 \[G(s)=\frac{1}{s(s^2+4s+8)}\]</div>
 <p>cuyas polos se ubican en el origen y en <span class="math notranslate nohighlight">\(-2\pm 2j\)</span>. En la figura siguiente mostramos el lugar de las raíces para esta función de transferencia.</p>
 <p>Elegimos un punto de prueba en <span class="math notranslate nohighlight">\(-0.667 \pm 2j\)</span>, que pertenece al lugar geométrico de las raíces, pues ese punto cumple con ciertos requerimientos para nuestro sistema de control.</p>
-<div class="figure align-default" id="id11">
+<figure class="align-default" id="id11">
 <a class="reference internal image-reference" href="../../../_images/fig111.png"><img alt="fig11.png" src="../../../_images/fig111.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figura 50 </span><span class="caption-text"><span class="math notranslate nohighlight">\(G(s)\)</span> en un punto del plano-<span class="math notranslate nohighlight">\(s\)</span> genérico <span class="math notranslate nohighlight">\(s_0\)</span></span><a class="headerlink" href="#id11" title="Enlace permanente a esta imagen">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Figura 50 </span><span class="caption-text"><span class="math notranslate nohighlight">\(G(s)\)</span> en un punto del plano-<span class="math notranslate nohighlight">\(s\)</span> genérico <span class="math notranslate nohighlight">\(s_0\)</span></span><a class="headerlink" href="#id11" title="Enlace permanente a esta imagen">#</a></p>
+</figcaption>
+</figure>
 <p>Entonces determinamos la ganancia <span class="math notranslate nohighlight">\(K\)</span> para llegar a ese punto como:</p>
 <div class="math notranslate nohighlight">
 \[k=\frac{1}{|G(s)|}=|s_0||s_0-s_2||s_0-s_3|\]</div>
@@ -904,10 +893,10 @@ G_1(s)= \frac{k(s+20)}{s^2+10s} &amp; G_2(s)=\frac{1}{2s^2+bs+3}
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -921,7 +910,7 @@ G_1(s)= \frac{k(s+20)}{s^2+10s} &amp; G_2(s)=\frac{1}{2s^2+bs+3}
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./sources/notebooks_sources/modulo4"
         },
         predefinedOutput: true
@@ -929,56 +918,114 @@ G_1(s)= \frac{k(s+20)}{s^2+10s} &amp; G_2(s)=\frac{1}{2s^2+bs+3}
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="../modulo3/errores/Errores.html" title="anterior página">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">anterior</p>
-                <p class="prevnext-title">Errores</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="Pasos%20para%20el%20trazado.html" title="siguiente página">
-            <div class="prevnext-info">
-                <p class="prevnext-label">siguiente</p>
-                <p class="prevnext-title">Pasos para trazar el lugar geométrico de las raíces</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
-        
-        </div>
-    </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          Por Somebody<br/>
-        
-            &copy; Derechos de autor 2021.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../modulo3/errores/Errores.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Errores</p>
       </div>
-    </div>
-  
-  <script src="../../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+    </a>
+    <a class="right-next"
+       href="Pasos%20para%20el%20trazado.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Pasos para trazar el lugar geométrico de las raíces</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-lugar-de-las-raices">Ejemplo de lugar de las raíces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#repaso-de-espacio-vectorial-complejo-vector-complejo">Repaso de espacio vectorial complejo: Vector complejo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-punto-de-prueba">Ejemplo punto de prueba</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-trazado-del-lugar-de-las-raices">Ejemplo: Trazado del lugar de las raíces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades-de-el-lugar-de-las-raices">Propiedades de el Lugar de las Raíces</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#condicion-de-magnitud-o-de-modulo">Condición de magnitud o de módulo</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-calculo-de-k-con-la-condicion-de-modulo">Ejemplo de cálculo de k con la condición de módulo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-calculo-de-fase-para-un-punto-especifico-del-plano-s-s-0"><strong>Ejemplo:</strong> cálculo de fase para un punto especifico del plano-s, <span class="math notranslate nohighlight">\(s_0\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-calculo-de-la-condicion-de-magnitud">Ejemplo cálculo de la condición de magnitud</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Somebody
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

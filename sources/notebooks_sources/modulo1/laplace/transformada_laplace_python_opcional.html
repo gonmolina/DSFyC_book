@@ -1,45 +1,59 @@
 
+
 <!DOCTYPE html>
 
-<html lang="es">
+
+<html lang="es" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Transformada de Laplace &#8212; Diseño y Ajuste de Sistemas de Control</title>
-    
-  <link href="../../../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../../../../_static/js/index.1c5a1a01449ed65a7b51.js">
+    <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
-    <script src="../../../../_static/togglebutton.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
     <script kind="utterances">
 
     var commentsRunWhenDOMLoaded = cb => {
@@ -75,510 +89,491 @@ var addUtterances = () => {
 commentsRunWhenDOMLoaded(addUtterances);
 </script>
     <script src="../../../../_static/translations.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sources/notebooks_sources/modulo1/laplace/transformada_laplace_python_opcional';</script>
     <link rel="canonical" href="https://gonmolina.github.io/DSFyC_book/sources/notebooks_sources/modulo1/laplace/transformada_laplace_python_opcional.html" />
     <link rel="index" title="Índice" href="../../../../genindex.html" />
     <link rel="search" title="Búsqueda" href="../../../../search.html" />
     <link rel="next" title="Función transferencia" href="funcion_transferencia.html" />
     <link rel="prev" title="Definiciones de Sistemas y Señales" href="../intro_sys_sen/intro_sis_y_sen.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../../../index.html">
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../../dsfc_sources/intro.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../../../../_static/sala_de_control.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Diseño y Ajuste de Sistemas de Control</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Buscar este libro ..." aria-label="Buscar este libro ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../../dsfc_sources/intro.html">
-   Material de la materia Dinámica de los Sistemas Físicos y Control
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Introducción a Python
- </span>
-</p>
+    
+    
+    <img src="../../../../_static/sala_de_control.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../../_static/sala_de_control.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../dsfc_sources/intro.html">
+                    Material de la materia Dinámica de los Sistemas Físicos y Control
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducción a Python</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../gu%C3%ADa_instalaci%C3%B3n/guia_de_instalacion.html">
-   Guía de instalación de las herramientas computacionales
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../intro_python/Introducci%C3%B3n%20a%20los%20notebooks%20de%20Jupyter.html">
-   Introducción a los cuadernos de Jupyter
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../intro_python/Extra_Python.html">
-   Introducción a Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../intro_python/Intro-Matplotlib.html">
-   Figuras en Python - MATPLOTLIB
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../intro_python/intro_sympy.html">
-   Introducción a SymPy
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../gu%C3%ADa_instalaci%C3%B3n/guia_de_instalacion.html">Guía de instalación de las herramientas computacionales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro_python/Introducci%C3%B3n%20a%20los%20notebooks%20de%20Jupyter.html">Introducción a los cuadernos de Jupyter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro_python/Extra_Python.html">Introducción a Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro_python/Intro-Matplotlib.html">Figuras en Python - MATPLOTLIB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro_python/intro_sympy.html">Introducción a SymPy</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Señales, sistemas y modelos
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Señales, sistemas y modelos</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro_sys_sen/intro_sis_y_sen.html">
-   Definiciones de Sistemas y Señales
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Transformada de Laplace
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="funcion_transferencia.html">
-   Función transferencia
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../diagrama_bloques/diagrama_de_bloques.html">
-   Diagramas de bloques
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../espacio_estado/espacio_de_estados.html">
-   Representación de sistemas dinámicos en espacio de estados
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../espacio_estado/modelado_ss.html">
-     Modelado en espacio de estados
-    </a>
-   </li>
+<li class="toctree-l1"><a class="reference internal" href="../intro_sys_sen/intro_sis_y_sen.html">Definiciones de Sistemas y Señales</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Transformada de Laplace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="funcion_transferencia.html">Función transferencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diagrama_bloques/diagrama_de_bloques.html">Diagramas de bloques</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../espacio_estado/espacio_de_estados.html">Representación de sistemas dinámicos en espacio de estados</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../espacio_estado/modelado_ss.html">Modelado en espacio de estados</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../linealizacion/linealizacion.html">Linealización de sistemas no-lineales</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ejemplos_sistemas/ejemplos_sistemas.html">Ejemplos de modelos de sistemas</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ejemplos_sistemas/resorte_no_lineal.html">Sistema masa resorte amortiguador</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ejemplos_sistemas/CineticaPuntual.html">Ecuaciones de Cinética Puntual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ejemplos_sistemas/Nonlinear%20CSTR.html">Sistema CSTR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ejemplos_sistemas/Ejemplo_Presa_Depredador.html">Sistema presa depredador (Lotka-Volterra)</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Análisis de la respuesta temporal</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../modulo2/estabilidad/estabilidad.html">Estabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo2/respuesta%20temporal/Respuesta%20Temporal.html">Respuesta temporal de sistemas dinámicos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo2/polos%20y%20ceros%20adicionales/Efecto%20Polos%20y%20Ceros%20Adicionales.html">Efecto de los polos adicionales y de los ceros</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Análisis de estado estacionario</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../modulo3/realimentacion/carateristicas%20de%20la%20realimentacion.html">Características de la realimentación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo3/sensibilidad/Sensibilidad.html">Sensibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo3/errores/Errores.html">Errores</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lugar de las raíces</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../modulo4/lugar%20de%20las%20raices.html">Lugar de las raíces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo4/Pasos%20para%20el%20trazado.html">Pasos para trazar el lugar geométrico de las raíces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo4/Lugar%20de%20la%20raices%20con%20Python.html">Lugar de las raíces usando Python</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Respuesta en frecuencia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../modulo_frec/respuesta_frecuencial.html">Respuesta Frecuencial de Sistemas lineales y SISO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo_frec/estabilidad_nyquist/estabilidad_en_frecuencia.html">Estabilidad en Frecuencia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Diseño de compensadores</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../modulo5/compensadores.html">Compensadores de adelanto y de retraso de fase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo5/problema_levitador.html">Problema de levitador magnético</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo5/tipo1_lead.html">Problema con sistema de tipo 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo5/lead_lag_design.html">Ecuaciones útiles para el diseño del Lead por análisis en frecuencia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Control Moderno</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../modulo_ve/polos_ceros_EE.html">Polos y Ceros en los modelos de espacio de estados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo_ve/formas_canonicas.html">Formas canónicas de un espacio de estados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo_ve/transformacion_formas_canonicas.html">Transformación lineal del espacio de estado</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../modulo_ve/ctrb_obsv.html">Análisis de los sistemas en su forma de espacio de estados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo_ve/LSR.html">Elección de la ubicación de los polos a lazo cerrado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo_ve/referencia.html">Inserción de referencias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo_ve/estimadores.html">Diseño de estimadores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo_ve/ejemplo_A_ve_motor_cc.html">Diseño para un motor de continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo_ve/ejemplo_B_ve_atitud_satelite.html">Diseño del sistema de control del atitud de un satélite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo_ve/ejemplo_C_ve_pendulo_invertido.html">Diseño del sistema de control del pédulo invertido</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/gonmolina/DSFyC_book/blob/master/sources/notebooks_sources/modulo1/laplace/transformada_laplace_python_opcional.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
   </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../linealizacion/linealizacion.html">
-   Linealización de sistemas no-lineales
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../ejemplos_sistemas/ejemplos_sistemas.html">
-   Ejemplos de modelos de sistemas
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../ejemplos_sistemas/resorte_no_lineal.html">
-     Sistema masa resorte amortiguador
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../ejemplos_sistemas/CineticaPuntual.html">
-     Ecuaciones de Cinética Puntual
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../ejemplos_sistemas/Nonlinear%20CSTR.html">
-     Sistema CSTR
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../ejemplos_sistemas/Ejemplo_Presa_Depredador.html">
-     Sistema presa depredador (Lotka-Volterra)
-    </a>
-   </li>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/gonmolina/DSFyC_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Repositorio de origen"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gonmolina/DSFyC_book/edit/master/sources/notebooks_sources/modulo1/laplace/transformada_laplace_python_opcional.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gonmolina/DSFyC_book/issues/new?title=Issue%20on%20page%20%2Fsources/notebooks_sources/modulo1/laplace/transformada_laplace_python_opcional.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Abrir un problema"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
   </ul>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Análisis de la respuesta temporal
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo2/estabilidad/estabilidad.html">
-   Estabilidad
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo2/respuesta%20temporal/Respuesta%20Temporal.html">
-   Respuesta temporal de sistemas dinámicos
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo2/polos%20y%20ceros%20adicionales/Efecto%20Polos%20y%20Ceros%20Adicionales.html">
-   Efecto de los polos adicionales y de los ceros
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Análisis de estado estacionario
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo3/realimentacion/carateristicas%20de%20la%20realimentacion.html">
-   Características de la realimentación
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo3/sensibilidad/Sensibilidad.html">
-   Sensibilidad
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo3/errores/Errores.html">
-   Errores
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Lugar de las raíces
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo4/lugar%20de%20las%20raices.html">
-   Lugar de las raíces
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo4/Pasos%20para%20el%20trazado.html">
-   Pasos para trazar el lugar geométrico de las raíces
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo4/Lugar%20de%20la%20raices%20con%20Python.html">
-   Lugar de las raíces usando Python
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Respuesta en frecuencia
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo_frec/respuesta_frecuencial.html">
-   Respuesta Frecuencial de Sistemas lineales y SISO
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo_frec/estabilidad_nyquist/estabilidad_en_frecuencia.html">
-   Estabilidad en Frecuencia
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Diseño de compensadores
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo5/compensadores.html">
-   Compensadores de adelanto y de retraso de fase
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo5/problema_levitador.html">
-   Problema de levitador magnético
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo5/tipo1_lead.html">
-   Problema con sistema de tipo 1
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo5/lead_lag_design.html">
-   Ecuaciones útiles para el diseño del Lead por análisis en frecuencia
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Control Moderno
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo_ve/polos_ceros_EE.html">
-   Polos y Ceros en los modelos de espacio de estados
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo_ve/formas_canonicas.html">
-   Formas canónicas de un espacio de estados
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo_ve/transformacion_formas_canonicas.html">
-   Transformación lineal del espacio de estado
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo_ve/ctrb_obsv.html">
-   Análisis de los sistemas en su forma de espacio de estados
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo_ve/LSR.html">
-   Elección de la ubicación de los polos a lazo cerrado
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo_ve/referencia.html">
-   Inserción de referencias
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo_ve/estimadores.html">
-   Diseño de estimadores
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo_ve/ejemplo_A_ve_motor_cc.html">
-   Diseño para un motor de continua
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo_ve/ejemplo_B_ve_atitud_satelite.html">
-   Diseño del sistema de control del atitud de un satélite
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo_ve/ejemplo_C_ve_pendulo_invertido.html">
-   Diseño del sistema de control del pédulo invertido
-  </a>
- </li>
-</ul>
+</div>
 
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../_sources/sources/notebooks_sources/modulo1/laplace/transformada_laplace_python_opcional.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Descargar archivo de cuaderno"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../../../../_sources/sources/notebooks_sources/modulo1/laplace/transformada_laplace_python_opcional.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+  
 </div>
-
 </div>
+              
+              
 
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Transformada de Laplace</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Navegación de palanca" aria-controls="site-navigation"
-                title="Navegación de palanca" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Descarga esta pagina"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../../../../_sources/sources/notebooks_sources/modulo1/laplace/transformada_laplace_python_opcional.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Descargar archivo de cuaderno" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../../_sources/sources/notebooks_sources/modulo1/laplace/transformada_laplace_python_opcional.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Descargar archivo fuente" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimir en PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/gonmolina/DSFyC_book"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Repositorio de origen"><i
-                    class="fab fa-github"></i>repositorio</button></a>
-        <a class="issues-button"
-            href="https://github.com/gonmolina/DSFyC_book/issues/new?title=Issue%20on%20page%20%2Fsources/notebooks_sources/modulo1/laplace/transformada_laplace_python_opcional.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Abrir un problema"><i class="fas fa-lightbulb"></i>Tema abierto</button></a>
-        <a class="edit-button" href="https://github.com/gonmolina/DSFyC_book/edit/master/sources/notebooks_sources/modulo1/laplace/transformada_laplace_python_opcional.md"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edita esta página"><i class="fas fa-pencil-alt"></i>sugerir editar</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Modo de pantalla completa"
-        title="Modo de pantalla completa"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/gonmolina/DSFyC_book/master?urlpath=tree/sources/notebooks_sources/modulo1/laplace/transformada_laplace_python_opcional.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Lanzamiento Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contenido
+            <div>
+                <h2> Contenido </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#definicion">
-   Definición
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#antitransformada-de-laplace">
-   Antitransformada de Laplace
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#propiedades-de-la-transformada-de-laplace">
-   Propiedades de la Transformada de Laplace
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#calculo-de-la-transformada-de-laplace-mediante-sympy">
-   Cálculo de la transformada de Laplace mediante SymPy
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#inversas-mas-complicadas">
-   Inversas más complicadas
-  </a>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion">Definición</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antitransformada-de-laplace">Antitransformada de Laplace</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades-de-la-transformada-de-laplace">Propiedades de la Transformada de Laplace</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-la-transformada-de-laplace-mediante-sympy">Cálculo de la transformada de Laplace mediante SymPy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inversas-mas-complicadas">Inversas más complicadas</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="transformada-de-laplace">
-<h1>Transformada de Laplace<a class="headerlink" href="#transformada-de-laplace" title="Enlazar permanentemente con este título">¶</a></h1>
-<div class="section" id="definicion">
-<h2>Definición<a class="headerlink" href="#definicion" title="Enlazar permanentemente con este título">¶</a></h2>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="transformada-de-laplace">
+<h1>Transformada de Laplace<a class="headerlink" href="#transformada-de-laplace" title="Permalink to this heading">#</a></h1>
+<section id="definicion">
+<h2>Definición<a class="headerlink" href="#definicion" title="Permalink to this heading">#</a></h2>
 <p>Es una función matemática que utilizaremos para transformar señales en el dominio temporal a un dominio de frecuencia generalizada, que llamaremos dominio transformado de <em>Laplace</em>.</p>
 <p>La transformada de Laplace se define como</p>
 <div class="math notranslate nohighlight">
 \[F(s) = \mathcal{L}\{f(t)\} = \int_0^\infty f(t) e^{-st} \mathrm{dt}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(s\)</span> es una variable compleja <span class="math notranslate nohighlight">\(s = \sigma + j\omega\)</span>.</p>
-</div>
-<div class="section" id="antitransformada-de-laplace">
-<h2>Antitransformada de Laplace<a class="headerlink" href="#antitransformada-de-laplace" title="Enlazar permanentemente con este título">¶</a></h2>
+</section>
+<section id="antitransformada-de-laplace">
+<h2>Antitransformada de Laplace<a class="headerlink" href="#antitransformada-de-laplace" title="Permalink to this heading">#</a></h2>
 <p>Se puede demostrar que teniendo la función transformada <span class="math notranslate nohighlight">\(F(s)\)</span>, se puede recuperar la función en el dominio temporal <span class="math notranslate nohighlight">\(f(t)\)</span> aplicando la antitransformada de Laplace:</p>
 <div class="math notranslate nohighlight">
 \[f(t)=\mathcal{L}^{-1}\{F(s)\} =\frac{1}{2\pi j} \int_{\sigma-j\omega}^{\sigma+j\omega} F(s) e^{st} ds .\]</div>
-<div class="figure align-default" id="tabla-transformadas">
+<figure class="align-default" id="tabla-transformadas">
 <a class="reference internal image-reference" href="../../../../_images/bg2.png"><img alt="Tabla de transformadas de Laplace" src="../../../../_images/bg2.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">Figura 13 </span><span class="caption-text">Tabla de transformas de Laplace</span><a class="headerlink" href="#tabla-transformadas" title="Enlace permanente a esta imagen">¶</a></p>
-</div>
-</div>
-<div class="section" id="propiedades-de-la-transformada-de-laplace">
-<h2>Propiedades de la Transformada de Laplace<a class="headerlink" href="#propiedades-de-la-transformada-de-laplace" title="Enlazar permanentemente con este título">¶</a></h2>
+<figcaption>
+<p><span class="caption-number">Figura 13 </span><span class="caption-text">Tabla de transformas de Laplace</span><a class="headerlink" href="#tabla-transformadas" title="Enlace permanente a esta imagen">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="propiedades-de-la-transformada-de-laplace">
+<h2>Propiedades de la Transformada de Laplace<a class="headerlink" href="#propiedades-de-la-transformada-de-laplace" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Linealidad</strong>: <span class="math notranslate nohighlight">\(\mathcal{L}\{kf(t)\} = k F(s)\)</span>; <span class="math notranslate nohighlight">\(\mathcal{L}\{f_1(t)+f_2(t)\} = F_1(s)+F_2(s)\)</span></p></li>
 <li><p><strong>Corrimiento en frecuencia</strong>: <span class="math notranslate nohighlight">\(\mathcal{L}\{e^{-at}f(t)\}=F(s+a)\)</span></p></li>
@@ -594,9 +589,9 @@ commentsRunWhenDOMLoaded(addUtterances);
 <li><p><strong>Teorema de valor inicial</strong>: <span class="math notranslate nohighlight">\(f(0)=\lim_{s\rightarrow \infty}sF(s)\)</span></p></li>
 </ul>
 <p>El <strong>teorema del valor final</strong> lo estaremos usando en las próximas clases para analizar que sucede con la salida de cun sistema luego de un tiempo muy largo (infinito).</p>
-</div>
-<div class="section" id="calculo-de-la-transformada-de-laplace-mediante-sympy">
-<h2>Cálculo de la transformada de Laplace mediante SymPy<a class="headerlink" href="#calculo-de-la-transformada-de-laplace-mediante-sympy" title="Enlazar permanentemente con este título">¶</a></h2>
+</section>
+<section id="calculo-de-la-transformada-de-laplace-mediante-sympy">
+<h2>Cálculo de la transformada de Laplace mediante SymPy<a class="headerlink" href="#calculo-de-la-transformada-de-laplace-mediante-sympy" title="Permalink to this heading">#</a></h2>
 <p>Durante el transcurso de este curso utilizaremos las tablas para las obtener la transformada y antitransformada de Laplace. Sin embargo, aquí se presenta como material adicional para quien le interese, la forma de obtener estas funciones mediante el uso de <code class="docutils literal notranslate"><span class="pre">SymPy</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -633,21 +628,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/IPython/lib/latextools.py:126: MatplotlibDeprecationWarning: 
-The to_png function was deprecated in Matplotlib 3.4 and will be removed two minor releases later. Use mathtext.math_to_image instead.
-  mt.to_png(f, s, fontsize=12, dpi=dpi, color=color)
-/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/IPython/lib/latextools.py:126: MatplotlibDeprecationWarning: 
-The to_rgba function was deprecated in Matplotlib 3.4 and will be removed two minor releases later. Use mathtext.math_to_image instead.
-  mt.to_png(f, s, fontsize=12, dpi=dpi, color=color)
-/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/IPython/lib/latextools.py:126: MatplotlibDeprecationWarning: 
-The to_mask function was deprecated in Matplotlib 3.4 and will be removed two minor releases later. Use mathtext.math_to_image instead.
-  mt.to_png(f, s, fontsize=12, dpi=dpi, color=color)
-/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/IPython/lib/latextools.py:126: MatplotlibDeprecationWarning: 
-The MathtextBackendBitmap class was deprecated in Matplotlib 3.4 and will be removed two minor releases later. Use mathtext.math_to_image instead.
-  mt.to_png(f, s, fontsize=12, dpi=dpi, color=color)
-</pre></div>
-</div>
-<img alt="../../../../_images/transformada_laplace_python_opcional_12_1.png" src="../../../../_images/transformada_laplace_python_opcional_12_1.png" />
+<img alt="../../../../_images/26de5f44c88f5ddde7b8571b03e3ffccd42a9747f86e145e4406db6646f88a35.png" src="../../../../_images/26de5f44c88f5ddde7b8571b03e3ffccd42a9747f86e145e4406db6646f88a35.png" />
 </div>
 </div>
 <p>Podemos evaluar la integral directamente usando <code class="docutils literal notranslate"><span class="pre">integrate</span></code>:</p>
@@ -672,7 +653,7 @@ The MathtextBackendBitmap class was deprecated in Matplotlib 3.4 and will be rem
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\displaystyle \left( \frac{1}{a + s}, \  0, \  \text{True}\right)\]</div>
+\[\displaystyle \left( \frac{1}{a + s}, \  - a, \  \text{True}\right)\]</div>
 </div>
 </div>
 <p>Si queremos solo la función, podemos especificar <code class="docutils literal notranslate"><span class="pre">noconds</span> <span class="pre">=</span> <span class="pre">True</span></code>.</p>
@@ -684,7 +665,7 @@ The MathtextBackendBitmap class was deprecated in Matplotlib 3.4 and will be rem
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/transformada_laplace_python_opcional_18_0.png" src="../../../../_images/transformada_laplace_python_opcional_18_0.png" />
+<img alt="../../../../_images/91bb5193c3c86cbca4bf1afed3f95860373450ea1d6a364409ad38be672d715e.png" src="../../../../_images/91bb5193c3c86cbca4bf1afed3f95860373450ea1d6a364409ad38be672d715e.png" />
 </div>
 </div>
 <p>Nos resultará útil definir una versión más rápida de esto:</p>
@@ -712,7 +693,7 @@ The MathtextBackendBitmap class was deprecated in Matplotlib 3.4 and will be rem
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/transformada_laplace_python_opcional_23_0.png" src="../../../../_images/transformada_laplace_python_opcional_23_0.png" />
+<img alt="../../../../_images/772b9f0ffdb8c51abb7848c0421cce5d9c1f01c0d9bbb322e6f9b1d91c418dea.png" src="../../../../_images/772b9f0ffdb8c51abb7848c0421cce5d9c1f01c0d9bbb322e6f9b1d91c418dea.png" />
 </div>
 </div>
 <p>La función de escalón unitario también se conoce también como Heaviside. Veremos esta función a menudo en transformaciones inversas de Laplace. Es nombrada como <span class="math notranslate nohighlight">\(\theta(t)\)</span> por sympy.</p>
@@ -723,7 +704,7 @@ The MathtextBackendBitmap class was deprecated in Matplotlib 3.4 and will be rem
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/transformada_laplace_python_opcional_25_0.png" src="../../../../_images/transformada_laplace_python_opcional_25_0.png" />
+<img alt="../../../../_images/af2821fc3cff94bd3fa0ea3fa320ec56e57d57058e01d6486a44e0fca146ee91.png" src="../../../../_images/af2821fc3cff94bd3fa0ea3fa320ec56e57d57058e01d6486a44e0fca146ee91.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -733,7 +714,7 @@ The MathtextBackendBitmap class was deprecated in Matplotlib 3.4 and will be rem
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/transformada_laplace_python_opcional_26_0.png" src="../../../../_images/transformada_laplace_python_opcional_26_0.png" />
+<img alt="../../../../_images/85292005c3818105401e972e860ba6c57c109d253ea13cb12b1b6871185ce020.png" src="../../../../_images/85292005c3818105401e972e860ba6c57c109d253ea13cb12b1b6871185ce020.png" />
 </div>
 </div>
 <p>Mire la diferencia entre <span class="math notranslate nohighlight">\(f\)</span> y la transformada inversa de lugar que obtuvimos, que contiene el paso unitario para forzarlo a cero antes de <span class="math notranslate nohighlight">\(t=0\)</span>.</p>
@@ -744,7 +725,7 @@ The MathtextBackendBitmap class was deprecated in Matplotlib 3.4 and will be rem
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/transformada_laplace_python_opcional_28_0.png" src="../../../../_images/transformada_laplace_python_opcional_28_0.png" />
+<img alt="../../../../_images/6057ec3e4276de7de40a8541b6e1730cf2ad1da8c468ffe84b140c30e931634e.png" src="../../../../_images/6057ec3e4276de7de40a8541b6e1730cf2ad1da8c468ffe84b140c30e931634e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -758,7 +739,7 @@ The MathtextBackendBitmap class was deprecated in Matplotlib 3.4 and will be rem
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/transformada_laplace_python_opcional_29_0.png" src="../../../../_images/transformada_laplace_python_opcional_29_0.png" />
+<img alt="../../../../_images/2fcbc99e1d32d8c3df7cc15434d329eb79d7c8e86a6a43c03aa471a1ce25a5ac.png" src="../../../../_images/2fcbc99e1d32d8c3df7cc15434d329eb79d7c8e86a6a43c03aa471a1ce25a5ac.png" />
 </div>
 </div>
 <p>A ver si podemos igualar las funciones en la tabla.</p>
@@ -786,7 +767,7 @@ The MathtextBackendBitmap class was deprecated in Matplotlib 3.4 and will be rem
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/transformada_laplace_python_opcional_31_0.png" src="../../../../_images/transformada_laplace_python_opcional_31_0.png" />
+<img alt="../../../../_images/320e1b4211bf451760a69d9a5857fcde402f499d0c472cfce1f2c1d9fa6a5895.png" src="../../../../_images/320e1b4211bf451760a69d9a5857fcde402f499d0c472cfce1f2c1d9fa6a5895.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -797,13 +778,13 @@ The MathtextBackendBitmap class was deprecated in Matplotlib 3.4 and will be rem
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/transformada_laplace_python_opcional_32_0.png" src="../../../../_images/transformada_laplace_python_opcional_32_0.png" />
+<img alt="../../../../_images/89bd93f4428e7f4f0c284d8ee0f76b8b5064a4b85be2ec6278d06615bfe83155.png" src="../../../../_images/89bd93f4428e7f4f0c284d8ee0f76b8b5064a4b85be2ec6278d06615bfe83155.png" />
 </div>
 </div>
 <p>Podemos ver que la última no la escribo exactamente de la misma manera, pero que es lo misma función transformada de Laplace que figura en la table.</p>
-</div>
-<div class="section" id="inversas-mas-complicadas">
-<h2>Inversas más complicadas<a class="headerlink" href="#inversas-mas-complicadas" title="Enlazar permanentemente con este título">¶</a></h2>
+</section>
+<section id="inversas-mas-complicadas">
+<h2>Inversas más complicadas<a class="headerlink" href="#inversas-mas-complicadas" title="Permalink to this heading">#</a></h2>
 <p>¿Por qué la tabla no presenta funciones más complicadas? Debido a que las funciones racionales de orden superior se pueden escribir como sumas de funciones más simples mediante la aplicación de la expansión de fracciones parciales.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -813,7 +794,7 @@ The MathtextBackendBitmap class was deprecated in Matplotlib 3.4 and will be rem
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/transformada_laplace_python_opcional_35_0.png" src="../../../../_images/transformada_laplace_python_opcional_35_0.png" />
+<img alt="../../../../_images/22ab02ee50eaa943aa6af5f663ada5a85f22188eda91c4ca78f3a7b5941e115e.png" src="../../../../_images/22ab02ee50eaa943aa6af5f663ada5a85f22188eda91c4ca78f3a7b5941e115e.png" />
 </div>
 </div>
 <p>Podemos hacer fracciones simples:</p>
@@ -824,7 +805,7 @@ The MathtextBackendBitmap class was deprecated in Matplotlib 3.4 and will be rem
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/transformada_laplace_python_opcional_37_0.png" src="../../../../_images/transformada_laplace_python_opcional_37_0.png" />
+<img alt="../../../../_images/439dd3fec2e9d8327ef5d46ab02ff2655e0a5ad6a3bfff39c83b81557ec1bf4f.png" src="../../../../_images/439dd3fec2e9d8327ef5d46ab02ff2655e0a5ad6a3bfff39c83b81557ec1bf4f.png" />
 </div>
 </div>
 <p>Incluso sympy puede beneficiarse con un poco de ayuda a veces. Cuando intentamos calcular el inverso de <span class="math notranslate nohighlight">\(F\)</span> obtenemos una respuesta un tanto desagradable:</p>
@@ -835,7 +816,7 @@ The MathtextBackendBitmap class was deprecated in Matplotlib 3.4 and will be rem
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/transformada_laplace_python_opcional_39_0.png" src="../../../../_images/transformada_laplace_python_opcional_39_0.png" />
+<img alt="../../../../_images/0080cb562e791bcabba17e5ed18782336b2bb2fd2b7347e84e36145f28328326.png" src="../../../../_images/0080cb562e791bcabba17e5ed18782336b2bb2fd2b7347e84e36145f28328326.png" />
 </div>
 </div>
 <p>¿Tal vez se vea mejor si simplificamos?</p>
@@ -846,7 +827,7 @@ The MathtextBackendBitmap class was deprecated in Matplotlib 3.4 and will be rem
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/transformada_laplace_python_opcional_41_0.png" src="../../../../_images/transformada_laplace_python_opcional_41_0.png" />
+<img alt="../../../../_images/0080cb562e791bcabba17e5ed18782336b2bb2fd2b7347e84e36145f28328326.png" src="../../../../_images/0080cb562e791bcabba17e5ed18782336b2bb2fd2b7347e84e36145f28328326.png" />
 </div>
 </div>
 <p>No, todavía presenta una transformada laplace «desconocida». Pero, si hacemos primero la expansión de fracciones parciales, obtenemos una respuesta limpia:</p>
@@ -857,11 +838,11 @@ The MathtextBackendBitmap class was deprecated in Matplotlib 3.4 and will be rem
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/transformada_laplace_python_opcional_43_0.png" src="../../../../_images/transformada_laplace_python_opcional_43_0.png" />
+<img alt="../../../../_images/0080cb562e791bcabba17e5ed18782336b2bb2fd2b7347e84e36145f28328326.png" src="../../../../_images/0080cb562e791bcabba17e5ed18782336b2bb2fd2b7347e84e36145f28328326.png" />
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -875,7 +856,7 @@ The MathtextBackendBitmap class was deprecated in Matplotlib 3.4 and will be rem
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./sources/notebooks_sources/modulo1/laplace"
         },
         predefinedOutput: true
@@ -883,56 +864,105 @@ The MathtextBackendBitmap class was deprecated in Matplotlib 3.4 and will be rem
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="../intro_sys_sen/intro_sis_y_sen.html" title="anterior página">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">anterior</p>
-                <p class="prevnext-title">Definiciones de Sistemas y Señales</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="funcion_transferencia.html" title="siguiente página">
-            <div class="prevnext-info">
-                <p class="prevnext-label">siguiente</p>
-                <p class="prevnext-title">Función transferencia</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
-        
-        </div>
-    </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          Por Somebody<br/>
-        
-            &copy; Derechos de autor 2021.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../intro_sys_sen/intro_sis_y_sen.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Definiciones de Sistemas y Señales</p>
       </div>
-    </div>
-  
-  <script src="../../../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+    </a>
+    <a class="right-next"
+       href="funcion_transferencia.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Función transferencia</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion">Definición</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antitransformada-de-laplace">Antitransformada de Laplace</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades-de-la-transformada-de-laplace">Propiedades de la Transformada de Laplace</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-la-transformada-de-laplace-mediante-sympy">Cálculo de la transformada de Laplace mediante SymPy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inversas-mas-complicadas">Inversas más complicadas</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Somebody
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

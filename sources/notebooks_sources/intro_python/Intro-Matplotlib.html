@@ -1,45 +1,59 @@
 
+
 <!DOCTYPE html>
 
-<html lang="es">
+
+<html lang="es" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Figuras en Python - MATPLOTLIB &#8212; Diseño y Ajuste de Sistemas de Control</title>
-    
-  <link href="../../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../../../_static/js/index.1c5a1a01449ed65a7b51.js">
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/togglebutton.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
     <script kind="utterances">
 
     var commentsRunWhenDOMLoaded = cb => {
@@ -75,675 +89,522 @@ var addUtterances = () => {
 commentsRunWhenDOMLoaded(addUtterances);
 </script>
     <script src="../../../_static/translations.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sources/notebooks_sources/intro_python/Intro-Matplotlib';</script>
     <link rel="canonical" href="https://gonmolina.github.io/DSFyC_book/sources/notebooks_sources/intro_python/Intro-Matplotlib.html" />
     <link rel="index" title="Índice" href="../../../genindex.html" />
     <link rel="search" title="Búsqueda" href="../../../search.html" />
     <link rel="next" title="Introducción a SymPy" href="intro_sympy.html" />
     <link rel="prev" title="Introducción a Python" href="Extra_Python.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../../index.html">
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../dsfc_sources/intro.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../../../_static/sala_de_control.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Diseño y Ajuste de Sistemas de Control</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Buscar este libro ..." aria-label="Buscar este libro ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../dsfc_sources/intro.html">
-   Material de la materia Dinámica de los Sistemas Físicos y Control
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Introducción a Python
- </span>
-</p>
+    
+    
+    <img src="../../../_static/sala_de_control.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../_static/sala_de_control.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../dsfc_sources/intro.html">
+                    Material de la materia Dinámica de los Sistemas Físicos y Control
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducción a Python</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../gu%C3%ADa_instalaci%C3%B3n/guia_de_instalacion.html">
-   Guía de instalación de las herramientas computacionales
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Introducci%C3%B3n%20a%20los%20notebooks%20de%20Jupyter.html">
-   Introducción a los cuadernos de Jupyter
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Extra_Python.html">
-   Introducción a Python
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Figuras en Python - MATPLOTLIB
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="intro_sympy.html">
-   Introducción a SymPy
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../gu%C3%ADa_instalaci%C3%B3n/guia_de_instalacion.html">Guía de instalación de las herramientas computacionales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introducci%C3%B3n%20a%20los%20notebooks%20de%20Jupyter.html">Introducción a los cuadernos de Jupyter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Extra_Python.html">Introducción a Python</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Figuras en Python - MATPLOTLIB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_sympy.html">Introducción a SymPy</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Señales, sistemas y modelos
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Señales, sistemas y modelos</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo1/intro_sys_sen/intro_sis_y_sen.html">
-   Definiciones de Sistemas y Señales
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo1/laplace/transformada_laplace_python_opcional.html">
-   Transformada de Laplace
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo1/laplace/funcion_transferencia.html">
-   Función transferencia
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo1/diagrama_bloques/diagrama_de_bloques.html">
-   Diagramas de bloques
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../modulo1/espacio_estado/espacio_de_estados.html">
-   Representación de sistemas dinámicos en espacio de estados
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../modulo1/espacio_estado/modelado_ss.html">
-     Modelado en espacio de estados
-    </a>
-   </li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo1/intro_sys_sen/intro_sis_y_sen.html">Definiciones de Sistemas y Señales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo1/laplace/transformada_laplace_python_opcional.html">Transformada de Laplace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo1/laplace/funcion_transferencia.html">Función transferencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo1/diagrama_bloques/diagrama_de_bloques.html">Diagramas de bloques</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../modulo1/espacio_estado/espacio_de_estados.html">Representación de sistemas dinámicos en espacio de estados</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modulo1/espacio_estado/modelado_ss.html">Modelado en espacio de estados</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo1/linealizacion/linealizacion.html">Linealización de sistemas no-lineales</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../modulo1/ejemplos_sistemas/ejemplos_sistemas.html">Ejemplos de modelos de sistemas</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modulo1/ejemplos_sistemas/resorte_no_lineal.html">Sistema masa resorte amortiguador</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modulo1/ejemplos_sistemas/CineticaPuntual.html">Ecuaciones de Cinética Puntual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modulo1/ejemplos_sistemas/Nonlinear%20CSTR.html">Sistema CSTR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modulo1/ejemplos_sistemas/Ejemplo_Presa_Depredador.html">Sistema presa depredador (Lotka-Volterra)</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Análisis de la respuesta temporal</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../modulo2/estabilidad/estabilidad.html">Estabilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo2/respuesta%20temporal/Respuesta%20Temporal.html">Respuesta temporal de sistemas dinámicos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo2/polos%20y%20ceros%20adicionales/Efecto%20Polos%20y%20Ceros%20Adicionales.html">Efecto de los polos adicionales y de los ceros</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Análisis de estado estacionario</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../modulo3/realimentacion/carateristicas%20de%20la%20realimentacion.html">Características de la realimentación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo3/sensibilidad/Sensibilidad.html">Sensibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo3/errores/Errores.html">Errores</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lugar de las raíces</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../modulo4/lugar%20de%20las%20raices.html">Lugar de las raíces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo4/Pasos%20para%20el%20trazado.html">Pasos para trazar el lugar geométrico de las raíces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo4/Lugar%20de%20la%20raices%20con%20Python.html">Lugar de las raíces usando Python</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Respuesta en frecuencia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../modulo_frec/respuesta_frecuencial.html">Respuesta Frecuencial de Sistemas lineales y SISO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_frec/estabilidad_nyquist/estabilidad_en_frecuencia.html">Estabilidad en Frecuencia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Diseño de compensadores</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../modulo5/compensadores.html">Compensadores de adelanto y de retraso de fase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo5/problema_levitador.html">Problema de levitador magnético</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo5/tipo1_lead.html">Problema con sistema de tipo 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo5/lead_lag_design.html">Ecuaciones útiles para el diseño del Lead por análisis en frecuencia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Control Moderno</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../modulo_ve/polos_ceros_EE.html">Polos y Ceros en los modelos de espacio de estados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_ve/formas_canonicas.html">Formas canónicas de un espacio de estados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_ve/transformacion_formas_canonicas.html">Transformación lineal del espacio de estado</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../modulo_ve/ctrb_obsv.html">Análisis de los sistemas en su forma de espacio de estados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_ve/LSR.html">Elección de la ubicación de los polos a lazo cerrado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_ve/referencia.html">Inserción de referencias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_ve/estimadores.html">Diseño de estimadores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_ve/ejemplo_A_ve_motor_cc.html">Diseño para un motor de continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_ve/ejemplo_B_ve_atitud_satelite.html">Diseño del sistema de control del atitud de un satélite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modulo_ve/ejemplo_C_ve_pendulo_invertido.html">Diseño del sistema de control del pédulo invertido</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/gonmolina/DSFyC_book/blob/master/sources/notebooks_sources/intro_python/Intro-Matplotlib.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
   </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo1/linealizacion/linealizacion.html">
-   Linealización de sistemas no-lineales
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../modulo1/ejemplos_sistemas/ejemplos_sistemas.html">
-   Ejemplos de modelos de sistemas
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../modulo1/ejemplos_sistemas/resorte_no_lineal.html">
-     Sistema masa resorte amortiguador
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../modulo1/ejemplos_sistemas/CineticaPuntual.html">
-     Ecuaciones de Cinética Puntual
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../modulo1/ejemplos_sistemas/Nonlinear%20CSTR.html">
-     Sistema CSTR
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../modulo1/ejemplos_sistemas/Ejemplo_Presa_Depredador.html">
-     Sistema presa depredador (Lotka-Volterra)
-    </a>
-   </li>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/gonmolina/DSFyC_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Repositorio de origen"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gonmolina/DSFyC_book/edit/master/sources/notebooks_sources/intro_python/Intro-Matplotlib.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gonmolina/DSFyC_book/issues/new?title=Issue%20on%20page%20%2Fsources/notebooks_sources/intro_python/Intro-Matplotlib.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Abrir un problema"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
   </ul>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Análisis de la respuesta temporal
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo2/estabilidad/estabilidad.html">
-   Estabilidad
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo2/respuesta%20temporal/Respuesta%20Temporal.html">
-   Respuesta temporal de sistemas dinámicos
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo2/polos%20y%20ceros%20adicionales/Efecto%20Polos%20y%20Ceros%20Adicionales.html">
-   Efecto de los polos adicionales y de los ceros
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Análisis de estado estacionario
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo3/realimentacion/carateristicas%20de%20la%20realimentacion.html">
-   Características de la realimentación
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo3/sensibilidad/Sensibilidad.html">
-   Sensibilidad
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo3/errores/Errores.html">
-   Errores
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Lugar de las raíces
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo4/lugar%20de%20las%20raices.html">
-   Lugar de las raíces
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo4/Pasos%20para%20el%20trazado.html">
-   Pasos para trazar el lugar geométrico de las raíces
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo4/Lugar%20de%20la%20raices%20con%20Python.html">
-   Lugar de las raíces usando Python
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Respuesta en frecuencia
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo_frec/respuesta_frecuencial.html">
-   Respuesta Frecuencial de Sistemas lineales y SISO
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo_frec/estabilidad_nyquist/estabilidad_en_frecuencia.html">
-   Estabilidad en Frecuencia
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Diseño de compensadores
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo5/compensadores.html">
-   Compensadores de adelanto y de retraso de fase
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo5/problema_levitador.html">
-   Problema de levitador magnético
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo5/tipo1_lead.html">
-   Problema con sistema de tipo 1
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo5/lead_lag_design.html">
-   Ecuaciones útiles para el diseño del Lead por análisis en frecuencia
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Control Moderno
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo_ve/polos_ceros_EE.html">
-   Polos y Ceros en los modelos de espacio de estados
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo_ve/formas_canonicas.html">
-   Formas canónicas de un espacio de estados
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo_ve/transformacion_formas_canonicas.html">
-   Transformación lineal del espacio de estado
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo_ve/ctrb_obsv.html">
-   Análisis de los sistemas en su forma de espacio de estados
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo_ve/LSR.html">
-   Elección de la ubicación de los polos a lazo cerrado
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo_ve/referencia.html">
-   Inserción de referencias
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo_ve/estimadores.html">
-   Diseño de estimadores
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo_ve/ejemplo_A_ve_motor_cc.html">
-   Diseño para un motor de continua
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo_ve/ejemplo_B_ve_atitud_satelite.html">
-   Diseño del sistema de control del atitud de un satélite
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modulo_ve/ejemplo_C_ve_pendulo_invertido.html">
-   Diseño del sistema de control del pédulo invertido
-  </a>
- </li>
-</ul>
+</div>
 
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/sources/notebooks_sources/intro_python/Intro-Matplotlib.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Descargar archivo de cuaderno"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../../../_sources/sources/notebooks_sources/intro_python/Intro-Matplotlib.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+  
 </div>
-
 </div>
+              
+              
 
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Figuras en Python - MATPLOTLIB</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Navegación de palanca" aria-controls="site-navigation"
-                title="Navegación de palanca" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Descarga esta pagina"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../../../_sources/sources/notebooks_sources/intro_python/Intro-Matplotlib.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Descargar archivo de cuaderno" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/sources/notebooks_sources/intro_python/Intro-Matplotlib.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Descargar archivo fuente" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimir en PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/gonmolina/DSFyC_book"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Repositorio de origen"><i
-                    class="fab fa-github"></i>repositorio</button></a>
-        <a class="issues-button"
-            href="https://github.com/gonmolina/DSFyC_book/issues/new?title=Issue%20on%20page%20%2Fsources/notebooks_sources/intro_python/Intro-Matplotlib.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Abrir un problema"><i class="fas fa-lightbulb"></i>Tema abierto</button></a>
-        <a class="edit-button" href="https://github.com/gonmolina/DSFyC_book/edit/master/sources/notebooks_sources/intro_python/Intro-Matplotlib.md"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edita esta página"><i class="fas fa-pencil-alt"></i>sugerir editar</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Modo de pantalla completa"
-        title="Modo de pantalla completa"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/gonmolina/DSFyC_book/master?urlpath=tree/sources/notebooks_sources/intro_python/Intro-Matplotlib.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Lanzamiento Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contenido
+            <div>
+                <h2> Contenido </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduccion">
-   Introducción
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#api-similar-a-matlab">
-   API similar a MATLAB
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ejemplo">
-     Ejemplo
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#la-api-orientada-a-objetos-matplotlib">
-   La API orientada a objetos matplotlib
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tamano-de-la-figura-relacion-de-aspecto-y-dpi">
-     Tamaño de la figura, relación de aspecto y DPI
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#guardando-figuras">
-     Guardando figuras
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#formatos-disponibles-cuales-deben-usarse-para-obtener-la-mejor-calidad">
-     Formatos disponibles: ¿cuáles deben usarse para obtener la mejor calidad?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#leyendas-etiquetas-y-titulos">
-     Leyendas, etiquetas y títulos
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#titulos-de-las-figuras">
-       Títulos de las figuras
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#nombres-de-eje">
-       Nombres de eje
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#leyendas">
-       Leyendas
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#formato-de-texto-latex-tamano-de-fuente-familia-de-fuentes">
-     Formato de texto: LaTeX, tamaño de fuente, familia de fuentes
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#configuracion-de-colores-tipos-de-linea-y-marcadores">
-     Configuración de colores, tipos de línea y marcadores
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#colores">
-       Colores
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#estilos-de-lineas-y-marcadores">
-       Estilos de líneas y marcadores
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#control-sobre-la-apariencia-del-eje">
-     Control sobre la apariencia del eje
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#rango">
-       Rango
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#escala-logaritmica">
-       Escala logarítmica
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ubicacion-de-las-etiquetas-y-etiquetas-personalizadas">
-     Ubicación de las etiquetas y etiquetas personalizadas
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#notacion-cientifica">
-       Notación científica
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#numero-de-eje-y-espaciado-de-la-etiqueta-del-eje">
-     Número de eje y espaciado de la etiqueta del eje
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#ajustes-de-posicion-del-eje">
-       Ajustes de posición del eje
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#grillas">
-     Grillas
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#lineas-de-eje">
-     Lineas de eje
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ejes-gemelos">
-     Ejes gemelos
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ejes-donde-x-e-y-son-cero">
-     Ejes donde x e y son cero
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#otros-estilos-de-trama-2d">
-     Otros estilos de trama 2D
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#anotacion-de-texto">
-     Anotación de texto
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#figuras-con-multiples-sub-figuras-e-inserciones">
-     Figuras con múltiples sub-figuras e inserciones
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#subplots">
-       subplots
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#subplot2grid">
-       subplot2grid
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#gridspec">
-       gridspec
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#add-axes">
-       add_axes
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#figuras-de-colores-y-contornos">
-     Figuras de colores y contornos
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#pcolor">
-       pcolor
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#imshow">
-       imshow
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#contour">
-       contour
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#otras-lecturas">
-     Otras lecturas
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-similar-a-matlab">API similar a MATLAB</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo">Ejemplo</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-api-orientada-a-objetos-matplotlib">La API orientada a objetos matplotlib</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tamano-de-la-figura-relacion-de-aspecto-y-dpi">Tamaño de la figura, relación de aspecto y DPI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#guardando-figuras">Guardando figuras</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formatos-disponibles-cuales-deben-usarse-para-obtener-la-mejor-calidad">Formatos disponibles: ¿cuáles deben usarse para obtener la mejor calidad?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leyendas-etiquetas-y-titulos">Leyendas, etiquetas y títulos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#titulos-de-las-figuras">Títulos de las figuras</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nombres-de-eje">Nombres de eje</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#leyendas">Leyendas</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formato-de-texto-latex-tamano-de-fuente-familia-de-fuentes">Formato de texto: LaTeX, tamaño de fuente, familia de fuentes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-colores-tipos-de-linea-y-marcadores">Configuración de colores, tipos de línea y marcadores</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#colores">Colores</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estilos-de-lineas-y-marcadores">Estilos de líneas y marcadores</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-sobre-la-apariencia-del-eje">Control sobre la apariencia del eje</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rango">Rango</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#escala-logaritmica">Escala logarítmica</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ubicacion-de-las-etiquetas-y-etiquetas-personalizadas">Ubicación de las etiquetas y etiquetas personalizadas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#notacion-cientifica">Notación científica</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numero-de-eje-y-espaciado-de-la-etiqueta-del-eje">Número de eje y espaciado de la etiqueta del eje</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ajustes-de-posicion-del-eje">Ajustes de posición del eje</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grillas">Grillas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lineas-de-eje">Lineas de eje</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejes-gemelos">Ejes gemelos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejes-donde-x-e-y-son-cero">Ejes donde x e y son cero</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otros-estilos-de-trama-2d">Otros estilos de trama 2D</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anotacion-de-texto">Anotación de texto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#figuras-con-multiples-sub-figuras-e-inserciones">Figuras con múltiples sub-figuras e inserciones</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#subplots">subplots</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#subplot2grid">subplot2grid</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gridspec">gridspec</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#add-axes">add_axes</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#figuras-de-colores-y-contornos">Figuras de colores y contornos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pcolor">pcolor</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#imshow">imshow</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contour">contour</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otras-lecturas">Otras lecturas</a></li>
+</ul>
+</li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="figuras-en-python-matplotlib">
-<h1>Figuras en Python - MATPLOTLIB<a class="headerlink" href="#figuras-en-python-matplotlib" title="Enlazar permanentemente con este título">¶</a></h1>
-<div class="section" id="introduccion">
-<h2>Introducción<a class="headerlink" href="#introduccion" title="Enlazar permanentemente con este título">¶</a></h2>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="figuras-en-python-matplotlib">
+<h1>Figuras en Python - MATPLOTLIB<a class="headerlink" href="#figuras-en-python-matplotlib" title="Permalink to this heading">#</a></h1>
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h2>
 <p>Matplotlib es una excelente biblioteca de gráficos 2D y 3D para generar figuras científicas. Algunas de las muchas ventajas de esta biblioteca incluyen:</p>
 <ul class="simple">
 <li><p>Fácil de empezar, y cuenta con un gran soporte para etiquetas y textos con formato <span class="math notranslate nohighlight">\(\LaTeX\)</span></p></li>
@@ -763,9 +624,9 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="api-similar-a-matlab">
-<h2>API similar a MATLAB<a class="headerlink" href="#api-similar-a-matlab" title="Enlazar permanentemente con este título">¶</a></h2>
+</section>
+<section id="api-similar-a-matlab">
+<h2>API similar a MATLAB<a class="headerlink" href="#api-similar-a-matlab" title="Permalink to this heading">#</a></h2>
 <p>La forma más fácil de comenzar con el trazado de matplotlib es usar la API similar a MATLAB proporcionada por matplotlib.</p>
 <p>Está diseñado para ser compatible con las funciones de trazado de MATLAB, por lo que es fácil comenzar si está familiarizado con MATLAB.</p>
 <p>Para usar esta API de matplotlib, necesitamos incluir los símbolos en el módulo <code class="docutils literal notranslate"><span class="pre">pylab</span></code>:</p>
@@ -776,8 +637,8 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 </div>
-<div class="section" id="ejemplo">
-<h3>Ejemplo<a class="headerlink" href="#ejemplo" title="Enlazar permanentemente con este título">¶</a></h3>
+<section id="ejemplo">
+<h3>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this heading">#</a></h3>
 <p>Haremos una figura simple con la API de trazado de MATLAB. Primero generamos datos en <span class="math notranslate nohighlight">\(x\)</span> e <span class="math notranslate nohighlight">\(y\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -800,7 +661,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_8_0.png" src="../../../_images/Intro-Matplotlib_8_0.png" />
+<img alt="../../../_images/fa34129b609bc42e8f91dcfafb6a243a0fa3d01af379851c4d58988bc378227e.png" src="../../../_images/fa34129b609bc42e8f91dcfafb6a243a0fa3d01af379851c4d58988bc378227e.png" />
 </div>
 </div>
 <p>La mayoría de las funciones relacionadas con el trazado en MATLAB están cubiertas por el módulo <code class="docutils literal notranslate"><span class="pre">pylab</span></code>. Por ejemplo, subplot y selección de color / símbolo:</p>
@@ -814,16 +675,16 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_10_0.png" src="../../../_images/Intro-Matplotlib_10_0.png" />
+<img alt="../../../_images/a6826166afbab81099f3421c93b1cbae641f4b58432e4dba19a92f7e1ab636ca.png" src="../../../_images/a6826166afbab81099f3421c93b1cbae641f4b58432e4dba19a92f7e1ab636ca.png" />
 </div>
 </div>
 <p>Lo bueno de la API de estilo MATLAB de Pylab es que es fácil comenzar si se está familiarizado con MATLAB, y tiene un mínimo de sobrecarga de codificación para diagramas simples.</p>
 <p>Sin embargo, recomendaría no usar la API compatible con MATLAB para nada más que las figuras más simples.</p>
 <p>En su lugar, recomiendo aprender y usar la API de trazado orientado a objetos de matplotlib. Es notablemente poderoso. Para figuras avanzadas con sub-figuras, inserciones y otros componentes, es muy agradable trabajar con ellos.</p>
-</div>
-</div>
-<div class="section" id="la-api-orientada-a-objetos-matplotlib">
-<h2>La API orientada a objetos matplotlib<a class="headerlink" href="#la-api-orientada-a-objetos-matplotlib" title="Enlazar permanentemente con este título">¶</a></h2>
+</section>
+</section>
+<section id="la-api-orientada-a-objetos-matplotlib">
+<h2>La API orientada a objetos matplotlib<a class="headerlink" href="#la-api-orientada-a-objetos-matplotlib" title="Permalink to this heading">#</a></h2>
 <p>La idea principal de la programación orientada a objetos es tener objetos en los que se puedan aplicar funciones y acciones, y ningún estado de objeto o programa debe ser global (como la API similar a MATLAB). La ventaja real de este enfoque se hace evidente cuando se crea más de una figura, o cuando una figura contiene más de un argumento secundario.</p>
 <p>Para utilizar la API orientada a objetos, comenzamos como en el ejemplo anterior, pero en lugar de crear una nueva instancia de figura global, almacenamos una referencia a la instancia de figura recién creada en la variable <code class="docutils literal notranslate"><span class="pre">fig</span></code>, y a partir de ella creamos una instancia de ejes o <code class="docutils literal notranslate"><span class="pre">axes</span></code> usando el método <code class="docutils literal notranslate"><span class="pre">add_axes</span></code> en la instancia de la clase <code class="docutils literal notranslate"><span class="pre">Figure</span></code>,  <code class="docutils literal notranslate"><span class="pre">fig</span></code>:</p>
 <div class="cell docutils container">
@@ -839,7 +700,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_13_0.png" src="../../../_images/Intro-Matplotlib_13_0.png" />
+<img alt="../../../_images/e13429de4ffe6fa457aca07816a24d336c7a9cc42ddb2e37220b717d27262ad3.png" src="../../../_images/e13429de4ffe6fa457aca07816a24d336c7a9cc42ddb2e37220b717d27262ad3.png" />
 </div>
 </div>
 <p>Aunque está involucrado un poco más de código, la ventaja es que ahora tenemos el control total de dónde se colocan los ejes de trazado, y podemos agregar fácilmente más de un eje a la figura:</p>
@@ -864,7 +725,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_15_0.png" src="../../../_images/Intro-Matplotlib_15_0.png" />
+<img alt="../../../_images/0a29ac50a70fe097b08074f8ad59078c5f5e313694e2a44b0ec0a0b41d5a7754.png" src="../../../_images/0a29ac50a70fe097b08074f8ad59078c5f5e313694e2a44b0ec0a0b41d5a7754.png" />
 </div>
 </div>
 <p>Si no nos importa ser explícitos acerca de dónde se ubican nuestros ejes de trazado en la figura, entonces podemos usar uno de los muchos administradores de diseño de ejes en matplotlib. Mi favorito es <code class="docutils literal notranslate"><span class="pre">subplots</span></code>, que se puede usar así:</p>
@@ -880,7 +741,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_17_0.png" src="../../../_images/Intro-Matplotlib_17_0.png" />
+<img alt="../../../_images/fa34129b609bc42e8f91dcfafb6a243a0fa3d01af379851c4d58988bc378227e.png" src="../../../_images/fa34129b609bc42e8f91dcfafb6a243a0fa3d01af379851c4d58988bc378227e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -896,7 +757,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_18_0.png" src="../../../_images/Intro-Matplotlib_18_0.png" />
+<img alt="../../../_images/d32b51e6194fac2b1558474a4820da22682d68bd56bb783b6866892599c2da62.png" src="../../../_images/d32b51e6194fac2b1558474a4820da22682d68bd56bb783b6866892599c2da62.png" />
 </div>
 </div>
 <p>Eso fue fácil, pero no resulta del todo bonito ya que las etiquetas se superponen a los ejes.</p>
@@ -916,11 +777,11 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_20_0.png" src="../../../_images/Intro-Matplotlib_20_0.png" />
+<img alt="../../../_images/1822ff760f9af6dd78a39f599b880dfc53cc12e209a6bbd56ce0e2f6b881e37e.png" src="../../../_images/1822ff760f9af6dd78a39f599b880dfc53cc12e209a6bbd56ce0e2f6b881e37e.png" />
 </div>
 </div>
-<div class="section" id="tamano-de-la-figura-relacion-de-aspecto-y-dpi">
-<h3>Tamaño de la figura, relación de aspecto y DPI<a class="headerlink" href="#tamano-de-la-figura-relacion-de-aspecto-y-dpi" title="Enlazar permanentemente con este título">¶</a></h3>
+<section id="tamano-de-la-figura-relacion-de-aspecto-y-dpi">
+<h3>Tamaño de la figura, relación de aspecto y DPI<a class="headerlink" href="#tamano-de-la-figura-relacion-de-aspecto-y-dpi" title="Permalink to this heading">#</a></h3>
 <p>Matplotlib permite especificar la relación de aspecto, el DPI y el tamaño de la figura cuando se crea el objeto de la clase <code class="docutils literal notranslate"><span class="pre">Figure</span></code>, utilizando los argumentos claves <code class="docutils literal notranslate"><span class="pre">figsize</span></code> y <code class="docutils literal notranslate"><span class="pre">dpi</span></code>. <code class="docutils literal notranslate"><span class="pre">figsize</span></code> es una tupla del ancho y alto de la figura en pulgadas, y <code class="docutils literal notranslate"><span class="pre">dpi</span></code> es la cantidad de pixels por pulgada. Para crear una figura de 800x400 pixels, 100 puntos por pulgada (DPI), podemos hacer:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -947,12 +808,12 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_25_0.png" src="../../../_images/Intro-Matplotlib_25_0.png" />
+<img alt="../../../_images/f06ad42a0d218f1d503a1f92e0c930bdf97d0586ecaf747bf50cdfa94c59123c.png" src="../../../_images/f06ad42a0d218f1d503a1f92e0c930bdf97d0586ecaf747bf50cdfa94c59123c.png" />
 </div>
 </div>
-</div>
-<div class="section" id="guardando-figuras">
-<h3>Guardando figuras<a class="headerlink" href="#guardando-figuras" title="Enlazar permanentemente con este título">¶</a></h3>
+</section>
+<section id="guardando-figuras">
+<h3>Guardando figuras<a class="headerlink" href="#guardando-figuras" title="Permalink to this heading">#</a></h3>
 <p>Para guardar una figura en un archivo, podemos utilizar el método <code class="docutils literal notranslate"><span class="pre">savefig</span></code> en la clase <code class="docutils literal notranslate"><span class="pre">Figure</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -969,16 +830,16 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="formatos-disponibles-cuales-deben-usarse-para-obtener-la-mejor-calidad">
-<h3>Formatos disponibles: ¿cuáles deben usarse para obtener la mejor calidad?<a class="headerlink" href="#formatos-disponibles-cuales-deben-usarse-para-obtener-la-mejor-calidad" title="Enlazar permanentemente con este título">¶</a></h3>
+</section>
+<section id="formatos-disponibles-cuales-deben-usarse-para-obtener-la-mejor-calidad">
+<h3>Formatos disponibles: ¿cuáles deben usarse para obtener la mejor calidad?<a class="headerlink" href="#formatos-disponibles-cuales-deben-usarse-para-obtener-la-mejor-calidad" title="Permalink to this heading">#</a></h3>
 <p>Matplotlib puede generar resultados de alta calidad en varios formatos, incluidos PNG, JPG, EPS, SVG, PGF y PDF. Para artículos científicos, recomiendo usar PDF siempre que sea posible. (Los documentos LaTeX compilados con <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code> pueden incluir archivos PDF usando el comando <code class="docutils literal notranslate"><span class="pre">includegraphics</span></code>). En algunos casos, PGF también puede ser una buena alternativa.</p>
-</div>
-<div class="section" id="leyendas-etiquetas-y-titulos">
-<h3>Leyendas, etiquetas y títulos<a class="headerlink" href="#leyendas-etiquetas-y-titulos" title="Enlazar permanentemente con este título">¶</a></h3>
+</section>
+<section id="leyendas-etiquetas-y-titulos">
+<h3>Leyendas, etiquetas y títulos<a class="headerlink" href="#leyendas-etiquetas-y-titulos" title="Permalink to this heading">#</a></h3>
 <p>Ahora que hemos cubierto los conceptos básicos de cómo crear un lienzo de figura y agregar instancias de ejes al lienzo, veamos cómo decorar una figura con títulos, etiquetas de ejes y leyendas.</p>
-<div class="section" id="titulos-de-las-figuras">
-<h4>Títulos de las figuras<a class="headerlink" href="#titulos-de-las-figuras" title="Enlazar permanentemente con este título">¶</a></h4>
+<section id="titulos-de-las-figuras">
+<h4>Títulos de las figuras<a class="headerlink" href="#titulos-de-las-figuras" title="Permalink to this heading">#</a></h4>
 <p>Se puede agregar un título a cada instancia de eje en una figura. Para establecer el título, use el método <code class="docutils literal notranslate"><span class="pre">set_title</span></code> en la instancia de los ejes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -987,9 +848,9 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="nombres-de-eje">
-<h4>Nombres de eje<a class="headerlink" href="#nombres-de-eje" title="Enlazar permanentemente con este título">¶</a></h4>
+</section>
+<section id="nombres-de-eje">
+<h4>Nombres de eje<a class="headerlink" href="#nombres-de-eje" title="Permalink to this heading">#</a></h4>
 <p>De manera similar, con los métodos <code class="docutils literal notranslate"><span class="pre">set_xlabel</span></code> y <code class="docutils literal notranslate"><span class="pre">set_ylabel</span></code>, podemos establecer los nombres o etiquetas de los ejes X e Y:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -999,9 +860,9 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="leyendas">
-<h4>Leyendas<a class="headerlink" href="#leyendas" title="Enlazar permanentemente con este título">¶</a></h4>
+</section>
+<section id="leyendas">
+<h4>Leyendas<a class="headerlink" href="#leyendas" title="Permalink to this heading">#</a></h4>
 <p>Las leyendas para las curvas en una figura se pueden agregar de dos maneras. Un método es usar el método <code class="docutils literal notranslate"><span class="pre">legend</span></code> del objeto de eje y pasar una lista/tupla de textos de leyenda para las curvas definidas previamente:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1051,13 +912,13 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_43_0.png" src="../../../_images/Intro-Matplotlib_43_0.png" />
+<img alt="../../../_images/a1584cbb8c9a7a6ed4be06da331275d93d2bd2cb9dc6969b0aba78f0c4f32759.png" src="../../../_images/a1584cbb8c9a7a6ed4be06da331275d93d2bd2cb9dc6969b0aba78f0c4f32759.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="formato-de-texto-latex-tamano-de-fuente-familia-de-fuentes">
-<h3>Formato de texto: LaTeX, tamaño de fuente, familia de fuentes<a class="headerlink" href="#formato-de-texto-latex-tamano-de-fuente-familia-de-fuentes" title="Enlazar permanentemente con este título">¶</a></h3>
+</section>
+</section>
+<section id="formato-de-texto-latex-tamano-de-fuente-familia-de-fuentes">
+<h3>Formato de texto: LaTeX, tamaño de fuente, familia de fuentes<a class="headerlink" href="#formato-de-texto-latex-tamano-de-fuente-familia-de-fuentes" title="Permalink to this heading">#</a></h3>
 <p>La figura anterior es funcional, pero (aún) no cumple los criterios de una figura utilizada en una publicación. Primero y ante todo, necesitamos tener texto con formato LaTeX, y segundo, debemos poder ajustar el tamaño de la fuente para que aparezca en una publicación.</p>
 <p>Matplotlib tiene un gran soporte para LaTeX. Todo lo que tenemos que hacer es usar signos de dólar para encapsular LaTeX en cualquier texto (leyenda, título, etiqueta, etc.). Por ejemplo, <code class="docutils literal notranslate"><span class="pre">&quot;$y=x^3$&quot;</span></code>.</p>
 <p>Pero aquí podemos encontrar un problema ligeramente sutil con el código LaTeX y las cadenas de texto de Python. En LaTeX, frecuentemente usamos la barra invertida en los comandos, por ejemplo <code class="docutils literal notranslate"><span class="pre">\alpha</span></code> para producir el símbolo <span class="math notranslate nohighlight">\(\alpha\)</span>. Pero la barra invertida ya tiene un significado en las cadenas de Python (el carácter del código de escape). Para evitar que Python estropee nuestro código de látex, necesitamos usar cadenas de texto «sin procesar». Las cadenas de texto sin formato se añaden con una “<code class="docutils literal notranslate"><span class="pre">r</span></code>”, como <code class="docutils literal notranslate"><span class="pre">r&quot;\alpha&quot;</span></code> o <code class="docutils literal notranslate"><span class="pre">r'\alpha'</span></code> en lugar de <code class="docutils literal notranslate"><span class="pre">&quot;\alpha&quot;</span></code> o <code class="docutils literal notranslate"><span class="pre">'\alpha'</span></code>:</p>
@@ -1075,7 +936,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_46_0.png" src="../../../_images/Intro-Matplotlib_46_0.png" />
+<img alt="../../../_images/2a7f7088e27b050813c525a6c9aa3cc8afcacc4fccb6a1d859f320d67793b1d8.png" src="../../../_images/2a7f7088e27b050813c525a6c9aa3cc8afcacc4fccb6a1d859f320d67793b1d8.png" />
 </div>
 </div>
 <p>También podemos cambiar el tamaño de fuente global y la familia de fuentes, que se aplica a todos los elementos de texto en una figura (etiquetas y títulos de ejes, leyendas, etc.):</p>
@@ -1101,7 +962,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_49_0.png" src="../../../_images/Intro-Matplotlib_49_0.png" />
+<img alt="../../../_images/6746cc731d23743f60a7ef41271f3e75518840455d33f4f57c7da8cfd02b0eba.png" src="../../../_images/6746cc731d23743f60a7ef41271f3e75518840455d33f4f57c7da8cfd02b0eba.png" />
 </div>
 </div>
 <p>Una buena elección de fuentes globales son las fuentes STIX:</p>
@@ -1126,14 +987,14 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_52_0.png" src="../../../_images/Intro-Matplotlib_52_0.png" />
+<img alt="../../../_images/a8350c2bed8b4b6c8a65733e26e47c712bf7b5eb8e92512ccff38a8a9f0d1ac2.png" src="../../../_images/a8350c2bed8b4b6c8a65733e26e47c712bf7b5eb8e92512ccff38a8a9f0d1ac2.png" />
 </div>
 </div>
-</div>
-<div class="section" id="configuracion-de-colores-tipos-de-linea-y-marcadores">
-<h3>Configuración de colores, tipos de línea y marcadores<a class="headerlink" href="#configuracion-de-colores-tipos-de-linea-y-marcadores" title="Enlazar permanentemente con este título">¶</a></h3>
-<div class="section" id="colores">
-<h4>Colores<a class="headerlink" href="#colores" title="Enlazar permanentemente con este título">¶</a></h4>
+</section>
+<section id="configuracion-de-colores-tipos-de-linea-y-marcadores">
+<h3>Configuración de colores, tipos de línea y marcadores<a class="headerlink" href="#configuracion-de-colores-tipos-de-linea-y-marcadores" title="Permalink to this heading">#</a></h3>
+<section id="colores">
+<h4>Colores<a class="headerlink" href="#colores" title="Permalink to this heading">#</a></h4>
 <p>Con matplotlib se puede definir los colores de las lineas y de otros elementos gráficos de varias maneras. Primero podemos usar una sintaxis parecida a la de MATLAB donde <code class="docutils literal notranslate"><span class="pre">'b'</span></code> significa blue (azul), <code class="docutils literal notranslate"><span class="pre">'g'</span></code> significa green (verde), etc. El API de MATLAB para seleccionar estilos de lineas también es soportado: donde  <code class="docutils literal notranslate"><span class="pre">'b.-'</span></code>  significa azul con linea estilo linea punto.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1144,7 +1005,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fe0026a87f0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f35ec8bc550&gt;]
 </pre></div>
 </div>
 </div>
@@ -1161,12 +1022,12 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_58_0.png" src="../../../_images/Intro-Matplotlib_58_0.png" />
+<img alt="../../../_images/2fbc7e2f600c127bdef95e9a9d00028e420e5e7b539e65c7d1b02cc7fc9901d4.png" src="../../../_images/2fbc7e2f600c127bdef95e9a9d00028e420e5e7b539e65c7d1b02cc7fc9901d4.png" />
 </div>
 </div>
-</div>
-<div class="section" id="estilos-de-lineas-y-marcadores">
-<h4>Estilos de líneas y marcadores<a class="headerlink" href="#estilos-de-lineas-y-marcadores" title="Enlazar permanentemente con este título">¶</a></h4>
+</section>
+<section id="estilos-de-lineas-y-marcadores">
+<h4>Estilos de líneas y marcadores<a class="headerlink" href="#estilos-de-lineas-y-marcadores" title="Permalink to this heading">#</a></h4>
 <p>Para cambiar el ancho de línea, podemos usar el argumento de la palabra clave <code class="docutils literal notranslate"><span class="pre">linewidth</span></code> o <code class="docutils literal notranslate"><span class="pre">lw</span></code>. El estilo de línea se puede seleccionar usando los argumentos de la palabra clave <code class="docutils literal notranslate"><span class="pre">linestyle</span></code> o <code class="docutils literal notranslate"><span class="pre">ls</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1202,16 +1063,16 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_61_0.png" src="../../../_images/Intro-Matplotlib_61_0.png" />
+<img alt="../../../_images/0f42597f7753ff7fcc6e2394fd938011dc2029df38911af79afe29b727a6d7b3.png" src="../../../_images/0f42597f7753ff7fcc6e2394fd938011dc2029df38911af79afe29b727a6d7b3.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="control-sobre-la-apariencia-del-eje">
-<h3>Control sobre la apariencia del eje<a class="headerlink" href="#control-sobre-la-apariencia-del-eje" title="Enlazar permanentemente con este título">¶</a></h3>
+</section>
+</section>
+<section id="control-sobre-la-apariencia-del-eje">
+<h3>Control sobre la apariencia del eje<a class="headerlink" href="#control-sobre-la-apariencia-del-eje" title="Permalink to this heading">#</a></h3>
 <p>La apariencia de los ejes es un aspecto importante de una figura que a menudo necesitamos modificar para hacer una publicación con calidad gráfica. Necesitamos poder controlar dónde se colocan las marcas y las etiquetas, modificar el tamaño de la fuente y posiblemente las etiquetas utilizadas en los ejes. En esta sección veremos cómo controlar esas propiedades en una figura de matplotlib.</p>
-<div class="section" id="rango">
-<h4>Rango<a class="headerlink" href="#rango" title="Enlazar permanentemente con este título">¶</a></h4>
+<section id="rango">
+<h4>Rango<a class="headerlink" href="#rango" title="Permalink to this heading">#</a></h4>
 <p>Lo primero que podríamos querer configurar es el rango de los ejes. Podemos hacerlo utilizando los métodos <code class="docutils literal notranslate"><span class="pre">set_ylim</span></code> y <code class="docutils literal notranslate"><span class="pre">set_xlim</span></code> en el objeto de eje, o <code class="docutils literal notranslate"><span class="pre">axis('tight')</span></code> para obtener rangos de ejes «ajustados» de manera automática:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1232,12 +1093,12 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_66_0.png" src="../../../_images/Intro-Matplotlib_66_0.png" />
+<img alt="../../../_images/adb7e0222d2282d413451bc851e5a265290d2508e4fcf6960a75b32e97a325ec.png" src="../../../_images/adb7e0222d2282d413451bc851e5a265290d2508e4fcf6960a75b32e97a325ec.png" />
 </div>
 </div>
-</div>
-<div class="section" id="escala-logaritmica">
-<h4>Escala logarítmica<a class="headerlink" href="#escala-logaritmica" title="Enlazar permanentemente con este título">¶</a></h4>
+</section>
+<section id="escala-logaritmica">
+<h4>Escala logarítmica<a class="headerlink" href="#escala-logaritmica" title="Permalink to this heading">#</a></h4>
 <p>También es posible establecer una escala logarítmica para uno o ambos ejes. De hecho, esta funcionalidad es solo una aplicación de un sistema de transformación más general en Matplotlib. Cada una de las escalas de los ejes se establece por separado utilizando los métodos <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">_xscale</span></code> y <code class="docutils literal notranslate"><span class="pre">set_yscale</span></code> que aceptan un parámetro (con el valor «log» en este caso):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1253,13 +1114,13 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_69_0.png" src="../../../_images/Intro-Matplotlib_69_0.png" />
+<img alt="../../../_images/76841138b5374632d5d8a2f303d55985a12ac630cf97be66796bfb7bff0ff611.png" src="../../../_images/76841138b5374632d5d8a2f303d55985a12ac630cf97be66796bfb7bff0ff611.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="ubicacion-de-las-etiquetas-y-etiquetas-personalizadas">
-<h3>Ubicación de las etiquetas y etiquetas personalizadas<a class="headerlink" href="#ubicacion-de-las-etiquetas-y-etiquetas-personalizadas" title="Enlazar permanentemente con este título">¶</a></h3>
+</section>
+</section>
+<section id="ubicacion-de-las-etiquetas-y-etiquetas-personalizadas">
+<h3>Ubicación de las etiquetas y etiquetas personalizadas<a class="headerlink" href="#ubicacion-de-las-etiquetas-y-etiquetas-personalizadas" title="Permalink to this heading">#</a></h3>
 <p>Podemos determinar explícitamente dónde queremos que los tics del eje con <code class="docutils literal notranslate"><span class="pre">set_xticks</span></code> y <code class="docutils literal notranslate"><span class="pre">set_yticks</span></code>, que toman una lista de valores para los lugares donde se colocarán los tics en el eje. También podemos usar los métodos <code class="docutils literal notranslate"><span class="pre">set_xticklabels</span></code> y <code class="docutils literal notranslate"><span class="pre">set_yticklabels</span></code> para proporcionar una lista de etiquetas de texto personalizadas para cada ubicación de marca:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1277,12 +1138,12 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_72_0.png" src="../../../_images/Intro-Matplotlib_72_0.png" />
+<img alt="../../../_images/6163a7b7755fc77ef31e542221f7e45a1e0165fa7bc73cb4a5b2f1d7ade681a0.png" src="../../../_images/6163a7b7755fc77ef31e542221f7e45a1e0165fa7bc73cb4a5b2f1d7ade681a0.png" />
 </div>
 </div>
 <p>Hay una serie de métodos más avanzados para controlar la colocación de marcas mayores y menores en las cifras de matplotlib, como la ubicación automática de acuerdo con diferentes políticas. Consulte la <a class="reference external" href="http://matplotlib.org/api/ticker_api.html">documentación de matplotlib</a> para obtener más información.</p>
-<div class="section" id="notacion-cientifica">
-<h4>Notación científica<a class="headerlink" href="#notacion-cientifica" title="Enlazar permanentemente con este título">¶</a></h4>
+<section id="notacion-cientifica">
+<h4>Notación científica<a class="headerlink" href="#notacion-cientifica" title="Permalink to this heading">#</a></h4>
 <p>Con grandes números en los ejes, a menudo es mejor usar la notación científica:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1302,13 +1163,13 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_76_0.png" src="../../../_images/Intro-Matplotlib_76_0.png" />
+<img alt="../../../_images/8cf6b1648c7f295f6f7f34b848050fb3153c1d7be25c5a7b8193132d6e3418f4.png" src="../../../_images/8cf6b1648c7f295f6f7f34b848050fb3153c1d7be25c5a7b8193132d6e3418f4.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="numero-de-eje-y-espaciado-de-la-etiqueta-del-eje">
-<h3>Número de eje y espaciado de la etiqueta del eje<a class="headerlink" href="#numero-de-eje-y-espaciado-de-la-etiqueta-del-eje" title="Enlazar permanentemente con este título">¶</a></h3>
+</section>
+</section>
+<section id="numero-de-eje-y-espaciado-de-la-etiqueta-del-eje">
+<h3>Número de eje y espaciado de la etiqueta del eje<a class="headerlink" href="#numero-de-eje-y-espaciado-de-la-etiqueta-del-eje" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># distancia entre x e y y el numero del eje</span>
@@ -1332,7 +1193,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_78_0.png" src="../../../_images/Intro-Matplotlib_78_0.png" />
+<img alt="../../../_images/2cb7192b8eb2eca9e4d99c344a93ee8fc7f302c25e604664e69a1f8b7ab410e5.png" src="../../../_images/2cb7192b8eb2eca9e4d99c344a93ee8fc7f302c25e604664e69a1f8b7ab410e5.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1344,8 +1205,8 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 </div>
-<div class="section" id="ajustes-de-posicion-del-eje">
-<h4>Ajustes de posición del eje<a class="headerlink" href="#ajustes-de-posicion-del-eje" title="Enlazar permanentemente con este título">¶</a></h4>
+<section id="ajustes-de-posicion-del-eje">
+<h4>Ajustes de posición del eje<a class="headerlink" href="#ajustes-de-posicion-del-eje" title="Permalink to this heading">#</a></h4>
 <p>Desafortunadamente, al guardar figuras, las etiquetas a veces se recortan, y puede ser necesario ajustar un poco las posiciones de los ejes. Esto se puede hacer usando <code class="docutils literal notranslate"><span class="pre">subplots_adjust</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1363,13 +1224,13 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_82_0.png" src="../../../_images/Intro-Matplotlib_82_0.png" />
+<img alt="../../../_images/53f6636d5b45e890c1a387eb8ed105991f253abb4cb67e78740c4cc5e2f37605.png" src="../../../_images/53f6636d5b45e890c1a387eb8ed105991f253abb4cb67e78740c4cc5e2f37605.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="grillas">
-<h3>Grillas<a class="headerlink" href="#grillas" title="Enlazar permanentemente con este título">¶</a></h3>
+</section>
+</section>
+<section id="grillas">
+<h3>Grillas<a class="headerlink" href="#grillas" title="Permalink to this heading">#</a></h3>
 <p>Con el método <code class="docutils literal notranslate"><span class="pre">grid</span></code> en el objeto de eje, podemos activar y desactivar las líneas de la cuadrícula. También podemos personalizar el aspecto de las líneas de la cuadrícula utilizando los mismos argumentos de palabras clave que la función <code class="docutils literal notranslate"><span class="pre">plot</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1386,12 +1247,12 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_85_0.png" src="../../../_images/Intro-Matplotlib_85_0.png" />
+<img alt="../../../_images/d56617b1220199464eaa9dd5ca88dcc441dfe2a6ff81343b7d1adcb2dbb0ad0e.png" src="../../../_images/d56617b1220199464eaa9dd5ca88dcc441dfe2a6ff81343b7d1adcb2dbb0ad0e.png" />
 </div>
 </div>
-</div>
-<div class="section" id="lineas-de-eje">
-<h3>Lineas de eje<a class="headerlink" href="#lineas-de-eje" title="Enlazar permanentemente con este título">¶</a></h3>
+</section>
+<section id="lineas-de-eje">
+<h3>Lineas de eje<a class="headerlink" href="#lineas-de-eje" title="Permalink to this heading">#</a></h3>
 <p>También podemos cambiar las propiedades de las lineas de los ejes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1410,12 +1271,12 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_88_0.png" src="../../../_images/Intro-Matplotlib_88_0.png" />
+<img alt="../../../_images/33552962bfa8444af692ebc3be2ceb821407d3646e7c5444ba10404f96ae2984.png" src="../../../_images/33552962bfa8444af692ebc3be2ceb821407d3646e7c5444ba10404f96ae2984.png" />
 </div>
 </div>
-</div>
-<div class="section" id="ejes-gemelos">
-<h3>Ejes gemelos<a class="headerlink" href="#ejes-gemelos" title="Enlazar permanentemente con este título">¶</a></h3>
+</section>
+<section id="ejes-gemelos">
+<h3>Ejes gemelos<a class="headerlink" href="#ejes-gemelos" title="Permalink to this heading">#</a></h3>
 <p>A veces es útil tener ejes x o y duales en una figura; por ejemplo, al trazar curvas con diferentes unidades juntas. Matplotlib admite esto con las funciones <code class="docutils literal notranslate"><span class="pre">twinx</span></code> y <code class="docutils literal notranslate"><span class="pre">twiny</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1435,12 +1296,12 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_91_0.png" src="../../../_images/Intro-Matplotlib_91_0.png" />
+<img alt="../../../_images/bef4b8cdc47fc35c0bbcb8905b6aa45e26fba0c7f81468ab3b88e27b72d08720.png" src="../../../_images/bef4b8cdc47fc35c0bbcb8905b6aa45e26fba0c7f81468ab3b88e27b72d08720.png" />
 </div>
 </div>
-</div>
-<div class="section" id="ejes-donde-x-e-y-son-cero">
-<h3>Ejes donde x e y son cero<a class="headerlink" href="#ejes-donde-x-e-y-son-cero" title="Enlazar permanentemente con este título">¶</a></h3>
+</section>
+<section id="ejes-donde-x-e-y-son-cero">
+<h3>Ejes donde x e y son cero<a class="headerlink" href="#ejes-donde-x-e-y-son-cero" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -1460,12 +1321,12 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_93_0.png" src="../../../_images/Intro-Matplotlib_93_0.png" />
+<img alt="../../../_images/7e8262aff4f200b6028c420affc44d4251d0dd868bad2390830af027021f5f23.png" src="../../../_images/7e8262aff4f200b6028c420affc44d4251d0dd868bad2390830af027021f5f23.png" />
 </div>
 </div>
-</div>
-<div class="section" id="otros-estilos-de-trama-2d">
-<h3>Otros estilos de trama 2D<a class="headerlink" href="#otros-estilos-de-trama-2d" title="Enlazar permanentemente con este título">¶</a></h3>
+</section>
+<section id="otros-estilos-de-trama-2d">
+<h3>Otros estilos de trama 2D<a class="headerlink" href="#otros-estilos-de-trama-2d" title="Permalink to this heading">#</a></h3>
 <p>Además del método regular “plot”, hay una serie de otras funciones para generar diferentes tipos de gráficos. Consulte la <a class="reference external" href="http://matplotlib.org/gallery.html">galería de gráficos de matplotlib</a> para obtener una lista completa de los tipos de gráficos disponibles. Algunos de los más útiles se muestran a continuación:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1493,7 +1354,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_97_0.png" src="../../../_images/Intro-Matplotlib_97_0.png" />
+<img alt="../../../_images/b7c0efaabdd0411808d27e8182cd1b7b5b0f3f90d5ea56daf8f9c9363880a322.png" src="../../../_images/b7c0efaabdd0411808d27e8182cd1b7b5b0f3f90d5ea56daf8f9c9363880a322.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1507,7 +1368,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_98_0.png" src="../../../_images/Intro-Matplotlib_98_0.png" />
+<img alt="../../../_images/dfb6d3bb858baa019d6796076d66420a7b4d9f2aac051749b4f74bd4205f9f88.png" src="../../../_images/dfb6d3bb858baa019d6796076d66420a7b4d9f2aac051749b4f74bd4205f9f88.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1527,12 +1388,12 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_99_0.png" src="../../../_images/Intro-Matplotlib_99_0.png" />
+<img alt="../../../_images/54dadce0e70d7293a1d4981130e8727933479d394796331773e92cfa6a4073f0.png" src="../../../_images/54dadce0e70d7293a1d4981130e8727933479d394796331773e92cfa6a4073f0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="anotacion-de-texto">
-<h3>Anotación de texto<a class="headerlink" href="#anotacion-de-texto" title="Enlazar permanentemente con este título">¶</a></h3>
+</section>
+<section id="anotacion-de-texto">
+<h3>Anotación de texto<a class="headerlink" href="#anotacion-de-texto" title="Permalink to this heading">#</a></h3>
 <p>La anotación de texto en las figuras de matplotlib se puede hacer usando la función <code class="docutils literal notranslate"><span class="pre">text</span></code>. Admite el formateo LaTeX al igual que los textos y títulos de etiquetas de ejes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1546,15 +1407,15 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_102_0.png" src="../../../_images/Intro-Matplotlib_102_0.png" />
+<img alt="../../../_images/c14315ff50a6cb87392c95f500eb69992e8135bbade285438fdcd25853395bf7.png" src="../../../_images/c14315ff50a6cb87392c95f500eb69992e8135bbade285438fdcd25853395bf7.png" />
 </div>
 </div>
-</div>
-<div class="section" id="figuras-con-multiples-sub-figuras-e-inserciones">
-<h3>Figuras con múltiples sub-figuras e inserciones<a class="headerlink" href="#figuras-con-multiples-sub-figuras-e-inserciones" title="Enlazar permanentemente con este título">¶</a></h3>
+</section>
+<section id="figuras-con-multiples-sub-figuras-e-inserciones">
+<h3>Figuras con múltiples sub-figuras e inserciones<a class="headerlink" href="#figuras-con-multiples-sub-figuras-e-inserciones" title="Permalink to this heading">#</a></h3>
 <p>Los ejes se pueden agregar a una figura de matplotlib manualmente usando <code class="docutils literal notranslate"><span class="pre">fig.add_axes</span></code> o usando un administrador de diseño de sub-figuras como <code class="docutils literal notranslate"><span class="pre">subplots</span></code>, <code class="docutils literal notranslate"><span class="pre">subplot2grid</span></code> o <code class="docutils literal notranslate"><span class="pre">gridspec</span></code>:</p>
-<div class="section" id="subplots">
-<h4>subplots<a class="headerlink" href="#subplots" title="Enlazar permanentemente con este título">¶</a></h4>
+<section id="subplots">
+<h4>subplots<a class="headerlink" href="#subplots" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
@@ -1563,12 +1424,12 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_106_0.png" src="../../../_images/Intro-Matplotlib_106_0.png" />
+<img alt="../../../_images/ba85a446e6a0b41dcac861ac78baaa9af8fd357efc68c3f56ba606f4dadc02e7.png" src="../../../_images/ba85a446e6a0b41dcac861ac78baaa9af8fd357efc68c3f56ba606f4dadc02e7.png" />
 </div>
 </div>
-</div>
-<div class="section" id="subplot2grid">
-<h4>subplot2grid<a class="headerlink" href="#subplot2grid" title="Enlazar permanentemente con este título">¶</a></h4>
+</section>
+<section id="subplot2grid">
+<h4>subplot2grid<a class="headerlink" href="#subplot2grid" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
@@ -1582,12 +1443,12 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_108_0.png" src="../../../_images/Intro-Matplotlib_108_0.png" />
+<img alt="../../../_images/099521f15bcad1ccaea2fe3c4e5e139cbf4b34512c6f0a51843407c376ef3684.png" src="../../../_images/099521f15bcad1ccaea2fe3c4e5e139cbf4b34512c6f0a51843407c376ef3684.png" />
 </div>
 </div>
-</div>
-<div class="section" id="gridspec">
-<h4>gridspec<a class="headerlink" href="#gridspec" title="Enlazar permanentemente con este título">¶</a></h4>
+</section>
+<section id="gridspec">
+<h4>gridspec<a class="headerlink" href="#gridspec" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.gridspec</span> <span class="k">as</span> <span class="nn">gridspec</span>
@@ -1608,12 +1469,12 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_111_0.png" src="../../../_images/Intro-Matplotlib_111_0.png" />
+<img alt="../../../_images/166685fce4b12d7154b68c0c3f5bc33ea39ae6614e217bfbb1d469a1f4d12ef6.png" src="../../../_images/166685fce4b12d7154b68c0c3f5bc33ea39ae6614e217bfbb1d469a1f4d12ef6.png" />
 </div>
 </div>
-</div>
-<div class="section" id="add-axes">
-<h4>add_axes<a class="headerlink" href="#add-axes" title="Enlazar permanentemente con este título">¶</a></h4>
+</section>
+<section id="add-axes">
+<h4>add_axes<a class="headerlink" href="#add-axes" title="Permalink to this heading">#</a></h4>
 <p>La adición manual de ejes con <code class="docutils literal notranslate"><span class="pre">add_axes</span></code> es útil para agregar inserciones a las figuras:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1639,13 +1500,13 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_114_0.png" src="../../../_images/Intro-Matplotlib_114_0.png" />
+<img alt="../../../_images/ba800c70de36896c07a86a4dc2dd0b09b215f6ed9b5d2bee5dfbbd2e78857a3f.png" src="../../../_images/ba800c70de36896c07a86a4dc2dd0b09b215f6ed9b5d2bee5dfbbd2e78857a3f.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="figuras-de-colores-y-contornos">
-<h3>Figuras de colores y contornos<a class="headerlink" href="#figuras-de-colores-y-contornos" title="Enlazar permanentemente con este título">¶</a></h3>
+</section>
+</section>
+<section id="figuras-de-colores-y-contornos">
+<h3>Figuras de colores y contornos<a class="headerlink" href="#figuras-de-colores-y-contornos" title="Permalink to this heading">#</a></h3>
 <p>Los mapas de colores y las figuras de contorno son útiles para trazar funciones de dos variables. En la mayoría de estas funciones, utilizaremos un mapa de colores para codificar una dimensión de los datos. Hay una serie de mapas de color predefinidos. Es relativamente sencillo definir mapas de colores personalizados. Para obtener una lista de mapas de colores predefinidos, consulte <a class="reference external" href="http://www.scipy.org/Cookbook/Matplotlib/Show_colormaps">aquí</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1668,8 +1529,8 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 </div>
-<div class="section" id="pcolor">
-<h4>pcolor<a class="headerlink" href="#pcolor" title="Enlazar permanentemente con este título">¶</a></h4>
+<section id="pcolor">
+<h4>pcolor<a class="headerlink" href="#pcolor" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -1680,12 +1541,12 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_120_0.png" src="../../../_images/Intro-Matplotlib_120_0.png" />
+<img alt="../../../_images/de5c5697657b70718e5bba70e6cf65a1a065f0af7e6a461ac5c7c19f73099a8f.png" src="../../../_images/de5c5697657b70718e5bba70e6cf65a1a065f0af7e6a461ac5c7c19f73099a8f.png" />
 </div>
 </div>
-</div>
-<div class="section" id="imshow">
-<h4>imshow<a class="headerlink" href="#imshow" title="Enlazar permanentemente con este título">¶</a></h4>
+</section>
+<section id="imshow">
+<h4>imshow<a class="headerlink" href="#imshow" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -1698,12 +1559,12 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_122_0.png" src="../../../_images/Intro-Matplotlib_122_0.png" />
+<img alt="../../../_images/02038991bfeab2c8c730a3963f39a3c782bf749e4800daea5c61cb8f96db2372.png" src="../../../_images/02038991bfeab2c8c730a3963f39a3c782bf749e4800daea5c61cb8f96db2372.png" />
 </div>
 </div>
-</div>
-<div class="section" id="contour">
-<h4>contour<a class="headerlink" href="#contour" title="Enlazar permanentemente con este título">¶</a></h4>
+</section>
+<section id="contour">
+<h4>contour<a class="headerlink" href="#contour" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -1713,13 +1574,13 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/Intro-Matplotlib_124_0.png" src="../../../_images/Intro-Matplotlib_124_0.png" />
+<img alt="../../../_images/1135fded376449ae10977c79b4a34db7386e63759d321cd1ac64042d108615c8.png" src="../../../_images/1135fded376449ae10977c79b4a34db7386e63759d321cd1ac64042d108615c8.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="otras-lecturas">
-<h3>Otras lecturas<a class="headerlink" href="#otras-lecturas" title="Enlazar permanentemente con este título">¶</a></h3>
+</section>
+</section>
+<section id="otras-lecturas">
+<h3>Otras lecturas<a class="headerlink" href="#otras-lecturas" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="http://www.matplotlib.org">The project web page for matplotlib</a>.</p></li>
 <li><p><a class="reference external" href="https://github.com/matplotlib/matplotlib">The source code for matplotlib</a>.</p></li>
@@ -1727,9 +1588,9 @@ commentsRunWhenDOMLoaded(addUtterances);
 <li><p><a class="reference external" href="http://www.loria.fr/~rougier/teaching/matplotlib">A good matplotlib tutorial</a>.</p></li>
 <li><p><a class="reference external" href="http://scipy-lectures.github.io/matplotlib/matplotlib.html">Another good matplotlib reference</a>.</p></li>
 </ul>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1743,7 +1604,7 @@ commentsRunWhenDOMLoaded(addUtterances);
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./sources/notebooks_sources/intro_python"
         },
         predefinedOutput: true
@@ -1751,56 +1612,156 @@ commentsRunWhenDOMLoaded(addUtterances);
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="Extra_Python.html" title="anterior página">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">anterior</p>
-                <p class="prevnext-title">Introducción a Python</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="intro_sympy.html" title="siguiente página">
-            <div class="prevnext-info">
-                <p class="prevnext-label">siguiente</p>
-                <p class="prevnext-title">Introducción a SymPy</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
-        
-        </div>
-    </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          Por Somebody<br/>
-        
-            &copy; Derechos de autor 2021.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Extra_Python.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Introducción a Python</p>
       </div>
-    </div>
-  
-  <script src="../../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+    </a>
+    <a class="right-next"
+       href="intro_sympy.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Introducción a SymPy</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-similar-a-matlab">API similar a MATLAB</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo">Ejemplo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-api-orientada-a-objetos-matplotlib">La API orientada a objetos matplotlib</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tamano-de-la-figura-relacion-de-aspecto-y-dpi">Tamaño de la figura, relación de aspecto y DPI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#guardando-figuras">Guardando figuras</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formatos-disponibles-cuales-deben-usarse-para-obtener-la-mejor-calidad">Formatos disponibles: ¿cuáles deben usarse para obtener la mejor calidad?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leyendas-etiquetas-y-titulos">Leyendas, etiquetas y títulos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#titulos-de-las-figuras">Títulos de las figuras</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nombres-de-eje">Nombres de eje</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#leyendas">Leyendas</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formato-de-texto-latex-tamano-de-fuente-familia-de-fuentes">Formato de texto: LaTeX, tamaño de fuente, familia de fuentes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-de-colores-tipos-de-linea-y-marcadores">Configuración de colores, tipos de línea y marcadores</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#colores">Colores</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estilos-de-lineas-y-marcadores">Estilos de líneas y marcadores</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-sobre-la-apariencia-del-eje">Control sobre la apariencia del eje</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rango">Rango</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#escala-logaritmica">Escala logarítmica</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ubicacion-de-las-etiquetas-y-etiquetas-personalizadas">Ubicación de las etiquetas y etiquetas personalizadas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#notacion-cientifica">Notación científica</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numero-de-eje-y-espaciado-de-la-etiqueta-del-eje">Número de eje y espaciado de la etiqueta del eje</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ajustes-de-posicion-del-eje">Ajustes de posición del eje</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grillas">Grillas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lineas-de-eje">Lineas de eje</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejes-gemelos">Ejes gemelos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejes-donde-x-e-y-son-cero">Ejes donde x e y son cero</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otros-estilos-de-trama-2d">Otros estilos de trama 2D</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anotacion-de-texto">Anotación de texto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#figuras-con-multiples-sub-figuras-e-inserciones">Figuras con múltiples sub-figuras e inserciones</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#subplots">subplots</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#subplot2grid">subplot2grid</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gridspec">gridspec</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#add-axes">add_axes</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#figuras-de-colores-y-contornos">Figuras de colores y contornos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pcolor">pcolor</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#imshow">imshow</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contour">contour</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otras-lecturas">Otras lecturas</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Somebody
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

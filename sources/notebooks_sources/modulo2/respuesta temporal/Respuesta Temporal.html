@@ -1,45 +1,59 @@
 
+
 <!DOCTYPE html>
 
-<html lang="es">
+
+<html lang="es" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Respuesta temporal de sistemas dinámicos &#8212; Diseño y Ajuste de Sistemas de Control</title>
-    
-  <link href="../../../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../../../../_static/js/index.1c5a1a01449ed65a7b51.js">
+    <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
-    <script src="../../../../_static/togglebutton.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>
     <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js"></script>
     <script kind="utterances">
 
     var commentsRunWhenDOMLoaded = cb => {
@@ -75,534 +89,487 @@ var addUtterances = () => {
 commentsRunWhenDOMLoaded(addUtterances);
 </script>
     <script src="../../../../_static/translations.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sources/notebooks_sources/modulo2/respuesta temporal/Respuesta Temporal';</script>
     <link rel="canonical" href="https://gonmolina.github.io/DSFyC_book/sources/notebooks_sources/modulo2/respuesta temporal/Respuesta Temporal.html" />
     <link rel="index" title="Índice" href="../../../../genindex.html" />
     <link rel="search" title="Búsqueda" href="../../../../search.html" />
     <link rel="next" title="Efecto de los polos adicionales y de los ceros" href="../polos%20y%20ceros%20adicionales/Efecto%20Polos%20y%20Ceros%20Adicionales.html" />
     <link rel="prev" title="Estabilidad" href="../estabilidad/estabilidad.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../../../index.html">
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../../dsfc_sources/intro.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../../../../_static/sala_de_control.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Diseño y Ajuste de Sistemas de Control</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Buscar este libro ..." aria-label="Buscar este libro ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../../../dsfc_sources/intro.html">
-   Material de la materia Dinámica de los Sistemas Físicos y Control
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Introducción a Python
- </span>
-</p>
+    
+    
+    <img src="../../../../_static/sala_de_control.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../../_static/sala_de_control.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../dsfc_sources/intro.html">
+                    Material de la materia Dinámica de los Sistemas Físicos y Control
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introducción a Python</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../gu%C3%ADa_instalaci%C3%B3n/guia_de_instalacion.html">
-   Guía de instalación de las herramientas computacionales
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../intro_python/Introducci%C3%B3n%20a%20los%20notebooks%20de%20Jupyter.html">
-   Introducción a los cuadernos de Jupyter
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../intro_python/Extra_Python.html">
-   Introducción a Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../intro_python/Intro-Matplotlib.html">
-   Figuras en Python - MATPLOTLIB
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../intro_python/intro_sympy.html">
-   Introducción a SymPy
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../gu%C3%ADa_instalaci%C3%B3n/guia_de_instalacion.html">Guía de instalación de las herramientas computacionales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro_python/Introducci%C3%B3n%20a%20los%20notebooks%20de%20Jupyter.html">Introducción a los cuadernos de Jupyter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro_python/Extra_Python.html">Introducción a Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro_python/Intro-Matplotlib.html">Figuras en Python - MATPLOTLIB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro_python/intro_sympy.html">Introducción a SymPy</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Señales, sistemas y modelos
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Señales, sistemas y modelos</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo1/intro_sys_sen/intro_sis_y_sen.html">
-   Definiciones de Sistemas y Señales
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo1/laplace/transformada_laplace_python_opcional.html">
-   Transformada de Laplace
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo1/laplace/funcion_transferencia.html">
-   Función transferencia
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo1/diagrama_bloques/diagrama_de_bloques.html">
-   Diagramas de bloques
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../modulo1/espacio_estado/espacio_de_estados.html">
-   Representación de sistemas dinámicos en espacio de estados
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../modulo1/espacio_estado/modelado_ss.html">
-     Modelado en espacio de estados
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo1/linealizacion/linealizacion.html">
-   Linealización de sistemas no-lineales
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../modulo1/ejemplos_sistemas/ejemplos_sistemas.html">
-   Ejemplos de modelos de sistemas
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../modulo1/ejemplos_sistemas/resorte_no_lineal.html">
-     Sistema masa resorte amortiguador
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../modulo1/ejemplos_sistemas/CineticaPuntual.html">
-     Ecuaciones de Cinética Puntual
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../modulo1/ejemplos_sistemas/Nonlinear%20CSTR.html">
-     Sistema CSTR
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../modulo1/ejemplos_sistemas/Ejemplo_Presa_Depredador.html">
-     Sistema presa depredador (Lotka-Volterra)
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo1/intro_sys_sen/intro_sis_y_sen.html">Definiciones de Sistemas y Señales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo1/laplace/transformada_laplace_python_opcional.html">Transformada de Laplace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo1/laplace/funcion_transferencia.html">Función transferencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo1/diagrama_bloques/diagrama_de_bloques.html">Diagramas de bloques</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../modulo1/espacio_estado/espacio_de_estados.html">Representación de sistemas dinámicos en espacio de estados</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../modulo1/espacio_estado/modelado_ss.html">Modelado en espacio de estados</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Análisis de la respuesta temporal
- </span>
-</p>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo1/linealizacion/linealizacion.html">Linealización de sistemas no-lineales</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../modulo1/ejemplos_sistemas/ejemplos_sistemas.html">Ejemplos de modelos de sistemas</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../modulo1/ejemplos_sistemas/resorte_no_lineal.html">Sistema masa resorte amortiguador</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modulo1/ejemplos_sistemas/CineticaPuntual.html">Ecuaciones de Cinética Puntual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modulo1/ejemplos_sistemas/Nonlinear%20CSTR.html">Sistema CSTR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modulo1/ejemplos_sistemas/Ejemplo_Presa_Depredador.html">Sistema presa depredador (Lotka-Volterra)</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Análisis de la respuesta temporal</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../estabilidad/estabilidad.html">
-   Estabilidad
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Respuesta temporal de sistemas dinámicos
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../polos%20y%20ceros%20adicionales/Efecto%20Polos%20y%20Ceros%20Adicionales.html">
-   Efecto de los polos adicionales y de los ceros
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../estabilidad/estabilidad.html">Estabilidad</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Respuesta temporal de sistemas dinámicos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../polos%20y%20ceros%20adicionales/Efecto%20Polos%20y%20Ceros%20Adicionales.html">Efecto de los polos adicionales y de los ceros</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Análisis de estado estacionario
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Análisis de estado estacionario</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo3/realimentacion/carateristicas%20de%20la%20realimentacion.html">
-   Características de la realimentación
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo3/sensibilidad/Sensibilidad.html">
-   Sensibilidad
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo3/errores/Errores.html">
-   Errores
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo3/realimentacion/carateristicas%20de%20la%20realimentacion.html">Características de la realimentación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo3/sensibilidad/Sensibilidad.html">Sensibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo3/errores/Errores.html">Errores</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Lugar de las raíces
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lugar de las raíces</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo4/lugar%20de%20las%20raices.html">
-   Lugar de las raíces
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo4/Pasos%20para%20el%20trazado.html">
-   Pasos para trazar el lugar geométrico de las raíces
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo4/Lugar%20de%20la%20raices%20con%20Python.html">
-   Lugar de las raíces usando Python
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo4/lugar%20de%20las%20raices.html">Lugar de las raíces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo4/Pasos%20para%20el%20trazado.html">Pasos para trazar el lugar geométrico de las raíces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo4/Lugar%20de%20la%20raices%20con%20Python.html">Lugar de las raíces usando Python</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Respuesta en frecuencia
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Respuesta en frecuencia</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo_frec/respuesta_frecuencial.html">
-   Respuesta Frecuencial de Sistemas lineales y SISO
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo_frec/estabilidad_nyquist/estabilidad_en_frecuencia.html">
-   Estabilidad en Frecuencia
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo_frec/respuesta_frecuencial.html">Respuesta Frecuencial de Sistemas lineales y SISO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo_frec/estabilidad_nyquist/estabilidad_en_frecuencia.html">Estabilidad en Frecuencia</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Diseño de compensadores
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Diseño de compensadores</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo5/compensadores.html">
-   Compensadores de adelanto y de retraso de fase
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo5/problema_levitador.html">
-   Problema de levitador magnético
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo5/tipo1_lead.html">
-   Problema con sistema de tipo 1
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo5/lead_lag_design.html">
-   Ecuaciones útiles para el diseño del Lead por análisis en frecuencia
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo5/compensadores.html">Compensadores de adelanto y de retraso de fase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo5/problema_levitador.html">Problema de levitador magnético</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo5/tipo1_lead.html">Problema con sistema de tipo 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo5/lead_lag_design.html">Ecuaciones útiles para el diseño del Lead por análisis en frecuencia</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Control Moderno
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Control Moderno</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo_ve/polos_ceros_EE.html">
-   Polos y Ceros en los modelos de espacio de estados
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo_ve/formas_canonicas.html">
-   Formas canónicas de un espacio de estados
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo_ve/transformacion_formas_canonicas.html">
-   Transformación lineal del espacio de estado
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo_ve/ctrb_obsv.html">
-   Análisis de los sistemas en su forma de espacio de estados
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo_ve/LSR.html">
-   Elección de la ubicación de los polos a lazo cerrado
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo_ve/referencia.html">
-   Inserción de referencias
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo_ve/estimadores.html">
-   Diseño de estimadores
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo_ve/ejemplo_A_ve_motor_cc.html">
-   Diseño para un motor de continua
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo_ve/ejemplo_B_ve_atitud_satelite.html">
-   Diseño del sistema de control del atitud de un satélite
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../modulo_ve/ejemplo_C_ve_pendulo_invertido.html">
-   Diseño del sistema de control del pédulo invertido
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo_ve/polos_ceros_EE.html">Polos y Ceros en los modelos de espacio de estados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo_ve/formas_canonicas.html">Formas canónicas de un espacio de estados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo_ve/transformacion_formas_canonicas.html">Transformación lineal del espacio de estado</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../modulo_ve/ctrb_obsv.html">Análisis de los sistemas en su forma de espacio de estados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo_ve/LSR.html">Elección de la ubicación de los polos a lazo cerrado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo_ve/referencia.html">Inserción de referencias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo_ve/estimadores.html">Diseño de estimadores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo_ve/ejemplo_A_ve_motor_cc.html">Diseño para un motor de continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo_ve/ejemplo_B_ve_atitud_satelite.html">Diseño del sistema de control del atitud de un satélite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulo_ve/ejemplo_C_ve_pendulo_invertido.html">Diseño del sistema de control del pédulo invertido</a></li>
+
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Navegación de palanca" aria-controls="site-navigation"
-                title="Navegación de palanca" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Descarga esta pagina"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../../../../_sources/sources/notebooks_sources/modulo2/respuesta temporal/Respuesta Temporal.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Descargar archivo de cuaderno" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../../_sources/sources/notebooks_sources/modulo2/respuesta temporal/Respuesta Temporal.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Descargar archivo fuente" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimir en PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/gonmolina/DSFyC_book"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Repositorio de origen"><i
-                    class="fab fa-github"></i>repositorio</button></a>
-        <a class="issues-button"
-            href="https://github.com/gonmolina/DSFyC_book/issues/new?title=Issue%20on%20page%20%2Fsources/notebooks_sources/modulo2/respuesta temporal/Respuesta Temporal.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Abrir un problema"><i class="fas fa-lightbulb"></i>Tema abierto</button></a>
-        <a class="edit-button" href="https://github.com/gonmolina/DSFyC_book/edit/master/sources/notebooks_sources/modulo2/respuesta temporal/Respuesta Temporal.md"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edita esta página"><i class="fas fa-pencil-alt"></i>sugerir editar</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/gonmolina/DSFyC_book/blob/master/sources/notebooks_sources/modulo2/respuesta temporal/Respuesta Temporal.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Modo de pantalla completa"
-        title="Modo de pantalla completa"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/gonmolina/DSFyC_book/master?urlpath=tree/sources/notebooks_sources/modulo2/respuesta temporal/Respuesta Temporal.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Lanzamiento Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/gonmolina/DSFyC_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Repositorio de origen"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gonmolina/DSFyC_book/edit/master/sources/notebooks_sources/modulo2/respuesta temporal/Respuesta Temporal.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gonmolina/DSFyC_book/issues/new?title=Issue%20on%20page%20%2Fsources/notebooks_sources/modulo2/respuesta temporal/Respuesta Temporal.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Abrir un problema"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../_sources/sources/notebooks_sources/modulo2/respuesta temporal/Respuesta Temporal.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Descargar archivo de cuaderno"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../../../../_sources/sources/notebooks_sources/modulo2/respuesta temporal/Respuesta Temporal.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
+  
 </div>
+</div>
+              
+              
 
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Respuesta temporal de sistemas dinámicos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contenido
+            <div>
+                <h2> Contenido </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#respuesta-segun-la-ubicacion-de-los-polos">
-   Respuesta según la ubicación de los polos
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#polos-y-ceros-de-una-funcion-transferencia">
-     Polos y Ceros de una función transferencia
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ejemplo-de-la-respuesta-temporal-de-sistema-lti">
-     Ejemplo de la respuesta temporal de sistema LTI
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ejemplo-respuesta-impulsiva-de-un-sistema-lti">
-     Ejemplo: respuesta impulsiva de un sistema LTI
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ejemplo-respuesta-al-escalon-unitario">
-     Ejemplo: Respuesta al escalón unitario
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#respuesta-al-escalon-de-un-sistema-de-primer-orden">
-   Respuesta al escalón de un sistema de
-   <strong>
-    primer orden
-   </strong>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sistema-de-segundo-orden">
-   Sistema de
-   <strong>
-    segundo orden
-   </strong>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ejemplo-funcion-de-transferencia-con-polos-complejos">
-     Ejemplo: Función de transferencia con polos complejos
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#especificaciones-en-el-dominio-temporal">
-   Especificaciones en el dominio temporal
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reglas-a-considerar-para-el-diseno-de-un-sistema-de-control">
-   Reglas a considerar para el diseño de un sistema de control
-  </a>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#respuesta-segun-la-ubicacion-de-los-polos">Respuesta según la ubicación de los polos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polos-y-ceros-de-una-funcion-transferencia">Polos y Ceros de una función transferencia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-la-respuesta-temporal-de-sistema-lti">Ejemplo de la respuesta temporal de sistema LTI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-respuesta-impulsiva-de-un-sistema-lti">Ejemplo: respuesta impulsiva de un sistema LTI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-respuesta-al-escalon-unitario">Ejemplo: Respuesta al escalón unitario</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#respuesta-al-escalon-de-un-sistema-de-primer-orden">Respuesta al escalón de un sistema de <strong>primer orden</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistema-de-segundo-orden">Sistema de <strong>segundo orden</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-funcion-de-transferencia-con-polos-complejos">Ejemplo: Función de transferencia con polos complejos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#especificaciones-en-el-dominio-temporal">Especificaciones en el dominio temporal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reglas-a-considerar-para-el-diseno-de-un-sistema-de-control">Reglas a considerar para el diseño de un sistema de control</a></li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="respuesta-temporal-de-sistemas-dinamicos">
-<h1>Respuesta temporal de sistemas dinámicos<a class="headerlink" href="#respuesta-temporal-de-sistemas-dinamicos" title="Enlazar permanentemente con este título">¶</a></h1>
-<div class="section" id="respuesta-segun-la-ubicacion-de-los-polos">
-<h2>Respuesta según la ubicación de los polos<a class="headerlink" href="#respuesta-segun-la-ubicacion-de-los-polos" title="Enlazar permanentemente con este título">¶</a></h2>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="respuesta-temporal-de-sistemas-dinamicos">
+<h1>Respuesta temporal de sistemas dinámicos<a class="headerlink" href="#respuesta-temporal-de-sistemas-dinamicos" title="Permalink to this heading">#</a></h1>
+<section id="respuesta-segun-la-ubicacion-de-los-polos">
+<h2>Respuesta según la ubicación de los polos<a class="headerlink" href="#respuesta-segun-la-ubicacion-de-los-polos" title="Permalink to this heading">#</a></h2>
 <p>Cuando el sistema en estudio está representado por ecuaciones diferenciales ordinarias simultáneas, la función de transferencia resulta ser una razón de polinomios, de la forma:</p>
 <div class="math notranslate nohighlight">
 \[G(s)=\frac{b(s)}{a(s)}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(a(s)\)</span> y <span class="math notranslate nohighlight">\(b(s)\)</span> son polinomios en <span class="math notranslate nohighlight">\(s\)</span> y no tienen factores en común. Para sistemas físicamente reales el orden del polinomio denominador <span class="math notranslate nohighlight">\(a(s)\)</span> siempre es mayor o igual al orden del numerador <span class="math notranslate nohighlight">\(b(s)\)</span>, por razones de causalidad.</p>
 <p><strong>Un sistema donde el orden del polinomio denominador de la función transferencia es menor que el del numerador, representa un sistema que depende de valores futuros de la entrada.</strong></p>
-<div class="section" id="polos-y-ceros-de-una-funcion-transferencia">
-<h3>Polos y Ceros de una función transferencia<a class="headerlink" href="#polos-y-ceros-de-una-funcion-transferencia" title="Enlazar permanentemente con este título">¶</a></h3>
+<section id="polos-y-ceros-de-una-funcion-transferencia">
+<h3>Polos y Ceros de una función transferencia<a class="headerlink" href="#polos-y-ceros-de-una-funcion-transferencia" title="Permalink to this heading">#</a></h3>
 <div class="important admonition">
 <p class="admonition-title">Polos</p>
 <p>Denominamos <strong>polos</strong> de <span class="math notranslate nohighlight">\(G(s)\)</span>, a aquellos lugares del plano complejo <span class="math notranslate nohighlight">\(s\)</span>, en donde la función de transferencia <span class="math notranslate nohighlight">\(G(s)\)</span> se hace infinita, o sea donde <span class="math notranslate nohighlight">\(a(s) = 0\)</span> (las raíces del polinomio denominador <span class="math notranslate nohighlight">\(a(s)\)</span>).</p>
@@ -616,9 +583,9 @@ commentsRunWhenDOMLoaded(addUtterances);
 <p class="admonition-title">Nota</p>
 <p>Los **polos y ceros describen completamente a <span class="math notranslate nohighlight">\(G(s)\)</span> **, excepto por un multiplicador constante (ganancia en estado estacionario). Esto significa que las funciones <span class="math notranslate nohighlight">\(G(s)\)</span> las podemos representar directamente en el plano <span class="math notranslate nohighlight">\(s\)</span>.</p>
 </div>
-</div>
-<div class="section" id="ejemplo-de-la-respuesta-temporal-de-sistema-lti">
-<h3>Ejemplo de la respuesta temporal de sistema LTI<a class="headerlink" href="#ejemplo-de-la-respuesta-temporal-de-sistema-lti" title="Enlazar permanentemente con este título">¶</a></h3>
+</section>
+<section id="ejemplo-de-la-respuesta-temporal-de-sistema-lti">
+<h3>Ejemplo de la respuesta temporal de sistema LTI<a class="headerlink" href="#ejemplo-de-la-respuesta-temporal-de-sistema-lti" title="Permalink to this heading">#</a></h3>
 <p>Supongamos la siguiente función de transferencia:</p>
 <div class="math notranslate nohighlight">
 \[H(s) = \frac{2s+1}{s^2+3s+2}\]</div>
@@ -647,8 +614,8 @@ commentsRunWhenDOMLoaded(addUtterances);
 -------------
 s^2 + 3 s + 2
 
-Polos de la función H(s): [-2. -1.]
-Polos de la función H(s): [-0.5]
+Polos de la función H(s): [-2.+0.j -1.+0.j]
+Polos de la función H(s): [-0.5+0.j]
 Polos de la función H(s): 0.5
 </pre></div>
 </div>
@@ -679,12 +646,12 @@ Polos de la función H(s): 0.5
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/Respuesta Temporal_8_0.png" src="../../../../_images/Respuesta Temporal_8_0.png" />
+<img alt="../../../../_images/0fc6c9d6da219aa04e7975a7e0f39ed57665773d3e9868a8c4d0ac99e0d0ec29.png" src="../../../../_images/0fc6c9d6da219aa04e7975a7e0f39ed57665773d3e9868a8c4d0ac99e0d0ec29.png" />
 </div>
 </div>
-</div>
-<div class="section" id="ejemplo-respuesta-impulsiva-de-un-sistema-lti">
-<h3>Ejemplo: respuesta impulsiva de un sistema LTI<a class="headerlink" href="#ejemplo-respuesta-impulsiva-de-un-sistema-lti" title="Enlazar permanentemente con este título">¶</a></h3>
+</section>
+<section id="ejemplo-respuesta-impulsiva-de-un-sistema-lti">
+<h3>Ejemplo: respuesta impulsiva de un sistema LTI<a class="headerlink" href="#ejemplo-respuesta-impulsiva-de-un-sistema-lti" title="Permalink to this heading">#</a></h3>
 <p>Tomando la función de transferencia del ejemplo anterior:</p>
 <div class="math notranslate nohighlight">
 \[H(s) = \frac{2s+1}{s^2+3s+2}=\frac{2s+1}{(s+1)(s+2)}\]</div>
@@ -713,6 +680,11 @@ h(t) = \left\{\begin{array}{rl}
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$e^{-t}$&#39;</span><span class="p">)</span>
@@ -723,8 +695,9 @@ h(t) = \left\{\begin{array}{rl}
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/Respuesta Temporal_11_0.png" src="../../../../_images/Respuesta Temporal_11_0.png" />
+<img alt="../../../../_images/058c269b2a4b2b25a1c1684a5925b254b0cbef35e4f7f0f899cd7a93c9e5fe40.png" src="../../../../_images/058c269b2a4b2b25a1c1684a5925b254b0cbef35e4f7f0f899cd7a93c9e5fe40.png" />
 </div>
 </div>
 <p>Por lo dicho antes, como la función transferencia de un sistema es la transformada de Laplace de la respuesta al impulso, y la transformada del impulso es 1, podemos graficar esta función temporal, graficando la respuesta al impulso con el comando <code class="docutils literal notranslate"><span class="pre">impulse_response</span></code>:</p>
@@ -736,6 +709,11 @@ h(t) = \left\{\begin{array}{rl}
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
@@ -746,8 +724,9 @@ h(t) = \left\{\begin{array}{rl}
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/Respuesta Temporal_14_0.png" src="../../../../_images/Respuesta Temporal_14_0.png" />
+<img alt="../../../../_images/4b3d852992feefd165635f07031ff6917cae21a46fa3aed4e2e5810d4c4d6c4c.png" src="../../../../_images/4b3d852992feefd165635f07031ff6917cae21a46fa3aed4e2e5810d4c4d6c4c.png" />
 </div>
 </div>
 <p>Veremos otra forma de definir una Función de Transferencia a partir de la definición de la «función de transferencia elemental, s», luego es posible hacer operaciones algebraicas (sumas, restas, divisiones y productos) con esta función para definir la función de transferencia de un sistema dinámico cualquiera.</p>
@@ -764,6 +743,11 @@ h(t) = \left\{\begin{array}{rl}
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="s1">&#39;r:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$h_1$&quot;</span><span class="p">)</span>
@@ -777,13 +761,14 @@ h(t) = \left\{\begin{array}{rl}
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/Respuesta Temporal_17_0.png" src="../../../../_images/Respuesta Temporal_17_0.png" />
+<img alt="../../../../_images/d3793343e6112967c67f48c2c4e5f17e3d1f5e7fa373710d8a83d1fbaa875798.png" src="../../../../_images/d3793343e6112967c67f48c2c4e5f17e3d1f5e7fa373710d8a83d1fbaa875798.png" />
 </div>
 </div>
-</div>
-<div class="section" id="ejemplo-respuesta-al-escalon-unitario">
-<h3>Ejemplo: Respuesta al escalón unitario<a class="headerlink" href="#ejemplo-respuesta-al-escalon-unitario" title="Enlazar permanentemente con este título">¶</a></h3>
+</section>
+<section id="ejemplo-respuesta-al-escalon-unitario">
+<h3>Ejemplo: Respuesta al escalón unitario<a class="headerlink" href="#ejemplo-respuesta-al-escalon-unitario" title="Permalink to this heading">#</a></h3>
 <p>Siguiendo con la misma función de transferencia, ahora veremos la respuesta a una señal de entrada del tipo escalón unitario <span class="math notranslate nohighlight">\(U(s)=\frac{1}{s}\)</span>, por lo que la señal de salida <span class="math notranslate nohighlight">\(Y(s)\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[Y(s)= H(s)U(s) = \frac{2s+1}{s^2+3s+2}\frac{1}{s} \Longrightarrow \frac{2s+1}{s(s+1)(s+2)}\]</div>
@@ -813,6 +798,11 @@ y(\infty)=\lim_{s\rightarrow 0}sY(s)=\lim_{s\rightarrow 0} s\frac{2s+1}{s(s^2+3s
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
@@ -823,14 +813,15 @@ y(\infty)=\lim_{s\rightarrow 0}sY(s)=\lim_{s\rightarrow 0} s\frac{2s+1}{s(s^2+3s
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/Respuesta Temporal_20_0.png" src="../../../../_images/Respuesta Temporal_20_0.png" />
+<img alt="../../../../_images/febdace6ab5b67f0b7e3463d9fee7946ab82da4874ced8ee1f684259265b6d34.png" src="../../../../_images/febdace6ab5b67f0b7e3463d9fee7946ab82da4874ced8ee1f684259265b6d34.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="respuesta-al-escalon-de-un-sistema-de-primer-orden">
-<h2>Respuesta al escalón de un sistema de <strong>primer orden</strong><a class="headerlink" href="#respuesta-al-escalon-de-un-sistema-de-primer-orden" title="Enlazar permanentemente con este título">¶</a></h2>
+</section>
+</section>
+<section id="respuesta-al-escalon-de-un-sistema-de-primer-orden">
+<h2>Respuesta al escalón de un sistema de <strong>primer orden</strong><a class="headerlink" href="#respuesta-al-escalon-de-un-sistema-de-primer-orden" title="Permalink to this heading">#</a></h2>
 <p>Un sistema de primer orden se puede escribir de forma general:</p>
 <div class="math notranslate nohighlight">
 \[H(s) = \frac{K}{\tau .s+1}\]</div>
@@ -867,6 +858,11 @@ y(\infty)=\lim_{s\rightarrow 0}sY(s)=\lim_{s\rightarrow 0} s\frac{2s+1}{s(s^2+3s
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$y_1$&quot;</span><span class="p">)</span>
@@ -880,14 +876,20 @@ y(\infty)=\lim_{s\rightarrow 0}sY(s)=\lim_{s\rightarrow 0} s\frac{2s+1}{s(s^2+3s
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/Respuesta Temporal_23_0.png" src="../../../../_images/Respuesta Temporal_23_0.png" />
+<img alt="../../../../_images/5134e2c170f4f0ab39ea926ae1ccfeae2e3c11c4e5115f08021878233b3e4af1.png" src="../../../../_images/5134e2c170f4f0ab39ea926ae1ccfeae2e3c11c4e5115f08021878233b3e4af1.png" />
 </div>
 </div>
 <p>Vemos primero, que como los sistemas tienen el mismo valor de <span class="math notranslate nohighlight">\(K\)</span> entonces el valor final es el mismo para los tres sistemas.</p>
 <p>Vemos que el sistema que tiene el <span class="math notranslate nohighlight">\(\tau\)</span> más chico, o lo que es lo mismo el polo <span class="math notranslate nohighlight">\(\dfrac{1}{\tau}\)</span> más grande es el sistema más rápido.</p>
 <p>Voy a graficar unas lineas horizontales sobre la figura anterior</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$y_1$&quot;</span><span class="p">)</span>
@@ -906,8 +908,9 @@ y(\infty)=\lim_{s\rightarrow 0}sY(s)=\lim_{s\rightarrow 0} s\frac{2s+1}{s(s^2+3s
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/Respuesta Temporal_25_0.png" src="../../../../_images/Respuesta Temporal_25_0.png" />
+<img alt="../../../../_images/c0223f5e5a9a6d92689519d0ed3db55090992066ae3b1473b65c9a9737c7f2ca.png" src="../../../../_images/c0223f5e5a9a6d92689519d0ed3db55090992066ae3b1473b65c9a9737c7f2ca.png" />
 </div>
 </div>
 <p>Podemos ver que los tres sistemas cortan a la linea gris inferior que está en <span class="math notranslate nohighlight">\(\approx 0.63\)</span> en el valor de <span class="math notranslate nohighlight">\(\tau\)</span>. Por lo que podemos concluir que un sistema de primer orden llega al 63% de su valor final en <span class="math notranslate nohighlight">\(\tau\)</span> segundos.</p>
@@ -933,6 +936,11 @@ y(\infty)=\lim_{s\rightarrow 0}sY(s)=\lim_{s\rightarrow 0} s\frac{2s+1}{s(s^2+3s
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$y_1$&quot;</span><span class="p">)</span>
@@ -946,18 +954,19 @@ y(\infty)=\lim_{s\rightarrow 0}sY(s)=\lim_{s\rightarrow 0} s\frac{2s+1}{s(s^2+3s
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/Respuesta Temporal_29_0.png" src="../../../../_images/Respuesta Temporal_29_0.png" />
+<img alt="../../../../_images/085ec6bf4e391d3f3d4d1413f03603526f37e591899c5c24abfdf780dbbe06c5.png" src="../../../../_images/085ec6bf4e391d3f3d4d1413f03603526f37e591899c5c24abfdf780dbbe06c5.png" />
 </div>
 </div>
 <p>Si se tiene un sistema de orden <span class="math notranslate nohighlight">\(n\)</span> con todas raíces reales se puede descomponer por fracciones simples y analizar las repuesta de los <span class="math notranslate nohighlight">\(n\)</span> polos por separados, y de estar forma analizar como se comporta el sistema.</p>
 <p>Por lo tanto nos quedaría analizar que pasa cunado los polos del sistema son complejos conjugados</p>
-</div>
-<div class="section" id="sistema-de-segundo-orden">
-<h2>Sistema de <strong>segundo orden</strong><a class="headerlink" href="#sistema-de-segundo-orden" title="Enlazar permanentemente con este título">¶</a></h2>
+</section>
+<section id="sistema-de-segundo-orden">
+<h2>Sistema de <strong>segundo orden</strong><a class="headerlink" href="#sistema-de-segundo-orden" title="Permalink to this heading">#</a></h2>
 <p>Para el caso de raíces complejas conjugadas obtenemos una conclusión similar: los polos determinan la forma de la respuesta temporal.</p>
-<div class="section" id="ejemplo-funcion-de-transferencia-con-polos-complejos">
-<h3>Ejemplo: Función de transferencia con polos complejos<a class="headerlink" href="#ejemplo-funcion-de-transferencia-con-polos-complejos" title="Enlazar permanentemente con este título">¶</a></h3>
+<section id="ejemplo-funcion-de-transferencia-con-polos-complejos">
+<h3>Ejemplo: Función de transferencia con polos complejos<a class="headerlink" href="#ejemplo-funcion-de-transferencia-con-polos-complejos" title="Permalink to this heading">#</a></h3>
 <p>Dada la función de transferencia:</p>
 <div class="math notranslate nohighlight">
 \[G(s)=\frac{2s+1}{s^2+2s+5}\]</div>
@@ -987,7 +996,7 @@ y(\infty)=\lim_{s\rightarrow 0}sY(s)=\lim_{s\rightarrow 0} s\frac{2s+1}{s(s^2+3s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/Respuesta Temporal_35_0.png" src="../../../../_images/Respuesta Temporal_35_0.png" />
+<img alt="../../../../_images/6dad08d5ef5937cb8b2fafe2d569b5f69b868a894a5adb9b7890b06d9cfe286a.png" src="../../../../_images/6dad08d5ef5937cb8b2fafe2d569b5f69b868a894a5adb9b7890b06d9cfe286a.png" />
 </div>
 </div>
 <p>Como vemos, la respuesta al impulso a un par de polos complejos conjugados es una sinusoide amortiguada por una exponencial. Tanto la exponencial, como la frecuencia de la sinusoide depende solo de los polos.</p>
@@ -1003,6 +1012,11 @@ y(\infty)=\lim_{s\rightarrow 0}sY(s)=\lim_{s\rightarrow 0} s\frac{2s+1}{s(s^2+3s
 \[g(t)=\left(2\cos(2t)-\frac{1}{2}\sin(2t)\right)=\sqrt{\left(\frac{1}{2}\right)^2+2^2} \cos\left(2 t - \tan^{-1}\left(\dfrac{-1/2}{2}\right)\right)\]</div>
 <p>En la figura siguiente se esquematiza las respuestas naturales (al impulso) de los sistemas dependiendo de la ubicación de los polos.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">ticker</span>
 
@@ -1191,8 +1205,9 @@ y(\infty)=\lim_{s\rightarrow 0}sY(s)=\lim_{s\rightarrow 0} s\frac{2s+1}{s(s^2+3s
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/Respuesta Temporal_40_0.png" src="../../../../_images/Respuesta Temporal_40_0.png" />
+<img alt="../../../../_images/e0d1cd1bbfcfcb0a1eda4de2919fe6a9e93352db696a99c8b9bddd1c99291692.png" src="../../../../_images/e0d1cd1bbfcfcb0a1eda4de2919fe6a9e93352db696a99c8b9bddd1c99291692.png" />
 </div>
 </div>
 <p>Los polos complejos conjugados los podemos definir en términos de sus partes real e imaginaria, tradicionalmente:</p>
@@ -1212,16 +1227,23 @@ y(\infty)=\lim_{s\rightarrow 0}sY(s)=\lim_{s\rightarrow 0} s\frac{2s+1}{s(s^2+3s
 \[\omega_d = \omega_n \sqrt{1-\zeta^2}\]</div>
 <p>A <span class="math notranslate nohighlight">\(\zeta\)</span> la conocemos como <strong>coeficiente de amortiguamiento</strong>, y a <span class="math notranslate nohighlight">\(\omega_n\)</span> como <strong>frecuencia natural no-amortiguada</strong>. A <span class="math notranslate nohighlight">\(\omega_d\)</span> se la conoce como <strong>frecuencia amortiguada</strong> del sistema y se corresponde con la parte imaginaria del sistema. Además, <span class="math notranslate nohighlight">\(\sigma\)</span> es la parte real de los polos complejos.</p>
 <p>En la figura siguiente observamos el significado gráfico de cada uno de estos parámetros.</p>
-<div class="figure align-default" id="id1">
+<figure class="align-default" id="id1">
 <a class="reference internal image-reference" href="../../../../_images/fig2.gif"><img alt="fig2.gif" src="../../../../_images/fig2.gif" style="width: 250px;" /></a>
-<p class="caption"><span class="caption-number">Figura 25 </span><span class="caption-text">Significado de los parámetros parámetros respecto la ubicación de los polos en el plano <span class="math notranslate nohighlight">\(s\)</span></span><a class="headerlink" href="#id1" title="Enlace permanente a esta imagen">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Figura 25 </span><span class="caption-text">Significado de los parámetros parámetros respecto la ubicación de los polos en el plano <span class="math notranslate nohighlight">\(s\)</span></span><a class="headerlink" href="#id1" title="Enlace permanente a esta imagen">#</a></p>
+</figcaption>
+</figure>
 <p>Teniendo en cuenta la definición de los parámetro anteriores, podemos escribir la respuesta de un sistema con un par de polos complejos conjugados como:</p>
 <div class="math notranslate nohighlight">
 \[y(t)=1-e^{-\sigma t}\left(\cos\omega_d t +\frac{\sigma}{\omega_d}\sin\omega_dt \right) = 1-\frac{e^{-\sigma t}}{\sqrt{(1-\zeta^2)}}\cos(\omega t - \beta)\]</div>
 <p>donde <span class="math notranslate nohighlight">\(\beta = \tan^{-1} \left( \dfrac{ \zeta } { \sqrt{1-\zeta^2}}  \right)= \sin^{-1}(\zeta)\)</span>.</p>
 <p>Podemos observar en la figura siguiente que cuando el coeficiente de amortiguamiento <span class="math notranslate nohighlight">\(\zeta\)</span> es cercano a cero las respuestas del sistema son oscilatorias. A medida que <span class="math notranslate nohighlight">\(\zeta\)</span> se acerca a 1 el amortiguamiento de las oscilaciones es mayor, hasta el punto de no presentarlas.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>
 <span class="n">wn</span><span class="o">=</span><span class="mi">1</span>
@@ -1243,19 +1265,22 @@ y(\infty)=\lim_{s\rightarrow 0}sY(s)=\lim_{s\rightarrow 0} s\frac{2s+1}{s(s^2+3s
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="../../../../_images/Respuesta Temporal_46_0.png" src="../../../../_images/Respuesta Temporal_46_0.png" />
+<img alt="../../../../_images/7d20a57c345c1b9d4cb1039ce92deb23395d0742bca11a4dc3debac990e50ef2.png" src="../../../../_images/7d20a57c345c1b9d4cb1039ce92deb23395d0742bca11a4dc3debac990e50ef2.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="especificaciones-en-el-dominio-temporal">
-<h2>Especificaciones en el dominio temporal<a class="headerlink" href="#especificaciones-en-el-dominio-temporal" title="Enlazar permanentemente con este título">¶</a></h2>
+</section>
+</section>
+<section id="especificaciones-en-el-dominio-temporal">
+<h2>Especificaciones en el dominio temporal<a class="headerlink" href="#especificaciones-en-el-dominio-temporal" title="Permalink to this heading">#</a></h2>
 <p>Las especificaciones para el diseño de un sistema de control frecuentemente involucran ciertos requerimientos asociados a la respuesta temporal del sistema. Los requerimientos para una respuesta a un escalón los expresamos en términos de valores estándar ilustrados en la figura siguiente:</p>
-<div class="figure align-default" id="id2">
+<figure class="align-default" id="id2">
 <a class="reference internal image-reference" href="../../../../_images/fig41.png"><img alt="fig4.png" src="../../../../_images/fig41.png" style="width: 450px;" /></a>
-<p class="caption"><span class="caption-number">Figura 26 </span><span class="caption-text">Definiciones de tiempo de crecimiento, tiempo de establecimiento, tiempo del pico y sobrepico de una respuesta a un escalón.</span><a class="headerlink" href="#id2" title="Enlace permanente a esta imagen">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Figura 26 </span><span class="caption-text">Definiciones de tiempo de crecimiento, tiempo de establecimiento, tiempo del pico y sobrepico de una respuesta a un escalón.</span><a class="headerlink" href="#id2" title="Enlace permanente a esta imagen">#</a></p>
+</figcaption>
+</figure>
 <ul class="simple">
 <li><p><em>Tiempo de crecimiento (rise time)</em> <span class="math notranslate nohighlight">\(t_r\)</span>  es el tiempo que toma el sistema para alcanzar la vecindad de su nuevo set-point.</p></li>
 <li><p><em>Tiempo de establecimiento (settling time)</em> <span class="math notranslate nohighlight">\(t_s\)</span> es el tiempo que toma el sistema para que el transitorio decaiga (en este curso se tomará por defecto el 1% del valor final).</p></li>
@@ -1285,27 +1310,29 @@ y(\infty)=\lim_{s\rightarrow 0}sY(s)=\lim_{s\rightarrow 0} s\frac{2s+1}{s(s^2+3s
 <div class="math notranslate nohighlight">
 \[t_s = \frac{4}{\sigma} =\frac{4}{\zeta\omega_n} \qquad \text{(considerando la banda +/- 2%)}\]</div>
 <p>Este tipo de especificaciones nos darán inecuaciones que limitarán los parámetros <span class="math notranslate nohighlight">\(\omega_n\)</span>, <span class="math notranslate nohighlight">\(\zeta\)</span>, y <span class="math notranslate nohighlight">\(\sigma\)</span>; que a su vez limitarán la ubicación de los polos en el plano s, como mostramos en la figura siguiente.</p>
-<div class="figure align-default" id="id3">
+<figure class="align-default" id="id3">
 <a class="reference internal image-reference" href="../../../../_images/fig51.png"><img alt="fig5.png" src="../../../../_images/fig51.png" style="width: 650px;" /></a>
-<p class="caption"><span class="caption-number">Figura 27 </span><span class="caption-text">Limitación de ubicación de los polos en el plano <span class="math notranslate nohighlight">\(s\)</span> respecto a las especificaciones.</span><a class="headerlink" href="#id3" title="Enlace permanente a esta imagen">¶</a></p>
-</div>
-</div>
-<div class="section" id="reglas-a-considerar-para-el-diseno-de-un-sistema-de-control">
-<h2>Reglas a considerar para el diseño de un sistema de control<a class="headerlink" href="#reglas-a-considerar-para-el-diseno-de-un-sistema-de-control" title="Enlazar permanentemente con este título">¶</a></h2>
-<ol class="simple">
+<figcaption>
+<p><span class="caption-number">Figura 27 </span><span class="caption-text">Limitación de ubicación de los polos en el plano <span class="math notranslate nohighlight">\(s\)</span> respecto a las especificaciones.</span><a class="headerlink" href="#id3" title="Enlace permanente a esta imagen">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="reglas-a-considerar-para-el-diseno-de-un-sistema-de-control">
+<h2>Reglas a considerar para el diseño de un sistema de control<a class="headerlink" href="#reglas-a-considerar-para-el-diseno-de-un-sistema-de-control" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
 <li><p>Para un sistema de segundo orden con ceros no finitos, los parámetros transitorios los aproximamos por:</p></li>
 </ol>
 <div class="math notranslate nohighlight">
 \[t_r\approx \frac{1.8}{\omega_n}\]</div>
 <div class="math notranslate nohighlight">
 \[t_s\approx \frac{4.6}{\zeta\omega_n}\qquad \text{al 1%}\]</div>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Un cero adicional en el semiplano izquierdo aumentará el sobrepico si está en un factor 4 de la parte real de los polos complejos.</p></li>
 <li><p>Un cero adicional en el semiplano derecho bajará el sobrepico (y puede que la respuesta a un escalón parta en dirección contraria).</p></li>
 <li><p>Un polo adicional en el semiplano izquierdo aumentará el tiempo extra dentro de un factor 4 de la parte real de los polos complejos.</p></li>
 </ol>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1319,7 +1346,7 @@ y(\infty)=\lim_{s\rightarrow 0}sY(s)=\lim_{s\rightarrow 0} s\frac{2s+1}{s(s^2+3s
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./sources/notebooks_sources/modulo2/respuesta temporal"
         },
         predefinedOutput: true
@@ -1327,56 +1354,114 @@ y(\infty)=\lim_{s\rightarrow 0}sY(s)=\lim_{s\rightarrow 0} s\frac{2s+1}{s(s^2+3s
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="../estabilidad/estabilidad.html" title="anterior página">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">anterior</p>
-                <p class="prevnext-title">Estabilidad</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="../polos%20y%20ceros%20adicionales/Efecto%20Polos%20y%20Ceros%20Adicionales.html" title="siguiente página">
-            <div class="prevnext-info">
-                <p class="prevnext-label">siguiente</p>
-                <p class="prevnext-title">Efecto de los polos adicionales y de los ceros</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
-        
-        </div>
-    </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          Por Somebody<br/>
-        
-            &copy; Derechos de autor 2021.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../estabilidad/estabilidad.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Estabilidad</p>
       </div>
-    </div>
-  
-  <script src="../../../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+    </a>
+    <a class="right-next"
+       href="../polos%20y%20ceros%20adicionales/Efecto%20Polos%20y%20Ceros%20Adicionales.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Efecto de los polos adicionales y de los ceros</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#respuesta-segun-la-ubicacion-de-los-polos">Respuesta según la ubicación de los polos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polos-y-ceros-de-una-funcion-transferencia">Polos y Ceros de una función transferencia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-la-respuesta-temporal-de-sistema-lti">Ejemplo de la respuesta temporal de sistema LTI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-respuesta-impulsiva-de-un-sistema-lti">Ejemplo: respuesta impulsiva de un sistema LTI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-respuesta-al-escalon-unitario">Ejemplo: Respuesta al escalón unitario</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#respuesta-al-escalon-de-un-sistema-de-primer-orden">Respuesta al escalón de un sistema de <strong>primer orden</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistema-de-segundo-orden">Sistema de <strong>segundo orden</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-funcion-de-transferencia-con-polos-complejos">Ejemplo: Función de transferencia con polos complejos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#especificaciones-en-el-dominio-temporal">Especificaciones en el dominio temporal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reglas-a-considerar-para-el-diseno-de-un-sistema-de-control">Reglas a considerar para el diseño de un sistema de control</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Somebody
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
